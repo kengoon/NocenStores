@@ -1,0 +1,38 @@
+<New>:
+    BoxLayout:
+        orientation:"vertical"
+        MDBoxLayout:
+            adaptive_height: True
+            padding: dp(10)
+            #md_bg_color: app.theme_cls.primary_color
+            M_CardTextField:
+                elevation: 10
+                hint_text: "search/voice search"
+                icon_left: "microphone"
+                icon_right: "magnify"
+                text_field_disabled: True
+                icon_right_color: app.theme_cls.primary_color
+                icon_left_color: app.theme_cls.primary_color
+                foreground_color: [0, 0, 0, 0.8] if app.theme_cls.theme_style == "Light" else [1,1,1,1]
+                cursor_color: [0, 0, 0, .7] if app.theme_cls.theme_style == "Light" else [1,1,1,1]
+                md_bg_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
+                background_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
+                disabled_foreground_color: [0.5, 0.5, 0.5, 1.0]
+
+            MDIconButton:
+                id: menu
+                icon: "dots-vertical"
+                on_release:
+                    root.menu.open()
+        RecycleView:
+            effect_cls: ScrollEffect
+            viewclass: "Sales2Card"
+            data:[{"source":"assets/ads/16.jpg", "product_price": "1000", "product_name":"crab", "store": "Shoprite", "root": root}, {"source":"assets/1.jpg", "store":"RobanStores", "product_price": "3000", "product_name": "Checkers"}, {"source":"assets/2.jpg","store":"RobanStores", "product_price": "4000", "product_name": "ShowRoom"}, {"source":"assets/3.jpg","store":"Stores", "product_price": "3000", "product_name": "Checkers"}, {"source":"assets/4.jpg", "product_name":"tent", "product_price":"2300", "store": "Real Estate"}, {"source":"assets/5.jpg", "store":"RobanStores", "product_price": "3000", "product_name": "Cars"}]
+            RecycleGridLayout:
+                default_size_hint: 1, None
+                default_size: None, Window.height/2.5
+                size_hint_y: None
+                height: self.minimum_height
+                #spacing:dp(20)
+                cols: 1
+                #padding: dp(5)

@@ -1,0 +1,33 @@
+#:import NoTransition kivy.uix.screenmanager.NoTransition
+#:import ScrollEffect kivy.effects.scroll.ScrollEffect
+#:import _ScrollViewHardStop kivymd.uix.swiper._ScrollViewHardStop
+#:import Window kivy.core.window.Window
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+#: import WipeTransition kivy.uix.screenmanager.WipeTransition
+#: import FadeTransition kivy.uix.screenmanager.FadeTransition
+#: import FallOutTransition kivy.uix.screenmanager.FallOutTransition
+ScreenManager:
+    transition: WipeTransition()
+    Initializer:
+    Screen:
+        id: manager
+        name: "manager"
+
+<Initializer>:
+    name: "initializer"
+    canvas.before:
+        Color:
+            rgba: 0, 0, 0, .05
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    Image:
+        source: "assets/N1d.PNG"
+        pos_hint: {"center_y":.6, "center_x":.55}
+
+    AKSpinnerThreeDots:
+        id: spinner
+        spinner_size: dp(20)
+        pos_hint: {'center_x': .5, 'y': .15}
+

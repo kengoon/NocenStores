@@ -1,0 +1,187 @@
+<ProductLookOut>
+    name: "lookout"
+    MDBoxLayout:
+        orientation: "vertical"
+        md_bg_color: app.theme_cls.primary_color
+        MDBoxLayout:
+            size_hint_y: .5
+            md_bg_color: app.theme_cls.primary_color
+            RelativeLayout:
+                Image:
+                    id: image
+                    source: "assets/clock-4.png"
+                    size_hint:.7,.7
+                    pos_hint: {"center_x": .5, "center_y": .5}
+
+                MDBoxLayout:
+                    spacing: dp(40)
+                    adaptive_size: True
+                    pos_hint: {"center_x":.5, "center_y": .1}
+                    MDIcon:
+                        icon: "circle"
+                        color: 1,1,1,1
+                    MDIcon:
+                        icon: "circle-outline"
+                        color: 1,1,1,1
+                    MDIcon:
+                        icon: "circle-outline"
+                        color: 1,1,1,1
+
+                MDIconButton:
+                    icon: "chevron-left"
+                    theme_text_color: "Custom"
+                    user_font_size: dp(30)
+                    text_color: 1,1,1,1
+                    pos_hint: {"center_y": .5}
+
+                MDIconButton:
+                    icon: "chevron-right"
+                    theme_text_color: "Custom"
+                    user_font_size: dp(30)
+                    text_color: 1,1,1,1
+                    pos_hint: {"center_y": .5, "right": 1}
+        RelativeLayout:
+            MDCard:
+                size_hint_y: 1
+                orientation: "vertical"
+                radius: [dp(60), dp(60), 0, 0]
+                padding: [0, dp(20), 0, 0]
+                ScrollView:
+                    effect_cls: ScrollEffect
+                    do_scroll_x: False
+                    MDList:
+                        spacing: dp(20)
+                        padding: dp(20)
+                        MDLabel:
+                            text: "Stylish Watch"
+                            font_style: "Money"
+                            font_size: dp(30)
+                            halign: "center"
+                            size_hint_y: None
+                            height: self.texture_size[1]
+
+                        MDCard:
+                            padding: dp(10)
+                            size_hint_y: None
+                            height: self.minimum_height
+                            radius: [dp(10)]
+                            MDLabel:
+                                text: "Price:"
+                                size_hint_y: None
+                                height: self.texture_size[1]
+                                font_style: "Money"
+                                underline: True
+                            MDLabel:
+                                text: "₦35,000"
+                                size_hint_y: None
+                                height: self.texture_size[1]
+                                halign:"center"
+
+                        MDCard:
+                            padding: dp(10)
+                            size_hint_y: None
+                            height: self.minimum_height
+                            radius: [dp(10)]
+                            MDLabel:
+                                text: "Rating:"
+                                size_hint_y: None
+                                height: self.texture_size[1]
+                                font_style: "Money"
+                                underline: True
+                            AKRating:
+                                id: rates
+                                normal_icon: 'star-box-outline'
+                                active_icon: 'star-box'
+                                animation_type: 'grow'
+                                normal_color: app.theme_cls.disabled_hint_text_color
+                                active_color: app.theme_cls.primary_color
+                                icon_size: dp(20)
+                                disabled: True
+                                pos_hint: {"center_x": .5, "center_y": .5}
+                        MDCard:
+                            size_hint_y: None
+                            height: self.minimum_height
+                            orientation: "vertical"
+                            padding: dp(10)
+                            spacing: dp(10)
+                            radius: [dp(10)]
+                            MDLabel:
+                                text: "Description:"
+                                size_hint_y: None
+                                height: self.texture_size[1]
+                                underline: True
+                                bold: True
+                                italic: True
+                                font_style: "Money"
+
+                            MDLabel:
+                                text: "This Watch is directly made from Aba in Abia State, Taste the original hand made of Aba"
+                                font_style: "Money"
+                                #halign: "center"
+                                size_hint_y: None
+                                height: self.texture_size[1]
+                                pos_hint: {"center_x": .5}
+
+                        MDCard:
+                            size_hint_y: None
+                            height: self.minimum_height
+                            orientation: "vertical"
+                            size_hint_x: .5
+                            padding: dp(10)
+                            spacing: dp(10)
+                            radius: [dp(10)]
+                            ripple_behavior: True
+                            md_bg_color: app.theme_cls.primary_color
+                            MDLabel:
+                                text: "View Comment"
+                                size_hint_y: None
+                                height: self.texture_size[1]
+                                underline: True
+                                bold: True
+                                color: 1,1,1,1
+                                italic: True
+                                font_style: "Money"
+                                halign: "center"
+
+                        MDCard:
+                            orientation:"vertical"
+                            size_hint_y: None
+                            radius: [dp(8)]
+                            height: Window.height/2.7
+                            padding: dp(10)
+                            spacing: dp(10)
+                            MDLabel:
+                                text: "Other similar product"
+                                font_style: "H6"
+                                size_hint_y: None
+                                height: self.texture_size[1]
+
+                            RecycleView:
+                                effect_cls: ScrollEffect
+                                #do_scroll_y: False
+                                viewclass: "OtherSalesCard"
+                                data:[{"source":"assets/7.jpg", "product_price": "1000", "product_name":"crab"}, {"source":"assets/9.jpg", "product_price": "34500", "product_name":"house"}, {"source":"assets/10.jpg", "product_price": "1000", "product_name":"crane"},{"source":"assets/11.jpg","product_price": "22431000", "product_name":"Mansion"},{"source":"assets/12.jpg", "product_price": "1000", "product_name":"crab"},{"source":"assets/13.jpg", "product_price": "1000", "product_name":"crab"},{"source":"assets/14.jpg", "product_price": "1000", "product_name":"crab"},{"source":"assets/15.jpg", "product_price": "1000", "product_name":"crab"},{"source":"assets/16.jpg", "product_price": "1000", "product_name":"crab"}]
+                                RecycleBoxLayout:
+                                    default_size_hint: None, None
+                                    default_size: root.width/2.5 - dp(10), Window.height/3.7
+                                    size_hint: None, None
+                                    size: self.minimum_width ,self.minimum_height
+                                    spacing:dp(10)
+                                    orientation: "horizontal"
+                                    padding: dp(5)
+
+
+
+                MDBoxLayout:
+                    adaptive_height: True
+                    padding: dp(5)
+                    CardIconButton:
+                        md_bg_color: app.theme_cls.primary_color
+                        label_halign: "left"
+                        icon_halign: "right"
+                        icon: "cart-variant"
+                        text: "ADD TO CART"
+                        font_style: "Money"
+                        icon_color: 1,1,1,1
+                        text_color: 1,1,1,1
+                        icon_width: root.width/2.5

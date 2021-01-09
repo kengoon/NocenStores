@@ -1,0 +1,22 @@
+<PictureManager>:
+    name: "picturemanager"
+    BoxLayout:
+        orientation:"vertical"
+        MDToolbar:
+            title: "Select Your Product Image"
+            left_action_items: [["arrow-left", lambda x: root._go_back("home")]]
+            specific_text_color: 1,1,1,1
+
+        RecycleView:
+            id: rv
+            effect_cls: ScrollEffect
+            viewclass: "SalesCard"
+            #data: []
+            RecycleGridLayout:
+                default_size_hint: None, None
+                default_size: root.width/2 - dp(10), Window.height/3
+                size_hint_y: None
+                height: self.minimum_height
+                spacing:dp(5), dp(5)
+                cols: 2
+                padding: dp(5)
