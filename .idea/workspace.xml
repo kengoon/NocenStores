@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4cb93fcd-1f5d-4fef-8c90-3198d866ca2d" name="Default Changelist" comment="Made the Green background to scroll together with the whole scrollview, in home.kv">
-      <change beforePath="$PROJECT_DIR$/libs/libkv/main/home.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/home.kv" afterDir="false" />
-    </list>
+    <list default="true" id="4cb93fcd-1f5d-4fef-8c90-3198d866ca2d" name="Default Changelist" comment="just xml" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -248,7 +246,21 @@
       <option name="project" value="LOCAL" />
       <updated>1610260184345</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="changed the menu magnify icon button to tune icon button and added menu button to the right side of search textbox">
+      <created>1610260821799</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1610260821799</updated>
+    </task>
+    <task id="LOCAL-00006" summary="just xml">
+      <created>1610260899424</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1610260899424</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -265,6 +277,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Uploaded to github" />
     <MESSAGE value="Made the Green background to scroll together with the whole scrollview, in home.kv" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made the Green background to scroll together with the whole scrollview, in home.kv" />
+    <MESSAGE value="changed the menu magnify icon button to tune icon button and added menu button to the right side of search textbox" />
+    <MESSAGE value="just xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="just xml" />
   </component>
 </project>
