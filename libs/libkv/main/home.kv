@@ -23,13 +23,19 @@
                 MDBoxLayout:
                     adaptive_height: True
                     padding: dp(10)
-                    spacing: dp(10)
                     md_bg_color: app.theme_cls.primary_color
+                    MDIconButton:
+                        id: menu
+                        icon: "menu"
+                        theme_text_color: "Custom"
+                        text_color: 1,1,1,1
+                        on_release:
+                            root.menu.open()
                     M_CardTextField:
                         elevation: 10
                         hint_text: "search/voice search"
                         icon_left: "microphone"
-                        icon_right: "magnify"
+                        icon_right: "tune"
                         text_field_disabled: True
                         icon_right_color: app.theme_cls.primary_color
                         icon_left_color: app.theme_cls.primary_color
@@ -38,13 +44,7 @@
                         md_bg_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
                         background_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
                         disabled_foreground_color: [0.5, 0.5, 0.5, 1.0]
-                    MDIconButton:
-                        id: menu
-                        icon: "dots-vertical"
-                        theme_text_color: "Custom"
-                        text_color: 1,1,1,1
-                        on_release:
-                            root.menu.open()
+
                 ScrollView:
                     effect_cls: ScrollEffect
                     MDList:
