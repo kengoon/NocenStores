@@ -52,9 +52,15 @@
                         spacing: 0
                         MDBoxLayout:
                             id: box
-                            md_bg_color: app.theme_cls.primary_color
+                            #md_bg_color: app.theme_cls.primary_color
                             adaptive_height: True
                             padding: [0, 0, 0, dp(10)]
+                            canvas.before:
+                                Color:
+                                    rgba: app.theme_cls.primary_color
+                                Rectangle:
+                                    size:self.size[0], (root.height/3)/1.5
+                                    pos: self.pos[0], self.pos[1] + dp(100)
                             MDSwiper:
                                 id: swiper
                                 size_hint_y: None
