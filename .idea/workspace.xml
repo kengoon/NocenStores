@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4cb93fcd-1f5d-4fef-8c90-3198d866ca2d" name="Default Changelist" comment="Uploaded to github">
+    <list default="true" id="4cb93fcd-1f5d-4fef-8c90-3198d866ca2d" name="Default Changelist" comment="Made the Green background to scroll together with the whole scrollview, in home.kv">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libkv/main/home.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/home.kv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -235,7 +234,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610258523496</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Made the Green background to scroll together with the whole scrollview, in home.kv">
+      <created>1610260166880</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1610260166880</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -251,6 +257,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Uploaded to github" />
-    <option name="LAST_COMMIT_MESSAGE" value="Uploaded to github" />
+    <MESSAGE value="Made the Green background to scroll together with the whole scrollview, in home.kv" />
+    <option name="LAST_COMMIT_MESSAGE" value="Made the Green background to scroll together with the whole scrollview, in home.kv" />
   </component>
 </project>
