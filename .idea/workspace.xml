@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4cb93fcd-1f5d-4fef-8c90-3198d866ca2d" name="Default Changelist" comment="just xml" />
+    <list default="true" id="4cb93fcd-1f5d-4fef-8c90-3198d866ca2d" name="Default Changelist" comment="changed the look of toolbar">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/main/new.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/new.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/main/used.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/used.kv" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -260,7 +264,35 @@
       <option name="project" value="LOCAL" />
       <updated>1610260899424</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="just xml">
+      <created>1610261230899</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1610261230899</updated>
+    </task>
+    <task id="LOCAL-00008" summary="changed orientation to portrait">
+      <created>1610270119748</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1610270119748</updated>
+    </task>
+    <task id="LOCAL-00009" summary="added side menu">
+      <created>1610270174451</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1610270174451</updated>
+    </task>
+    <task id="LOCAL-00010" summary="changed the look of toolbar">
+      <created>1610270217755</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1610270217755</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -279,6 +311,9 @@
     <MESSAGE value="Made the Green background to scroll together with the whole scrollview, in home.kv" />
     <MESSAGE value="changed the menu magnify icon button to tune icon button and added menu button to the right side of search textbox" />
     <MESSAGE value="just xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="just xml" />
+    <MESSAGE value="changed orientation to portrait" />
+    <MESSAGE value="added side menu" />
+    <MESSAGE value="changed the look of toolbar" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed the look of toolbar" />
   </component>
 </project>
