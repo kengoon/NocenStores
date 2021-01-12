@@ -1,2 +1,65 @@
 <Setting>
     name: "setting"
+    BoxLayout:
+        orientation: "vertical"
+        MDToolbar:
+            title: "User Name"
+            left_action_items:[["arrow-left", lambda x: root.go_home()],["assets/user.png", lambda x: None]]
+            specific_text_color: app.theme_cls.primary_color
+            md_bg_color: 1,1,1,1
+
+        ScrollView:
+            MDList
+                spacing: dp(25)
+                padding: dp(10)
+                MDCard:
+                    spacing: dp(26)
+                    size_hint_y: None
+                    height: self.minimum_height
+                    orientation: "vertical"
+                    radius: [dp(10)]
+
+                    OneLineIconListItem:
+                        divider: None
+                        text:"Profile"
+                        text_color: 0,0,0,.6
+                        theme_text_color: "Custom"
+                        IconLeftWidget:
+                            icon: "account"
+                            text_color: 0,0,0,.6
+                            theme_text_color: "Custom"
+
+                    OneLineIconListItem:
+                        text:"Notification"
+                        text_color: 0,0,0,.6
+                        theme_text_color: "Custom"
+                        IconLeftWidget:
+                            icon: "bell"
+                            text_color: 0,0,0,.6
+                            theme_text_color: "Custom"
+
+                MDCard:
+                    spacing: dp(26)
+                    size_hint_y: None
+                    height: self.minimum_height
+                    orientation: "vertical"
+                    radius: [dp(10)]
+
+                    OneLineIconListItem:
+                        divider: None
+                        text:"Customer Care"
+                        text_color: 0,0,0,.6
+                        theme_text_color: "Custom"
+                        IconLeftWidget:
+                            icon: "account"
+                            text_color: 0,0,0,.6
+                            theme_text_color: "Custom"
+
+                    OneLineIconListItem:
+                        text:"Settings"
+                        text_color: 0,0,0,.6
+                        theme_text_color: "Custom"
+                        IconLeftWidget:
+                            icon: "bell"
+                            text_color: 0,0,0,.6
+                            theme_text_color: "Custom"

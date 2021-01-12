@@ -102,3 +102,6 @@ class Home(Screen, EventDispatcher):
 
     def on_menu(self):
         self.menu.open()
+
+    def open_menu(self, instance):
+        self.manager.current = "setting"
