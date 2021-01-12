@@ -104,4 +104,4 @@ class Home(Screen, EventDispatcher):
         self.menu.open()
 
     def open_menu(self, instance):
-        self.manager.current = "setting"
+        self.manager.current = "menu"

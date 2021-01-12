@@ -1,65 +1,47 @@
+#: import MDExpansionPanelOneLine kivymd.uix.expansionpanel.MDExpansionPanelOneLine
 <Setting>
     name: "setting"
+    update: False
+    on_enter:
+        toolbar.ids.label_title.halign = "center"
+        self.add_all_rules(rule1, rule2) if not self.update else None
+        self.update = True
+
     BoxLayout:
-        orientation: "vertical"
+        orientation:"vertical"
         MDToolbar:
-            title: "User Name"
-            left_action_items:[["arrow-left", lambda x: root.go_home()],["assets/user.png", lambda x: None]]
+            id: toolbar
+            title: "Settings"
+            left_action_items: [["arrow-left", lambda x: root.go_menu()]]
             specific_text_color: app.theme_cls.primary_color
-            md_bg_color: 1,1,1,1
+            md_bg_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
 
         ScrollView:
-            MDList
+            effect_cls: ScrollEffect
+            MDList:
                 spacing: dp(25)
                 padding: dp(10)
                 MDCard:
-                    spacing: dp(26)
+                    id: rule1
+                    orientation:"vertical"
+                    radius: [dp(10)]
+                    items:
+                        {\
+                        "My Details": "account-details",\
+                        "Change Phone Number": "cellphone-cog",\
+                        "Change Password": "account-edit"\
+                        }
                     size_hint_y: None
                     height: self.minimum_height
-                    orientation: "vertical"
-                    radius: [dp(10)]
-
-                    OneLineIconListItem:
-                        divider: None
-                        text:"Profile"
-                        text_color: 0,0,0,.6
-                        theme_text_color: "Custom"
-                        IconLeftWidget:
-                            icon: "account"
-                            text_color: 0,0,0,.6
-                            theme_text_color: "Custom"
-
-                    OneLineIconListItem:
-                        text:"Notification"
-                        text_color: 0,0,0,.6
-                        theme_text_color: "Custom"
-                        IconLeftWidget:
-                            icon: "bell"
-                            text_color: 0,0,0,.6
-                            theme_text_color: "Custom"
 
                 MDCard:
-                    spacing: dp(26)
+                    id: rule2
+                    orientation:"vertical"
+                    radius: [dp(10)]
+                    items:
+                        {\
+                        "Dark Mode": "moon-waxing-crescent",\
+                        "Rate Us": "star-outline",\
+                        }
                     size_hint_y: None
                     height: self.minimum_height
-                    orientation: "vertical"
-                    radius: [dp(10)]
-
-                    OneLineIconListItem:
-                        divider: None
-                        text:"Customer Care"
-                        text_color: 0,0,0,.6
-                        theme_text_color: "Custom"
-                        IconLeftWidget:
-                            icon: "account"
-                            text_color: 0,0,0,.6
-                            theme_text_color: "Custom"
-
-                    OneLineIconListItem:
-                        text:"Settings"
-                        text_color: 0,0,0,.6
-                        theme_text_color: "Custom"
-                        IconLeftWidget:
-                            icon: "bell"
-                            text_color: 0,0,0,.6
-                            theme_text_color: "Custom"

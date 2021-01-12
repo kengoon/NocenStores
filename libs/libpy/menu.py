@@ -1,7 +1,7 @@
 from kivy.uix.screenmanager import Screen
 
 
-class Setting(Screen):
+class Menu(Screen):
     def go_home(self):
         self.manager.current = "home"
     pass

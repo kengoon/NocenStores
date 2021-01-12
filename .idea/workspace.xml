@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4cb93fcd-1f5d-4fef-8c90-3198d866ca2d" name="Default Changelist" comment="I changed a lot">
-      <change afterPath="$PROJECT_DIR$/assets/user.png" afterDir="false" />
+    <list default="true" id="4cb93fcd-1f5d-4fef-8c90-3198d866ca2d" name="Default Changelist" comment="created setting screen and made some adaptive changes in home screen">
+      <change afterPath="$PROJECT_DIR$/libs/libkv/main/menu.kv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libpy/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libkv/main/home.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/home.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libkv/main/setting.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/setting.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libpy/home.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/home.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libpy/setting.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/setting.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libpy/setting.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/menu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/manager.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/manager.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manager.kv" beforeDir="false" afterPath="$PROJECT_DIR$/manager.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/theme.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -316,7 +319,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610458629312</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="created setting screen and made some adaptive changes in home screen">
+      <created>1610485318350</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1610485318350</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -341,6 +351,7 @@
     <MESSAGE value="changed the look of toolbar" />
     <MESSAGE value="none" />
     <MESSAGE value="I changed a lot" />
-    <option name="LAST_COMMIT_MESSAGE" value="I changed a lot" />
+    <MESSAGE value="created setting screen and made some adaptive changes in home screen" />
+    <option name="LAST_COMMIT_MESSAGE" value="created setting screen and made some adaptive changes in home screen" />
   </component>
 </project>
