@@ -30,6 +30,7 @@
                         "Change Phone Number": "cellphone-cog",\
                         "Change Password": "account-edit"\
                         }
+                    content: [Factory.DetailContent(), Factory.NumberContent(), Factory.PasswordContent()]
                     size_hint_y: None
                     height: self.minimum_height
 
@@ -42,5 +43,65 @@
                         "Dark Mode": "moon-waxing-crescent",\
                         "Rate Us": "star-outline",\
                         }
+                    content: [Factory.DetailContent(), Factory.DetailContent()]#[Factory.DarkModeContent(), Factory.RateContent()]
                     size_hint_y: None
                     height: self.minimum_height
+
+<DetailContent@MDBoxLayout>:
+    adaptive_height: True
+    padding: "10dp"
+    spacing: "20dp"
+    orientation:"vertical"
+    name: ""
+    email: ""
+    phone: ""
+    MDLabel:
+        text: f"Name: {root.name}"
+        size_hint_y: None
+        height: self.texture_size[1]
+
+    MDLabel:
+        text: f"Email: {root.email}"
+        size_hint_y: None
+        height: self.texture_size[1]
+
+    MDLabel:
+        text: f"Phone no: {root.phone}"
+        size_hint_y: None
+        height: self.texture_size[1]
+
+<PasswordContent@MDBoxLayout>
+    adaptive_height: True
+    orientation: "vertical"
+    padding: dp(10)
+    spacing: dp(20)
+    MDBoxLayout:
+        adaptive_height: True
+        spacing: dp(20)
+        MDTextField:
+            hint_text: "change password :"
+        MDIconButton:
+            icon: "check"
+            theme_text_color: "Custom"
+            text_color: app.theme_cls.primary_color
+
+    MDBoxLayout:
+        adaptive_height: True
+        spacing: dp(20)
+        MDTextField:
+            hint_text: "confirm password :"
+        MDIconButton:
+            icon: "check"
+            theme_text_color: "Custom"
+            text_color: app.theme_cls.primary_color
+
+<NumberContent@MDBoxLayout>
+    adaptive_height: True
+    padding: dp(10)
+    spacing: dp(20)
+    MDTextField:
+        hint_text: "change phone number :"
+    MDIconButton:
+        icon: "check"
+        theme_text_color: "Custom"
+        text_color: app.theme_cls.primary_color

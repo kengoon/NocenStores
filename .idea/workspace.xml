@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4cb93fcd-1f5d-4fef-8c90-3198d866ca2d" name="Default Changelist" comment="created setting screen and made some adaptive changes in home screen">
-      <change afterPath="$PROJECT_DIR$/libs/libkv/main/menu.kv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/libpy/settings.py" afterDir="false" />
+    <list default="true" id="4cb93fcd-1f5d-4fef-8c90-3198d866ca2d" name="Default Changelist" comment="too lazy to write">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libkv/main/setting.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/setting.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libpy/home.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/home.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libpy/setting.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/menu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/manager.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/manager.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libpy/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/manager.kv" beforeDir="false" afterPath="$PROJECT_DIR$/manager.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/theme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/theme.txt" afterDir="false" />
     </list>
@@ -326,7 +322,21 @@
       <option name="project" value="LOCAL" />
       <updated>1610485318350</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="too lazy to write">
+      <created>1610493378778</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1610493378778</updated>
+    </task>
+    <task id="LOCAL-00016" summary="too lazy to write">
+      <created>1610493422443</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1610493422443</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -352,6 +362,7 @@
     <MESSAGE value="none" />
     <MESSAGE value="I changed a lot" />
     <MESSAGE value="created setting screen and made some adaptive changes in home screen" />
-    <option name="LAST_COMMIT_MESSAGE" value="created setting screen and made some adaptive changes in home screen" />
+    <MESSAGE value="too lazy to write" />
+    <option name="LAST_COMMIT_MESSAGE" value="too lazy to write" />
   </component>
 </project>
