@@ -1,22 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4cb93fcd-1f5d-4fef-8c90-3198d866ca2d" name="Default Changelist" comment="none">
-      <change afterPath="$PROJECT_DIR$/libs/libkv/main/setting.kv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/libpy/setting.py" afterDir="false" />
+    <list default="true" id="4cb93fcd-1f5d-4fef-8c90-3198d866ca2d" name="Default Changelist" comment="I changed a lot">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildozer.spec" beforeDir="false" afterPath="$PROJECT_DIR$/buildozer.spec" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/kv_widget/widget.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/kv_widget/widget.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libkv/main/home.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/home.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libkv/main/new.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/new.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libkv/main/productlookout.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/productlookout.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libkv/main/used.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/used.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libpy/home.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/home.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libpy/new.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/new.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libpy/productlookout.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/productlookout.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libpy/used.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/used.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/manager.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/manager.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -311,7 +297,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610270251089</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="I changed a lot">
+      <created>1610452461915</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1610452461915</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -335,6 +328,7 @@
     <MESSAGE value="added side menu" />
     <MESSAGE value="changed the look of toolbar" />
     <MESSAGE value="none" />
-    <option name="LAST_COMMIT_MESSAGE" value="none" />
+    <MESSAGE value="I changed a lot" />
+    <option name="LAST_COMMIT_MESSAGE" value="I changed a lot" />
   </component>
 </project>
