@@ -1,54 +1,66 @@
 <ProductLookOut>
     name: "lookout"
-    MDBoxLayout:
+    on_enter:
+        toolbar.ids.label_title.font_style = "Money"
+    BoxLayout:
         orientation: "vertical"
-        md_bg_color: app.theme_cls.primary_color
-        MDBoxLayout:
-            size_hint_y: .5
-            md_bg_color: app.theme_cls.primary_color
-            RelativeLayout:
-                Image:
-                    id: image
-                    source: "assets/clock-4.png"
-                    size_hint:.7,.7
-                    pos_hint: {"center_x": .5, "center_y": .5}
-
+        MDToolbar:
+            id: toolbar
+            title: "Take This Product It Is Yours"
+            left_action_items:[["arrow-left", lambda x: root.go_home()]]
+            elevation: 0
+            specific_text_color: 1,1,1,1
+        ScrollView:
+            effect_cls: ScrollEffect
+            MDList:
+                padding: 0
+                md_bg_color: app.theme_cls.primary_color
                 MDBoxLayout:
-                    spacing: dp(40)
-                    adaptive_size: True
-                    pos_hint: {"center_x":.5, "center_y": .1}
-                    MDIcon:
-                        icon: "circle"
-                        color: 1,1,1,1
-                    MDIcon:
-                        icon: "circle-outline"
-                        color: 1,1,1,1
-                    MDIcon:
-                        icon: "circle-outline"
-                        color: 1,1,1,1
+                    size_hint_y: None
+                    height: self.minimum_height
+                    md_bg_color: app.theme_cls.primary_color
+                    RelativeLayout:
+                        size_hint_y: None
+                        height: image.height + dp(100)
+                        Image:
+                            id: image
+                            source: "assets/clock-4.png"
+                            size_hint:.7,.7
+                            pos_hint: {"center_x": .5, "center_y": .5}
 
-                MDIconButton:
-                    icon: "chevron-left"
-                    theme_text_color: "Custom"
-                    user_font_size: dp(30)
-                    text_color: 1,1,1,1
-                    pos_hint: {"center_y": .5}
+                        MDBoxLayout:
+                            spacing: dp(40)
+                            adaptive_size: True
+                            pos_hint: {"center_x":.5, "center_y": .1}
+                            MDIcon:
+                                icon: "circle"
+                                color: 1,1,1,1
+                            MDIcon:
+                                icon: "circle-outline"
+                                color: 1,1,1,1
+                            MDIcon:
+                                icon: "circle-outline"
+                                color: 1,1,1,1
 
-                MDIconButton:
-                    icon: "chevron-right"
-                    theme_text_color: "Custom"
-                    user_font_size: dp(30)
-                    text_color: 1,1,1,1
-                    pos_hint: {"center_y": .5, "right": 1}
-        RelativeLayout:
-            MDCard:
-                size_hint_y: 1
-                orientation: "vertical"
-                radius: [dp(60), dp(60), 0, 0]
-                padding: [0, dp(20), 0, 0]
-                ScrollView:
-                    effect_cls: ScrollEffect
-                    do_scroll_x: False
+                        MDIconButton:
+                            icon: "chevron-left"
+                            theme_text_color: "Custom"
+                            user_font_size: dp(30)
+                            text_color: 1,1,1,1
+                            pos_hint: {"center_y": .5}
+
+                        MDIconButton:
+                            icon: "chevron-right"
+                            theme_text_color: "Custom"
+                            user_font_size: dp(30)
+                            text_color: 1,1,1,1
+                            pos_hint: {"center_y": .5, "right": 1}
+                MDCard:
+                    size_hint_y: None
+                    height: self.minimum_height
+                    orientation: "vertical"
+                    radius: [dp(60), dp(60), 0, 0]
+                    padding: [0, dp(20), 0, 0]
                     MDList:
                         spacing: dp(20)
                         padding: dp(20)
@@ -157,8 +169,8 @@
                                 height: self.texture_size[1]
 
                             RecycleView:
-                                effect_cls: ScrollEffect
-                                #do_scroll_y: False
+                                effect_cls: _ScrollViewHardStop
+                                do_scroll_y: False
                                 viewclass: "OtherSalesCard"
                                 data:[{"source":"assets/7.jpg", "product_price": "1000", "product_name":"crab"}, {"source":"assets/9.jpg", "product_price": "34500", "product_name":"house"}, {"source":"assets/10.jpg", "product_price": "1000", "product_name":"crane"},{"source":"assets/11.jpg","product_price": "22431000", "product_name":"Mansion"},{"source":"assets/12.jpg", "product_price": "1000", "product_name":"crab"},{"source":"assets/13.jpg", "product_price": "1000", "product_name":"crab"},{"source":"assets/14.jpg", "product_price": "1000", "product_name":"crab"},{"source":"assets/15.jpg", "product_price": "1000", "product_name":"crab"},{"source":"assets/16.jpg", "product_price": "1000", "product_name":"crab"}]
                                 RecycleBoxLayout:
@@ -172,16 +184,16 @@
 
 
 
-                MDBoxLayout:
-                    adaptive_height: True
-                    padding: dp(5)
-                    CardIconButton:
-                        md_bg_color: app.theme_cls.primary_color
-                        label_halign: "left"
-                        icon_halign: "right"
-                        icon: "cart-variant"
-                        text: "ADD TO CART"
-                        font_style: "Money"
-                        icon_color: 1,1,1,1
-                        text_color: 1,1,1,1
-                        icon_width: root.width/2.5
+        MDBoxLayout:
+            adaptive_height: True
+            padding: dp(5)
+            CardIconButton:
+                md_bg_color: app.theme_cls.primary_color
+                label_halign: "left"
+                icon_halign: "right"
+                icon: "cart-variant"
+                text: "ADD TO CART"
+                font_style: "Money"
+                icon_color: 1,1,1,1
+                text_color: 1,1,1,1
+                icon_width: root.width/2.5

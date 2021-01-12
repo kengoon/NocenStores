@@ -32,15 +32,15 @@ class Home(Screen, EventDispatcher):
             self.ids.sell.header.ids._label_icon.font_size = dp(35)
             self.ids.used.header.ids._label.font_style = "Caption"
             self.ids.info.header.ids._label.font_style = "Caption"
-            self.menu = MDDropdownMenu(
-                caller=self.ids.menu,
-                items=[
-                    {"icon": "account", "text": "profile"},
-                    {"icon": "cog", "text": "settings"},
-                ],
-                width_mult=4,
-                position="auto"
-            )
+            # self.menu = MDDropdownMenu(
+            #     caller=self.ids.menu,
+            #     items=[
+            #         {"icon": "account", "text": "profile"},
+            #         {"icon": "cog", "text": "settings"},
+            #     ],
+            #     width_mult=4,
+            #     position="auto"
+            # )
             self.update = True
 
     def on_leave(self, *args):

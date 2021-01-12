@@ -2,290 +2,291 @@
     name: "home"
     outliner: [home, new, sell, used]
 
-    MDNavigationLayout:
-        ScreenManager:
-            Screen:
-                MDBottomNavigation:
-                    id: raw
-                    text_color_normal: [0,0,0,1] if app.theme_cls.theme_style == "Light" else [1,1,1,1]
-                    MDBottomNavigationItem:
-                        id: home
-                        icon: "home"
-                        text: "home"
-                        name: "home"
-                        root: root
-                        on_tab_release:
-                            print(self.height)
-                            a = root.outliner.copy()
-                            a.remove(self)
-                            root.outline(a, self)
+#    MDNavigationLayout:
+#        ScreenManager:
+#            Screen:
+    MDBottomNavigation:
+        id: raw
+        text_color_normal: [0,0,0,1] if app.theme_cls.theme_style == "Light" else [1,1,1,1]
+        MDBottomNavigationItem:
+            id: home
+            icon: "home"
+            text: "home"
+            name: "home"
+            root: root
+            on_tab_release:
+                print(self.height)
+                a = root.outliner.copy()
+                a.remove(self)
+                root.outline(a, self)
 
-                        BoxLayout:
-                            orientation:"vertical"
-                            MDBoxLayout:
-                                adaptive_height: True
-                                padding: dp(10)
-                                md_bg_color: app.theme_cls.primary_color
-                                MDIconButton:
-                                    id: menu
-                                    icon: "menu"
-                                    theme_text_color: "Custom"
-                                    text_color: 1,1,1,1
-                                    on_release:
-                                        nav_drawer.set_state("open")
-                                        #root.menu.open()
-                                M_CardTextField:
-                                    elevation: 10
-                                    hint_text: "search/voice search"
-                                    icon_left: "microphone"
-                                    icon_right: "tune"
-                                    text_field_disabled: True
-                                    icon_right_color: app.theme_cls.primary_color
-                                    icon_left_color: app.theme_cls.primary_color
-                                    foreground_color: [0, 0, 0, 0.8] if app.theme_cls.theme_style == "Light" else [1,1,1,1]
-                                    cursor_color: [0, 0, 0, .7] if app.theme_cls.theme_style == "Light" else [1,1,1,1]
-                                    md_bg_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
-                                    background_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
-                                    disabled_foreground_color: [0.5, 0.5, 0.5, 1.0]
+            BoxLayout:
+                orientation:"vertical"
+                MDBoxLayout:
+                    adaptive_height: True
+                    padding: dp(10)
+                    md_bg_color: app.theme_cls.primary_color
+#                    MDIconButton:
+#                        id: menu
+#                        icon: "menu"
+#                        theme_text_color: "Custom"
+#                        text_color: 1,1,1,1
+#                        on_release:
+#                            nav_drawer.set_state("open")
+                            #root.menu.open()
+                    M_CardTextField:
+                        elevation: 10
+                        hint_text: "search/voice search"
+                        icon_left: "microphone"
+                        icon_right: "tune"
+                        text_field_disabled: True
+                        icon_right_color: app.theme_cls.primary_color
+                        icon_left_color: app.theme_cls.primary_color
+                        foreground_color: [0, 0, 0, 0.8] if app.theme_cls.theme_style == "Light" else [1,1,1,1]
+                        cursor_color: [0, 0, 0, .7] if app.theme_cls.theme_style == "Light" else [1,1,1,1]
+                        md_bg_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
+                        background_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
+                        disabled_foreground_color: [0.5, 0.5, 0.5, 1.0]
 
-                            ScrollView:
-                                effect_cls: ScrollEffect
-                                MDList:
-                                    padding: 0
-                                    spacing: 0
-                                    MDBoxLayout:
-                                        id: box
-                                        #md_bg_color: app.theme_cls.primary_color
-                                        adaptive_height: True
-                                        padding: [0, 0, 0, dp(10)]
-                                        canvas.before:
-                                            Color:
-                                                rgba: app.theme_cls.primary_color
-                                            Rectangle:
-                                                size:self.size[0], (root.height/3)/1.5
-                                                pos: self.pos[0], self.pos[1] + dp(100)
-                                        MDSwiper:
-                                            id: swiper
-                                            size_hint_y: None
-                                            height: Window.height/3.5
-                                            MDSwiperItem:
-                                                M_CardLoader:
-                                                    source:"assets/ads/8.jpg"
-                                                    text: "Yummy: so tasty"
+                ScrollView:
+                    effect_cls: ScrollEffect
+                    MDList:
+                        padding: 0
+                        spacing: 0
+                        MDBoxLayout:
+                            id: box
+                            #md_bg_color: app.theme_cls.primary_color
+                            adaptive_height: True
+                            padding: [0, 0, 0, dp(10)]
+                            canvas.before:
+                                Color:
+                                    rgba: app.theme_cls.primary_color
+                                Rectangle:
+                                    size:self.size[0], (root.height/3)/1.5
+                                    pos: self.pos[0], self.pos[1] + dp(100)
+                            MDSwiper:
+                                id: swiper
+                                size_hint_y: None
+                                height: Window.height/3.1
+                                items_spacing: "10dp"
+                                MDSwiperItem:
+                                    M_CardLoader:
+                                        source:"assets/ads/8.jpg"
+                                        text: "Yummy: so tasty"
 
-                                            MDSwiperItem:
-                                                M_CardLoader
-                                                    source: "assets/ads/16.jpg"
-                                                    text: "Angle360: so delicious"
+                                MDSwiperItem:
+                                    M_CardLoader
+                                        source: "assets/ads/16.jpg"
+                                        text: "Angle360: so delicious"
 
-                                            MDSwiperItem:
-                                                M_CardLoader
-                                                    source: "assets/ads/18.jpg"
-                                                    text: "ShopRite: buy one, get one free"
-                                    MDBoxLayout:
-                                        adaptive_height: True
-                                        padding: dp(20)
-                                        MDCard:
-                                            size_hint_y: None
-                                            height: self.minimum_height
-                                            elevation: 8
-                                            radius: [dp(10)]
-                                            MDGridLayout:
-                                                adaptive_height: True
-                                                cols: 2
-                                                padding: dp(10)
-                                                spacing: dp(10)
-                                                CardIconButton:
-                                                    text: "Accommodation"
-                                                    icon: "android"
+                                MDSwiperItem:
+                                    M_CardLoader
+                                        source: "assets/ads/18.jpg"
+                                        text: "ShopRite: buy one, get one free"
+                        MDBoxLayout:
+                            adaptive_height: True
+                            padding: dp(20)
+                            MDCard:
+                                size_hint_y: None
+                                height: self.minimum_height
+                                elevation: 8
+                                radius: [dp(10)]
+                                MDGridLayout:
+                                    adaptive_height: True
+                                    cols: 2
+                                    padding: dp(10)
+                                    spacing: dp(10)
+                                    CardIconButton:
+                                        text: "Accommodation"
+                                        icon: "android"
 
-                                                CardIconButton:
-                                                    text: "Find RoomMate"
-                                                    icon: "android"
+                                    CardIconButton:
+                                        text: "Find RoomMate"
+                                        icon: "android"
 
-                                                CardIconButton:
-                                                    text: "Service Provider"
-                                                    icon: "android"
-                                    MDGridLayout:
-                                        adaptive_height: True
-                                        cols: 1
-                                        padding: [dp(10), 0, dp(10), dp(10)]
-                                        spacing: dp(30)
-                                        ImageCard:
-                                            text: "Electronics"
-                                            #text_color: 1, 1, 1, 1
-                                            source: "assets/clock-4.png"
+                                    CardIconButton:
+                                        text: "Service Provider"
+                                        icon: "android"
+                        MDGridLayout:
+                            adaptive_height: True
+                            cols: 1
+                            padding: [dp(10), 0, dp(10), dp(10)]
+                            spacing: dp(30)
+                            ImageCard:
+                                text: "Electronics"
+                                #text_color: 1, 1, 1, 1
+                                source: "assets/clock-4.png"
 
-                                        ImageCard:
-                                            text: "Portable Devices"
-                                            source: "assets/clock-5.png"
-                                            #text_color: 1, 1, 1, 1
+                            ImageCard:
+                                text: "Portable Devices"
+                                source: "assets/clock-5.png"
+                                #text_color: 1, 1, 1, 1
 
-                                        ImageCard:
-                                            text: "Clothing"
-                                            source: "assets/clock-8.png"
-                                            #text_color: 1, 1, 1, 1
+                            ImageCard:
+                                text: "Clothing"
+                                source: "assets/clock-8.png"
+                                #text_color: 1, 1, 1, 1
 
-                                        ImageCard:
-                                            text: "Furniture"
-                                            source: "assets/7.jpg"
-                                            #text_color: 1, 1, 1, 1
+                            ImageCard:
+                                text: "Furniture"
+                                source: "assets/7.jpg"
+                                #text_color: 1, 1, 1, 1
 
-                                        ImageCard:
-                                            text: "Kitchen"
-                                            source: "assets/clock-5.png"
-                                            #text_color: 1, 1, 1, 1
+                            ImageCard:
+                                text: "Kitchen"
+                                source: "assets/clock-5.png"
+                                #text_color: 1, 1, 1, 1
 
-                    MDBottomNavigationItem:
-                        id: new
-                        name: "new"
-                        text: "new product"
-                        icon: "shield-outline"
-                        root: root
-                        on_enter:
-                            self.children[0].dispatch("on_enter")
-                        on_tab_release:
-                            a = root.outliner.copy()
-                            a.remove(self)
-                            root.outline(a, self)
-                        New:
-                            root: root
-                    MDBottomNavigationItem:
-                        id: sell
-                        name: "sell"
-                        text: "sell"
-                        icon: "plus-circle-outline"
-                        on_tab_release:
-                            a = root.outliner.copy()
-                            a.remove(self)
-                            root.outline(a, self)
-                        Sell:
-                            root: root
-                    MDBottomNavigationItem:
-                        id: used
-                        name: "used"
-                        text: "fairly used"
-                        icon: "shield-off-outline"
-                        root: root
-                        on_enter:
-                            self.children[0].dispatch("on_enter")
-                        on_tab_release:
-                            a = root.outliner.copy()
-                            a.remove(self)
-                            root.outline(a, self)
-                        Used:
-                            root:root
-                    MDBottomNavigationItem:
-                        id: info
-                        name: "info"
-                        text: "n-info"
-                        icon: "information-variant"
-                        root: root
-                        on_tab_release:
-                            root.outline(root.outliner, None)
-                            #root.add_nav(self)
+        MDBottomNavigationItem:
+            id: new
+            name: "new"
+            text: "new product"
+            icon: "shield-outline"
+            root: root
+            on_enter:
+                self.children[0].dispatch("on_enter")
+            on_tab_release:
+                a = root.outliner.copy()
+                a.remove(self)
+                root.outline(a, self)
+            New:
+                root: root
+        MDBottomNavigationItem:
+            id: sell
+            name: "sell"
+            text: "sell"
+            icon: "plus-circle-outline"
+            on_tab_release:
+                a = root.outliner.copy()
+                a.remove(self)
+                root.outline(a, self)
+            Sell:
+                root: root
+        MDBottomNavigationItem:
+            id: used
+            name: "used"
+            text: "fairly used"
+            icon: "shield-off-outline"
+            root: root
+            on_enter:
+                self.children[0].dispatch("on_enter")
+            on_tab_release:
+                a = root.outliner.copy()
+                a.remove(self)
+                root.outline(a, self)
+            Used:
+                root:root
+        MDBottomNavigationItem:
+            id: info
+            name: "info"
+            text: "n-info"
+            icon: "information-variant"
+            root: root
+            on_tab_release:
+                root.outline(root.outliner, None)
+                #root.add_nav(self)
 
-                MDFloatingActionButton:
-                    icon: "brightness-4"
-                    pos_hint: {"center_x":.9, "center_y":.15}
-                    on_release:
-                        root.change_theme()
+    MDFloatingActionButton:
+        icon: "brightness-4"
+        pos_hint: {"center_x":.9, "center_y":.15}
+        on_release:
+            root.change_theme()
 
-        MDNavigationDrawer:
-            id: nav_drawer
-            ContentNavigationDrawer:
-
-<ContentNavigationDrawer@BoxLayout>:
-    orientation: "vertical"
-    # to be removed
-    MDBoxLayout:
-        adaptive_height: True
-        md_bg_color: app.theme_cls.primary_color
-        Image:
-            source: "assets/N1d.PNG"
-
-    ScrollView:
-        effect_cls: ScrollEffect
-        MDList:
-            padding: dp(10)
-            MDBoxLayout:
-                adaptive_height: True
-                padding: dp(5)
-                MDLabel:
-                    text: "Categories"
-                    size_hint_y: None
-                    height: self.texture_size[1]
-                    halign: "center"
-            MDSeparator:
-            MDCard:
-                radius: [dp(5)]
-                size_hint_y: None
-                height: self.minimum_height
-                elevation: 10
-                OneLineIconListItem:
-                    text: "Portable Devices"
-                    divider: None
-                    theme_text_color: "Custom"
-                    text_color: 0,0,0,.6
-                    IconLeftWidget:
-                        icon: "devices"
-                        theme_text_color: "Custom"
-                        text_color: 0,0,0,.6
-
-            OneLineIconListItem:
-                text: "Electronics"
-                divider: None
-                theme_text_color: "Custom"
-                text_color: 0,0,0,.6
-                IconLeftWidget:
-                    icon: "television"
-                    theme_text_color: "Custom"
-                    text_color: 0,0,0,.6
-            MDCard:
-                radius: [dp(5)]
-                size_hint_y: None
-                height: self.minimum_height
-                elevation: 10
-                OneLineIconListItem:
-                    text: "Clothing"
-                    divider: None
-                    theme_text_color: "Custom"
-                    text_color: 0,0,0,.6
-                    IconLeftWidget:
-                        icon: "tshirt-crew-outline"
-                        theme_text_color: "Custom"
-                        text_color: 0,0,0,.6
-
-            OneLineIconListItem:
-                text: "Kitchen"
-                divider: None
-                theme_text_color: "Custom"
-                text_color: 0,0,0,.6
-                IconLeftWidget:
-                    icon: "pot-steam"
-                    theme_text_color: "Custom"
-                    text_color: 0,0,0,.6
-            MDCard:
-                radius: [dp(5)]
-                size_hint_y: None
-                height: self.minimum_height
-                elevation: 10
-                OneLineIconListItem:
-                    text: "Cosmetics"
-                    text_color: 0,0,0,.6
-                    theme_text_color: "Custom"
-                    divider: None
-                    IconLeftWidget:
-                        icon: "lipstick"
-                        theme_text_color: "Custom"
-                        text_color: 0,0,0,.6
-
-            OneLineIconListItem:
-                text: "Furniture"
-                text_color: 0,0,0,.6
-                theme_text_color: "Custom"
-                divider: None
-                IconLeftWidget:
-                    icon: "chair-rolling"
-                    theme_text_color: "Custom"
-                    text_color: 0,0,0,.6
+#        MDNavigationDrawer:
+#            id: nav_drawer
+#            ContentNavigationDrawer:
+#
+#<ContentNavigationDrawer@BoxLayout>:
+#    orientation: "vertical"
+#    # to be removed
+#    MDBoxLayout:
+#        adaptive_height: True
+#        md_bg_color: app.theme_cls.primary_color
+#        Image:
+#            source: "assets/N1d.PNG"
+#
+#    ScrollView:
+#        effect_cls: ScrollEffect
+#        MDList:
+#            padding: dp(10)
+#            MDBoxLayout:
+#                adaptive_height: True
+#                padding: dp(5)
+#                MDLabel:
+#                    text: "Categories"
+#                    size_hint_y: None
+#                    height: self.texture_size[1]
+#                    halign: "center"
+#            MDSeparator:
+#            MDCard:
+#                radius: [dp(5)]
+#                size_hint_y: None
+#                height: self.minimum_height
+#                elevation: 10
+#                OneLineIconListItem:
+#                    text: "Portable Devices"
+#                    divider: None
+#                    theme_text_color: "Custom"
+#                    text_color: 0,0,0,.6
+#                    IconLeftWidget:
+#                        icon: "devices"
+#                        theme_text_color: "Custom"
+#                        text_color: 0,0,0,.6
+#
+#            OneLineIconListItem:
+#                text: "Electronics"
+#                divider: None
+#                theme_text_color: "Custom"
+#                text_color: 0,0,0,.6
+#                IconLeftWidget:
+#                    icon: "television"
+#                    theme_text_color: "Custom"
+#                    text_color: 0,0,0,.6
+#            MDCard:
+#                radius: [dp(5)]
+#                size_hint_y: None
+#                height: self.minimum_height
+#                elevation: 10
+#                OneLineIconListItem:
+#                    text: "Clothing"
+#                    divider: None
+#                    theme_text_color: "Custom"
+#                    text_color: 0,0,0,.6
+#                    IconLeftWidget:
+#                        icon: "tshirt-crew-outline"
+#                        theme_text_color: "Custom"
+#                        text_color: 0,0,0,.6
+#
+#            OneLineIconListItem:
+#                text: "Kitchen"
+#                divider: None
+#                theme_text_color: "Custom"
+#                text_color: 0,0,0,.6
+#                IconLeftWidget:
+#                    icon: "pot-steam"
+#                    theme_text_color: "Custom"
+#                    text_color: 0,0,0,.6
+#            MDCard:
+#                radius: [dp(5)]
+#                size_hint_y: None
+#                height: self.minimum_height
+#                elevation: 10
+#                OneLineIconListItem:
+#                    text: "Cosmetics"
+#                    text_color: 0,0,0,.6
+#                    theme_text_color: "Custom"
+#                    divider: None
+#                    IconLeftWidget:
+#                        icon: "lipstick"
+#                        theme_text_color: "Custom"
+#                        text_color: 0,0,0,.6
+#
+#            OneLineIconListItem:
+#                text: "Furniture"
+#                text_color: 0,0,0,.6
+#                theme_text_color: "Custom"
+#                divider: None
+#                IconLeftWidget:
+#                    icon: "chair-rolling"
+#                    theme_text_color: "Custom"
+#                    text_color: 0,0,0,.6

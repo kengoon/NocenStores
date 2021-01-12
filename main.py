@@ -2,7 +2,7 @@ import os
 from functools import partial
 from threading import Thread
 from time import sleep
-
+from certifi import where
 from kivy import platform
 from kivy.clock import mainthread, Clock
 from kivy.core.window import Window
@@ -10,12 +10,12 @@ from kivy.effects.scroll import ScrollEffect
 from kivy.metrics import dp
 from kivymd.app import MDApp
 from kivy.lang import Builder
-
 from classes.card import MsCard
 from libs.classes_wigdet.m_cardtextfield import M_CardTextField
 from kivy.factory import Factory
 from classes.m_loader import M_AKImageLoader, M_AKLabelLoader
 from classes.m_cardloader import M_CardLoader
+os.environ['SSL_CERT_FILE'] = where()
 
 r = Factory.register
 r("M_CardLoader", cls=M_CardLoader)
