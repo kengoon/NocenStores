@@ -4,14 +4,7 @@
         MDBoxLayout:
             adaptive_height: True
             padding: dp(10)
-            #md_bg_color: app.theme_cls.primary_color
-#            MDIconButton:
-#                id: menu
-#                icon: "menu"
-#                theme_text_color: "Custom"
-#                text_color: app.theme_cls.primary_color
-#                on_release:
-#                    root.root.ids.nav_drawer.set_state("open")
+            md_bg_color: app.theme_cls.primary_color
             M_CardTextField:
                 elevation: 10
                 hint_text: "search/voice search"
@@ -28,7 +21,7 @@
         RecycleView:
             effect_cls: ScrollEffect
             viewclass: "SalesCard"
-            data:[{"source":"assets/7.jpg", "product_price": "1000", "product_name":"crab"}, {"source":"assets/9.jpg", "product_price": "34500", "product_name":"house"}, {"source":"assets/10.jpg", "product_price": "1000", "product_name":"crane"},{"source":"assets/11.jpg","product_price": "22431000", "product_name":"Mansion"},{"source":"assets/12.jpg", "product_price": "1000", "product_name":"crab"},{"source":"assets/13.jpg", "product_price": "1000", "product_name":"crab"},{"source":"assets/14.jpg", "product_price": "1000", "product_name":"crab"},{"source":"assets/15.jpg", "product_price": "1000", "product_name":"crab"},{"source":"assets/16.jpg", "product_price": "1000", "product_name":"crab"}]
+            data:[{"source":"assets/7.jpg", "product_price": 1000, "product_name":"crab"}, {"source":"assets/9.jpg", "product_price": 34500, "product_name":"house"}, {"source":"assets/10.jpg", "product_price": 1000, "product_name":"crane"},{"source":"assets/11.jpg","product_price": 22431000, "product_name":"Mansion"},{"source":"assets/12.jpg", "product_price": 1000, "product_name":"crab"},{"source":"assets/13.jpg", "product_price": 1000, "product_name":"crab"},{"source":"assets/14.jpg", "product_price": 1000, "product_name":"crab"},{"source":"assets/15.jpg", "product_price": 1000, "product_name":"crab"},{"source":"assets/16.jpg", "product_price": 1000, "product_name":"crab"}]
             RecycleGridLayout:
                 default_size_hint: None, None
                 default_size: root.width/2 - dp(10), Window.height/3

@@ -9,7 +9,7 @@
     text: ""
     #radius: [dp(15)]
     product_name: ""
-    product_price: ""
+    product_price: 0
     text_radius: [dp(5)]
     product_owner: ""
     #text_color: [1, 1, 1, 1]
@@ -52,10 +52,12 @@
         M_AKLabelLoader:
             text:
                 "" if not ((root.product_price and root.product_name) or root.text) else\
-                f"{root.product_name}\n₦{root.product_price}" if root.product_price and root.product_name else\
+                f"{root.product_name}\n[b][color={get_hex_from_color(app.theme_cls.primary_color)}]₦{root.product_price:,}[/color][/b]" \
+                if root.product_price and root.product_name else\
                 root.text
             radius: root.text_radius
             size_hint_y: None
+            markup: True
             theme_text_color: "Custom"
             text_color: app.theme_cls.text_color
             height: dp(20) if not self.text else self.texture_size[1]
@@ -70,7 +72,7 @@
     #radius: [dp(15)]
     store: ""
     product_name: ""
-    product_price: ""
+    product_price: int()
     text_radius: [dp(5)]
     product_owner: ""
     #text_color: [1, 1, 1, 1]
@@ -136,9 +138,12 @@
         adaptive_height: True
         padding: dp(10)
         M_AKLabelLoader:
-            text: "" if not (root.product_price and root.product_name) else f"{root.product_name}\n₦{root.product_price}"
+            text:
+                "" if not (root.product_price and root.product_name) else \
+                f"{root.product_name}\n[b][color={get_hex_from_color(app.theme_cls.primary_color)}]₦{root.product_price:,}[/color][/b]"
             radius: root.text_radius
             size_hint_y: None
+            markup: True
             theme_text_color: "Custom"
             text_color: app.theme_cls.text_color
             height: dp(20) if not self.text else self.texture_size[1]
