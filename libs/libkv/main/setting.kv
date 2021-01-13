@@ -43,9 +43,34 @@
                         "Dark Mode": "moon-waxing-crescent",\
                         "Rate Us": "star-outline",\
                         }
-                    content: [Factory.DetailContent(), Factory.DetailContent()]#[Factory.DarkModeContent(), Factory.RateContent()]
+                    content: [Factory.DarkModeContent(), Factory.RateContent()]
                     size_hint_y: None
                     height: self.minimum_height
+
+<RateContent@MDBoxLayout>
+    adaptive_height: True
+    padding: dp(15)
+    MDLabel:
+        text: "How good is NocenStore??"
+        font_style: "Money"
+
+    AKRating:
+        id: rates
+        normal_icon: 'star-outline'
+        active_icon: 'star'
+        animation_type: 'grow'
+        normal_color: app.theme_cls.disabled_hint_text_color
+        active_color: app.theme_cls.primary_color
+
+<DarkModeContent@MDBoxLayout>
+    adaptive_height: True
+    padding: [dp(20), dp(10), dp(20), dp(10)]
+    MDLabel:
+        text: "Turn Dark Mode On/Off"
+
+    MDSwitch:
+        pos_hint: {"center_x": .7, "center_y": .4}
+        active: True if app.theme_cls.theme_style == "Dark" else False
 
 <DetailContent@MDBoxLayout>:
     adaptive_height: True
