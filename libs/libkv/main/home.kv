@@ -20,8 +20,9 @@
                 a.remove(self)
                 root.outline(a, self)
 
-            BoxLayout:
+            MDBoxLayout:
                 orientation:"vertical"
+                md_bg_color: get_color_from_hex("EEEEEE")
                 MDBoxLayout:
                     adaptive_height: True
                     padding: dp(10)
@@ -111,32 +112,48 @@
                         MDGridLayout:
                             adaptive_height: True
                             cols: 3
-                            padding: [dp(10), 0, dp(10), dp(10)]
-                            spacing: dp(10)
+                            padding: [dp(5), 0, dp(5), dp(5)]
+                            spacing: dp(2)
                             CategoryCard:
                                 text: "Electronics"
                                 #text_color: 1, 1, 1, 1
                                 source: "assets/0.jpg"
+                                on_release:
+                                    root.to_category(self)
 
                             CategoryCard:
                                 text: "Portable Devices"
                                 source: "assets/1.jpg"
+                                on_release:
+                                    root.to_category(self)
                                 #text_color: 1, 1, 1, 1
 
                             CategoryCard:
-                                text: "Clothing"
+                                text: "Fashion"
                                 source: "assets/2.jpg"
                                 #text_color: 1, 1, 1, 1
+                                on_release:
+                                    root.to_category(self)
 
                             CategoryCard:
                                 text: "Furniture"
                                 source: "assets/7.jpg"
                                 #text_color: 1, 1, 1, 1
+                                on_release:
+                                    root.to_category(self)
 
                             CategoryCard:
                                 text: "Kitchen"
                                 source: "assets/16.jpg"
                                 #text_color: 1, 1, 1, 1
+                                on_release:
+                                    root.to_category(self)
+
+                            CategoryCard:
+                                text: "Beauty"
+                                source: "assets/3.jpg"
+                                on_release:
+                                    root.to_category(self)
 
         MDBottomNavigationItem:
             id: new

@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4cb93fcd-1f5d-4fef-8c90-3198d866ca2d" name="Default Changelist" comment="Replaced `ImageCard` with `CategoryCard`">
-      <change afterPath="$PROJECT_DIR$/functions/__init__.py" afterDir="false" />
+    <list default="true" id="4cb93fcd-1f5d-4fef-8c90-3198d866ca2d" name="Default Changelist" comment="too lazy bro">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/kv_widget/widget.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/kv_widget/widget.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libkv/init/credentials.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/init/credentials.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/main/categories.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/categories.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libkv/main/home.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/home.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libkv/main/new.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/new.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libkv/main/used.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/used.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libpy/categories.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/categories.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libpy/new.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/new.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libpy/used.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/used.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libpy/home.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/home.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/manager.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/manager.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -388,7 +386,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610764431509</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="too lazy bro">
+      <created>1610828255992</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1610828255992</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -420,6 +425,7 @@
     <MESSAGE value="I'm lazy right now" />
     <MESSAGE value="created `CategoryCard` replacing the ImageCard" />
     <MESSAGE value="Replaced `ImageCard` with `CategoryCard`" />
-    <option name="LAST_COMMIT_MESSAGE" value="Replaced `ImageCard` with `CategoryCard`" />
+    <MESSAGE value="too lazy bro" />
+    <option name="LAST_COMMIT_MESSAGE" value="too lazy bro" />
   </component>
 </project>

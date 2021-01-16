@@ -7,11 +7,13 @@
         MDBoxLayout:
             adaptive_height: True
             padding: dp(10)
+            md_bg_color: app.theme_cls.primary_color
             M_CardTextField:
                 elevation: 10
                 hint_text: "search/voice search"
-                icon_left: "microphone"
-                icon_right: "tune"
+                icon_left: "arrow-left"
+                icon_right: "microphone"
+                icon_left_callback: root.go_home
                 text_field_disabled: True
                 icon_right_color: app.theme_cls.primary_color
                 icon_left_color: app.theme_cls.primary_color
@@ -23,3 +25,13 @@
 
         RecycleView:
             id: rv
+            effect_cls: ScrollEffect
+            viewclass: "CategoryProductCard"
+            RecycleGridLayout:
+                default_size_hint: 1, None
+                default_size: None, Window.height/4.5
+                size_hint_y: None
+                height: self.minimum_height
+                spacing:dp(10)
+                padding: dp(10)
+                cols: 1

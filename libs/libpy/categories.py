@@ -38,4 +38,5 @@ class Category(Screen):
                 self.ids.rv.data.append(data)
             self.update = True
 
-    pass
+    def go_home(self, instance):
+        self.manager.current = "home"

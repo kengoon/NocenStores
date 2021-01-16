@@ -6,7 +6,8 @@
 <SalesCard@MDCard>:
     source: ""
     text: ""
-    radius: [dp(6)]
+    elevation: 0
+    #radius: [dp(6)]
     product_name: ""
     product_price: 0
     text_radius: [dp(5)]
@@ -200,10 +201,10 @@
         height: self.texture_size[1]
 
 <CategoryCard@MDCard>:
-    #elevation: 1
+    elevation: 0
     source: ""
     text: ""
-    radius: [dp(10)]
+    #radius: [dp(10)]
     size_hint_y: None
     height: self.minimum_height
     product_name: ""
@@ -281,8 +282,14 @@
 #                text: ["products", "0"]
 #                icon: "shopping"
 #                icon_color: 0, .6, 0, 1
+<NewProductCard@BaseProductCard>
+    on_release:
+        print("hello")
 
-<NewProductCard@MDCard>:
+<CategoryProductCard@BaseProductCard>
+    on_release:
+        print("hello")
+<BaseProductCard@MDCard>:
     size_hint_y: None
     height: self.minimum_height
     source: ""

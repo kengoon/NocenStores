@@ -16,6 +16,7 @@ from libs.classes_wigdet.m_cardtextfield import M_CardTextField
 from kivy.factory import Factory
 from classes.m_loader import M_AKImageLoader, M_AKLabelLoader
 from classes.m_cardloader import M_CardLoader
+from akivymd.uix.statusbarcolor import change_statusbar_color
 from functions import my_queue, return_thread_value
 
 os.environ['SSL_CERT_FILE'] = where()
@@ -37,9 +38,10 @@ if platform == "android":
 class NocenStore(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.theme_cls.primary_palette = "Green"
+        change_statusbar_color(self.theme_cls.primary_color)
         self.menu = None
         self.label = None
-        self.theme_cls.primary_palette = "Green"
         Window.softinput_mode = 'below_target'
         self.theme_cls.font_styles.update({"Money": ["assets/Eczar-Regular", 16, False, 0.5]})
         if os.path.exists("theme.txt"):
