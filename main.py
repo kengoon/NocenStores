@@ -31,7 +31,6 @@ exec("import akivymd")
 
 if platform == "android":
     from android.permissions import Permission, request_permissions
-
     request_permissions([Permission.READ_EXTERNAL_STORAGE, Permission.WRITE_EXTERNAL_STORAGE])
 
 
@@ -61,7 +60,6 @@ class NocenStore(MDApp):
         sleep(1)
         self.root.screens[0].ids.spinner.active = True
         Builder.load_file("libs/kv_widget/widget.kv")
-        # Builder.load_file("libs/manager.kv")
         Builder.load_file("libs/libkv/init/credentials.kv")
         for file in os.listdir("libs/libkv/main"):
             Builder.load_file(f"libs/libkv/main/{file}")
@@ -73,7 +71,7 @@ class NocenStore(MDApp):
         #     "login", "from libs.libpy import credentials")
         self.root.screens[0].ids.spinner.active = False
 
-    def check_add_screen(self, kv_filename, screen_object: list, screen_name):
+    def check_add_screen(self, kv_filename, screen_object, screen_name):
         # if self.root.has_screen(screen_name):
         #     self.root.current = screen_name
         #     return
