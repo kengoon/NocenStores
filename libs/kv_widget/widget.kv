@@ -85,8 +85,8 @@
             source: root.source
             anim_delay: .1
             allow_stretch: True
-            keep_ratio: False
-            on_source:
+            keep_ratio: True #if app.image_has_transparency(self, self.source) else False
+            on_load:
                 loader.opacity = 0
                 self.color = [1, 1, 1, 1]
             canvas.before:
@@ -167,22 +167,28 @@
 
 <UserActivity@MDGridLayout>:
     cols: 1
-    spacing: dp(15)
+    #spacing: dp(5)
+    adaptive_height: True
     text: ["", ""]
     icon: ""
     icon_color: get_color_from_hex("#2196F3")
-    customer: total
+    #customer: total
     MDIcon:
         icon: root.icon
         disabled: True
         halign: "center"
         color: root.icon_color
+        size_hint_y: None
+        height: self.texture_size[1]
+        font_size: dp(17)
     MDLabel:
         text: root.text[0]
         font_style: "Money"
         disabled: True
         halign: "center"
         font_size: "12sp"
+        size_hint_y: None
+        height: self.texture_size[1]
 
     MDLabel:
         id: total
@@ -190,6 +196,91 @@
         disabled: True
         font_style: "Money"
         halign: "center"
+        size_hint_y: None
+        font_size: "15dp"
+        height: self.texture_size[1]
+
+<CategoryCard@MDCard>:
+    elevation: 0
+    source: ""
+    text: ""
+    radius: [dp(10)]
+    size_hint_y: None
+    height: self.minimum_height
+    product_name: ""
+    product_price: 0
+    text_radius: [dp(5)]
+    product_owner: ""
+    #text_color: [1, 1, 1, 1]
+    orientation: "vertical"
+    on_release:
+        print(image.source, self.source)
+    RelativeLayout:
+        size_hint_y: None
+        height: Window.height/4
+        AsyncImage:
+            id: image
+            color: 0, 0, 0, 0
+            source: root.source
+            anim_delay: .1
+            allow_stretch: True
+            keep_ratio: False
+
+            on_source:
+                loader.opacity = 0
+                self.color = [1, 1, 1, 1]
+            canvas.before:
+                StencilPush
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [root.radius[0], root.radius[0], 0, 0]
+                StencilUse
+
+            canvas.after:
+                StencilUnUse
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [root.radius[0], root.radius[0], 0, 0]
+                StencilPop
+        M_AKImageLoader:
+            id: loader
+            radius: [root.radius[0], root.radius[0], 0, 0]
+            circle: False
+    MDBoxLayout
+        adaptive_height: True
+        #padding: dp(10)
+        orientation:"vertical"
+        MDLabel:
+            text: root.text
+            size_hint_y: None
+            height: self.texture_size[1]
+            font_style: "Money"
+            font_size: "15dp"
+            valign: "top"
+            halign: "center"
+        AKRating:
+            id: rates
+            normal_icon: 'star-box-outline'
+            active_icon: 'star-box'
+            animation_type: 'grow'
+            normal_color: app.theme_cls.disabled_hint_text_color
+            active_color: app.theme_cls.primary_color
+            icon_size: dp(17)
+            disabled: True
+            pos_hint: {"center_x": .5}
+        MDBoxLayout:
+            adaptive_height: True
+            UserActivity:
+                text: ["sold", "0"]
+                icon: "shield-check"
+                icon_color: 1,0,0.4,1
+
+            UserActivity:
+                text: ["products", "0"]
+                icon: "shopping"
+                icon_color: 0, .6, 0, 1
 
 <ImageCard@MDCard>:
     size_hint_y: None
