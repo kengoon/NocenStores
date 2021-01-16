@@ -19,9 +19,9 @@
                 background_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
                 disabled_foreground_color: [0.5, 0.5, 0.5, 1.0]
         RecycleView:
+            id: rv
             effect_cls: ScrollEffect
             viewclass: "SalesCard"
-            data:[{"source":"assets/7.jpg", "product_price": 1000, "product_name":"crab"}, {"source":"assets/9.jpg", "product_price": 34500, "product_name":"house"}, {"source":"assets/10.jpg", "product_price": 1000, "product_name":"crane"},{"source":"assets/11.jpg","product_price": 22431000, "product_name":"Mansion"},{"source":"assets/12.jpg", "product_price": 1000, "product_name":"crab"},{"source":"assets/13.jpg", "product_price": 1000, "product_name":"crab"},{"source":"assets/14.jpg", "product_price": 1000, "product_name":"crab"},{"source":"assets/15.jpg", "product_price": 1000, "product_name":"crab"},{"source":"assets/16.jpg", "product_price": 1000, "product_name":"crab"}]
             RecycleGridLayout:
                 default_size_hint: None, None
                 default_size: root.width/2 - dp(10), Window.height/3

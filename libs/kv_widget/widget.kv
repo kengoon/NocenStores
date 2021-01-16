@@ -4,10 +4,9 @@
 <OtherSalesCard@SalesCard>
     radius: [dp(6)]
 <SalesCard@MDCard>:
-    elevation: 1
     source: ""
     text: ""
-    #radius: [dp(15)]
+    radius: [dp(6)]
     product_name: ""
     product_price: 0
     text_radius: [dp(5)]
@@ -172,7 +171,7 @@
     text: ["", ""]
     icon: ""
     icon_color: get_color_from_hex("#2196F3")
-    #customer: total
+    customer: total
     MDIcon:
         icon: root.icon
         disabled: True
@@ -201,7 +200,7 @@
         height: self.texture_size[1]
 
 <CategoryCard@MDCard>:
-    elevation: 0
+    #elevation: 1
     source: ""
     text: ""
     radius: [dp(10)]
@@ -217,7 +216,8 @@
         print(image.source, self.source)
     RelativeLayout:
         size_hint_y: None
-        height: Window.height/4
+        height: root.width
+        #height: Window.height/4
         AsyncImage:
             id: image
             color: 0, 0, 0, 0
@@ -250,61 +250,71 @@
             circle: False
     MDBoxLayout
         adaptive_height: True
-        #padding: dp(10)
+        padding: dp(10)
         orientation:"vertical"
         MDLabel:
             text: root.text
             size_hint_y: None
             height: self.texture_size[1]
             font_style: "Money"
-            font_size: "15dp"
+            font_size: "11dp"
             valign: "top"
             halign: "center"
-        AKRating:
-            id: rates
-            normal_icon: 'star-box-outline'
-            active_icon: 'star-box'
-            animation_type: 'grow'
-            normal_color: app.theme_cls.disabled_hint_text_color
-            active_color: app.theme_cls.primary_color
-            icon_size: dp(17)
-            disabled: True
-            pos_hint: {"center_x": .5}
-        MDBoxLayout:
-            adaptive_height: True
-            UserActivity:
-                text: ["sold", "0"]
-                icon: "shield-check"
-                icon_color: 1,0,0.4,1
+#        AKRating:
+#            id: rates
+#            normal_icon: 'star-box-outline'
+#            active_icon: 'star-box'
+#            animation_type: 'grow'
+#            normal_color: app.theme_cls.disabled_hint_text_color
+#            active_color: app.theme_cls.primary_color
+#            icon_size: dp(17)
+#            disabled: True
+#            pos_hint: {"center_x": .5}
+#        MDBoxLayout:
+#            adaptive_height: True
+#            UserActivity:
+#                text: ["sold", "0"]
+#                icon: "shield-check"
+#                icon_color: 1,0,0.4,1
+#
+#            UserActivity:
+#                text: ["products", "0"]
+#                icon: "shopping"
+#                icon_color: 0, .6, 0, 1
 
-            UserActivity:
-                text: ["products", "0"]
-                icon: "shopping"
-                icon_color: 0, .6, 0, 1
-
-<ImageCard@MDCard>:
+<NewProductCard@MDCard>:
     size_hint_y: None
     height: self.minimum_height
     source: ""
-    text:""
-    elevation: 10
+    #elevation: 10
+    store: ""
+    product_name: ""
+    product_price: int()
+    text_radius: [dp(5)]
+    product_owner: ""
     rates: rates
     radius: [dp(10)]
     FitImage:
-        size_hint: None, None
         source: root.source
-        size: root.width/2.5, Window.height/4.5
-        radius:[dp(10), dp(5), dp(5), dp(10)]
+        size_hint_x: None
+        width: root.width/2.2
+        radius:[root.radius[0], 0, 0, root.radius[0]]
     MDBoxLayout:
         orientation: "vertical"
         padding: dp(20)
         spacing: dp(10)
-        MDLabel:
-            text: root.text
-            text_size: self.size
-            font_style: "Money"
-            valign: "top"
-            halign: "center"
+        M_AKLabelLoader:
+            text:
+                "" if not (root.product_price and root.product_name) else \
+                f"[font=assets/Eczar-Regular.ttf]{root.product_name}[/font]\n[b][color={get_hex_from_color(app.theme_cls.primary_color)}]₦{root.product_price:,}[/color][/b]"
+            radius: root.text_radius
+            size_hint_y: None
+            markup: True
+            theme_text_color: "Custom"
+            text_color: app.theme_cls.text_color
+            height: dp(20) if not self.text else self.texture_size[1]
+            font_size: dp(17)
+
         AKRating:
             id: rates
             normal_icon: 'star-box-outline'
@@ -314,18 +324,29 @@
             active_color: app.theme_cls.primary_color
             icon_size: dp(20)
             disabled: True
-            pos_hint: {"center_x": .5}
+            #pos_hint: {"center_x": .5}
+        MDLabel:
+            text: f"[color=388E3C]store:[/color] " + root.store
+            #color: get_color_from_hex("388E3C")
+            font_style: "Money"
+            markup: True
+
         MDBoxLayout:
-            UserActivity:
-                text: ["sold", "0"]
-                icon: "shield-check"
-                icon_color: 1,0,0.4,1
-
-            UserActivity:
-                text: ["products", "0"]
-                icon: "shopping"
-                icon_color: 0, .6, 0, 1
-
+            adaptive_height: True
+            size_hint_x: None
+            width: self.parent.width/2
+            md_bg_color: 0,1,0,.1
+            radius: [dp(5)]
+            MDLabel:
+                id: la
+                text: "NOCENSTORE"
+                font_style: "Money"
+                italic: True
+                color: app.theme_cls.primary_color
+                size_hint_y: None
+                height: self.texture_size[1]
+                halign: "center"
+                font_size: dp(13)
 
 
 

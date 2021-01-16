@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4cb93fcd-1f5d-4fef-8c90-3198d866ca2d" name="Default Changelist" comment="changed &quot;star-outline&quot; icon to &quot;star&quot; icon">
-      <change afterPath="$PROJECT_DIR$/libs/libkv/main/categories.kv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/libpy/categories.py" afterDir="false" />
+    <list default="true" id="4cb93fcd-1f5d-4fef-8c90-3198d866ca2d" name="Default Changelist" comment="Replaced `ImageCard` with `CategoryCard`">
+      <change afterPath="$PROJECT_DIR$/functions/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/kv_widget/widget.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/kv_widget/widget.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/init/credentials.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/init/credentials.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/main/home.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/home.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libkv/main/new.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/new.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libkv/main/productlookout.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/productlookout.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libkv/main/used.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/used.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/manager.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/manager.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manager.kv" beforeDir="false" afterPath="$PROJECT_DIR$/manager.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libpy/categories.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/categories.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libpy/new.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/new.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libpy/used.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/used.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,10 +39,13 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file:///usr/local/lib/python3.7/dist-packages/kivymd/uix/tooltip.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file:///usr/local/lib/python3.7/dist-packages/kivymd/uix/label.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file:///usr/local/lib/python3.7/dist-packages/kivymd/uix/textfield.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file:///usr/local/lib/python3.7/dist-packages/kivy/uix/button.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file:///usr/local/lib/python3.7/dist-packages/kivymd/uix/behaviors/touch_behavior.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file:///usr/local/lib/python3.7/dist-packages/kivymd/uix/button.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file:///usr/local/lib/python3.7/dist-packages/kivymd/__init__.py" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1ljyU9VpfmcGHt3yOxK1YgBxIXA" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -54,19 +59,20 @@
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="eu.ydp.idea.ts.spec.generator.settings.spec.template" value="import {$ClassName$} from '$TestsRelativePath$../src/$classRelativePath$/$ClassName$';&#10;&#10;describe('$ClassName$', () =&gt; {&#10;  let $ObjName$:$ClassName$;&#10;&#10;  beforeEach(() =&gt; {&#10;    $ObjName$ = new $ClassName$();&#10;  });&#10;&#10;  describe('', () =&gt; {&#10;    it('', () =&gt; {&#10;      // given&#10;&#10;      // when&#10;&#10;      // then&#10;    });&#10;  });&#10;});&#10;" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Documents/garden.iconfonts/__init__.py" />
+    <property name="last_opened_file_path" value="$APPLICATION_CONFIG_DIR$/scratches" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="ReaderModeSettings">
+    <option name="enabled" value="false" />
     <option name="showWarnings" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$APPLICATION_CONFIG_DIR$/scratches" />
       <recent name="$PROJECT_DIR$/libs/classes_wigdet" />
       <recent name="$PROJECT_DIR$/assets" />
       <recent name="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a" />
       <recent name="$PROJECT_DIR$/.buildozer/android/platform" />
-      <recent name="$PROJECT_DIR$/assets/ads" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -204,18 +210,18 @@
     <list>
       <item itemvalue="Python.main" />
       <item itemvalue="Python.__init__" />
-      <item itemvalue="Python.scratch_2" />
-      <item itemvalue="Python.tests" />
       <item itemvalue="Python.scratch" />
+      <item itemvalue="Python.scratch_2" />
       <item itemvalue="Python.scratch_3" />
+      <item itemvalue="Python.tests" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.scratch_2" />
         <item itemvalue="Python.scratch_3" />
+        <item itemvalue="Python.tests" />
         <item itemvalue="Python.scratch" />
         <item itemvalue="Python.__init__" />
-        <item itemvalue="Python.scratch_2" />
-        <item itemvalue="Python.tests" />
       </list>
     </recent_temporary>
   </component>
@@ -361,7 +367,28 @@
       <option name="project" value="LOCAL" />
       <updated>1610518327788</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="I'm lazy right now">
+      <created>1610574954458</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1610574954459</updated>
+    </task>
+    <task id="LOCAL-00021" summary="created `CategoryCard` replacing the ImageCard">
+      <created>1610762973914</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1610762973916</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Replaced `ImageCard` with `CategoryCard`">
+      <created>1610764431509</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1610764431509</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -390,6 +417,9 @@
     <MESSAGE value="too lazy to write" />
     <MESSAGE value="completed the design of setting widget" />
     <MESSAGE value="changed &quot;star-outline&quot; icon to &quot;star&quot; icon" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed &quot;star-outline&quot; icon to &quot;star&quot; icon" />
+    <MESSAGE value="I'm lazy right now" />
+    <MESSAGE value="created `CategoryCard` replacing the ImageCard" />
+    <MESSAGE value="Replaced `ImageCard` with `CategoryCard`" />
+    <option name="LAST_COMMIT_MESSAGE" value="Replaced `ImageCard` with `CategoryCard`" />
   </component>
 </project>

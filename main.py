@@ -2,6 +2,7 @@ import os
 from functools import partial
 from threading import Thread
 from time import sleep
+from PIL import Image
 from certifi import where
 from kivy import platform
 from kivy.clock import mainthread, Clock
@@ -15,6 +16,8 @@ from libs.classes_wigdet.m_cardtextfield import M_CardTextField
 from kivy.factory import Factory
 from classes.m_loader import M_AKImageLoader, M_AKLabelLoader
 from classes.m_cardloader import M_CardLoader
+from functions import my_queue, return_thread_value
+
 os.environ['SSL_CERT_FILE'] = where()
 
 r = Factory.register
@@ -88,6 +91,40 @@ class NocenStore(MDApp):
             menu.ids.md_menu.children[0].padding = [dp(10), dp(5), dp(5), dp(10)]
             menu.ids.md_menu.children[0].add_widget(label)
         menu.open()
+
+    @staticmethod
+    def image_has_transparency(instance, image):
+        if not image:
+            return
+
+        # @return_thread_value
+        @mainthread
+        def mark_keep_ratio(check):
+            instance.keep_ratio = check
+
+        def has_transparency():
+            print(image)
+            from urllib.request import urlopen
+            img = Image.open(image) if not image.startswith("http") else Image.open(urlopen(image))
+            if img.mode == "P":
+                transparent = img.info.get("transparency", -1)
+                for _, index in img.getcolors():
+                    if index == transparent:
+                        print(True)
+                        mark_keep_ratio(True)
+                        return
+            elif img.mode == "RGBA":
+                extrema = img.getextrema()
+                if extrema[3][0] < 255:
+                    print(True)
+                    mark_keep_ratio(True)
+                    return
+
+            mark_keep_ratio(False)
+            print(False)
+
+        Thread(target=has_transparency).start()
+        return
 
 
 NocenStore().run()
