@@ -42,7 +42,8 @@ class NocenStore(MDApp):
         self.menu = None
         self.label = None
         Window.softinput_mode = 'below_target'
-        self.theme_cls.font_styles.update({"Money": ["assets/Eczar-Regular", 16, False, 0.5]})
+        self.theme_cls.font_styles.update({"Money": ["assets/Eczar-Regular", 16, False, 0.5],
+                                           "BigMoney": ["assets/Eczar-SemiBold", 20, False, 0.5]})
         if os.path.exists("theme.txt"):
             with open("theme.txt") as theme:
                 self.theme_cls.theme_style = theme.read()

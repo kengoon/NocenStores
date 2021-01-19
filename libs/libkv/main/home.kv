@@ -1,6 +1,6 @@
 <Home>:
     name: "home"
-    outliner: [home, new, sell, used]
+    outliner: [home, profile, sell, used]
 
 #    MDNavigationLayout:
 #        ScreenManager:
@@ -156,19 +156,15 @@
                                     root.to_category(self)
 
         MDBottomNavigationItem:
-            id: new
-            name: "new"
-            text: "new product"
-            icon: "shield-outline"
+            id: info
+            name: "info"
+            text: "n-info"
+            icon: "information-variant"
             root: root
-            on_enter:
-                self.children[0].dispatch("on_enter")
             on_tab_release:
-                a = root.outliner.copy()
-                a.remove(self)
-                root.outline(a, self)
-            New:
-                root: root
+                root.outline(root.outliner, None)
+                #root.add_nav(self)
+
         MDBottomNavigationItem:
             id: sell
             name: "sell"
@@ -194,15 +190,21 @@
                 root.outline(a, self)
             Used:
                 root:root
+
         MDBottomNavigationItem:
-            id: info
-            name: "info"
-            text: "n-info"
-            icon: "information-variant"
+            id: profile
+            name: "new"
+            text: "profile"
+            icon: "account-outline"
             root: root
+            on_enter:
+                self.children[0].dispatch("on_enter")
             on_tab_release:
-                root.outline(root.outliner, None)
-                #root.add_nav(self)
+                a = root.outliner.copy()
+                a.remove(self)
+                root.outline(a, self)
+            Profile:
+                root: root
 
     MDFloatingActionButton:
         icon: "brightness-4"

@@ -1,0 +1,52 @@
+<Profile>
+    BoxLayout:
+        orientation:"vertical"
+        MDBoxLayout:
+            adaptive_height: True
+            orientation: "vertical"
+            md_bg_color: app.theme_cls.primary_color
+            padding: dp(10)
+
+            MDBoxLayout:
+                size_hint: 1, None
+                height: app.theme_cls.standard_increment
+
+                MDLabel:
+                    text: "Account"
+                    color: 1,1,1,1
+                    font_style:"H5"
+                    bold: True
+                MDIconButton:
+                    icon: "magnify"
+                    theme_text_color: "Custom"
+                    text_color: 1,1,1,1
+                AKBadgeLayout:
+                    text: "0"
+                    offset: 0
+                    position: "right"
+                    badgeitem_color: 1,0,0,1
+                    bold: False
+                    MDIconButton:
+                        icon: "cart-variant"
+                        theme_text_color: "Custom"
+                        text_color: 1,1,1,1
+
+            MDBoxLayout:
+                adaptive_height: True
+                orientation: "vertical"
+                MDLabel:
+                    text: "Welcome User!"
+                    font_style: "BigMoney"
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    color: app.theme_cls.accent_color
+
+                MDLabel:
+                    text: "yahoome@gmail.com"
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    color: 1,1,1,1
+
+        ScrollView:
+            MDList:
+

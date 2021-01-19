@@ -284,12 +284,13 @@
 #                icon_color: 0, .6, 0, 1
 <NewProductCard@BaseProductCard>
     on_release:
-        print("hello")
+        self.parent.root.current = "lookout"
 
 <CategoryProductCard@BaseProductCard>
     on_release:
-        print("hello")
+        self.parent.root.current = "lookout"
 <BaseProductCard@MDCard>:
+    ripple_behavior: True
     size_hint_y: None
     height: self.minimum_height
     source: ""

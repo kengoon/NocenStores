@@ -26,7 +26,7 @@ class Home(Screen, EventDispatcher):
         self.clock = Clock.schedule_interval(self._start_animation, 5)
         if not self.update:
             self.ids.home.header.ids._label.font_style = "Caption"
-            self.ids.new.header.ids._label.font_style = "Caption"
+            self.ids.profile.header.ids._label.font_style = "Caption"
             self.ids.sell.header.children[0].remove_widget(self.ids.sell.header.ids._label)
             self.ids.sell.header.ids._label_icon.pos_hint = {"center_x": .5, "center_y": .5}
             self.ids.sell.header.ids._label_icon.font_size = dp(35)

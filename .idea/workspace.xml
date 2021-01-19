@@ -3,6 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="4cb93fcd-1f5d-4fef-8c90-3198d866ca2d" name="Default Changelist" comment="too lazy bro">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/kv_widget/widget.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/kv_widget/widget.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/main/categories.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/categories.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/main/home.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/home.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/main/menu.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/menu.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/main/new.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/profile.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/main/setting.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/settings.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libpy/home.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/home.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libpy/new.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/profile.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manager.kv" beforeDir="false" afterPath="$PROJECT_DIR$/manager.kv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -207,9 +217,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.scratch_2" />
-        <item itemvalue="Python.scratch_3" />
         <item itemvalue="Python.tests" />
+        <item itemvalue="Python.scratch_3" />
+        <item itemvalue="Python.scratch_2" />
         <item itemvalue="Python.scratch" />
         <item itemvalue="Python.__init__" />
       </list>
@@ -392,7 +402,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610834931303</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="too lazy bro">
+      <created>1610836306269</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1610836306269</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
