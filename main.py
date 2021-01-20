@@ -41,6 +41,8 @@ class NocenStore(MDApp):
         self.theme_cls.primary_palette = "Green"
         change_statusbar_color(self.theme_cls.primary_color)
         Window.bind(on_keyboard=self.on_back_button)
+        self.dialog = None
+        self.close_dialog = False
         self.menu = None
         self.label = None
         self.no_screen = ["login", "signup", "initializer", "home"]
@@ -142,22 +144,27 @@ class NocenStore(MDApp):
 
     def exit_app(self):
         from kivymd.uix.button import MDRaisedButton, MDFlatButton
+        if self.close_dialog:
+            self.dialog.dismiss()
+            self.close_dialog = False
+            return
 
         def exit_app(*args):
             self.stop()
 
         def dismiss_dialog(*args):
-            dialog.dismiss()
+            self.dialog.dismiss()
 
         button1 = MDFlatButton(text="Cancel", on_release=dismiss_dialog)
         button2 = MDRaisedButton(text="Continue", on_release=exit_app)
         from kivymd.uix.dialog import MDDialog
-        dialog = MDDialog(
+        self.dialog = MDDialog(
             title="Exit App",
             text="Do you want to exit NocenStore",
             buttons=[button1, button2], auto_dismiss=False
         )
-        dialog.open()
+        self.dialog.open()
+        self.close_dialog = True
 
 
 NocenStore().run()

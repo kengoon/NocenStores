@@ -288,6 +288,7 @@
 
 <CategoryProductCard@BaseProductCard>
     on_release:
+        self.parent.root.prev_screen.append(self.parent.roots.name)
         self.parent.root.current = "lookout"
 <BaseProductCard@MDCard>:
     ripple_behavior: True
