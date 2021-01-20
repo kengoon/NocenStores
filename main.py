@@ -31,6 +31,7 @@ exec("import akivymd")
 
 if platform == "android":
     from android.permissions import Permission, request_permissions
+
     request_permissions([Permission.READ_EXTERNAL_STORAGE, Permission.WRITE_EXTERNAL_STORAGE])
 
 
@@ -39,8 +40,10 @@ class NocenStore(MDApp):
         super().__init__(**kwargs)
         self.theme_cls.primary_palette = "Green"
         change_statusbar_color(self.theme_cls.primary_color)
+        Window.bind(on_keyboard=self.on_back_button)
         self.menu = None
         self.label = None
+        self.no_screen = ["login", "signup", "initializer", "home"]
         Window.softinput_mode = 'below_target'
         self.theme_cls.font_styles.update({"Money": ["assets/Eczar-Regular", 16, False, 0.5],
                                            "BigMoney": ["assets/Eczar-SemiBold", 20, False, 0.5]})
@@ -51,8 +54,17 @@ class NocenStore(MDApp):
     def build(self):
         for modules in os.listdir("libs/libpy"):
             exec(f"from libs.libpy import {modules.rstrip('.pyc')}")
-        # Builder.load_file("libs/libkv/init/credentials.kv")
         return Builder.load_file("manager.kv")
+
+    def on_back_button(self, *args):
+        if self.root.current == "initializer":
+            self.exit_app()
+            return True
+        if args[1] == 27 and self.root.ids.manager.children[0].current not in self.no_screen:
+            self.root.ids.manager.children[0].on_back_button()
+        else:
+            self.exit_app()
+        return True
 
     def on_start(self):
         Thread(target=self.initialize_connection).start()
@@ -63,8 +75,9 @@ class NocenStore(MDApp):
         Builder.load_file("libs/kv_widget/widget.kv")
         Builder.load_file("libs/libkv/init/credentials.kv")
         for file in os.listdir("libs/libkv/main"):
+            self.root.ids.init.ids.updater.text = f"loading {file.strip('kv')}ns"
+            sleep(0.1)
             Builder.load_file(f"libs/libkv/main/{file}")
-        sleep(4)
         self.check_add_screen(
             "libs/manager.kv", "Factory.Manager()", "manager")
         # self.check_add_screen(
@@ -126,6 +139,25 @@ class NocenStore(MDApp):
 
         Thread(target=has_transparency).start()
         return
+
+    def exit_app(self):
+        from kivymd.uix.button import MDRaisedButton, MDFlatButton
+
+        def exit_app(*args):
+            self.stop()
+
+        def dismiss_dialog(*args):
+            dialog.dismiss()
+
+        button1 = MDFlatButton(text="Cancel", on_release=dismiss_dialog)
+        button2 = MDRaisedButton(text="Continue", on_release=exit_app)
+        from kivymd.uix.dialog import MDDialog
+        dialog = MDDialog(
+            title="Exit App",
+            text="Do you want to exit NocenStore",
+            buttons=[button1, button2], auto_dismiss=False
+        )
+        dialog.open()
 
 
 NocenStore().run()

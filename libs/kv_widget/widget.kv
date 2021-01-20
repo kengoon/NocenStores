@@ -6,7 +6,7 @@
 <SalesCard@MDCard>:
     source: ""
     text: ""
-    elevation: 0
+    elevation: 0 if app.theme_cls.theme_style == "Light" else 1
     #radius: [dp(6)]
     product_name: ""
     product_price: 0
@@ -201,10 +201,10 @@
         height: self.texture_size[1]
 
 <CategoryCard@MDCard>:
-    elevation: 0
+    elevation: 0 if app.theme_cls.theme_style == "Light" else 1
     source: ""
     text: ""
-    #radius: [dp(10)]
+    radius: [dp(10)]
     size_hint_y: None
     height: self.minimum_height
     product_name: ""

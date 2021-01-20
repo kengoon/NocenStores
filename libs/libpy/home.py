@@ -107,4 +107,5 @@ class Home(Screen, EventDispatcher):
         self.manager.current = "menu"
 
     def to_category(self, instance):
+        self.manager.on_next_screen(self.name)
         self.manager.current = "category"

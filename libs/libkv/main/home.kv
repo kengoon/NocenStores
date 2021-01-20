@@ -22,7 +22,7 @@
 
             MDBoxLayout:
                 orientation:"vertical"
-                md_bg_color: get_color_from_hex("EEEEEE")
+                md_bg_color: get_color_from_hex("EEEEEE") if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
                 MDBoxLayout:
                     adaptive_height: True
                     padding: dp(10)
@@ -69,7 +69,7 @@
                             MDSwiper:
                                 id: swiper
                                 size_hint_y: None
-                                height: Window.height/3.4
+                                height: Window.height/4.5
                                 items_spacing: "10dp"
                                 MDSwiperItem:
                                     M_CardLoader:
@@ -87,33 +87,85 @@
                                         text: "ShopRite: buy one, get one free"
                         MDBoxLayout:
                             adaptive_height: True
-                            padding: dp(20)
+                            padding: dp(5)
                             MDCard:
                                 size_hint_y: None
                                 height: self.minimum_height
-                                elevation: 8
                                 radius: [dp(10)]
                                 MDGridLayout:
                                     adaptive_height: True
-                                    cols: 2
+                                    cols: 4
                                     padding: dp(10)
                                     spacing: dp(10)
-                                    CardIconButton:
-                                        text: "Accommodation"
-                                        icon: "android"
+                                    MDBoxLayout
+                                        orientation: "vertical"
+                                        adaptive_height: True
+                                        MDIconButton:
+                                            icon: "home-city"
+                                            theme_text_color: "Custom"
+                                            text_color: 1,1,1,1
+                                            md_bg_color: .8, 0, 0, 1
+                                            pos_hint: {"center_x": .5}
+                                        MDLabel:
+                                            halign: "center"
+                                            size_hint_y: None
+                                            text: "Accommodation"
+                                            font_style: "Caption"
+                                            height: self.texture_size[1]
 
-                                    CardIconButton:
-                                        text: "Find RoomMate"
-                                        icon: "android"
 
-                                    CardIconButton:
-                                        text: "Service Provider"
-                                        icon: "android"
+                                    MDBoxLayout
+                                        orientation: "vertical"
+                                        adaptive_height: True
+                                        MDIconButton:
+                                            icon: "tools"
+                                            theme_text_color: "Custom"
+                                            text_color: 1,1,1,1
+                                            md_bg_color: app.theme_cls.primary_color
+                                            pos_hint: {"center_x": .5}
+                                        MDLabel:
+                                            halign: "center"
+                                            size_hint_y: None
+                                            text: "Service Provider"
+                                            height: self.texture_size[1]
+                                            font_style: "Caption"
+
+                                    MDBoxLayout
+                                        orientation: "vertical"
+                                        adaptive_height: True
+                                        MDIconButton:
+                                            icon: "home-city"
+                                            theme_text_color: "Custom"
+                                            text_color: 1,1,1,1
+                                            md_bg_color: 1, .7, 0, 1
+                                            pos_hint: {"center_x": .5}
+                                        MDLabel:
+                                            halign: "center"
+                                            size_hint_y: None
+                                            text: "Fashion"
+                                            height: self.texture_size[1]
+                                            font_style: "Caption"
+
+                                    MDBoxLayout
+                                        orientation: "vertical"
+                                        adaptive_height: True
+                                        MDIconButton:
+                                            icon: "school"
+                                            theme_text_color: "Custom"
+                                            text_color: 1,1,1,1
+                                            md_bg_color: 1, 0, .8, 1
+                                            pos_hint: {"center_x": .5}
+                                        MDLabel:
+                                            halign: "center"
+                                            size_hint_y: None
+                                            text: "Student Zone"
+                                            height: self.texture_size[1]
+                                            font_style: "Caption"
                         MDGridLayout:
                             adaptive_height: True
                             cols: 3
-                            padding: [dp(5), 0, dp(5), dp(5)]
-                            spacing: dp(2)
+                            padding: [dp(5), dp(10), dp(5), dp(5)]
+                            spacing: dp(5)
                             CategoryCard:
                                 text: "Electronics"
                                 #text_color: 1, 1, 1, 1
@@ -129,7 +181,7 @@
                                 #text_color: 1, 1, 1, 1
 
                             CategoryCard:
-                                text: "Fashion"
+                                text: "Clothing"
                                 source: "assets/2.jpg"
                                 #text_color: 1, 1, 1, 1
                                 on_release:
