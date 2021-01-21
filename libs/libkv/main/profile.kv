@@ -48,11 +48,103 @@
                     color: 1,1,1,1
 
         ScrollView:
-            MDList:
+            effect_cls: ScrollEffect
+            MDList
+                spacing: dp(25)
                 padding: dp(10)
                 MDCard:
-                    radius: [dp(7)]
+                    spacing: dp(26)
                     size_hint_y: None
-                    height: root.height/2
+                    height: self.minimum_height
+                    orientation: "vertical"
+                    radius: [dp(10)]
+
+                    OneLineIconListItem:
+                        divider: None
+                        text:"Notification"
+                        text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
+                        theme_text_color: "Custom"
+                        IconLeftWidget:
+                            icon: "bell"
+                            text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
+                            theme_text_color: "Custom"
+
+                MDCard:
+                    spacing: dp(26)
+                    size_hint_y: None
+                    height: self.minimum_height
+                    orientation: "vertical"
+                    radius: [dp(10)]
+
+                    OneLineIconListItem:
+                        divider: None
+                        text:"Customer Care"
+                        text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
+                        theme_text_color: "Custom"
+                        IconLeftWidget:
+                            icon: "headset"
+                            text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
+                            theme_text_color: "Custom"
+
+                    OneLineIconListItem:
+                        divider: None
+                        text:"Settings"
+                        text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
+                        theme_text_color: "Custom"
+                        on_release:
+                            root.to_setting()
+                        IconLeftWidget:
+                            icon: "cog"
+                            text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
+                            theme_text_color: "Custom"
+                            on_release:
+                                root.to_setting()
+
+                MDCard:
+                    spacing: dp(10)
+                    size_hint_y: None
+                    height: self.minimum_height
+                    orientation: "vertical"
+                    radius: [dp(10)]
+
+                    OneLineIconListItem:
+                        divider: None
+                        text:"Orders"
+                        text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
+                        theme_text_color: "Custom"
+                        IconLeftWidget:
+                            icon: "package-variant-closed"
+                            text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
+                            theme_text_color: "Custom"
+
+                    OneLineIconListItem:
+                        divider: None
+                        text:"Pending Reviews"
+                        text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
+                        theme_text_color: "Custom"
+                        IconLeftWidget:
+                            icon: "comment-edit-outline"
+                            text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
+                            theme_text_color: "Custom"
+
+                    OneLineIconListItem:
+                        divider: None
+                        text:"Saved Items"
+                        text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
+                        theme_text_color: "Custom"
+                        IconLeftWidget:
+                            icon: "heart-outline"
+                            text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
+                            theme_text_color: "Custom"
+
+                    OneLineIconListItem:
+                        divider: None
+                        text:"Recently Viewed"
+                        text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
+                        theme_text_color: "Custom"
+                        IconLeftWidget:
+                            icon: "history"
+                            text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
+                            theme_text_color: "Custom"
 
 

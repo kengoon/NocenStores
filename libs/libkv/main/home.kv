@@ -39,8 +39,7 @@
                         elevation: 10
                         hint_text: "search/voice search"
                         icon_left: "microphone"
-                        icon_right: "tune"
-                        icon_right_callback: root.open_menu
+                        icon_right: "cart-variant"
                         text_field_disabled: True
                         icon_right_color: app.theme_cls.primary_color
                         icon_left_color: app.theme_cls.primary_color
@@ -57,7 +56,6 @@
                         spacing: 0
                         MDBoxLayout:
                             id: box
-                            #md_bg_color: app.theme_cls.primary_color
                             adaptive_height: True
                             padding: [0, 0, 0, dp(10)]
                             canvas.before:
@@ -215,7 +213,6 @@
             root: root
             on_tab_release:
                 root.outline(root.outliner, None)
-                #root.add_nav(self)
 
         MDBottomNavigationItem:
             id: sell
@@ -263,102 +260,3 @@
         pos_hint: {"center_x":.9, "center_y":.15}
         on_release:
             root.change_theme()
-
-#        MDNavigationDrawer:
-#            id: nav_drawer
-#            ContentNavigationDrawer:
-#
-#<ContentNavigationDrawer@BoxLayout>:
-#    orientation: "vertical"
-#    # to be removed
-#    MDBoxLayout:
-#        adaptive_height: True
-#        md_bg_color: app.theme_cls.primary_color
-#        Image:
-#            source: "assets/N1d.PNG"
-#
-#    ScrollView:
-#        effect_cls: ScrollEffect
-#        MDList:
-#            padding: dp(10)
-#            MDBoxLayout:
-#                adaptive_height: True
-#                padding: dp(5)
-#                MDLabel:
-#                    text: "Categories"
-#                    size_hint_y: None
-#                    height: self.texture_size[1]
-#                    halign: "center"
-#            MDSeparator:
-#            MDCard:
-#                radius: [dp(5)]
-#                size_hint_y: None
-#                height: self.minimum_height
-#                elevation: 10
-#                OneLineIconListItem:
-#                    text: "Portable Devices"
-#                    divider: None
-#                    theme_text_color: "Custom"
-#                    text_color: 0,0,0,.6
-#                    IconLeftWidget:
-#                        icon: "devices"
-#                        theme_text_color: "Custom"
-#                        text_color: 0,0,0,.6
-#
-#            OneLineIconListItem:
-#                text: "Electronics"
-#                divider: None
-#                theme_text_color: "Custom"
-#                text_color: 0,0,0,.6
-#                IconLeftWidget:
-#                    icon: "television"
-#                    theme_text_color: "Custom"
-#                    text_color: 0,0,0,.6
-#            MDCard:
-#                radius: [dp(5)]
-#                size_hint_y: None
-#                height: self.minimum_height
-#                elevation: 10
-#                OneLineIconListItem:
-#                    text: "Clothing"
-#                    divider: None
-#                    theme_text_color: "Custom"
-#                    text_color: 0,0,0,.6
-#                    IconLeftWidget:
-#                        icon: "tshirt-crew-outline"
-#                        theme_text_color: "Custom"
-#                        text_color: 0,0,0,.6
-#
-#            OneLineIconListItem:
-#                text: "Kitchen"
-#                divider: None
-#                theme_text_color: "Custom"
-#                text_color: 0,0,0,.6
-#                IconLeftWidget:
-#                    icon: "pot-steam"
-#                    theme_text_color: "Custom"
-#                    text_color: 0,0,0,.6
-#            MDCard:
-#                radius: [dp(5)]
-#                size_hint_y: None
-#                height: self.minimum_height
-#                elevation: 10
-#                OneLineIconListItem:
-#                    text: "Cosmetics"
-#                    text_color: 0,0,0,.6
-#                    theme_text_color: "Custom"
-#                    divider: None
-#                    IconLeftWidget:
-#                        icon: "lipstick"
-#                        theme_text_color: "Custom"
-#                        text_color: 0,0,0,.6
-#
-#            OneLineIconListItem:
-#                text: "Furniture"
-#                text_color: 0,0,0,.6
-#                theme_text_color: "Custom"
-#                divider: None
-#                IconLeftWidget:
-#                    icon: "chair-rolling"
-#                    theme_text_color: "Custom"
-#                    text_color: 0,0,0,.6

@@ -3,8 +3,8 @@ from kivymd.uix.expansionpanel import MDExpansionPanel, MDExpansionPanelOneLine
 
 
 class Setting(Screen):
-    def go_menu(self):
-        self.manager.current = "menu"
+    def go_home(self):
+        self.manager.current = "home"
 
     @staticmethod
     def add_all_rules(rule1, rule2):

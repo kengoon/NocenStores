@@ -11,7 +11,7 @@
         MDToolbar:
             id: toolbar
             title: "Settings"
-            left_action_items: [["arrow-left", lambda x: root.go_menu()]]
+            left_action_items: [["arrow-left", lambda x: root.go_home()]]
             specific_text_color: app.theme_cls.primary_color
             md_bg_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
 

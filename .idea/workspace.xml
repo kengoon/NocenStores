@@ -3,9 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="4cb93fcd-1f5d-4fef-8c90-3198d866ca2d" name="Default Changelist" comment="too lazy bro">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/kv_widget/widget.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/kv_widget/widget.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libkv/main/categories.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/categories.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/init/credentials.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/init/credentials.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/main/home.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/home.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/main/menu.kv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/main/profile.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/profile.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/main/settings.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/settings.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/main/used.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/used.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libpy/menu.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libpy/profile.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/profile.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libpy/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/manager.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/manager.kv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
