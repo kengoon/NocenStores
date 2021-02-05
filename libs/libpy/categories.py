@@ -9,7 +9,8 @@ class Category(Screen):
         super().__init__(**kwargs)
         self.data = [
             {"source": "assets/clock-4.png", "product_price": 1000, "product_name": "crab", "store": "Shoprite",
-             "root": self}, {
+             "root": self},
+            {
                 "source": "https://image.shutterstock.com/image-photo/view-lagos-lagoon-victoria-island-260nw"
                           "-1066980758.jpg",
                 "store": "RobanStores", "product_price": 3000, "product_name": "Checkers"},
@@ -19,6 +20,7 @@ class Category(Screen):
              "product_name": "ShowRoom"},
             {"source": "assets/3.jpg", "store": "Stores", "product_price": 3000, "product_name": "Checkers"},
             {"source": "assets/4.jpg", "product_name": "tent", "product_price": 2300, "store": "Real Estate"},
+            {"source": "assets/5.jpg", "store": "RobanStores", "product_price": 3000, "product_name": "Cars"},
             {"source": "assets/5.jpg", "store": "RobanStores", "product_price": 3000, "product_name": "Cars"},
             {"source": "assets/5.jpg", "store": "RobanStores", "product_price": 3000, "product_name": "Cars"},
             {"source": "assets/5.jpg", "store": "RobanStores", "product_price": 3000, "product_name": "Cars"}]

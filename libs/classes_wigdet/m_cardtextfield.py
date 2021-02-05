@@ -327,7 +327,6 @@ class M_CardTextField(MDBoxLayout, RectangularElevationBehavior, ThemableBehavio
                 theme_text_color="Custom", text_color=self.icon_left_color,
                 font_name=self.icon_left_font_name, font_size=self.icon_left_font_size)
             self.add_widget(self.icon_left_widget, index=1)
-            print(self.ids)
             self.multiline = False
 
         if self.icon_right:
@@ -337,7 +336,7 @@ class M_CardTextField(MDBoxLayout, RectangularElevationBehavior, ThemableBehavio
                 theme_text_color="Custom", text_color=self.icon_right_color,
                 font_name=self.icon_right_font_name, font_size=self.icon_right_font_size)
             self.add_widget(self.icon_right_widget)
-            self.multiline = False
+            # self.multiline = False
 
     def on_icon_left(self, instance, value):
         self.icon_left_widget.icon = value
@@ -368,7 +367,7 @@ class M_CardTextField(MDBoxLayout, RectangularElevationBehavior, ThemableBehavio
             self.add_widget(self.icon_right_widget)
         except AttributeError:
             self.children.clear()
-        self.multiline = False
+        # self.multiline = False
 
     def on_icon_right_color(self, instance, value):
         self.icon_right_widget.text_color = value

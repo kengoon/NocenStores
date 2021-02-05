@@ -64,10 +64,12 @@
                         text:"Notification"
                         text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
                         theme_text_color: "Custom"
+                        on_release: root.to_next("notify")
                         IconLeftWidget:
                             icon: "bell"
                             text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
                             theme_text_color: "Custom"
+                            on_release: root.to_next("notify")
 
                 MDCard:
                     spacing: dp(26)
@@ -81,24 +83,24 @@
                         text:"Customer Care"
                         text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
                         theme_text_color: "Custom"
+                        on_release: root.to_next("customer")
                         IconLeftWidget:
                             icon: "headset"
                             text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
                             theme_text_color: "Custom"
+                            on_release: root.to_next("customer")
 
                     OneLineIconListItem:
                         divider: None
                         text:"Settings"
                         text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
                         theme_text_color: "Custom"
-                        on_release:
-                            root.to_setting()
+                        on_release: root.to_next("setting")
                         IconLeftWidget:
                             icon: "cog"
                             text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
                             theme_text_color: "Custom"
-                            on_release:
-                                root.to_setting()
+                            on_release: root.to_next("setting")
 
                 MDCard:
                     spacing: dp(10)
@@ -112,10 +114,12 @@
                         text:"Orders"
                         text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
                         theme_text_color: "Custom"
+                        on_release: root.to_next("order")
                         IconLeftWidget:
                             icon: "package-variant-closed"
                             text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
                             theme_text_color: "Custom"
+                            on_release: root.to_next("order")
 
                     OneLineIconListItem:
                         divider: None

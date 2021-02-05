@@ -21,6 +21,15 @@ class Home(Screen, EventDispatcher):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.register_event_type("on_menu")
+        self.data = [
+            {"store": "test", "product_name": "ksjdksdjksjd", "product_price": 1020232, "source": "assets/0.jpg"},
+            {"store": "test", "product_name": "ksjdksdjksjd", "product_price": 1020232, "source": "assets/0.jpg"},
+            {"store": "test", "product_name": "ksjdksdjksjd", "product_price": 1020232, "source": "assets/0.jpg"},
+            {"store": "test", "product_name": "ksjdksdjksjd", "product_price": 1020232, "source": "assets/0.jpg"},
+            {"store": "test", "product_name": "ksjdksdjksjd", "product_price": 1020232, "source": "assets/0.jpg"},
+            {"store": "test", "product_name": "ksjdksdjksjd", "product_price": 1020232, "source": "assets/0.jpg"},
+            {"store": "test", "product_name": "ksjdksdjksjd", "product_price": 1020232, "source": "assets/0.jpg"}
+        ]
 
     def on_enter(self, *args):
         self.clock = Clock.schedule_interval(self._start_animation, 5)
@@ -31,16 +40,9 @@ class Home(Screen, EventDispatcher):
             self.ids.sell.header.ids._label_icon.pos_hint = {"center_x": .5, "center_y": .5}
             self.ids.sell.header.ids._label_icon.font_size = dp(35)
             self.ids.used.header.ids._label.font_style = "Caption"
-            self.ids.info.header.ids._label.font_style = "Caption"
-            # self.menu = MDDropdownMenu(
-            #     caller=self.ids.menu,
-            #     items=[
-            #         {"icon": "account", "text": "profile"},
-            #         {"icon": "cog", "text": "settings"},
-            #     ],
-            #     width_mult=4,
-            #     position="auto"
-            # )
+            self.ids.feeds.header.ids._label.font_style = "Caption"
+            for data in self.data:
+                self.ids.rc.data.append(data)
             self.update = True
 
     def on_leave(self, *args):
@@ -94,7 +96,7 @@ class Home(Screen, EventDispatcher):
     @staticmethod
     def outline(icon: list, instance):
         if instance and "outline" in instance.icon:
-            instance.icon = instance.icon.strip("outline").strip("-")
+            instance.icon = instance.icon.rstrip("outline").rstrip("-")
         for i in icon:
             if "outline" in i.icon:
                 continue
@@ -106,6 +108,6 @@ class Home(Screen, EventDispatcher):
     def open_menu(self, instance):
         self.manager.current = "menu"
 
-    def to_category(self, instance):
+    def change_screen(self, instance, screen):
         self.manager.on_next_screen(self.name)
-        self.manager.current = "category"
+        self.manager.current = screen

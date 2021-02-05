@@ -1,4 +1,4 @@
-<Used>:
+<Feeds>:
     MDBoxLayout:
         orientation:"vertical"
         md_bg_color: get_color_from_hex("#EEEEEE") if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
@@ -22,12 +22,12 @@
         RecycleView:
             id: rv
             effect_cls: ScrollEffect
-            viewclass: "SalesCard"
+            viewclass: "FeedsCard"
             RecycleGridLayout:
-                default_size_hint: None, None
-                default_size: root.width/2 - dp(20), Window.height/3
+                default_size_hint: 1, None
+                default_size: None, Window.height/3.5
                 size_hint_y: None
                 height: self.minimum_height
-                spacing:dp(15), dp(15)
-                cols: 2
-                padding: dp(10)
+                spacing:dp(10)
+                cols: 1
+                padding: dp(5)

@@ -1,6 +1,6 @@
 <Home>:
     name: "home"
-    outliner: [home, profile, sell, used]
+    outliner: [home, profile, sell, used, feeds]
 
 #    MDNavigationLayout:
 #        ScreenManager:
@@ -8,21 +8,21 @@
     MDBottomNavigation:
         id: raw
         text_color_normal: [0,0,0,1] if app.theme_cls.theme_style == "Light" else [1,1,1,1]
+        panel_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else self.panel_color
         MDBottomNavigationItem:
             id: home
             icon: "home"
-            text: "home"
+            text: "Home"
             name: "home"
             root: root
             on_tab_release:
-                print(self.height)
                 a = root.outliner.copy()
                 a.remove(self)
                 root.outline(a, self)
 
             MDBoxLayout:
                 orientation:"vertical"
-                md_bg_color: get_color_from_hex("EEEEEE") if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
+                md_bg_color: get_color_from_hex("#EEEEEE") if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
                 MDBoxLayout:
                     adaptive_height: True
                     padding: dp(10)
@@ -95,70 +95,30 @@
                                     cols: 4
                                     padding: dp(10)
                                     spacing: dp(10)
-                                    MDBoxLayout
-                                        orientation: "vertical"
-                                        adaptive_height: True
-                                        MDIconButton:
-                                            icon: "home-city"
-                                            theme_text_color: "Custom"
-                                            text_color: 1,1,1,1
-                                            md_bg_color: .8, 0, 0, 1
-                                            pos_hint: {"center_x": .5}
-                                        MDLabel:
-                                            halign: "center"
-                                            size_hint_y: None
-                                            text: "Accommodation"
-                                            font_style: "Caption"
-                                            height: self.texture_size[1]
+                                    PlatformCan:
+                                        root: root
+                                        icon: "home-city"
+                                        text: "Accommodation"
+                                        bg_color: .8, 0, 0, 1
 
+                                    PlatformCan:
+                                        root: root
+                                        icon: "tools"
+                                        bg_color: app.theme_cls.primary_color
+                                        text: "Service Provider"
 
-                                    MDBoxLayout
-                                        orientation: "vertical"
-                                        adaptive_height: True
-                                        MDIconButton:
-                                            icon: "tools"
-                                            theme_text_color: "Custom"
-                                            text_color: 1,1,1,1
-                                            md_bg_color: app.theme_cls.primary_color
-                                            pos_hint: {"center_x": .5}
-                                        MDLabel:
-                                            halign: "center"
-                                            size_hint_y: None
-                                            text: "Service Provider"
-                                            height: self.texture_size[1]
-                                            font_style: "Caption"
+                                    PlatformCan:
+                                        root: root
+                                        icon: "tshirt-crew"
+                                        text: "Fashion"
+                                        bg_color: 1, .7, 0, 1
 
-                                    MDBoxLayout
-                                        orientation: "vertical"
-                                        adaptive_height: True
-                                        MDIconButton:
-                                            icon: "home-city"
-                                            theme_text_color: "Custom"
-                                            text_color: 1,1,1,1
-                                            md_bg_color: 1, .7, 0, 1
-                                            pos_hint: {"center_x": .5}
-                                        MDLabel:
-                                            halign: "center"
-                                            size_hint_y: None
-                                            text: "Fashion"
-                                            height: self.texture_size[1]
-                                            font_style: "Caption"
+                                    PlatformCan:
+                                        root: root
+                                        icon: "school"
+                                        text: "Student Zone"
+                                        bg_color: 1, 0, .8, 1
 
-                                    MDBoxLayout
-                                        orientation: "vertical"
-                                        adaptive_height: True
-                                        MDIconButton:
-                                            icon: "school"
-                                            theme_text_color: "Custom"
-                                            text_color: 1,1,1,1
-                                            md_bg_color: 1, 0, .8, 1
-                                            pos_hint: {"center_x": .5}
-                                        MDLabel:
-                                            halign: "center"
-                                            size_hint_y: None
-                                            text: "Student Zone"
-                                            height: self.texture_size[1]
-                                            font_style: "Caption"
                         MDGridLayout:
                             adaptive_height: True
                             cols: 3
@@ -169,13 +129,13 @@
                                 #text_color: 1, 1, 1, 1
                                 source: "assets/0.jpg"
                                 on_release:
-                                    root.to_category(self)
+                                    root.change_screen(self, "category")
 
                             CategoryCard:
                                 text: "Portable Devices"
                                 source: "assets/1.jpg"
                                 on_release:
-                                    root.to_category(self)
+                                    root.change_screen(self, "category")
                                 #text_color: 1, 1, 1, 1
 
                             CategoryCard:
@@ -183,36 +143,57 @@
                                 source: "assets/2.jpg"
                                 #text_color: 1, 1, 1, 1
                                 on_release:
-                                    root.to_category(self)
+                                    root.change_screen(self, "category")
 
                             CategoryCard:
                                 text: "Furniture"
                                 source: "assets/7.jpg"
                                 #text_color: 1, 1, 1, 1
                                 on_release:
-                                    root.to_category(self)
+                                    root.change_screen(self, "category")
 
                             CategoryCard:
                                 text: "Kitchen"
                                 source: "assets/16.jpg"
                                 #text_color: 1, 1, 1, 1
                                 on_release:
-                                    root.to_category(self)
+                                    root.change_screen(self, "category")
 
                             CategoryCard:
                                 text: "Beauty"
                                 source: "assets/3.jpg"
                                 on_release:
-                                    root.to_category(self)
+                                    root.change_screen(self, "category")
+
+                        RecycleView:
+                            id: rc
+                            effect_cls: ScrollEffect
+                            viewclass: "FeedsCard"
+                            size_hint_y: None
+                            height: root.height
+                            RecycleGridLayout:
+                                default_size_hint: 1, None
+                                default_size: None, Window.height/3.5
+                                size_hint_y: None
+                                height: self.minimum_height
+                                spacing:dp(10)
+                                cols: 1
+                                padding: dp(5)
 
         MDBottomNavigationItem:
-            id: info
-            name: "info"
-            text: "n-info"
-            icon: "information-variant"
+            id: feeds
+            name: "feeds"
+            text: "Feeds"
+            icon: "newspaper-variant-outline"
             root: root
+            on_enter:
+                self.children[0].dispatch("on_enter")
             on_tab_release:
-                root.outline(root.outliner, None)
+                a = root.outliner.copy()
+                a.remove(self)
+                root.outline(a, self)
+            Feeds:
+                root: root
 
         MDBottomNavigationItem:
             id: sell
@@ -228,7 +209,7 @@
         MDBottomNavigationItem:
             id: used
             name: "used"
-            text: "fairly used"
+            text: "Fairly-Used"
             icon: "shield-off-outline"
             root: root
             on_enter:
@@ -243,7 +224,7 @@
         MDBottomNavigationItem:
             id: profile
             name: "new"
-            text: "profile"
+            text: "Profile"
             icon: "account-outline"
             root: root
             on_enter:

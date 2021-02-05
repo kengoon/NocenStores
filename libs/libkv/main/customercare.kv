@@ -1,0 +1,54 @@
+<CustomerCare>
+    name: "customer"
+    BoxLayout:
+        orientation: "vertical"
+        spacing: dp(50)
+        MDBoxLayout:
+            adaptive_height: True
+            padding: dp(10)
+            spacing: dp(10)
+            MDIconButton:
+                icon: "arrow-left"
+                on_release: root.go_home()
+                pos_hint: {"center_y": .5}
+            MDLabel:
+                text: f"Customer Care[color={get_hex_from_color(app.theme_cls.primary_color)}]•[/color]"
+                color: [1,1,1,1] if app.theme_cls.theme_style == "Dark" else [0,0,0,.7]
+                markup: True
+                font_style:"BigMoney"
+                bold: True
+                pos_hint:{"center_y": .5}
+        ScrollView:
+            MDList:
+                MDBoxLayout:
+                    adaptive_height: True
+                    orientation: "vertical"
+                    Image:
+                        source: "assets/cc.png"
+                MDBoxLayout:
+                    adaptive_height: True
+                    padding: dp(20)
+                    M_CardTextField:
+                        grow_card: True
+                        elevation: 1
+                        icon_right: "send"
+                        icon_right_color: app.theme_cls.primary_color
+                        icon_right_callback: root.send
+                        hint_text: "leave us a message"
+                        foreground_color: app.theme_cls.text_color
+                        cursor_color: app.theme_cls.text_color
+                        md_bg_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
+                        background_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
+
+                MDBoxLayout:
+                    adaptive_height: True
+                    orientation: "vertical"
+                    MDRoundFlatIconButton:
+                        icon: "phone-classic"
+                        text: "call our customer care"
+                        pos_hint: {"center_x": .5}
+                        on_release: root.call_customer_care()
+
+
+
+

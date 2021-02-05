@@ -20,15 +20,6 @@ class Used(Screen):
 
     def on_enter(self, *args):
         if not self.update:
-            # self.menu = MDDropdownMenu(
-            #     caller=self.ids.menu,
-            #     items=[
-            #         {"icon": "account", "text": "profile"},
-            #         {"icon": "cog", "text": "settings"},
-            #     ],
-            #     width_mult=4,
-            #     position="auto"
-            # )
             for data in self.data:
                 self.ids.rv.data.append(data)
             self.update = True

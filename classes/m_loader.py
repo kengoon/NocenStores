@@ -75,10 +75,10 @@ class M_AKLabelLoader(MDLabel):
 
     def _start_animate(self):
         self.bg_rec_opacity = 1
-        self.fr_rec_opacity = 0.7
+        self.fr_rec_opacity = 1
         self.start_anim = Animation(
-            bg_rec_opacity=1, t="linear", duration=0.6
-        ) + Animation(bg_rec_opacity=0, t="linear", duration=0.6)
+            bg_rec_opacity=1, t="in_quad", duration=0.8
+        ) + Animation(bg_rec_opacity=0, t="out_quad", duration=0.8)
         self.start_anim.repeat = True
         self.start_anim.start(self)
 
@@ -89,7 +89,7 @@ class M_AKLabelLoader(MDLabel):
 
         if self.bg_rec_opacity != 0 and self.fr_rec_opacity != 0:
             self.stop_anim = Animation(
-                fr_rec_opacity=0, t="out_quad", duration=0.7
+                fr_rec_opacity=0, t="out_quad", duration=0.8
             )
             self.stop_anim &= Animation(
                 bg_rec_opacity=0, t="out_quad", duration=0.8
@@ -122,11 +122,11 @@ class M_AKImageLoader(ThemableBehavior, AsyncImage):
 
     def _start_animate(self):
         self.bg_rec_opacity = 1
-        self.fr_rec_opacity = 0.7
+        self.fr_rec_opacity = 1
         self.color = [1, 1, 1, 0]
         self.start_anim = Animation(
-            bg_rec_opacity=1, t="linear", duration=0.6
-        ) + Animation(bg_rec_opacity=0, t="linear", duration=0.6)
+            bg_rec_opacity=1, t="in_quad", duration=0.8
+        ) + Animation(bg_rec_opacity=0, t="out_quad", duration=0.8)
         self.start_anim.repeat = True
         self.start_anim.start(self)
 

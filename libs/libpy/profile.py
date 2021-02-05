@@ -9,6 +9,6 @@ class Profile(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-    def to_setting(self):
+    def to_next(self, screen):
         self.root.manager.on_next_screen(self.root.name)
-        self.root.manager.current = "setting"
+        self.root.manager.current = screen

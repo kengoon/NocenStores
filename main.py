@@ -8,10 +8,13 @@ from kivy import platform
 from kivy.clock import mainthread, Clock
 from kivy.core.window import Window
 from kivy.effects.scroll import ScrollEffect
+from kivy.loader import Loader
 from kivy.metrics import dp
+from kivy.utils import get_hex_from_color
 from kivymd.app import MDApp
 from kivy.lang import Builder
 from classes.card import MsCard
+from libs.classes_wigdet.asyncimage import AsyncMe
 from libs.classes_wigdet.m_cardtextfield import M_CardTextField
 from kivy.factory import Factory
 from classes.m_loader import M_AKImageLoader, M_AKLabelLoader
@@ -27,17 +30,25 @@ r("M_AKImageLoader", cls=M_AKImageLoader)
 r("M_AKLabelLoader", cls=M_AKLabelLoader)
 r("M_CardTextField", cls=M_CardTextField)
 r("MsCard", cls=MsCard)
+r("AsyncMe", cls=AsyncMe)
 exec("import akivymd")
+Loader.loading_image = "assets/loader.gif"
 
 if platform == "android":
     from android.permissions import Permission, request_permissions
 
-    request_permissions([Permission.READ_EXTERNAL_STORAGE, Permission.WRITE_EXTERNAL_STORAGE])
+    request_permissions(
+        [Permission.READ_EXTERNAL_STORAGE,
+         Permission.WRITE_EXTERNAL_STORAGE,
+         Permission.CALL_PHONE,
+         Permission.CALL_PRIVILEGED]
+    )
 
 
 class NocenStore(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        print(get_hex_from_color(self.theme_cls.primary_light))
         self.theme_cls.primary_palette = "Green"
         change_statusbar_color(self.theme_cls.primary_color)
         Window.bind(on_keyboard=self.on_back_button)
@@ -48,7 +59,8 @@ class NocenStore(MDApp):
         self.no_screen = ["login", "signup", "initializer", "home"]
         Window.softinput_mode = 'below_target'
         self.theme_cls.font_styles.update({"Money": ["assets/Eczar-Regular", 16, False, 0.5],
-                                           "BigMoney": ["assets/Eczar-SemiBold", 20, False, 0.5]})
+                                           "BigMoney": ["assets/Eczar-SemiBold", 20, False, 0.5],
+                                           "Small": ["assets/Eczar-SemiBold", 16, False, 0.5]})
         if os.path.exists("theme.txt"):
             with open("theme.txt") as theme:
                 self.theme_cls.theme_style = theme.read()
@@ -59,13 +71,14 @@ class NocenStore(MDApp):
         return Builder.load_file("manager.kv")
 
     def on_back_button(self, *args):
-        if self.root.current == "initializer":
+        if args[1] == 27 and self.root.current == "initializer":
             self.exit_app()
             return True
         if args[1] == 27 and self.root.ids.manager.children[0].current not in self.no_screen:
             self.root.ids.manager.children[0].on_back_button()
         else:
-            self.exit_app()
+            if args[1] == 27:
+                self.exit_app()
         return True
 
     def on_start(self):
@@ -154,6 +167,7 @@ class NocenStore(MDApp):
 
         def dismiss_dialog(*args):
             self.dialog.dismiss()
+            self.close_dialog = False
 
         button1 = MDFlatButton(text="Cancel", on_release=dismiss_dialog)
         button2 = MDRaisedButton(text="Continue", on_release=exit_app)
@@ -161,7 +175,9 @@ class NocenStore(MDApp):
         self.dialog = MDDialog(
             title="Exit App",
             text="Do you want to exit NocenStore",
-            buttons=[button1, button2], auto_dismiss=False
+            buttons=[button1, button2], auto_dismiss=False,
+            size_hint_x=None,
+            width=Window.width - dp(20)
         )
         self.dialog.open()
         self.close_dialog = True

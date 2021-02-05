@@ -1,0 +1,23 @@
+<Notification>
+    name: "notify"
+    BoxLayout:
+        orientation: "vertical"
+        MDToolbar:
+            specific_text_color: 1,1,1,1
+            title: "Notification"
+            left_action_items:[["arrow-left", lambda x: root.go_home()]]
+        RecycleView:
+            id: rv
+            effect_cls: ScrollEffect
+            viewclass: "NotifyCard"
+            do_scroll_x: False
+            RecycleGridLayout:
+                root: root.manager
+                roots: root
+                default_size_hint: 1, None
+                default_size: None, Window.height/6
+                size_hint_y: None
+                height: self.minimum_height
+                spacing:dp(20)
+                padding: dp(10)
+                cols: 1
