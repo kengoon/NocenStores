@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4cb93fcd-1f5d-4fef-8c90-3198d866ca2d" name="Default Changelist" comment="too lazy bro">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/classes_wigdet/m_cardtextfield.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/classes_wigdet/m_cardtextfield.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/kv_widget/widget.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/kv_widget/widget.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libkv/init/credentials.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/init/credentials.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libkv/main/customercare.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/customercare.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libkv/main/profile.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/profile.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libkv/main/sell.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/sell.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libpy/review.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/review.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libpy/sell.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/sell.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="4cb93fcd-1f5d-4fef-8c90-3198d866ca2d" name="Default Changelist" comment="too lazy bro" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -443,7 +432,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612551123747</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="too lazy bro">
+      <created>1612680221195</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1612680221195</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
