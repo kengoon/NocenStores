@@ -426,12 +426,13 @@
     background: ""
     radius: [dp(10)]
     source: ""
+    text: self.source
     RelativeLayout:
         MDIcon:
             id: ico
             icon: "image-plus"
             halign: "center"
-            font_size: root.height - dp(100)
+            font_size: dp(50)
             color: app.theme_cls.disabled_hint_text_color
         FitImage:
             source: root.source
@@ -541,7 +542,17 @@
             valign: "top"
             text_size: self.size
 
-<CommentField@BoxLayout>
-    size_hint: None
+<CommentField>
+    size_hint_y: None
     height: "120dp"
-    padding
+    M_CardTextField:
+        grow_card: True
+        elevation: 1
+        hint_text: "comment"
+        foreground_color: app.theme_cls.text_color
+        icon_right: "send"
+        icon_right_color: app.theme_cls.primary_color
+        icon_right_callback: root.root.send_comment
+        cursor_color: app.theme_cls.text_color
+        md_bg_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
+        background_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")

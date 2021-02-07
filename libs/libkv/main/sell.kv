@@ -32,21 +32,28 @@
                         padding: dp(20)
                         spacing: dp(20)
                         ProductCard:
+                            id: _pic1
                             size_hint_x: None
                             width: card.width/3.2
                             ripple_behavior: True
                             on_release:
-                                root.open_filechooser()
+                                root.open_filechooser(self)
 
                         ProductCard:
+                            id: _pic2
                             size_hint_x: None
                             width: card.width/3.2
                             ripple_behavior: True
+                            on_release:
+                                root.open_filechooser(self)
 
                         ProductCard:
+                            id: _pic3
                             size_hint_x: None
                             width: card.width/3.2
                             ripple_behavior: True
+                            on_release:
+                                root.open_filechooser(self)
                 MDBoxLayout:
                     adaptive_height: True
                     padding: dp(10)
@@ -64,37 +71,56 @@
                 padding: dp(20)
                 spacing: dp(10)
                 MDTextField:
+                    id: name
                     hint_text: "product name:"
                     icon_right: "square-edit-outline"
                     icon_right_color: app.theme_cls.text_color
                     font_name: "assets/Eczar-Regular.ttf"
+                    helper_text_mode: "on_error"
+                    required: True
 
                 MDTextField:
+                    id: des
                     hint_text: "product Description:"
                     icon_right: "text-subject"
                     icon_right_color: app.theme_cls.text_color
                     font_name: "assets/Eczar-Regular.ttf"
+                    helper_text_mode: "on_error"
+                    required: True
 
                 MDTextField:
+                    id: price
                     hint_text: "product price:"
                     icon_right: "currency-ngn"
                     icon_right_color: app.theme_cls.text_color
                     font_name: "assets/Eczar-Regular.ttf"
+                    helper_text_mode: "on_error"
+                    required: True
 
-                MDTextField:
+                PhoneTextField:
+                    id: phone
                     hint_text: "current phone number:"
                     icon_right: "card-account-phone-outline"
                     icon_right_color: app.theme_cls.text_color
                     font_name: "assets/Eczar-Regular.ttf"
+                    input_filter: "int"
+                    max_text_length: 11
+                    helper_text_mode: "on_error"
+                    required: True
 
                 MDTextField:
+                    id: email
                     hint_text: "current email:"
                     icon_right: "email"
                     icon_right_color: app.theme_cls.text_color
                     font_name: "assets/Eczar-Regular.ttf"
+                    helper_text_mode: "on_error"
+                    required: True
 
-                MDTextField:
-                    hint_text: "product name:"
-                    icon_right: "square-edit-outline"
-                    icon_right_color: app.theme_cls.text_color
-                    font_name: "assets/Eczar-Regular.ttf"
+                MDRoundFlatIconButton:
+                    font_name: "assets/Eczar-Regular"
+                    icon: "cloud-upload"
+                    text: "Upload All Information"
+                    pos_hint: {"center_x": .5}
+                    on_release:
+                        root.upload_product_data(name, des, price, phone, email, _pic1, _pic2, _pic3)

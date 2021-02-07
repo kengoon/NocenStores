@@ -50,6 +50,7 @@ Builder.load_string(
             initial_height: 0
             focus: root.focus
             hint_text: root.hint_text
+            input_type: root.input_type
             multiline: root.multiline
             background_normal: root.text_field_background_normal
             background_active: root.text_field_background_active
@@ -161,6 +162,8 @@ class M_CardTextField(MDBoxLayout, RectangularElevationBehavior, ThemableBehavio
     card_ripples = BooleanProperty(False)
 
     focus = BooleanProperty(False)
+
+    input_type = StringProperty("text")
 
     icon_right_callback = ObjectProperty(lambda x: None)
     """[summary]

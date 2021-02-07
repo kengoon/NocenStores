@@ -13,6 +13,8 @@ from kivy.metrics import dp
 from kivy.utils import get_hex_from_color
 from kivymd.app import MDApp
 from kivy.lang import Builder
+from kivymd.uix.textfield import MDTextField
+
 from classes.card import MsCard
 from libs.classes_wigdet.asyncimage import AsyncMe
 from libs.classes_wigdet.m_cardtextfield import M_CardTextField
@@ -181,6 +183,17 @@ class NocenStore(MDApp):
         )
         self.dialog.open()
         self.close_dialog = True
+
+
+class PhoneTextField(MDTextField):
+
+    def insert_text(self, substring, from_undo=False):
+        new_text = self.text + substring
+        if new_text != '' and len(new_text) < 12:
+            MDTextField.insert_text(self, substring, from_undo=from_undo)
+
+    def on_text(self, instance, text):
+        instance.error = len(text) != 11
 
 
 NocenStore().run()

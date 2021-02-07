@@ -2,6 +2,7 @@ import glob
 import os
 from threading import Thread
 from kivymd.app import MDApp
+from kivymd.toast import toast
 from plyer import filechooser
 from kivy import platform
 from kivy.clock import Clock
@@ -16,10 +17,28 @@ class Sell(Screen):
     app = MDApp.get_running_app()
 
     @staticmethod
-    def open_filechooser():
+    def open_filechooser(instance):
         def call(file_list):
             print(file_list)
+            if not file_list[0]:
+                toast("do not select image from gallery, use normal file manager")
+                return
+            for i in [".png", ".jpg", ".jpeg", ".gif"]:
+                if i in file_list[0]:
+                    instance.source = file_list[0]
+                    return
+            if not instance.source:
+                toast("please select an image file")
+                return
+
         filechooser.open_file(preview=True, filters=["*.jpg", "*.png", "*.jpeg"], on_selection=call, multiple=True)
+
+    def upload_product_data(self, name, des, price, phone, email, _pic1, _pic2, _pic3):
+        instance = [name, des, price, phone, email, _pic1, _pic2, _pic3]
+        for data in instance:
+            if not data.text:
+                toast("please fill all fields")
+                return
 
     def open_gallery(self):
         if self.root.manager.ids.picture.ids.rv.data:
