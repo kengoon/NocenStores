@@ -50,7 +50,6 @@ if platform == "android":
 class NocenStore(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        print(get_hex_from_color(self.theme_cls.primary_light))
         self.theme_cls.primary_palette = "Green"
         change_statusbar_color(self.theme_cls.primary_color)
         Window.bind(on_keyboard=self.on_back_button)

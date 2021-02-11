@@ -19,7 +19,7 @@
                     height: self.minimum_height
                     RelativeLayout:
                         size_hint_y: None
-                        height: image.height + dp(100)
+                        height: Window.height/3 + dp(100)
                         Image:
                             id: image
                             source: "assets/clock-4.png"
@@ -170,7 +170,7 @@
                                 effect_cls: _ScrollViewHardStop
                                 do_scroll_y: False
                                 viewclass: "OtherSalesCard"
-                                data:[{"source":"assets/7.jpg", "product_price": "1000", "product_name":"crab"}, {"source":"assets/9.jpg", "product_price": "34500", "product_name":"house"}, {"source":"assets/10.jpg", "product_price": "1000", "product_name":"crane"},{"source":"assets/11.jpg","product_price": "22431000", "product_name":"Mansion"},{"source":"assets/12.jpg", "product_price": "1000", "product_name":"crab"},{"source":"assets/13.jpg", "product_price": "1000", "product_name":"crab"},{"source":"assets/14.jpg", "product_price": "1000", "product_name":"crab"},{"source":"assets/15.jpg", "product_price": "1000", "product_name":"crab"},{"source":"assets/16.jpg", "product_price": "1000", "product_name":"crab"}]
+                                #data:[{"source":"assets/7.jpg", "product_price": "1000", "product_name":"crab"}, {"source":"assets/9.jpg", "product_price": "34500", "product_name":"house"}, {"source":"assets/10.jpg", "product_price": "1000", "product_name":"crane"},{"source":"assets/11.jpg","product_price": "22431000", "product_name":"Mansion"},{"source":"assets/12.jpg", "product_price": "1000", "product_name":"crab"},{"source":"assets/13.jpg", "product_price": "1000", "product_name":"crab"},{"source":"assets/14.jpg", "product_price": "1000", "product_name":"crab"},{"source":"assets/15.jpg", "product_price": "1000", "product_name":"crab"},{"source":"assets/16.jpg", "product_price": "1000", "product_name":"crab"}]
                                 RecycleBoxLayout:
                                     default_size_hint: None, None
                                     default_size: root.width/2.5 - dp(10), Window.height/3.7

@@ -20,14 +20,16 @@ ScreenManager:
     name: "initializer"
     canvas.before:
         Color:
-            rgba: 0, 0, 0, .05
+            rgba: 1, 1, 1, 1
         Rectangle:
             size: self.size
             pos: self.pos
 
     Image:
-        source: "assets/N1d.PNG"
-        pos_hint: {"center_y":.6, "center_x":.55}
+        source: "assets/N_logo.gif"
+        anim_delay: .03
+        anim_loop: 1
+        pos_hint: {"center_y":.8, "center_x":.5}
 
     MDLabel:
         id: updater

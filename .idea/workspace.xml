@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4cb93fcd-1f5d-4fef-8c90-3198d866ca2d" name="Default Changelist" comment="too lazy bro" />
+    <list default="true" id="4cb93fcd-1f5d-4fef-8c90-3198d866ca2d" name="Default Changelist" comment="too lazy bro">
+      <change afterPath="$PROJECT_DIR$/assets/N_logo.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libkv/main/cartcheckout.kv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libpy/cartcheckout.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/ads/16.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/ads/18.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/ads/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildozer.spec" beforeDir="false" afterPath="$PROJECT_DIR$/buildozer.spec" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/kv_widget/widget.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/kv_widget/widget.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/init/credentials.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/init/credentials.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/main/home.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/home.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/main/productlookout.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/productlookout.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libpy/categories.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/categories.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libpy/home.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/home.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manager.kv" beforeDir="false" afterPath="$PROJECT_DIR$/manager.kv" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -69,27 +86,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.main">
-    <configuration name="m_cardtextfield" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="NocenStore" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/libs/classes_wigdet" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/libs/classes_wigdet/m_cardtextfield.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="main (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="NocenStore" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -127,6 +123,27 @@
       <option name="PARAMETERS" value="-m screen:onex,portrait,scale=.65" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="true" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="nepa" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="NocenStore" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/Games" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$USER_HOME$/Games/nepa.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
       <option name="INPUT_FILE" value="" />
@@ -197,19 +214,19 @@
     </configuration>
     <list>
       <item itemvalue="Python.main" />
-      <item itemvalue="Python.m_cardtextfield" />
+      <item itemvalue="Python.main (1)" />
       <item itemvalue="Python.pagelayout" />
       <item itemvalue="Python.scratch_2" />
       <item itemvalue="Python.splitter" />
-      <item itemvalue="Python.main (1)" />
+      <item itemvalue="Python.nepa" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.nepa" />
         <item itemvalue="Python.main (1)" />
         <item itemvalue="Python.splitter" />
         <item itemvalue="Python.scratch_2" />
         <item itemvalue="Python.pagelayout" />
-        <item itemvalue="Python.m_cardtextfield" />
       </list>
     </recent_temporary>
   </component>
@@ -439,7 +456,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612680221195</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="too lazy bro">
+      <created>1612702988233</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1612702988233</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

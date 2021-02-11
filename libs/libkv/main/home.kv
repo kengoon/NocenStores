@@ -27,14 +27,6 @@
                     adaptive_height: True
                     padding: dp(10)
                     md_bg_color: app.theme_cls.primary_color
-#                    MDIconButton:
-#                        id: menu
-#                        icon: "menu"
-#                        theme_text_color: "Custom"
-#                        text_color: 1,1,1,1
-#                        on_release:
-#                            nav_drawer.set_state("open")
-                            #root.menu.open()
                     M_CardTextField:
                         elevation: 10
                         hint_text: "search/voice search"
@@ -71,18 +63,18 @@
                                 items_spacing: "10dp"
                                 MDSwiperItem:
                                     M_CardLoader:
-                                        source:"assets/ads/8.jpg"
-                                        text: "Yummy: so tasty"
+                                        source:""
+                                        text: ""
 
                                 MDSwiperItem:
                                     M_CardLoader
-                                        source: "assets/ads/16.jpg"
-                                        text: "Angle360: so delicious"
+                                        source: ""
+                                        text: ""
 
                                 MDSwiperItem:
                                     M_CardLoader
-                                        source: "assets/ads/18.jpg"
-                                        text: "ShopRite: buy one, get one free"
+                                        source: ""
+                                        text: ""
                         MDBoxLayout:
                             adaptive_height: True
                             padding: dp(5)
@@ -120,6 +112,7 @@
                                         bg_color: 1, 0, .8, 1
 
                         MDGridLayout:
+                            id: grid_cat
                             adaptive_height: True
                             cols: 3
                             padding: [dp(5), dp(10), dp(5), dp(5)]
@@ -127,58 +120,58 @@
                             CategoryCard:
                                 text: "Electronics"
                                 #text_color: 1, 1, 1, 1
-                                source: "assets/0.jpg"
+                                source: ""
                                 on_release:
                                     root.change_screen(self, "category")
 
                             CategoryCard:
                                 text: "Portable Devices"
-                                source: "assets/1.jpg"
+                                source: ""
                                 on_release:
                                     root.change_screen(self, "category")
                                 #text_color: 1, 1, 1, 1
 
                             CategoryCard:
                                 text: "Clothing"
-                                source: "assets/2.jpg"
+                                source: ""
                                 #text_color: 1, 1, 1, 1
                                 on_release:
                                     root.change_screen(self, "category")
 
                             CategoryCard:
                                 text: "Furniture"
-                                source: "assets/7.jpg"
+                                source: ""
                                 #text_color: 1, 1, 1, 1
                                 on_release:
                                     root.change_screen(self, "category")
 
                             CategoryCard:
                                 text: "Kitchen"
-                                source: "assets/16.jpg"
+                                source: ""
                                 #text_color: 1, 1, 1, 1
                                 on_release:
                                     root.change_screen(self, "category")
 
                             CategoryCard:
                                 text: "Beauty"
-                                source: "assets/3.jpg"
+                                source: ""
                                 on_release:
                                     root.change_screen(self, "category")
 
-                        RecycleView:
-                            id: rc
-                            effect_cls: ScrollEffect
-                            viewclass: "FeedsCard"
-                            size_hint_y: None
-                            height: root.height
-                            RecycleGridLayout:
-                                default_size_hint: 1, None
-                                default_size: None, Window.height/3.5
-                                size_hint_y: None
-                                height: self.minimum_height
-                                spacing:dp(10)
-                                cols: 1
-                                padding: dp(5)
+#                        RecycleView:
+#                            id: rc
+#                            effect_cls: ScrollEffect
+#                            viewclass: "FeedsCard"
+#                            size_hint_y: None
+#                            height: root.height
+#                            RecycleGridLayout:
+#                                default_size_hint: 1, None
+#                                default_size: None, Window.height/3.5
+#                                size_hint_y: None
+#                                height: self.minimum_height
+#                                spacing:dp(10)
+#                                cols: 1
+#                                padding: dp(5)
 
         MDBottomNavigationItem:
             id: feeds

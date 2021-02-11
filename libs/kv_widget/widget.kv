@@ -223,8 +223,8 @@
             anim_delay: .1
             allow_stretch: True
             keep_ratio: False
-
-            on_source:
+            nocache: True
+            on_load:
                 loader.opacity = 0
                 self.color = [1, 1, 1, 1]
             canvas.before:
@@ -306,6 +306,8 @@
     radius: [dp(10)]
     RelativeLayout:
         size_hint_x: .7
+        size_hint_y: None
+        height: Window.height/4.5
         AsyncImage:
             id: image
             color: 0, 0, 0, 0
@@ -495,7 +497,7 @@
         #do_scroll_y: False
         viewclass: "AccoCard"
         bar_width: 0
-        data:[{"source":"assets/7.jpg", "product_price": "1000", "product_name":"crab"}, {"source":"assets/9.jpg", "product_price": "34500", "product_name":"house"}, {"source":"assets/10.jpg", "product_price": "1000", "product_name":"crane"},{"source":"assets/11.jpg","product_price": "22431000", "product_name":"Mansion"},{"source":"assets/12.jpg", "product_price": "1000", "product_name":"crab"},{"source":"assets/13.jpg", "product_price": "1000", "product_name":"crab"},{"source":"assets/14.jpg", "product_price": "1000", "product_name":"crab"},{"source":"assets/15.jpg", "product_price": "1000", "product_name":"crab"},{"source":"assets/16.jpg", "product_price": "1000", "product_name":"crab", "product_price": "1000", "product_name":"crab", "product_price": "1000", "product_name":"crab", "product_price": "1000", "product_name":"crab", "product_price": "1000", "product_name":"crab", "product_price": "1000", "product_name":"crab"}]
+        #data:[{"source":"assets/7.jpg", "product_price": "1000", "product_name":"crab"}, {"source":"assets/9.jpg", "product_price": "34500", "product_name":"house"}, {"source":"assets/10.jpg", "product_price": "1000", "product_name":"crane"},{"source":"assets/11.jpg","product_price": "22431000", "product_name":"Mansion"},{"source":"assets/12.jpg", "product_price": "1000", "product_name":"crab"},{"source":"assets/13.jpg", "product_price": "1000", "product_name":"crab"},{"source":"assets/14.jpg", "product_price": "1000", "product_name":"crab"},{"source":"assets/15.jpg", "product_price": "1000", "product_name":"crab"},{"source":"assets/16.jpg", "product_price": "1000", "product_name":"crab", "product_price": "1000", "product_name":"crab", "product_price": "1000", "product_name":"crab", "product_price": "1000", "product_name":"crab", "product_price": "1000", "product_name":"crab", "product_price": "1000", "product_name":"crab"}]
         RecycleBoxLayout:
             id: rb
             default_size_hint: None, None

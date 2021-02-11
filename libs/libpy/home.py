@@ -1,14 +1,17 @@
+import urllib.request
+from functools import partial
+from json import loads
+from os import listdir
 from threading import Thread
-
+from kivy.clock import Clock, mainthread
 from kivy.event import EventDispatcher
+from kivy.lang import Builder
 from kivy.metrics import dp
+from kivy.network.urlrequest import UrlRequest
 from kivy.properties import ObjectProperty, NumericProperty
 from kivy.uix.screenmanager import Screen
-from kivy.clock import Clock, mainthread
 from kivymd.app import MDApp
 from kivymd.uix.dialog import MDDialog
-from kivy.lang import Builder
-from kivymd.uix.menu import MDDropdownMenu
 
 
 class Home(Screen, EventDispatcher):
@@ -17,21 +20,19 @@ class Home(Screen, EventDispatcher):
     counter = NumericProperty(0)
     update = False
     menu = None
+    url = "https://nocenstore.pythonanywhere.com/"
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.register_event_type("on_menu")
-        self.data = [
-            {"store": "test", "product_name": "ksjdksdjksjd", "product_price": 1020232, "source": "assets/0.jpg"},
-            {"store": "test", "product_name": "ksjdksdjksjd", "product_price": 1020232, "source": "assets/0.jpg"},
-            {"store": "test", "product_name": "ksjdksdjksjd", "product_price": 1020232, "source": "assets/0.jpg"},
-            {"store": "test", "product_name": "ksjdksdjksjd", "product_price": 1020232, "source": "assets/0.jpg"},
-            {"store": "test", "product_name": "ksjdksdjksjd", "product_price": 1020232, "source": "assets/0.jpg"},
-            {"store": "test", "product_name": "ksjdksdjksjd", "product_price": 1020232, "source": "assets/0.jpg"},
-            {"store": "test", "product_name": "ksjdksdjksjd", "product_price": 1020232, "source": "assets/0.jpg"}
-        ]
+        self.data = []
 
     def on_enter(self, *args):
+        UrlRequest(
+            url=f"{self.url}get_ads",
+            on_success=self.update_ads_data,
+            on_error=self.check_cache
+        )
         self.clock = Clock.schedule_interval(self._start_animation, 5)
         if not self.update:
             self.ids.home.header.ids._label.font_style = "Caption"
@@ -44,6 +45,25 @@ class Home(Screen, EventDispatcher):
             for data in self.data:
                 self.ids.rc.data.append(data)
             self.update = True
+
+    def update_ads_data(self, instance, data):
+        print(instance, data)
+        data = loads(data)
+        if not listdir("assets/ads"):
+            Thread(target=partial(self.download_ads, data)).start()
+        for ads_url, child in zip(data, self.ids.swiper.children[0].children):
+            child.children[0].children[0].source = ads_url
+
+    @staticmethod
+    def download_ads(data):
+        print(data)
+        for i, image in enumerate(data):
+            urllib.request.urlretrieve(image, f"assets/ads/{i}.jpg")
+
+    def check_cache(self, *args):
+        if listdir("assets/ads"):
+            for image, child in zip(listdir("assets/ads"), self.ids.swiper.children[0].children):
+                child.children[0].children[0].source = f"assets/ads/{image}"
 
     def on_leave(self, *args):
         self._stop_animation()
@@ -77,21 +97,6 @@ class Home(Screen, EventDispatcher):
             buttons=[button1, button2], auto_dismiss=False
         )
         dialog.open()
-
-    def add_nav(self, item):
-        if item.children:
-            return
-        exec(f"from libs.libpy import {item.name}")
-        Thread(target=self._thread_build, args=(item,)).start()
-
-    def _thread_build(self, item):
-        Builder.load_file(f"libs/libkv/main/{item.name}.kv")
-        self._add_nav_item(item)
-
-    @mainthread
-    def _add_nav_item(self, item):
-        exec("from kivy.factory import Factory")
-        item.add_widget(eval(f"Factory.{item.name.capitalize()}()"))
 
     @staticmethod
     def outline(icon: list, instance):
