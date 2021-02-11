@@ -2,22 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4cb93fcd-1f5d-4fef-8c90-3198d866ca2d" name="Default Changelist" comment="too lazy bro">
-      <change afterPath="$PROJECT_DIR$/assets/N_logo.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/libkv/main/cartcheckout.kv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/libpy/cartcheckout.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/ads/16.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/ads/18.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/ads/8.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildozer.spec" beforeDir="false" afterPath="$PROJECT_DIR$/buildozer.spec" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/kv_widget/widget.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/kv_widget/widget.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libkv/init/credentials.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/init/credentials.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libkv/main/home.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/home.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libkv/main/productlookout.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/productlookout.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libpy/categories.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/categories.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libpy/home.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/home.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manager.kv" beforeDir="false" afterPath="$PROJECT_DIR$/manager.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/m_cardloader.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes/m_cardloader.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

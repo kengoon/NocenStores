@@ -11,6 +11,7 @@ Builder.load_string(
 # kv_start
 <M_CardLoader>:
     md_bg_color: 0, 0, 0, 0
+    radius: [dp(10), ]
     RelativeLayout:
         AsyncImage:
             id: image
@@ -63,7 +64,6 @@ Builder.load_string(
 
 
 class M_CardLoader(MDCard, EventDispatcher):
-    radius = ListProperty([dp(10), ])
     text = StringProperty("")
     text_radius = ListProperty([dp(5), ])
     text_color = ListProperty([1, 1, 1, 1])
