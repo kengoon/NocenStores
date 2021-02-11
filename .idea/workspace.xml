@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4cb93fcd-1f5d-4fef-8c90-3198d866ca2d" name="Default Changelist" comment="too lazy bro">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/m_cardloader.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes/m_cardloader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libpy/sell.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/sell.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -449,7 +449,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612702988233</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="too lazy bro">
+      <created>1613021652407</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1613021652407</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

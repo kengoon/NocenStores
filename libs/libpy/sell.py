@@ -19,7 +19,6 @@ class Sell(Screen):
     @staticmethod
     def open_filechooser(instance):
         def call(file_list):
-            print(file_list)
             if not file_list[0]:
                 toast("do not select image from gallery, use normal file manager")
                 return
