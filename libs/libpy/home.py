@@ -4,6 +4,7 @@ from json import loads
 from os import listdir
 from threading import Thread
 from kivy.clock import Clock, mainthread
+from kivy.core.window import Window
 from kivy.event import EventDispatcher
 from kivy.lang import Builder
 from kivy.metrics import dp
@@ -28,11 +29,7 @@ class Home(Screen, EventDispatcher):
         self.data = []
 
     def on_enter(self, *args):
-        UrlRequest(
-            url=f"{self.url}get_ads",
-            on_success=self.update_ads_data,
-            on_error=self.check_cache
-        )
+        self.get_ads()
         self.clock = Clock.schedule_interval(self._start_animation, 5)
         if not self.update:
             self.ids.home.header.ids._label.font_style = "Caption"
@@ -46,23 +43,31 @@ class Home(Screen, EventDispatcher):
                 self.ids.rc.data.append(data)
             self.update = True
 
+    def get_ads(self):
+        UrlRequest(
+            url=f"{self.url}get_ads",
+            on_success=self.update_ads_data,
+            on_error=self.check_cache
+        )
+
     def update_ads_data(self, instance, data):
         print(instance, data)
         data = loads(data)
-        if not listdir("assets/ads"):
-            Thread(target=partial(self.download_ads, data)).start()
+        Thread(target=partial(self.download_ads, data)).start()
         for ads_url, child in zip(data, self.ids.swiper.children[0].children):
             child.children[0].children[0].source = ads_url
 
     @staticmethod
     def download_ads(data):
-        print(data)
         for i, image in enumerate(data):
             urllib.request.urlretrieve(image, f"assets/ads/{i}.jpg")
 
     def check_cache(self, *args):
+        self.get_ads()
         if listdir("assets/ads"):
             for image, child in zip(listdir("assets/ads"), self.ids.swiper.children[0].children):
+                if child.children[0].children[0].source:
+                    return
                 child.children[0].children[0].source = f"assets/ads/{image}"
 
     def on_leave(self, *args):
@@ -70,8 +75,7 @@ class Home(Screen, EventDispatcher):
 
     def _start_animation(self, *args):
         self.counter += 1
-        if self.counter == 3:
-            self.counter = 0
+        self.counter = 0 if self.counter == 3 else self.counter
         self.ids.swiper.set_current(self.counter)
 
     def _stop_animation(self):
@@ -94,7 +98,9 @@ class Home(Screen, EventDispatcher):
             title="Change Theme",
             text="app restart is required for Dark Mode" if self.app.theme_cls.theme_style == "Light"
             else "app restart is required for Light Mode",
-            buttons=[button1, button2], auto_dismiss=False
+            buttons=[button1, button2], auto_dismiss=False,
+            size_hint_x=None,
+            width=Window.width - dp(20)
         )
         dialog.open()
 

@@ -468,7 +468,7 @@
         pos_hint: {"center_x": .5}
         on_release:
             root.root.manager.on_next_screen(root.root.name)
-            app.root.ids.manager.children[0].current = root.text.lower()
+            root.root.manager.current = root.text.lower()
     MDLabel:
         halign: "center"
         size_hint_y: None

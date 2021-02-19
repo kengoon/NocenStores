@@ -21,7 +21,7 @@ from libs.classes_wigdet.m_cardtextfield import M_CardTextField
 from kivy.factory import Factory
 from classes.m_loader import M_AKImageLoader, M_AKLabelLoader
 from classes.m_cardloader import M_CardLoader
-from akivymd.uix.statusbarcolor import change_statusbar_color
+from kivymd_extensions.akivymd.uix.statusbarcolor import change_statusbar_color
 from functions import my_queue, return_thread_value
 
 os.environ['SSL_CERT_FILE'] = where()
@@ -33,7 +33,6 @@ r("M_AKLabelLoader", cls=M_AKLabelLoader)
 r("M_CardTextField", cls=M_CardTextField)
 r("MsCard", cls=MsCard)
 r("AsyncMe", cls=AsyncMe)
-exec("import akivymd")
 Loader.loading_image = "assets/loader.gif"
 
 if platform == "android":

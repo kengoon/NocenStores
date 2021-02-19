@@ -36,7 +36,7 @@ version = 0.1
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,kivy==master,ffpyplayer,ffmpeg,http://127.0.0.1:8887/akivymd.zip,http://127.0.0.1:8887/kivymd.zip,sdl2_ttf==2.0.15,plyer,pillow,certifi
+requirements = python3,kivy==master,ffpyplayer,ffmpeg,https://github.com/kengoon/akivymd-1/archive/master.zip,http://127.0.0.1:8887/kivymd.zip,sdl2_ttf==2.0.15,plyer,pillow,certifi
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
