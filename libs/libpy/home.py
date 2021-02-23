@@ -3,6 +3,8 @@ from functools import partial
 from json import loads
 from os import listdir
 from threading import Thread
+
+from kivy.animation import Animation
 from kivy.clock import Clock, mainthread
 from kivy.core.window import Window
 from kivy.event import EventDispatcher
@@ -41,6 +43,9 @@ class Home(Screen, EventDispatcher):
             self.ids.feeds.header.ids._label.font_style = "Caption"
             for data in self.data:
                 self.ids.rc.data.append(data)
+            anim = Animation(opacity=0) + Animation(opacity=1)
+            anim.repeat = True
+            anim.start(self.ids.but)
             self.update = True
 
     def get_ads(self):
@@ -51,7 +56,6 @@ class Home(Screen, EventDispatcher):
         )
 
     def update_ads_data(self, instance, data):
-        print(instance, data)
         data = loads(data)
         Thread(target=partial(self.download_ads, data)).start()
         for ads_url, child in zip(data, self.ids.swiper.children[0].children):

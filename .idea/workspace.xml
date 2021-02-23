@@ -2,22 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4cb93fcd-1f5d-4fef-8c90-3198d866ca2d" name="Default Changelist" comment="too lazy bro">
-      <change afterPath="$PROJECT_DIR$/.idea/csv-plugin.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/main.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/beauty.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/clothing.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/electronics.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/furniture.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/kitchen.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/portables.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildozer.spec" beforeDir="false" afterPath="$PROJECT_DIR$/buildozer.spec" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/kv_widget/widget.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/kv_widget/widget.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libkv/main/customercare.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/customercare.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libkv/main/feeds.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/feeds.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libkv/main/home.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/home.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libpy/home.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/home.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -193,12 +180,12 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.main" />
       <item itemvalue="Python.main (1)" />
       <item itemvalue="Python.nepa" />
       <item itemvalue="Python.scratch_2" />
       <item itemvalue="Python.scratch_5" />
       <item itemvalue="Python.splitter" />
-      <item itemvalue="Python.main" />
     </list>
     <recent_temporary>
       <list>
@@ -457,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613026483811</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="too lazy bro">
+      <created>1613742781128</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1613742781128</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

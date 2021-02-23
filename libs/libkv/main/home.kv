@@ -165,7 +165,8 @@
                     radi: [dp(20), dp(20), 0, 0]
                     elevation: 8
                     MDBoxLayout:
-                        adaptive_height: True
+                        size_hint_y: None
+                        height: dp(60)
                         padding: dp(10)
 
                         MDSeparator:
@@ -265,6 +266,6 @@
 
     MDFloatingActionButton:
         icon: "brightness-4"
-        pos_hint: {"center_x":.9, "center_y":.15}
+        pos_hint: {"center_y":.15}
         on_release:
             root.change_theme()
