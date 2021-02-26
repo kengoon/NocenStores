@@ -16,7 +16,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pylint kivy pillow https://github.com/kengoon/akivymd-1/archive/master.zip sdl2_ttf==2.0.15 plyer certifi http://192.168.1.103:8887/kivymd.zip
+        pip install pylint kivy pillow https://github.com/kengoon/akivymd-1/archive/master.zip sdl2_ttf==2.0.15 plyer certifi https://github.com/kengoon/Archives/raw/main/kivymd.zip
     - name: Analysing the code with pylint
       run: |
         pylint `ls -R|grep .py$|xargs`
