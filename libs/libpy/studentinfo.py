@@ -2,4 +2,5 @@ from kivy.uix.screenmanager import Screen
 
 
 class StudentInfo(Screen):
-    pass
+    def go_home(self):
+        self.manager.current = "home"
