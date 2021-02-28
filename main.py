@@ -88,8 +88,6 @@ class NocenStore(MDApp):
         Builder.load_file("libs/kv_widget/widget.kv")
         Builder.load_file("libs/libkv/init/credentials.kv")
         for file in os.listdir("libs/libkv/main"):
-            self.root.ids.init.ids.updater.text = f"loading {file.strip('kv')}ns(0.2)"
-            sleep(0.1)
             Builder.load_file(f"libs/libkv/main/{file}")
         self.check_add_screen("libs/manager.kv", "Factory.Manager()", "manager")
         self.root.screens[0].ids.spinner.active = False
