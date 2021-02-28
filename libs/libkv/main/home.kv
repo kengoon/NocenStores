@@ -19,194 +19,160 @@
                 a = root.outliner.copy()
                 a.remove(self)
                 root.outline(a, self)
-            AKSwipeMenu:
-                id: menu
-                on_open: but.icon = "arrow-down"
-                on_dismiss: but.icon ="arrow-up"
-                AKSwipeMenuMainContent:
-                    orientation:"vertical"
-                    md_bg_color: get_color_from_hex("#EEEEEE") if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
-                    MDBoxLayout:
-                        adaptive_height: True
-                        padding: dp(10)
-                        md_bg_color: app.theme_cls.primary_color
-                        M_CardTextField:
-                            elevation: 10
-                            hint_text: "search/voice search"
-                            icon_left: "microphone"
-                            icon_right: "cart-variant"
-                            text_field_disabled: True
-                            icon_right_color: app.theme_cls.primary_color
-                            icon_left_color: app.theme_cls.primary_color
-                            foreground_color: [0, 0, 0, 0.8] if app.theme_cls.theme_style == "Light" else [1,1,1,1]
-                            cursor_color: [0, 0, 0, .7] if app.theme_cls.theme_style == "Light" else [1,1,1,1]
-                            md_bg_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
-                            background_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
-                            disabled_foreground_color: [0.5, 0.5, 0.5, 1.0]
+            MDBoxLayout:
+                orientation:"vertical"
+                md_bg_color: get_color_from_hex("#EEEEEE") if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
+                MDBoxLayout:
+                    adaptive_height: True
+                    padding: dp(10)
+                    md_bg_color: app.theme_cls.primary_color
+                    M_CardTextField:
+                        elevation: 10
+                        hint_text: "search/voice search"
+                        icon_left: "microphone"
+                        icon_right: "cart-variant"
+                        text_field_disabled: True
+                        icon_right_color: app.theme_cls.primary_color
+                        icon_left_color: app.theme_cls.primary_color
+                        foreground_color: [0, 0, 0, 0.8] if app.theme_cls.theme_style == "Light" else [1,1,1,1]
+                        cursor_color: [0, 0, 0, .7] if app.theme_cls.theme_style == "Light" else [1,1,1,1]
+                        md_bg_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
+                        background_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
+                        disabled_foreground_color: [0.5, 0.5, 0.5, 1.0]
 
-                    ScrollView:
-                        effect_cls: ScrollEffect
-                        MDList:
-                            padding: 0
-                            spacing: 0
-                            MDBoxLayout:
-                                id: box
-                                adaptive_height: True
-                                padding: [0, 0, 0, dp(10)]
-                                canvas.before:
-                                    Color:
-                                        rgba: app.theme_cls.primary_color
-                                    Rectangle:
-                                        size:self.size[0], (root.height/3)/1.5
-                                        pos: self.pos[0], self.pos[1] + dp(100)
-                                MDSwiper:
-                                    id: swiper
-                                    size_hint_y: None
-                                    height: Window.height/4.5
-                                    items_spacing: "10dp"
-                                    MDSwiperItem:
-                                        M_CardLoader:
-                                            source:""
-                                            text: ""
-
-                                    MDSwiperItem:
-                                        M_CardLoader
-                                            source: ""
-                                            text: ""
-
-                                    MDSwiperItem:
-                                        M_CardLoader
-                                            source: ""
-                                            text: ""
-                            MDBoxLayout:
-                                adaptive_height: True
-                                padding: dp(5)
-                                MDCard:
-                                    size_hint_y: None
-                                    height: self.minimum_height
-                                    radius: [dp(10)]
-                                    MDGridLayout:
-                                        adaptive_height: True
-                                        cols: 4
-                                        padding: dp(10)
-                                        spacing: dp(10)
-                                        PlatformCan:
-                                            root: root
-                                            icon: "shopping"
-                                            text: "Deals"
-                                            bg_color: .8, 0, 0, 1
-
-                                        PlatformCan:
-                                            root: root
-                                            icon: "headset"
-                                            bg_color: app.theme_cls.primary_color
-                                            text: "Customer Care"
-
-                                        PlatformCan:
-                                            root: root
-                                            icon: "heart"
-                                            text: "Saved Items"
-                                            bg_color: 1, .7, 0, 1
-
-                                        PlatformCan:
-                                            root: root
-                                            icon: "school"
-                                            text: "Student Zone"
-                                            bg_color: 1, 0, .8, 1
-
-                            MDGridLayout:
-                                id: grid_cat
-                                adaptive_height: True
-                                cols: 3
-                                padding: [dp(5), dp(10), dp(5), dp(5)]
-                                spacing: dp(5)
-                                CategoryCard:
-                                    text: "Electronics"
-                                    #text_color: 1, 1, 1, 1
-                                    source: "assets/electronics.png"
-                                    on_release:
-                                        root.change_screen(self, "category")
-
-                                CategoryCard:
-                                    text: "Portable Devices"
-                                    source: "assets/portables.png"
-                                    on_release:
-                                        root.change_screen(self, "category")
-                                    #text_color: 1, 1, 1, 1
-
-                                CategoryCard:
-                                    text: "Clothing"
-                                    source: "assets/clothing.png"
-                                    #text_color: 1, 1, 1, 1
-                                    on_release:
-                                        root.change_screen(self, "category")
-
-                                CategoryCard:
-                                    text: "Furniture"
-                                    source: "assets/furniture.png"
-                                    #text_color: 1, 1, 1, 1
-                                    on_release:
-                                        root.change_screen(self, "category")
-
-                                CategoryCard:
-                                    text: "Kitchen"
-                                    source: "assets/kitchen.png"
-                                    #text_color: 1, 1, 1, 1
-                                    on_release:
-                                        root.change_screen(self, "category")
-
-                                CategoryCard:
-                                    text: "Beauty"
-                                    source: "assets/beauty.png"
-                                    on_release:
-                                        root.change_screen(self, "category")
-
-                AKSwipeMenuTopContent:
-                    radi: [dp(20), dp(20), 0, 0]
-                    elevation: 8
-                    MDBoxLayout:
-                        size_hint_y: None
-                        height: dp(60)
-                        padding: dp(10)
-
-                        MDSeparator:
-                            height: "10dp"
-                            pos_hint: {"center_y": .5}
-                            canvas:
+                ScrollView:
+                    effect_cls: ScrollEffect
+                    MDList:
+                        padding: 0
+                        spacing: 0
+                        MDBoxLayout:
+                            id: box
+                            adaptive_height: True
+                            padding: [0, 0, 0, dp(10)]
+                            canvas.before:
                                 Color:
-                                    rgba: 1,1,1,1
-                                RoundedRectangle:
-                                    size: self.size
-                                    pos: self.pos
-                                    radius: [dp(5)]
+                                    rgba: app.theme_cls.primary_color
+                                Rectangle:
+                                    size:self.size[0], (root.height/3)/1.5
+                                    pos: self.pos[0], self.pos[1] + dp(100)
+                            MDSwiper:
+                                id: swiper
+                                size_hint_y: None
+                                height: Window.height/4.5
+                                items_spacing: "10dp"
+                                MDSwiperItem:
+                                    M_CardLoader:
+                                        source:""
+                                        text: ""
+                                        root: root
 
-                        MDIconButton:
-                            id: but
-                            icon: "arrow-up"
-                            pos_hint: {"center_y": .5}
-                            theme_text_color: "Custom"
-                            text_color: 1,1,1,1
-                            on_release:
-                                if menu.get_status()=="close": menu.open()
-                                else:menu.dismiss()
-                AKSwipeMenuBottomContent:
-                    bg_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
-                    RecycleView:
-                        id: rv
-                        effect_cls: ScrollEffect
-                        viewclass: "CategoryProductCard"
-                        size_hint_y: None
-                        height: root.height - root.height/3
-                        RecycleGridLayout:
-                            root: root.manager
-                            roots: root
-                            default_size_hint: 1, None
-                            default_size: None, Window.height/4.5
-                            size_hint_y: None
-                            height: self.minimum_height
-                            spacing:dp(10)
-                            padding: dp(10)
-                            cols: 1
+                                MDSwiperItem:
+                                    M_CardLoader
+                                        source: ""
+                                        text: ""
+                                        root: root
+
+                                MDSwiperItem:
+                                    M_CardLoader
+                                        source: ""
+                                        text: ""
+                                        root: root
+                        MDBoxLayout:
+                            adaptive_height: True
+                            padding: dp(5)
+                            MDCard:
+                                size_hint_y: None
+                                height: self.minimum_height
+                                radius: [dp(10)]
+                                MDGridLayout:
+                                    adaptive_height: True
+                                    cols: 4
+                                    padding: dp(10)
+                                    spacing: dp(10)
+                                    PlatformCan:
+                                        root: root
+                                        icon: "shopping"
+                                        text: "Deals"
+                                        bg_color: .8, 0, 0, 1
+
+                                    PlatformCan:
+                                        root: root
+                                        icon: "headset"
+                                        bg_color: app.theme_cls.primary_color
+                                        text: "Customer Care"
+
+                                    PlatformCan:
+                                        root: root
+                                        icon: "heart"
+                                        text: "Saved Items"
+                                        bg_color: 1, .7, 0, 1
+
+                                    PlatformCan:
+                                        root: root
+                                        icon: "school"
+                                        text: "Student Zone"
+                                        bg_color: 1, 0, .8, 1
+
+                        MDGridLayout:
+                            id: grid_cat
+                            adaptive_height: True
+                            cols: 3
+                            padding: [dp(5), dp(10), dp(5), dp(5)]
+                            spacing: dp(5)
+                            CategoryCard:
+                                text: "Electronics"
+                                #text_color: 1, 1, 1, 1
+                                source: "assets/electronics.png"
+                                on_release:
+                                    root.change_screen(self, "category")
+
+                            CategoryCard:
+                                text: "Portable Devices"
+                                source: "assets/portables.png"
+                                on_release:
+                                    root.change_screen(self, "category")
+                                #text_color: 1, 1, 1, 1
+
+                            CategoryCard:
+                                text: "Clothing"
+                                source: "assets/clothing.png"
+                                #text_color: 1, 1, 1, 1
+                                on_release:
+                                    root.change_screen(self, "category")
+
+                            CategoryCard:
+                                text: "Furniture"
+                                source: "assets/furniture.png"
+                                #text_color: 1, 1, 1, 1
+                                on_release:
+                                    root.change_screen(self, "category")
+
+                            CategoryCard:
+                                text: "Kitchen"
+                                source: "assets/kitchen.png"
+                                #text_color: 1, 1, 1, 1
+                                on_release:
+                                    root.change_screen(self, "category")
+
+                            CategoryCard:
+                                text: "Beauty"
+                                source: "assets/beauty.png"
+                                on_release:
+                                    root.change_screen(self, "category")
+
+                MDBoxLayout:
+                    adaptive_height: True
+                    orientation: "vertical"
+                    padding: [0, dp(6), 0, dp(10)]
+                    MDFillRoundFlatIconButton:
+                        id: but
+                        oh: self.height
+                        icon: "trending-up"
+                        text: "Trending"
+                        bold: True
+                        pos_hint: {"center_x": .5}
+
+
 
         MDBottomNavigationItem:
             id: feeds
@@ -216,6 +182,8 @@
             root: root
             on_enter:
                 self.children[0].dispatch("on_enter")
+            on_leave:
+                self.children[0].dispatch("on_leave")
             on_tab_release:
                 a = root.outliner.copy()
                 a.remove(self)

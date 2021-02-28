@@ -1,7 +1,21 @@
 <Category>
     name: "category"
-    on_leave:
-        self.remove_widget(rv)
+    RelativeLayout:
+        id: non
+        opacity: 0
+        MDIcon:
+            id: ico
+            icon:"package-variant-closed"
+            color: app.theme_cls.disabled_hint_text_color
+            font_size: dp(70)
+            pos_hint: {"center_x":.5, "center_y":.5}
+            halign: "center"
+        MDLabel:
+            id: lbl
+            text: "No product for this category yet"
+            color: app.theme_cls.disabled_hint_text_color
+            halign: "center"
+            pos_hint: {"center_x":.5, "center_y":.4}
     BoxLayout:
         orientation:"vertical"
         MDBoxLayout:
@@ -27,7 +41,9 @@
             id: rv
             effect_cls: ScrollEffect
             viewclass: "CategoryProductCard"
+            on_scroll_stop: root.check_update_data()
             RecycleGridLayout:
+                id: holder
                 root: root.manager
                 roots: root
                 default_size_hint: 1, None
@@ -37,3 +53,13 @@
                 spacing:dp(10)
                 padding: dp(10)
                 cols: 1
+
+    MDRelativeLayout:
+        id: progress_box
+        adaptive_height: True
+        pos_hint: {"center_y": .5}
+        AKSpinnerDoubleBounce:
+            id: progress
+            spinner_size: dp(50)
+            active: True
+            pos_hint: {"center_x": .5}

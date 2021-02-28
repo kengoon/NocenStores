@@ -22,6 +22,7 @@ class Home(Screen, EventDispatcher):
     clock = ObjectProperty()
     counter = NumericProperty(0)
     update = False
+    pause = False
     menu = None
     url = "https://nocenstore.pythonanywhere.com/"
 
@@ -31,9 +32,9 @@ class Home(Screen, EventDispatcher):
         self.data = []
 
     def on_enter(self, *args):
-        self.get_ads()
-        self.clock = Clock.schedule_interval(self._start_animation, 5)
+        self.start_clock()
         if not self.update:
+            self.get_ads()
             self.ids.home.header.ids._label.font_style = "Caption"
             self.ids.profile.header.ids._label.font_style = "Caption"
             self.ids.sell.header.children[0].remove_widget(self.ids.sell.header.ids._label)
@@ -47,6 +48,9 @@ class Home(Screen, EventDispatcher):
             anim.repeat = True
             anim.start(self.ids.but)
             self.update = True
+
+    def start_clock(self):
+        self.clock = Clock.schedule_interval(self._start_animation, 5)
 
     def get_ads(self):
         UrlRequest(
@@ -76,6 +80,15 @@ class Home(Screen, EventDispatcher):
 
     def on_leave(self, *args):
         self._stop_animation()
+
+    def pause_clock(self, *args):
+        self._stop_animation()
+        self.pause = True
+
+    def resume_clock(self):
+        if self.pause:
+            self.pause = False
+            self.start_clock()
 
     def _start_animation(self, *args):
         self.counter += 1
@@ -126,3 +139,5 @@ class Home(Screen, EventDispatcher):
     def change_screen(self, instance, screen):
         self.manager.on_next_screen(self.name)
         self.manager.current = screen
+        self.manager.ids.category.data_type = instance.text.lower()
+        self.manager.ids.category.exec_type = "_".join(instance.text.lower().split(" "))

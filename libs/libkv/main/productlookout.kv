@@ -1,15 +1,42 @@
 <ProductLookOut>
     name: "lookout"
-    on_enter:
-        toolbar.ids.label_title.font_style = "Money"
+    on_leave:
+        root.clear_cache()
     BoxLayout:
         orientation: "vertical"
-        MDToolbar:
-            id: toolbar
-            title: "Take This Product It Is Yours"
-            left_action_items:[["arrow-left", lambda x: root.go_home()]]
-            elevation: 0
-            specific_text_color: 1,1,1,1
+        MDCard:
+            size_hint_y: None
+            height: self.minimum_height
+            orientation: "vertical"
+            padding: [dp(10), 0, dp(10), 0]
+            md_bg_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
+
+            MDBoxLayout:
+                size_hint: 1, None
+                height: app.theme_cls.standard_increment
+                spacing: dp(10)
+                MDIconButton:
+                    icon: "arrow-left"
+                    pos_hint: {"center_y": .5}
+                    on_release: root.go_back()
+
+                MDLabel:
+                    text: f"Details[color={get_hex_from_color(app.theme_cls.primary_color)}]•[/color]"
+                    color: [1,1,1,1] if app.theme_cls.theme_style == "Dark" else [0,0,0,.7]
+                    markup: True
+                    font_style:"BigMoney"
+                    bold: True
+                    pos_hint:{"center_y": .5}
+                AKBadgeLayout:
+                    text: "0"
+                    offset: 0
+                    position: "right"
+                    badgeitem_color: 1,0,0,1
+                    bold: False
+                    pos_hint: {"center_y": .5}
+                    MDIconButton:
+                        icon: "cart-variant"
+
         ScrollView:
             effect_cls: ScrollEffect
             MDList:
@@ -20,23 +47,47 @@
                     RelativeLayout:
                         size_hint_y: None
                         height: Window.height/3 + dp(100)
-                        Image:
-                            id: image
-                            source: "assets/clock-4.png"
-                            size_hint:.7,.7
-                            pos_hint: {"center_x": .5, "center_y": .5}
+                        ScreenManager:
+                            id: mg
+                            Screen:
+                                name: "1"
+                                AsyncImage:
+                                    id: image1
+                                    source: ""
+                                    size_hint:.7,.7
+                                    pos_hint: {"center_x": .5, "center_y": .5}
+                                    nocache: True
+                            Screen:
+                                name: "2"
+                                AsyncImage:
+                                    id: image2
+                                    source: ""
+                                    size_hint:.7,.7
+                                    pos_hint: {"center_x": .5, "center_y": .5}
+                                    nocache: True
+                            Screen:
+                                name: "3"
+                                AsyncImage:
+                                    id: image3
+                                    source: ""
+                                    size_hint:.7,.7
+                                    pos_hint: {"center_x": .5, "center_y": .5}
+                                    nocache: True
 
                         MDBoxLayout:
                             spacing: dp(40)
                             adaptive_size: True
                             pos_hint: {"center_x":.5, "center_y": .1}
                             MDIcon:
+                                id: ico1
                                 icon: "circle"
                                 color: app.theme_cls.primary_color
                             MDIcon:
+                                id: ico2
                                 icon: "circle-outline"
                                 color: app.theme_cls.primary_color
                             MDIcon:
+                                id: ico3
                                 icon: "circle-outline"
                                 color: app.theme_cls.primary_color
 
@@ -46,6 +97,10 @@
                             user_font_size: dp(30)
                             text_color: app.theme_cls.primary_color
                             pos_hint: {"center_y": .5}
+                            on_release:
+                                mg.transition.direction = "right"
+                                mg.current = str(int(mg.current) - 1) if int(mg.current) > 1 else "1"
+                                root.change_circle()
 
                         MDIconButton:
                             icon: "chevron-right"
@@ -53,22 +108,28 @@
                             user_font_size: dp(30)
                             text_color: app.theme_cls.primary_color
                             pos_hint: {"center_y": .5, "right": 1}
+                            on_release:
+                                mg.transition.direction = "left"
+                                mg.current = str(int(mg.current) + 1) if int(mg.current) < 3 else "3"
+                                root.change_circle()
                 MDCard:
                     size_hint_y: None
                     height: self.minimum_height
                     orientation: "vertical"
-                    radius: [dp(60), dp(60), 0, 0]
+                    radius: [dp(20), dp(20), 0, 0]
                     padding: [0, dp(20), 0, 0]
                     MDList:
                         spacing: dp(20)
                         padding: dp(10)
-                        MDLabel:
-                            text: "Stylish Watch"
+                        M_AKLabelLoader:
+                            id: product_name
+                            text: ""
                             font_style: "Money"
+                            radius: [dp(5)]
                             font_size: dp(30)
                             halign: "center"
                             size_hint_y: None
-                            height: self.texture_size[1]
+                            height: dp(30) if not self.text else self.texture_size[1]
 
                         MDCard:
                             padding: dp(10)
@@ -81,11 +142,13 @@
                                 height: self.texture_size[1]
                                 font_style: "Money"
                                 underline: True
-                            MDLabel:
-                                text: "₦35,000"
+                            M_AKLabelLoader:
+                                id: product_price
+                                text: ""
                                 size_hint_y: None
-                                height: self.texture_size[1]
+                                height: dp(30) if not self.text else self.texture_size[1]
                                 halign:"center"
+                                radius: [dp(5)]
 
                         MDCard:
                             padding: dp(10)
@@ -124,12 +187,12 @@
                                 italic: True
                                 font_style: "Money"
 
-                            MDLabel:
-                                text: "This Watch is directly made from Aba in Abia State, Taste the original hand made of Aba"
-                                font_style: "Money"
-                                #halign: "center"
+                            M_AKLabelLoader:
+                                id: description
+                                text: ""
                                 size_hint_y: None
-                                height: self.texture_size[1]
+                                height: dp(30) if not self.text else self.texture_size[1]
+                                radius: [dp(5)]
                                 pos_hint: {"center_x": .5}
 
                         MDCard:

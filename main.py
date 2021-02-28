@@ -2,23 +2,21 @@ import os
 from functools import partial
 from threading import Thread
 from time import sleep
-from PIL import Image
 from certifi import where
 from kivy import platform
-from kivy.clock import mainthread, Clock
+from kivy.clock import Clock
 from kivy.core.window import Window
 from kivy.effects.scroll import ScrollEffect
 from kivy.loader import Loader
 from kivy.metrics import dp
-from kivy.utils import get_hex_from_color
-from kivymd.app import MDApp
 from kivy.lang import Builder
+from kivy.factory import Factory
+from kivymd.app import MDApp
 from kivymd.uix.textfield import MDTextField
 
 from classes.card import MsCard
 from libs.classes_wigdet.asyncimage import AsyncMe
 from libs.classes_wigdet.m_cardtextfield import M_CardTextField
-from kivy.factory import Factory
 from classes.m_loader import M_AKImageLoader, M_AKLabelLoader
 from classes.m_cardloader import M_CardLoader
 from kivymd_extensions.akivymd.uix.statusbarcolor import change_statusbar_color
@@ -54,6 +52,7 @@ class NocenStore(MDApp):
         Window.bind(on_keyboard=self.on_back_button)
         self.dialog = None
         self.close_dialog = False
+        self.login = False
         self.menu = None
         self.label = None
         self.no_screen = ["login", "signup", "initializer", "home"]
@@ -73,8 +72,7 @@ class NocenStore(MDApp):
     def on_back_button(self, *args):
         if args[1] == 27 and self.root.current == "initializer":
             self.exit_app()
-            return True
-        if args[1] == 27 and self.root.ids.manager.children[0].current not in self.no_screen:
+        elif args[1] == 27 and self.root.ids.manager.children[0].current not in self.no_screen:
             self.root.ids.manager.children[0].on_back_button()
         else:
             if args[1] == 27:
@@ -93,17 +91,10 @@ class NocenStore(MDApp):
             self.root.ids.init.ids.updater.text = f"loading {file.strip('kv')}ns(0.2)"
             sleep(0.1)
             Builder.load_file(f"libs/libkv/main/{file}")
-        self.check_add_screen(
-            "libs/manager.kv", "Factory.Manager()", "manager")
-        # self.check_add_screen(
-        #     "libs/libkv/init/credentials.kv", ["Factory.Login()", "Factory.SignUp()"],
-        #     "login", "from libs.libpy import credentials")
+        self.check_add_screen("libs/manager.kv", "Factory.Manager()", "manager")
         self.root.screens[0].ids.spinner.active = False
 
     def check_add_screen(self, kv_filename, screen_object, screen_name):
-        # if self.root.has_screen(screen_name):
-        #     self.root.current = screen_name
-        #     return
         Builder.load_file(kv_filename)
         Clock.schedule_once(partial(self._add_screen, screen_object, screen_name))
 
@@ -120,40 +111,6 @@ class NocenStore(MDApp):
             menu.ids.md_menu.children[0].padding = [dp(10), dp(5), dp(5), dp(10)]
             menu.ids.md_menu.children[0].add_widget(label)
         menu.open()
-
-    @staticmethod
-    def image_has_transparency(instance, image):
-        if not image:
-            return
-
-        # @return_thread_value
-        @mainthread
-        def mark_keep_ratio(check):
-            instance.keep_ratio = check
-
-        def has_transparency():
-            print(image)
-            from urllib.request import urlopen
-            img = Image.open(image) if not image.startswith("http") else Image.open(urlopen(image))
-            if img.mode == "P":
-                transparent = img.info.get("transparency", -1)
-                for _, index in img.getcolors():
-                    if index == transparent:
-                        print(True)
-                        mark_keep_ratio(True)
-                        return
-            elif img.mode == "RGBA":
-                extrema = img.getextrema()
-                if extrema[3][0] < 255:
-                    print(True)
-                    mark_keep_ratio(True)
-                    return
-
-            mark_keep_ratio(False)
-            print(False)
-
-        Thread(target=has_transparency).start()
-        return
 
     def exit_app(self):
         from kivymd.uix.button import MDRaisedButton, MDFlatButton
@@ -184,7 +141,6 @@ class NocenStore(MDApp):
 
 
 class PhoneTextField(MDTextField):
-
     def insert_text(self, substring, from_undo=False):
         new_text = self.text + substring
         if new_text != '' and len(new_text) < 12:

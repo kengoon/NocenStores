@@ -3,12 +3,23 @@ M_CardTextField
 """
 __all__ = ("M_CardTextField",)
 
+import sys
+
+from kivy import platform
 from kivy.lang.builder import Builder
 from kivy.metrics import dp
 from kivymd.theming import ThemableBehavior
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.button import MDIconButton
-from kivymd.uix.behaviors import RectangularElevationBehavior
+
+if platform != "android":
+    if sys.version_info.major == 3 and sys.version_info.minor == 7:
+        from kivymd.uix.behaviors import RectangularElevationBehavior
+    else:
+        from kivymd.uix.behaviors import RoundedRectangularElevationBehavior as RectangularElevationBehavior
+else:
+    from kivymd.uix.behaviors import RectangularElevationBehavior
+
 from kivy.properties import (
     StringProperty,
     BooleanProperty,
@@ -33,6 +44,7 @@ Builder.load_string(
 <M_CardTextField>:
     adaptive_height: True
     md_bg_color: 1, 1, 1, 1
+    radius: [dp(10)]
     MDCard:
         id: card
         ripple_behavior: root.card_ripples
@@ -47,6 +59,7 @@ Builder.load_string(
         TextInput:
             id: textfield
             grow: True
+            text: root.text
             initial_height: 0
             focus: root.focus
             hint_text: root.hint_text
@@ -107,6 +120,7 @@ Builder.load_string(
                 self.height = self.initial_height if self.text == "" else self.height
                 
             on_text:
+                root.text = self.text
                 root.dispatch("on_text")
                 
             on_text_validate:
@@ -172,6 +186,10 @@ class M_CardTextField(MDBoxLayout, RectangularElevationBehavior, ThemableBehavio
 
     hint_text_color = ColorProperty([0.5, 0.5, 0.5, 1.0])
 
+    icon_left_disabled = BooleanProperty(False)
+
+    icon_right_disabled = BooleanProperty(False)
+
     icon_left_callback = ObjectProperty(lambda x: None)
     """[summary]
     simulates kivymd MDIconButton on_release method
@@ -198,8 +216,6 @@ class M_CardTextField(MDBoxLayout, RectangularElevationBehavior, ThemableBehavio
     hint_text = StringProperty("")
 
     text = StringProperty("")
-
-    radius = ListProperty([dp(10)])
 
     card_padding = NumericProperty(dp(10))
 
@@ -271,7 +287,7 @@ class M_CardTextField(MDBoxLayout, RectangularElevationBehavior, ThemableBehavio
 
     password_mask = StringProperty('*')
 
-    keyboard_suggestions = BooleanProperty(True)
+    keyboard_suggestions = BooleanProperty(False)
 
     cursor_blink = BooleanProperty(True)
 
@@ -351,6 +367,12 @@ class M_CardTextField(MDBoxLayout, RectangularElevationBehavior, ThemableBehavio
 
     def on_icon_left_color(self, instance, value):
         self.icon_left_widget.text_color = value
+
+    def on_icon_left_disabled(self, instance, value):
+        self.icon_left_widget.disabled = value
+
+    def on_icon_right_disabled(self, instance, value):
+        self.icon_right_widget.disabled = value
 
     def on_icon_left_font_name(self, instance, value):
         self.icon_left_widget.font_name = value

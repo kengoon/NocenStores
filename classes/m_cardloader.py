@@ -12,6 +12,7 @@ Builder.load_string(
 <M_CardLoader>:
     md_bg_color: 0, 0, 0, 0
     radius: [dp(10), ]
+    ripple_behavior: True
     RelativeLayout:
         AsyncImage:
             id: image
@@ -77,3 +78,8 @@ class M_CardLoader(MDCard, EventDispatcher):
         self.ids.loader.opacity = 0
         self.ids.image.color = [1, 1, 1, 1]
 
+    def on_touch_down(self, touch):
+        self.root.pause_clock()
+
+    def on_touch_up(self, touch):
+        self.root.resume_clock()

@@ -9,4 +9,3 @@ class Manager(ScreenManager):
 
     def on_back_button(self):
         self.current = self.prev_screen.pop()
-    pass

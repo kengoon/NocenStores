@@ -1,0 +1,45 @@
+<StudentInfo>:
+    name: "student zone"
+    MDBoxLayout:
+        orientation: "vertical"
+        md_bg_color: get_color_from_hex("#EEEEEE") if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
+        MDCard:
+            size_hint_y: None
+            height: self.minimum_height
+            orientation: "vertical"
+            padding: [dp(10), 0, dp(10), 0]
+            md_bg_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
+
+            MDBoxLayout:
+                orientation: "vertical"
+                adaptive_height: True
+                spacing: dp(15)
+                padding: dp(10)
+                MDIconButton:
+                    icon: "arrow-left"
+                    pos_hint: {"center_y": .5}
+                    on_release: root.go_home()
+
+                MDLabel:
+                    color: app.theme_cls.primary_color
+                    text: "Student Zone"
+                    font_style: "H3"
+                    size_hint_y: None
+                    height: self.texture_size[1]
+
+        RecycleView:
+            id: rv
+            effect_cls: ScrollEffect
+            viewclass: "NewsCard"
+            data:[{"news": "kdfjkdjfkdjfdkjjfsd\ndkjfksdjfkjdkjfksdfjksjdkjkfjskjfkdj", "source": "assets/1.jpg"}, {"news": "kdfjkdjfkdjfdkjjfsd\ndkjfksdjfkjdkjfksdfjksjdkjkfjskjfkdj", "source": "assets/1.jpg"}, {"news": "kdfjkdjfkdjfdkjjfsd\ndkjfksdjfkjdkjfksdfjksjdkjkfjskjfkdj", "source": "assets/1.jpg"}, {"news": "kdfjkdjfkdjfdkjjfsd\ndkjfksdjfkjdkjfksdfjksjdkjkfjskjfkdj", "source": "assets/1.jpg"}]
+            RecycleGridLayout:
+                id: holder
+                root: root.manager
+                roots: root
+                default_size_hint: 1, None
+                default_size: None, Window.height/2.5
+                size_hint_y: None
+                height: self.minimum_height
+                spacing:dp(5)
+                padding: dp(5)
+                cols: 1
