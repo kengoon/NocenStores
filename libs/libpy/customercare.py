@@ -1,6 +1,6 @@
 from kivy.uix.screenmanager import Screen
 from kivymd.toast import toast
-from plyer import call
+from plyer import call, email
 
 
 class CustomerCare(Screen):
@@ -9,7 +9,11 @@ class CustomerCare(Screen):
 
     @staticmethod
     def send(instance):
-        toast("message sent")
+        email.send(
+            recipient="nocenstore@gmail.com", subject="Customer Support",
+            text=instance.parent.text, create_chooser=False
+        )
+        toast("select gmail or email when app chooser opens", length_long=True)
 
     @staticmethod
     def call_customer_care():

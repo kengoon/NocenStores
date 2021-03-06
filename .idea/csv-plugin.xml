@@ -45,6 +45,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/libs/libpy/productlookout.py">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/libs/libpy/sell.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/main.py">
           <value>
             <Attribute>

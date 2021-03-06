@@ -1,22 +1,21 @@
-<Deals>:
-    name: "deals"
+<SavedProduct>:
+    name: "saved items"
     RelativeLayout:
         id: non
         opacity: 0
         MDIcon:
             id: ico
-            icon:"shopping-outline"
+            icon:"package-variant-closed"
             color: app.theme_cls.disabled_hint_text_color
             font_size: dp(70)
             pos_hint: {"center_x":.5, "center_y":.5}
             halign: "center"
         MDLabel:
             id: lbl
-            text: "No Deals Today"
+            text: "You have not saved any product yet"
             color: app.theme_cls.disabled_hint_text_color
             halign: "center"
             pos_hint: {"center_x":.5, "center_y":.4}
-
     BoxLayout:
         orientation: "vertical"
         MDCard:
@@ -36,7 +35,7 @@
                     on_release: root.go_home()
 
                 MDLabel:
-                    text: f"Deals Of The Day[color={get_hex_from_color(app.theme_cls.primary_color)}]•[/color]"
+                    text: f"Saved Products[color={get_hex_from_color(app.theme_cls.primary_color)}]•[/color]"
                     color: [1,1,1,1] if app.theme_cls.theme_style == "Dark" else [0,0,0,.7]
                     markup: True
                     font_style:"BigMoney"
@@ -50,17 +49,18 @@
         RecycleView:
             id: rv
             effect_cls: ScrollEffect
-            # data: [{"source": "assets/1.jpg"}, {"source": "assets/2.jpg"}, {"source": "assets/3.jpg"}]
-            viewclass: "DealsCard"
+            viewclass: "OrderCard"
             RecycleGridLayout:
-                root: root
+                root: root.manager
+                roots: root
                 default_size_hint: 1, None
-                default_size: None, Window.height/3.5
+                default_size: None, Window.height/4.5
                 size_hint_y: None
                 height: self.minimum_height
                 spacing:dp(10)
                 padding: dp(10)
                 cols: 1
+
     MDRelativeLayout:
         id: progress_box
         adaptive_height: True

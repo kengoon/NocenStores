@@ -1,5 +1,7 @@
 import os
 from functools import partial
+from os.path import exists
+from shutil import rmtree
 from threading import Thread
 from time import sleep
 from certifi import where
@@ -11,17 +13,20 @@ from kivy.loader import Loader
 from kivy.metrics import dp
 from kivy.lang import Builder
 from kivy.factory import Factory
+from kivy.properties import StringProperty, ListProperty
 from kivymd.app import MDApp
+from kivymd.theming import ThemableBehavior
+from kivymd.uix.behaviors import MagicBehavior
+from kivymd.uix.boxlayout import MDBoxLayout
+from kivymd.uix.card import MDCard
 from kivymd.uix.textfield import MDTextField
-
 from classes.card import MsCard
 from libs.classes_wigdet.asyncimage import AsyncMe
 from libs.classes_wigdet.m_cardtextfield import M_CardTextField
 from classes.m_loader import M_AKImageLoader, M_AKLabelLoader
 from classes.m_cardloader import M_CardLoader
 from kivymd_extensions.akivymd.uix.statusbarcolor import change_statusbar_color
-from functions import my_queue, return_thread_value
-
+from classes.fitimage import M_FitImage
 os.environ['SSL_CERT_FILE'] = where()
 
 r = Factory.register
@@ -31,6 +36,7 @@ r("M_AKLabelLoader", cls=M_AKLabelLoader)
 r("M_CardTextField", cls=M_CardTextField)
 r("MsCard", cls=MsCard)
 r("AsyncMe", cls=AsyncMe)
+r("M_FitImage", cls=M_FitImage)
 Loader.loading_image = "assets/loader.gif"
 
 if platform == "android":
@@ -48,6 +54,8 @@ class NocenStore(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.theme_cls.primary_palette = "Green"
+        if exists("assets/compressed"):
+            rmtree("assets/compressed")
         change_statusbar_color(self.theme_cls.primary_color)
         Window.bind(on_keyboard=self.on_back_button)
         self.dialog = None
@@ -87,13 +95,13 @@ class NocenStore(MDApp):
         self.root.screens[0].ids.spinner.active = True
         Builder.load_file("libs/kv_widget/widget.kv")
         Builder.load_file("libs/libkv/init/credentials.kv")
+        Builder.load_file("libs/manager.kv")
         for file in os.listdir("libs/libkv/main"):
             Builder.load_file(f"libs/libkv/main/{file}")
-        self.check_add_screen("libs/manager.kv", "Factory.Manager()", "manager")
+        self.check_add_screen("Factory.Manager()", "manager")
         self.root.screens[0].ids.spinner.active = False
 
-    def check_add_screen(self, kv_filename, screen_object, screen_name):
-        Builder.load_file(kv_filename)
+    def check_add_screen(self, screen_object, screen_name):
         Clock.schedule_once(partial(self._add_screen, screen_object, screen_name))
 
     def _add_screen(self, screen_object, screen_name, _):
@@ -146,6 +154,26 @@ class PhoneTextField(MDTextField):
 
     def on_text(self, instance, text):
         instance.error = len(text) != 11
+
+
+class PlanItem(ThemableBehavior, MagicBehavior, MDBoxLayout):
+    text_item = StringProperty()
+    border = StringProperty()
+    color_select = ListProperty()
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.color_select = self.theme_cls.disabled_hint_text_color
+        self.primary = self.theme_cls.primary_color
+
+    def press_on_plan(self, instance_plan):
+        self.parent.root.selected_size = self.text_item
+        for widget in self.parent.children:
+            if widget.color_select == self.primary:
+                widget.color_select = self.color_select
+                self.grow()
+                break
+        instance_plan.color_select = self.primary
 
 
 NocenStore().run()

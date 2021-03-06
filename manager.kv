@@ -9,6 +9,7 @@
 #: import FallOutTransition kivy.uix.screenmanager.FallOutTransition
 #: import MDExpansionPanelOneLine kivymd.uix.expansionpanel.MDExpansionPanelOneLine
 #: import Factory kivy.factory.Factory
+#: import webbrowser webbrowser
 ScreenManager:
     Initializer:
         id: init
@@ -18,19 +19,8 @@ ScreenManager:
 
 <Initializer>:
     name: "initializer"
-    canvas.before:
-        Color:
-            rgba: 1,1,1,1
-        Rectangle:
-            size: self.size
-            pos: self.pos
 
-    Image:
-        source: "assets/N1d.PNG"
-        pos_hint: {"center_y":.7, "center_x":.5}
-
-
-    AKSpinnerThreeDots:
+    AKSpinnerDoubleBounce:
         id: spinner
         spinner_size: dp(30)
         pos_hint: {'center_x': .5, 'center_y': .15}

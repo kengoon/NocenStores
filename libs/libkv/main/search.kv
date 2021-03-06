@@ -1,18 +1,18 @@
-<Category>
-    name: "category"
+<Search>:
+    name: "search"
     RelativeLayout:
         id: non
         opacity: 0
         MDIcon:
             id: ico
-            icon:"package-variant-closed"
+            icon:"magnify"
             color: app.theme_cls.disabled_hint_text_color
             font_size: dp(70)
             pos_hint: {"center_x":.5, "center_y":.5}
             halign: "center"
         MDLabel:
             id: lbl
-            text: "No product for this category yet"
+            text: "Type your search key word at the text field above"
             color: app.theme_cls.disabled_hint_text_color
             halign: "center"
             pos_hint: {"center_x":.5, "center_y":.4}
@@ -23,12 +23,13 @@
             padding: dp(10)
             md_bg_color: app.theme_cls.primary_color
             M_CardTextField:
+                id: txt
                 elevation: 10
-                hint_text: "search/voice search"
+                hint_text: "search"
                 icon_left: "arrow-left"
-                icon_right: "microphone"
+                icon_right: "magnify"
                 icon_left_callback: root.go_home
-                text_field_disabled: True
+                icon_right_callback: root.search
                 icon_right_color: app.theme_cls.primary_color
                 icon_left_color: app.theme_cls.primary_color
                 foreground_color: [0, 0, 0, 0.8] if app.theme_cls.theme_style == "Light" else [1,1,1,1]
@@ -36,13 +37,13 @@
                 md_bg_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
                 background_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
                 disabled_foreground_color: [0.5, 0.5, 0.5, 1.0]
-                on_release: root.manager.current = "search"
+                on_text_validate:
+                    root.search(self)
 
         RecycleView:
             id: rv
             effect_cls: ScrollEffect
             viewclass: "CategoryProductCard"
-            on_scroll_stop: root.check_update_data()
             RecycleGridLayout:
                 id: holder
                 root: root.manager
@@ -57,6 +58,7 @@
 
     MDRelativeLayout:
         id: progress_box
+        opacity: 0
         adaptive_height: True
         pos_hint: {"center_y": .5}
         AKSpinnerDoubleBounce:

@@ -49,7 +49,7 @@
 
 <RateContent@MDBoxLayout>
     adaptive_height: True
-    padding: dp(15)
+    padding: dp(20)
     MDLabel:
         text: "How good is NocenStore??"
         font_style: "Money"
@@ -64,7 +64,7 @@
 
 <DarkModeContent@MDBoxLayout>
     adaptive_height: True
-    padding: [dp(20), dp(10), dp(20), dp(10)]
+    padding: dp(20)
     MDLabel:
         text: "Turn Dark Mode On/Off"
 
@@ -74,8 +74,8 @@
 
 <DetailContent@MDBoxLayout>:
     adaptive_height: True
-    padding: "10dp"
-    spacing: "20dp"
+    padding: dp(20)
+    spacing: dp(20)
     orientation:"vertical"
     name: ""
     email: ""
@@ -98,31 +98,16 @@
 <PasswordContent@MDBoxLayout>
     adaptive_height: True
     orientation: "vertical"
-    padding: dp(10)
+    padding: dp(20)
     spacing: dp(20)
-    MDBoxLayout:
-        adaptive_height: True
-        spacing: dp(20)
-        MDTextField:
-            hint_text: "change password :"
-        MDIconButton:
-            icon: "check"
-            theme_text_color: "Custom"
-            text_color: app.theme_cls.primary_color
-
-    MDBoxLayout:
-        adaptive_height: True
-        spacing: dp(20)
-        MDTextField:
-            hint_text: "confirm password :"
-        MDIconButton:
-            icon: "check"
-            theme_text_color: "Custom"
-            text_color: app.theme_cls.primary_color
+    MDFillRoundFlatIconButton:
+        icon: "email"
+        text: "Request Password Reset"
+        pos_hint:{"center_x": .5}
 
 <NumberContent@MDBoxLayout>
     adaptive_height: True
-    padding: dp(10)
+    padding: dp(20)
     spacing: dp(20)
     MDTextField:
         hint_text: "change phone number :"

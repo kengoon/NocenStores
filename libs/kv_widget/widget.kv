@@ -270,6 +270,7 @@
         self.parent.root.prev_screen.append(self.parent.roots.name)
         self.parent.root.current = "lookout"
         self.parent.root.ids.lookout.ids.product_name.text = self.product
+        self.parent.root.ids.lookout.ids.store.text = self.store
         self.parent.root.ids.lookout.update_interface(self.data)
 <BaseProductCard@MDCard>:
     ripple_behavior: True
@@ -487,7 +488,7 @@
 
 <NotifyCard@MDCard>:
     size_hint_y: None
-    height: self.minimum_height
+    height: Window.height/6
     ripple_behavior: True
     ripple_color: app.theme_cls.primary_color
     text: ""
@@ -536,7 +537,9 @@
     source: ""
     radius: [dp(10)]
     text_radius: [dp(5)]
-    desc: ""
+    product: ""
+    store: ""
+    price: ""
     RelativeLayout:
         AsyncImage:
             id: image
@@ -573,7 +576,7 @@
             md_bg_color: 0, 0, 0, .4
             radius: [0, 0, root.radius[0], root.radius[0]]
             M_AKLabelLoader:
-                text: "" if not root.desc else f"Deal: {root.store}"
+                text: "" if not root.product else f"Deal: {root.product}\n₦{root.price}\nstore:{root.store}"
                 radius: root.text_radius
                 size_hint_y: None
                 theme_text_color: "Custom"
@@ -585,12 +588,17 @@
 
 <NewsCard@MDCard>:
     orientation: "vertical"
+    size_hint_y: None
+    height: Window.height/1.5
     padding: dp(10)
     spacing: dp(10)
-    elevation: 0
+    elevation: 0 if app.theme_cls.theme_style == "Light" else 1
     radius: [dp(10)]
     news: ""
     source:""
+    news_app_url: ""
+    on_release:
+        root.parent.roots.open_web()
     MDBoxLayout:
         adaptive_height: True
         spacing: dp(10)
@@ -626,32 +634,37 @@
         height: self.texture_size[1]
 
     MDRelativeLayout:
-        AsyncImage:
+        M_FitImage:
             id: image
             source: root.source
-            anim_delay: .1
-            allow_stretch: True
-            keep_ratio: False
-            nocache: True
-            on_load:
-                loader.opacity = 0
-            canvas.before:
-                StencilPush
-                RoundedRectangle:
-                    pos: self.pos
-                    size: self.size
-                    radius: root.radius
-                StencilUse
-
-            canvas.after:
-                StencilUnUse
-                RoundedRectangle:
-                    size: self.size
-                    pos: self.pos
-                    radius: root.radius
-                StencilPop
+            radius: root.radius
+            load_callback: lambda x: exec("loader.opacity = 0")
         M_AKImageLoader:
             id: loader
             radius: root.radius
             circle: False
+
+<PlanItem>
+    adaptive_size: True
+    on_touch_down: if self.collide_point(*args[1].pos): root.press_on_plan(root)
+
+    MDBoxLayout:
+        size_hint: None, None
+        size: "40dp", "40dp"
+
+        canvas.before:
+            Color:
+                rgba: root.color_select
+            BorderImage
+                pos: self.pos
+                size: self.size
+                source: "assets/border.png"
+
+        Label:
+            text_size: self.size
+            halign: 'center'
+            valign: 'middle'
+            text: root.text_item
+            markup: True
+            color: 0, 0, 0, 1
 

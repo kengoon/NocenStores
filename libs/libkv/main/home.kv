@@ -39,6 +39,7 @@
                         md_bg_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
                         background_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
                         disabled_foreground_color: [0.5, 0.5, 0.5, 1.0]
+                        on_release: root.manager.current = "search"
 
                 ScrollView:
                     effect_cls: ScrollEffect
@@ -171,6 +172,7 @@
                         text: "Trending"
                         bold: True
                         pos_hint: {"center_x": .5}
+                        on_release: root.manager.current = "trending"
 
 
 

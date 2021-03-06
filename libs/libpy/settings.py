@@ -8,7 +8,7 @@ class Setting(Screen):
 
     @staticmethod
     def add_all_rules(rule1, rule2):
-        def loop_add_rule(rules):
+        def loop_add_rule(rules, id):
             for index, rule in enumerate(rules.items):
                 rules.add_widget(
                     MDExpansionPanel(
@@ -17,8 +17,6 @@ class Setting(Screen):
                         panel_cls=MDExpansionPanelOneLine(text=rule),
                     )
                 )
-        loop_add_rule(rule1)
-        loop_add_rule(rule2)
-
-
-    pass
+                rules.ids[f"_{id}{index}"] = rules.children[0]
+        loop_add_rule(rule1, "r1")
+        loop_add_rule(rule2, "r2")

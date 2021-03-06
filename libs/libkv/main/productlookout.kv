@@ -44,9 +44,10 @@
                 MDBoxLayout:
                     size_hint_y: None
                     height: self.minimum_height
-                    RelativeLayout:
+                    MDRelativeLayout:
                         size_hint_y: None
                         height: Window.height/3 + dp(100)
+                        md_bg_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
                         ScreenManager:
                             id: mg
                             Screen:
@@ -54,24 +55,18 @@
                                 AsyncImage:
                                     id: image1
                                     source: ""
-                                    size_hint:.7,.7
-                                    pos_hint: {"center_x": .5, "center_y": .5}
                                     nocache: True
                             Screen:
                                 name: "2"
                                 AsyncImage:
                                     id: image2
                                     source: ""
-                                    size_hint:.7,.7
-                                    pos_hint: {"center_x": .5, "center_y": .5}
                                     nocache: True
                             Screen:
                                 name: "3"
                                 AsyncImage:
                                     id: image3
                                     source: ""
-                                    size_hint:.7,.7
-                                    pos_hint: {"center_x": .5, "center_y": .5}
                                     nocache: True
 
                         MDBoxLayout:
@@ -149,6 +144,25 @@
                                 height: dp(30) if not self.text else self.texture_size[1]
                                 halign:"center"
                                 radius: [dp(5)]
+                        MDCard:
+                            padding: dp(10)
+                            size_hint_y: None
+                            height: self.minimum_height
+                            radius: [dp(10)]
+                            MDLabel:
+                                text: "store:"
+                                size_hint_y: None
+                                height: self.texture_size[1]
+                                font_style: "Money"
+                                underline: True
+                            M_AKLabelLoader:
+                                id: store
+                                text: ""
+                                bold: True
+                                size_hint_y: None
+                                height: dp(30) if not self.text else self.texture_size[1]
+                                halign:"center"
+                                radius: [dp(5)]
 
                         MDCard:
                             padding: dp(10)
@@ -197,6 +211,37 @@
 
                         MDCard:
                             size_hint_y: None
+                            orientation:"vertical"
+                            height: dp(100)
+                            padding: dp(10)
+                            spacing: dp(10)
+                            radius: [dp(10)]
+                            MDLabel:
+                                text: "size:"
+                                size_hint_y: None
+                                height: self.texture_size[1]
+                                underline: True
+                                bold: True
+                                italic: True
+                                font_style: "Money"
+                            RecycleView:
+                                id: rvs
+                                effect_cls: _ScrollViewHardStop
+                                do_scroll_y: False
+                                viewclass: "PlanItem"
+                                RecycleBoxLayout:
+                                    id: holder
+                                    root: root
+                                    default_size_hint: None, None
+                                    default_size: dp(40), dp(40)
+                                    size_hint: None, None
+                                    size: self.minimum_width ,self.minimum_height
+                                    spacing:dp(5)
+                                    orientation: "horizontal"
+
+
+                        MDCard:
+                            size_hint_y: None
                             height: self.minimum_height
                             orientation: "vertical"
                             size_hint_x: .5
@@ -233,7 +278,6 @@
                                 effect_cls: _ScrollViewHardStop
                                 do_scroll_y: False
                                 viewclass: "OtherSalesCard"
-                                #data:[{"source":"assets/7.jpg", "product_price": "1000", "product_name":"crab"}, {"source":"assets/9.jpg", "product_price": "34500", "product_name":"house"}, {"source":"assets/10.jpg", "product_price": "1000", "product_name":"crane"},{"source":"assets/11.jpg","product_price": "22431000", "product_name":"Mansion"},{"source":"assets/12.jpg", "product_price": "1000", "product_name":"crab"},{"source":"assets/13.jpg", "product_price": "1000", "product_name":"crab"},{"source":"assets/14.jpg", "product_price": "1000", "product_name":"crab"},{"source":"assets/15.jpg", "product_price": "1000", "product_name":"crab"},{"source":"assets/16.jpg", "product_price": "1000", "product_name":"crab"}]
                                 RecycleBoxLayout:
                                     default_size_hint: None, None
                                     default_size: root.width/2.5 - dp(10), Window.height/3.7
@@ -247,7 +291,8 @@
 
         MDBoxLayout:
             adaptive_height: True
-            padding: dp(5)
+            padding: dp(5), dp(5), dp(10), dp(5)
+            spacing: dp(20)
             CardIconButton:
                 md_bg_color: app.theme_cls.primary_color
                 label_halign: "left"
@@ -258,3 +303,9 @@
                 icon_color: 1,1,1,1
                 text_color: 1,1,1,1
                 icon_width: root.width/2.5
+            MDIconButton:
+                id: save
+                icon: "heart-outline"
+                theme_text_color: "Custom"
+                text_color: app.theme_cls.primary_color
+                on_release: root.save_unsave(self)

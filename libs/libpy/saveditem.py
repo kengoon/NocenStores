@@ -1,12 +1,10 @@
 from json import loads
-
+from classes.notification import notify
 from kivy.network.urlrequest import UrlRequest
 from kivy.uix.screenmanager import Screen
 
-from classes.notification import notify
 
-
-class Deals(Screen):
+class SavedProduct(Screen):
     update = True
     url = "https://nocenstore.pythonanywhere.com/"
     toast = True
@@ -18,7 +16,7 @@ class Deals(Screen):
 
     def get_data(self):
         UrlRequest(
-            url=f"{self.url}getAllDeals",
+            url=f"{self.url}getMySavedProducts",
             on_error=self.network_error,
             on_success=self.post_data,
             on_failure=self.server_error
@@ -29,14 +27,14 @@ class Deals(Screen):
         if data == "None":
             self.ids.non.opacity = 1
             self.ids.ico.icon = "package-variant-closed"
-            self.ids.lbl.text = "No Deals Today"
+            self.ids.lbl.text = "You have not saved any product yet"
             return
         self.data = loads(data)
         for _, deals in enumerate(self.data):
             if _ == 20:
                 break
             self.ids.rv.data.append(deals)
-        self.update = False
+        self.update = True
 
     def network_error(self, instance, data):
         self.get_data()

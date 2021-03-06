@@ -6,7 +6,7 @@ class Notification(Screen):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.data = [{"text": "sdsjdhjshdjsh dksdjskdjslds s;dsld;lsd;ls  lds;dd dpfdfpodpf d"},
+        self.data = [{"text": "sdsjdhjshdjsh dksdjskdjslds \ns;dsld;lsd;ls  \nlds;dd dpfdfpodpf d \nddlfklfkdlfkdlkfdl dlfkdlfkdlkfdlfd  \ndfldkfdlkflkd dlfkdlfkdlkfdklf"},
                      {"text": "sdsjdhjshdjsh dksdjskdjslds s;dsld;lsd;ls  lds;d"},
                      {"text": "sdsjdhjshdjsh dksdjskdjslds s;dsld;lsd;ls  lds;d"},
                      {"text": "sdsjdhjshdjsh dksdjskdjslds s;dsld;lsd;ls  lds;d"},

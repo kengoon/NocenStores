@@ -38,20 +38,22 @@ class Category(Screen):
 
     def on_enter(self, *args):
         self.stop = False
+        self.toast = True
         if eval(f"self.{self.exec_type}_tmp_data"):
             exec(f"self.{self.exec_type}_data = self.{self.exec_type}_tmp_data")
             self.post_data()
             self.update = True
-        self.get_data()
+        else:
+            self.get_data()
         self.clock = Clock.schedule_interval(self.get_data, 30)
 
     def on_leave(self, *args):
         self.ids.holder.clear_widgets()
         self.ids.rv.data = []
         self.update = False
-        self.clock.cancel()
+        # self.clock.cancel()
 
-    def go_home(self, instance):
+    def go_home(self, *args):
         self.manager.current = "home"
 
     def get_data(self, *args):
@@ -87,6 +89,8 @@ class Category(Screen):
         self.ids.progress_box.opacity = 0
         if data == "None":
             self.ids.non.opacity = 1
+            self.ids.ico.icon = "package-variant-closed"
+            self.ids.lbl.text = "No product for this category yet"
             return
         length_data = eval(f"len(self.{self.exec_type}_data)")
         for index, _ in enumerate(range(length_data)):
@@ -99,25 +103,30 @@ class Category(Screen):
     def check_network(self, instance, data):
         self.get_data()
         if self.toast:
+            self.ids.progress_box.opacity = 0
+            self.ids.non.opacity = 1
             self.ids.ico.icon = "network-strength-off-outline"
             self.ids.lbl.text = "please turn on your data\nor subscribe"
             notify("please turn on your data or subscribe")
             self.toast = False
 
     def server_error(self, instance, data):
+        self.ids.progress_box.opacity = 0
+        self.ids.non.opacity = 1
         self.ids.ico.icon = "server-network-off"
         self.ids.lbl.text = "server is being updated, will be fixed soon"
         notify("server is being updated, will be fixed soon")
 
     def check_update_data(self):
-        if not self.stop:
-            exec(f"self.{self.exec_type}_data = self.{self.exec_type}_data")
-            if eval(f"self.{self.exec_type}_data"):
-                length_data = eval(f"len(self.{self.exec_type}_data)")
-                for index, _ in enumerate(range(length_data)):
-                    if index == 20:
-                        break
-                    self.ids.rv.data.append(eval(f"self.{self.exec_type}_data.pop(0)"))
-                # avoid adding a particular widget twice
-                if not eval(f"self.{self.exec_type}_data"):
-                    self.stop = True
+        if self.stop:
+            return
+        exec(f"self.{self.exec_type}_data = self.{self.exec_type}_data")
+        if eval(f"self.{self.exec_type}_data"):
+            length_data = eval(f"len(self.{self.exec_type}_data)")
+            for index, _ in enumerate(range(length_data)):
+                if index == 20:
+                    break
+                self.ids.rv.data.append(eval(f"self.{self.exec_type}_data.pop(0)"))
+            # avoid adding a particular widget twice
+            if not eval(f"self.{self.exec_type}_data"):
+                self.stop = True
