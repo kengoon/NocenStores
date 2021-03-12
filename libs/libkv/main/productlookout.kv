@@ -1,7 +1,9 @@
 <ProductLookOut>
     name: "lookout"
     on_leave:
-        root.clear_cache()
+        buttons.opacity = .5 if app.login and not app.current else 1
+        buttons.disabled = True if app.login and not app.current else False
+        save.icon = "heart-outline"
     BoxLayout:
         orientation: "vertical"
         MDCard:
@@ -27,15 +29,12 @@
                     font_style:"BigMoney"
                     bold: True
                     pos_hint:{"center_y": .5}
-                AKBadgeLayout:
-                    text: "0"
-                    offset: 0
-                    position: "right"
-                    badgeitem_color: 1,0,0,1
-                    bold: False
-                    pos_hint: {"center_y": .5}
-                    MDIconButton:
-                        icon: "cart-variant"
+
+                MDIconButton:
+                    icon: "cart-variant"
+                    on_release:
+                        app.current = root.name
+                        root.manager.current = "cart"
 
         ScrollView:
             effect_cls: ScrollEffect
@@ -107,11 +106,9 @@
                                 mg.transition.direction = "left"
                                 mg.current = str(int(mg.current) + 1) if int(mg.current) < 3 else "3"
                                 root.change_circle()
-                MDCard:
-                    size_hint_y: None
-                    height: self.minimum_height
+                MDBoxLayout:
+                    adaptive_height: True
                     orientation: "vertical"
-                    radius: [dp(20), dp(20), 0, 0]
                     padding: [0, dp(20), 0, 0]
                     MDList:
                         spacing: dp(20)
@@ -125,73 +122,82 @@
                             halign: "center"
                             size_hint_y: None
                             height: dp(30) if not self.text else self.texture_size[1]
-
                         MDCard:
-                            padding: dp(10)
                             size_hint_y: None
                             height: self.minimum_height
-                            radius: [dp(10)]
-                            MDLabel:
-                                text: "Price:"
+                            radius: [dp(5)]
+                            orientation: "vertical"
+                            spacing: dp(20)
+                            MDCard:
+                                padding: dp(10)
                                 size_hint_y: None
-                                height: self.texture_size[1]
-                                font_style: "Money"
-                                underline: True
-                            M_AKLabelLoader:
-                                id: product_price
-                                text: ""
-                                size_hint_y: None
-                                height: dp(30) if not self.text else self.texture_size[1]
-                                halign:"center"
+                                height: self.minimum_height
                                 radius: [dp(5)]
-                        MDCard:
-                            padding: dp(10)
-                            size_hint_y: None
-                            height: self.minimum_height
-                            radius: [dp(10)]
-                            MDLabel:
-                                text: "store:"
+                                elevation: 0
+                                MDLabel:
+                                    text: "Price:"
+                                    size_hint_y: None
+                                    height: self.texture_size[1]
+                                    font_style: "Money"
+                                    underline: True
+                                M_AKLabelLoader:
+                                    id: product_price
+                                    text: ""
+                                    size_hint_y: None
+                                    height: dp(30) if not self.text else self.texture_size[1]
+                                    halign:"center"
+                                    bold: True
+                                    radius: [dp(5)]
+                            MDCard:
+                                padding: dp(10)
                                 size_hint_y: None
-                                height: self.texture_size[1]
-                                font_style: "Money"
-                                underline: True
-                            M_AKLabelLoader:
-                                id: store
-                                text: ""
-                                bold: True
-                                size_hint_y: None
-                                height: dp(30) if not self.text else self.texture_size[1]
-                                halign:"center"
+                                height: self.minimum_height
                                 radius: [dp(5)]
+                                elevation: 0
+                                MDLabel:
+                                    text: "store:"
+                                    size_hint_y: None
+                                    height: self.texture_size[1]
+                                    font_style: "Money"
+                                    underline: True
+                                M_AKLabelLoader:
+                                    id: store
+                                    text: ""
+                                    bold: True
+                                    size_hint_y: None
+                                    height: dp(30) if not self.text else self.texture_size[1]
+                                    halign:"center"
+                                    radius: [dp(5)]
 
-                        MDCard:
-                            padding: dp(10)
-                            size_hint_y: None
-                            height: self.minimum_height
-                            radius: [dp(10)]
-                            MDLabel:
-                                text: "Rating:"
+                            MDCard:
+                                padding: dp(10)
                                 size_hint_y: None
-                                height: self.texture_size[1]
-                                font_style: "Money"
-                                underline: True
-                            AKRating:
-                                id: rates
-                                normal_icon: 'star-box-outline'
-                                active_icon: 'star-box'
-                                animation_type: 'grow'
-                                normal_color: app.theme_cls.disabled_hint_text_color
-                                active_color: app.theme_cls.primary_color
-                                icon_size: dp(20)
-                                disabled: True
-                                pos_hint: {"center_x": .5, "center_y": .5}
+                                height: self.minimum_height
+                                radius: [dp(5)]
+                                elevation: 0
+                                MDLabel:
+                                    text: "Rating:"
+                                    size_hint_y: None
+                                    height: self.texture_size[1]
+                                    font_style: "Money"
+                                    underline: True
+                                AKRating:
+                                    id: rates
+                                    normal_icon: 'star-box-outline'
+                                    active_icon: 'star-box'
+                                    animation_type: 'grow'
+                                    normal_color: app.theme_cls.disabled_hint_text_color
+                                    active_color: app.theme_cls.primary_color
+                                    icon_size: dp(20)
+                                    disabled: True
+                                    pos_hint: {"center_x": .5, "center_y": .5}
                         MDCard:
                             size_hint_y: None
                             height: self.minimum_height
                             orientation: "vertical"
                             padding: dp(10)
                             spacing: dp(10)
-                            radius: [dp(10)]
+                            radius: [dp(5)]
                             MDLabel:
                                 text: "Description:"
                                 size_hint_y: None
@@ -208,6 +214,7 @@
                                 height: dp(30) if not self.text else self.texture_size[1]
                                 radius: [dp(5)]
                                 pos_hint: {"center_x": .5}
+                                font_style: "Money"
 
                         MDCard:
                             size_hint_y: None
@@ -215,7 +222,7 @@
                             height: dp(100)
                             padding: dp(10)
                             spacing: dp(10)
-                            radius: [dp(10)]
+                            radius: [dp(5)]
                             MDLabel:
                                 text: "size:"
                                 size_hint_y: None
@@ -239,6 +246,28 @@
                                     spacing:dp(5)
                                     orientation: "horizontal"
 
+                        MDCard:
+                            radius: [dp(10)]
+                            orientation: "vertical"
+                            size_hint_y: None
+                            height: self.minimum_height
+                            MDList:
+                                ThreeLineIconListItem:
+                                    text: "Product Delivery"
+                                    secondary_text: "Ready for delivery between 2 to 3 days "
+                                    tertiary_text: "from the day you ordered"
+                                    IconLeftWidget:
+                                        id: li_icon_3
+                                        icon: "truck-delivery-outline"
+                                ThreeLineIconListItem:
+                                    text: "Return Policy"
+                                    secondary_text: "Free return within a day and"
+                                    tertiary_text: "Full Refund if you do not get your package delivered"
+                                    divider: None
+                                    IconLeftWidget:
+                                        id: li_icon_3
+                                        icon: "police-badge-outline"
+
 
                         MDCard:
                             size_hint_y: None
@@ -247,7 +276,7 @@
                             size_hint_x: .5
                             padding: dp(10)
                             spacing: dp(10)
-                            radius: [dp(10)]
+                            radius: [dp(5)]
                             ripple_behavior: True
                             md_bg_color: app.theme_cls.primary_color
                             MDLabel:
@@ -261,51 +290,59 @@
                                 font_style: "Money"
                                 halign: "center"
 
-                        MDCard:
-                            orientation:"vertical"
-                            size_hint_y: None
-                            radius: [dp(8)]
-                            height: Window.height/2.7
-                            padding: dp(10)
-                            spacing: dp(10)
-                            MDLabel:
-                                text: "Other similar product"
-                                font_style: "H6"
-                                size_hint_y: None
-                                height: self.texture_size[1]
-
-                            RecycleView:
-                                effect_cls: _ScrollViewHardStop
-                                do_scroll_y: False
-                                viewclass: "OtherSalesCard"
-                                RecycleBoxLayout:
-                                    default_size_hint: None, None
-                                    default_size: root.width/2.5 - dp(10), Window.height/3.7
-                                    size_hint: None, None
-                                    size: self.minimum_width ,self.minimum_height
-                                    spacing:dp(10)
-                                    orientation: "horizontal"
-                                    padding: dp(5)
+#                        MDCard:
+#                            orientation:"vertical"
+#                            size_hint_y: None
+#                            radius: [dp(8)]
+#                            height: Window.height/2.7
+#                            padding: dp(10)
+#                            spacing: dp(10)
+#                            MDLabel:
+#                                text: "Other similar product"
+#                                font_style: "H6"
+#                                size_hint_y: None
+#                                height: self.texture_size[1]
+#
+#                            RecycleView:
+#                                effect_cls: _ScrollViewHardStop
+#                                do_scroll_y: False
+#                                viewclass: "OtherSalesCard"
+#                                RecycleBoxLayout:
+#                                    default_size_hint: None, None
+#                                    default_size: root.width/2.5 - dp(10), Window.height/3.7
+#                                    size_hint: None, None
+#                                    size: self.minimum_width ,self.minimum_height
+#                                    spacing:dp(10)
+#                                    orientation: "horizontal"
+#                                    padding: dp(5)
 
 
 
         MDBoxLayout:
+            id: buttons
+            disabled: True if app.login else False
+            opacity: .5 if app.login else 1
             adaptive_height: True
-            padding: dp(5), dp(5), dp(10), dp(5)
+            padding: dp(10), dp(5), dp(10), dp(10)
             spacing: dp(20)
             CardIconButton:
                 md_bg_color: app.theme_cls.primary_color
-                label_halign: "left"
-                icon_halign: "right"
+                label_halign: "center"
                 icon: "cart-variant"
                 text: "ADD TO CART"
                 font_style: "Money"
                 icon_color: 1,1,1,1
                 text_color: 1,1,1,1
                 icon_width: root.width/2.5
-            MDIconButton:
-                id: save
-                icon: "heart-outline"
-                theme_text_color: "Custom"
-                text_color: app.theme_cls.primary_color
-                on_release: root.save_unsave(self)
+                on_release:
+                    root.add_to_cart()
+            MDCard:
+                size_hint: None, None
+                size: self.minimum_width, self.minimum_height
+                radius: [dp(5)]
+                MDIconButton:
+                    id: save
+                    icon: "heart-outline"
+                    theme_text_color: "Custom"
+                    text_color: app.theme_cls.primary_color
+                    on_release: root.save_unsave(self)

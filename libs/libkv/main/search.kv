@@ -1,5 +1,6 @@
 <Search>:
     name: "search"
+    on_leave: txt.text = ""
     RelativeLayout:
         id: non
         opacity: 0
@@ -44,6 +45,7 @@
             id: rv
             effect_cls: ScrollEffect
             viewclass: "CategoryProductCard"
+            on_scroll_start: root.schedule_load()
             RecycleGridLayout:
                 id: holder
                 root: root.manager

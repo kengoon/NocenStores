@@ -1,0 +1,100 @@
+<Cart>:
+    name: "cart"
+    RelativeLayout:
+        id: non
+        opacity: 0
+        MDIcon:
+            id: ico
+            icon:"cart-off"
+            color: app.theme_cls.disabled_hint_text_color
+            font_size: dp(70)
+            pos_hint: {"center_x":.5, "center_y":.5}
+            halign: "center"
+        MDLabel:
+            id: lbl
+            text: "No Product Added To cart Yet"
+            color: app.theme_cls.disabled_hint_text_color
+            halign: "center"
+            pos_hint: {"center_x":.5, "center_y":.4}
+    BoxLayout:
+        orientation: "vertical"
+        MDCard:
+            size_hint_y: None
+            height: self.minimum_height
+            orientation: "vertical"
+            padding: [dp(10), 0, dp(10), 0]
+            md_bg_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
+
+            MDBoxLayout:
+                size_hint: 1, None
+                height: app.theme_cls.standard_increment
+                spacing: dp(10)
+                MDIconButton:
+                    icon: "arrow-left"
+                    pos_hint: {"center_y": .5}
+                    on_release: root.go_home()
+
+                MDLabel:
+                    text: f"Cart[color={get_hex_from_color(app.theme_cls.primary_color)}]•[/color]"
+                    color: [1,1,1,1] if app.theme_cls.theme_style == "Dark" else [0,0,0,.7]
+                    markup: True
+                    font_style:"BigMoney"
+                    bold: True
+                    pos_hint:{"center_y": .5}
+
+        RecycleView:
+            id: rv
+            effect_cls: ScrollEffect
+            viewclass: "CartCard"
+            RecycleGridLayout:
+                root: root.manager
+                roots: root
+                default_size_hint: 1, None
+                default_size: None, Window.height/4
+                size_hint_y: None
+                height: self.minimum_height
+                spacing:dp(10)
+                padding: dp(10)
+                cols: 1
+        MDBoxLayout:
+            adaptive_height: True
+            padding: dp(7)
+            MDCard:
+                orientation: "vertical"
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: dp(30)
+                radius: [dp(5)]
+                MDBoxLayout:
+                    adaptive_height: True
+                    padding: dp(20)
+                    MDLabel:
+                        text: "Total"
+                    MDLabel:
+                        id: total
+                        halign: "right"
+                        text: "₦0"
+                        bold: True
+                        color: app.theme_cls.primary_color
+                MDBoxLayout
+                    padding: [dp(30), dp(20), dp(30), dp(20)]
+                    MDLabel
+                        text: "Note: Shipping Fee is non refundable in case of a return"
+                        color: 0,0,0,.5
+                MDBoxLayout
+                    adaptive_height: True
+                    padding: dp(7)
+                    MDCard:
+                        size_hint_y: None
+                        height: self.minimum_height
+                        md_bg_color: app.theme_cls.primary_color
+                        radius: [dp(5)]
+                        MDIconButton:
+                            opacity: 0
+                        MDLabel:
+                            halign: "center"
+                            pos_hint: {"center_x": .5}
+                            text: "complete your purchase"
+                            font_style: "Button"
+                            color: 1,1,1,1
+

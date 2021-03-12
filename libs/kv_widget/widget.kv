@@ -6,8 +6,6 @@
 
 <AccoCard@BaseSalesCard>
     ripple_behavior: True
-    on_release:
-        print("released")
 
 <SalesCard@BaseSalesCard>
     elevation: 0 if app.theme_cls.theme_style == "Light" else 1
@@ -292,6 +290,7 @@
             source: root.imagePath
             anim_delay: .1
             keep_ratio: False
+            nocache: True
             on_load:
                 loader.opacity = 0
                 self.color = [1, 1, 1, 1]
@@ -321,7 +320,7 @@
         M_AKLabelLoader:
             text:
                 "" if not (root.price and root.product) else \
-                f"[font=assets/Eczar-Regular.ttf]{root.product}[/font]\n[b][color={get_hex_from_color(app.theme_cls.primary_color)}]₦{int(root.price):,}[/color][/b]"
+                f"[font=assets/Eczar-Regular.ttf]{root.product}[/font]\n[b][color={get_hex_from_color(app.theme_cls.primary_color)}]₦{int(root.price) + 5/100 * int(root.price):,}[/color][/b]"
             radius: root.text_radius
             size_hint_y: None
             markup: True
@@ -365,7 +364,7 @@
 
 
 <CardIconButton@MDCard>:
-    icon_width: None
+    #icon_width: None
     size_hint_y: None
     height: self.minimum_height
     text: ""
@@ -373,20 +372,16 @@
     icon_color: 0, 0, 0, 1
     text_color: 0, 0, 0, 1
     font_style: "Caption"
-    elevation: 8
-    icon_halign: "left"
-    label_halign: "left"
-    spacing: dp(10)
-    padding: dp(13)
+    label_halign: "center"
     ripple_behavior: True
-    radius: [dp(10)]
-    MDIcon:
+    radius: [dp(5)]
+    MDIconButton:
         id: icon
-        halign: root.icon_halign
         icon: root.icon
-        color: root.icon_color
-        size_hint_x: None
-        width: self.texture_size[0] if not root.icon_width else root.icon_width
+        theme_text_color: "Custom"
+        text_color: root.icon_color
+        #size_hint_x: None
+        #width: self.texture_size[0] if not root.icon_width else root.icon_width
 
     MDLabel:
         halign: root.label_halign
@@ -395,6 +390,7 @@
         size_hint_y: None
         font_style: root.font_style
         height: self.texture_size[1]
+        pos_hint:{"center_y": .5}
 
 <ProductCard@MDCard>
     background: ""
@@ -411,8 +407,6 @@
         FitImage:
             source: root.source
             radius: root.radius
-            on_source:
-                ico.opacity = 0
 
 <PictureCard@MDCard>:
     spacing: dp(10)
@@ -667,4 +661,81 @@
             text: root.text_item
             markup: True
             color: 0, 0, 0, 1
+
+<CartCard@MDCard>:
+    orientation: "vertical"
+    size_hint_y: None
+    height: Window.height/4.3
+    radius: [dp(5)]
+    product: ""
+    source: ""
+    price: ""
+    store: ""
+    base_price:
+    count: 1
+    padding: [dp(5), 0, dp(5), 0]
+    MDBoxLayout:
+        adaptive_height: True
+        spacing: dp(5)
+        padding: [0, 0, 0, dp(5)]
+        AsyncImage:
+            source: root.source
+            nocache: True
+            size_hint: None, None
+            height: root.height - down.height - dp(5)
+            width: root.width/3
+        MDList:
+            spacing: dp(10)
+            MDLabel:
+                text: root.product
+                size_hint_y: None
+                font_style: "H6"
+                height: self.texture_size[1]
+            MDLabel:
+                text: root.price
+                size_hint_y: None
+                height: self.texture_size[1]
+                color: app.theme_cls.primary_color
+
+            MDBoxLayout:
+                adaptive_height: True
+                size_hint_x: None
+                width: self.parent.width/2
+                md_bg_color: 0,1,0,.1
+                radius: [dp(5)]
+                MDLabel:
+                    id: la
+                    text: root.store
+                    font_style: "Money"
+                    color: app.theme_cls.primary_color
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    halign: "center"
+                    font_size: dp(17)
+    MDSeparator:
+    MDBoxLayout:
+        id: down
+        adaptive_height: True
+        spacing: root.width/3
+        MDBoxLayout
+            adaptive_height: True
+            MDIconButton:
+                icon: "delete"
+            MDTextButton:
+                text: "REMOVE"
+                pos_hint: {"center_y": .4}
+        MDBoxLayout
+            adaptive_height: True
+            MDIconButton:
+                icon: "minus-box"
+            MDTextField:
+                text: str(root.count)
+                input_type: "number"
+                input_filter: "int"
+                size_hint_x: None
+                width: dp(20)
+            MDIconButton:
+                icon: "plus-box"
+
+
 

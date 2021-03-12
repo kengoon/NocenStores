@@ -16,7 +16,6 @@ class Category(Screen):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.stop = False
         self.clothing_data = []
         self.clothing_tmp_data = []
         self.furniture_data = []
@@ -31,13 +30,10 @@ class Category(Screen):
         self.portable_devices_tmp_data = []
 
     def on_pre_enter(self, *args):
-        if self.clock:
-            self.clock.cancel()
         self.ids.non.opacity = 0
         self.ids.progress_box.opacity = 1
 
     def on_enter(self, *args):
-        self.stop = False
         self.toast = True
         if eval(f"self.{self.exec_type}_tmp_data"):
             exec(f"self.{self.exec_type}_data = self.{self.exec_type}_tmp_data")
@@ -51,7 +47,7 @@ class Category(Screen):
         self.ids.holder.clear_widgets()
         self.ids.rv.data = []
         self.update = False
-        # self.clock.cancel()
+        self.clock.cancel()
 
     def go_home(self, *args):
         self.manager.current = "home"
@@ -78,7 +74,6 @@ class Category(Screen):
             exec(f"self.{self.exec_type}_tmp_data = loads(data)")
             for _ in range(counter):
                 exec(f"self.{self.exec_type}_data.append(self.{self.exec_type}_tmp_data[_ - counter])")
-            self.stop = False
 
         if not self.update:
             self.post_data()
@@ -97,8 +92,6 @@ class Category(Screen):
             if index == 20:
                 break
             self.ids.rv.data.append(eval(f"self.{self.exec_type}_data.pop(0)"))
-        if not eval(f"self.{self.exec_type}_data"):
-            self.stop = True
 
     def check_network(self, instance, data):
         self.get_data()
@@ -117,9 +110,10 @@ class Category(Screen):
         self.ids.lbl.text = "server is being updated, will be fixed soon"
         notify("server is being updated, will be fixed soon")
 
-    def check_update_data(self):
-        if self.stop:
-            return
+    def schedule_load(self):
+        Clock.schedule_once(self.check_update_data, 5)
+
+    def check_update_data(self, *args):
         exec(f"self.{self.exec_type}_data = self.{self.exec_type}_data")
         if eval(f"self.{self.exec_type}_data"):
             length_data = eval(f"len(self.{self.exec_type}_data)")
@@ -127,6 +121,3 @@ class Category(Screen):
                 if index == 20:
                     break
                 self.ids.rv.data.append(eval(f"self.{self.exec_type}_data.pop(0)"))
-            # avoid adding a particular widget twice
-            if not eval(f"self.{self.exec_type}_data"):
-                self.stop = True

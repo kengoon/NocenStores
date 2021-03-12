@@ -44,12 +44,15 @@
                 MDIconButton:
                     icon: "magnify"
                     pos_hint: {"center_y": .5}
-                    on_release: root.manager.current = "search"
+                    on_release:
+                        root.manager.prev_screen.append(root.name)
+                        root.manager.current = "search"
 
         RecycleView:
             id: rv
             effect_cls: ScrollEffect
-            viewclass: "OrderCard"
+            viewclass: "CategoryProductCard"
+            on_scroll_start: root.schedule_load()
             RecycleGridLayout:
                 root: root.manager
                 roots: root

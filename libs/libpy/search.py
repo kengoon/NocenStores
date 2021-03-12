@@ -1,4 +1,7 @@
 from json import loads
+
+from kivy.clock import Clock
+
 from classes.notification import notify
 from kivy.network.urlrequest import UrlRequest
 from kivy.uix.screenmanager import Screen
@@ -13,6 +16,7 @@ class Search(Screen):
     search_product = False
     blink = True
     wait_search = False
+    product = None
 
     def go_home(self, *args):
         self.manager.current = "home"
@@ -29,7 +33,6 @@ class Search(Screen):
         )
 
     def post_data(self, instance, data):
-        print(data)
         self.ids.progress_box.opacity = 0
         if data == "None":
             self.ids.non.opacity = 1
@@ -72,18 +75,30 @@ class Search(Screen):
         for index, _ in enumerate(search_term):
             search_term[index] = search_term[index].capitalize()
         search_term = " ".join(search_term)
-        product = search_engine(search_term, "product", self.data)
-        if not product:
+        self.product = search_engine(search_term, "product", self.data)
+        if not self.product:
             self.ids.ico.icon = "cloud-off-outline"
             self.ids.lbl.text = "Search Term Not Found"
             self.ids.non.opacity = 1
             self.ids.progress_box.opacity = 0
             notify("search term not found")
             return
-        for i in product:
-            print(i)
-            self.ids.rv.data.append(i)
-        print(search_term)
+        product_length = len(self.product)
+        for num, _ in enumerate(range(product_length)):
+            if num == 20:
+                break
+            self.ids.rv.data.append(self.product.pop(0))
         self.ids.progress_box.opacity = 0
         self.ids.non.opacity = 0
         self.blink = True
+
+    def schedule_load(self):
+        Clock.schedule_once(self._check_update, 5)
+
+    def _check_update(self, *args):
+        if self.product:
+            length_data = len(self.product)
+            for index, _ in enumerate(range(length_data)):
+                if index == 20:
+                    break
+                self.ids.rv.data.append(self.product.pop(0))

@@ -1,5 +1,6 @@
 import os
 from functools import partial
+from json import dumps, loads
 from os.path import exists
 from shutil import rmtree
 from threading import Thread
@@ -27,6 +28,8 @@ from classes.m_loader import M_AKImageLoader, M_AKLabelLoader
 from classes.m_cardloader import M_CardLoader
 from kivymd_extensions.akivymd.uix.statusbarcolor import change_statusbar_color
 from classes.fitimage import M_FitImage
+from requests import post
+
 os.environ['SSL_CERT_FILE'] = where()
 
 r = Factory.register
@@ -59,11 +62,18 @@ class NocenStore(MDApp):
         change_statusbar_color(self.theme_cls.primary_color)
         Window.bind(on_keyboard=self.on_back_button)
         self.dialog = None
+        self.firebase = {}
+        self.current = ""
+        self.login = None
+        self.url = "https://nocenstore.pythonanywhere.com/"
         self.close_dialog = False
-        self.login = False
         self.menu = None
+        if exists("token.json"):
+            with open("token.json", "r") as file:
+                self.firebase = loads(file.read())
+        self.token = None
         self.label = None
-        self.no_screen = ["login", "signup", "initializer", "home"]
+        self.no_screen = ["login", "initializer", "home"]
         Window.softinput_mode = 'below_target'
         self.theme_cls.font_styles.update({"Money": ["assets/Eczar-Regular", 16, False, 0.5],
                                            "BigMoney": ["assets/Eczar-SemiBold", 20, False, 0.5],
@@ -93,6 +103,13 @@ class NocenStore(MDApp):
     def initialize_connection(self):
         sleep(1)
         self.root.screens[0].ids.spinner.active = True
+        if self.firebase:
+            data = post(url=self.url, data=dumps({"refreshToken": self.firebase["refreshToken"], "version": "0.2"}))
+            if data.text:
+                with open("token.json", "w") as file:
+                    new_data = loads(data.text)
+                    file.write(dumps(new_data, indent=4))
+                self.login = True
         Builder.load_file("libs/kv_widget/widget.kv")
         Builder.load_file("libs/libkv/init/credentials.kv")
         Builder.load_file("libs/manager.kv")
@@ -154,6 +171,14 @@ class PhoneTextField(MDTextField):
 
     def on_text(self, instance, text):
         instance.error = len(text) != 11
+
+
+class PhoneCardTextField(M_CardTextField):
+    def on_text(self, *args):
+        if not args:
+            return
+        if len(args[1]) > 11:
+            self.text = self.text[:-1]
 
 
 class PlanItem(ThemableBehavior, MagicBehavior, MDBoxLayout):

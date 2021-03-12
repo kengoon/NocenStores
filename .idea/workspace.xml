@@ -6,44 +6,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4cb93fcd-1f5d-4fef-8c90-3198d866ca2d" name="Default Changelist" comment="changed a lot">
-      <change afterPath="$PROJECT_DIR$/android_webview/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/border.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/classes/fitimage.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/libkv/main/search.kv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/libkv/main/svaeditem.kv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/libkv/main/trending.kv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/libpy/saveditem.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/libpy/search.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/libpy/trending.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/csv-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-plugin.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libkv/main/cart.kv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libpy/cart.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/nocenstore-0.1-armeabi-v7a-debug.apk" beforeDir="false" afterPath="$PROJECT_DIR$/bin/nocenstore-0.1-armeabi-v7a-debug.apk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/buildozer.spec" beforeDir="false" afterPath="$PROJECT_DIR$/buildozer.spec" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/dict_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/functions/dict_search.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/notification.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes/notification.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/kv_widget/widget.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/kv_widget/widget.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/init/credentials.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/init/credentials.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libkv/main/categories.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/categories.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libkv/main/deals.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/deals.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libkv/main/feeds.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/feeds.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libkv/main/home.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/home.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libkv/main/notification.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/notification.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libkv/main/orders.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/orders.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libkv/main/productlookout.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/productlookout.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libkv/main/profile.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/profile.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libkv/main/sell.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/sell.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libkv/main/settings.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/settings.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libkv/main/stundentinfo.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/stundentinfo.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/main/search.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/search.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/main/svaeditem.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/saveditem.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libpy/categories.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/categories.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libpy/customercare.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/customercare.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libpy/deals.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/deals.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libpy/notification.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/notification.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libpy/credentials.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/credentials.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libpy/productlookout.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/productlookout.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libpy/saveditem.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/saveditem.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libpy/search.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/search.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libpy/sell.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/sell.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libpy/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libpy/studentinfo.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/studentinfo.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/manager.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/manager.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manager.kv" beforeDir="false" afterPath="$PROJECT_DIR$/manager.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/theme.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -228,8 +211,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.scratch_5" />
         <item itemvalue="Python.scratch_7" />
+        <item itemvalue="Python.scratch_5" />
         <item itemvalue="Python.nepa" />
         <item itemvalue="Python.main (1)" />
         <item itemvalue="Python.splitter" />

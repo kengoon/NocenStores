@@ -42,7 +42,7 @@
             id: rv
             effect_cls: ScrollEffect
             viewclass: "CategoryProductCard"
-            on_scroll_stop: root.check_update_data()
+            on_scroll_start: root.schedule_load()
             RecycleGridLayout:
                 id: holder
                 root: root.manager

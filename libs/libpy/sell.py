@@ -5,7 +5,6 @@ from json import dumps
 from os.path import exists, basename
 from shutil import rmtree
 from threading import Thread
-
 from kivy.core.window import Window
 from kivy.metrics import dp
 from kivy.network.urlrequest import UrlRequest
