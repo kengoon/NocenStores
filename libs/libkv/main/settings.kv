@@ -2,18 +2,34 @@
     name: "setting"
     update: False
     on_enter:
-        toolbar.ids.label_title.halign = "center"
         self.add_all_rules(rule1, rule2) if not self.update else None
         self.update = True
 
     BoxLayout:
         orientation:"vertical"
-        MDToolbar:
-            id: toolbar
-            title: "Settings"
-            left_action_items: [["arrow-left", lambda x: root.go_home()]]
-            specific_text_color: app.theme_cls.primary_color
+        MDCard:
+            size_hint_y: None
+            height: self.minimum_height
+            orientation: "vertical"
+            padding: [dp(10), 0, dp(10), 0]
             md_bg_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
+
+            MDBoxLayout:
+                size_hint: 1, None
+                height: app.theme_cls.standard_increment
+                spacing: dp(10)
+                MDIconButton:
+                    icon: "arrow-left"
+                    pos_hint: {"center_y": .5}
+                    on_release: root.go_home()
+
+                MDLabel:
+                    text: f"Settings[color={get_hex_from_color(app.theme_cls.primary_color)}]•[/color]"
+                    color: [1,1,1,1] if app.theme_cls.theme_style == "Dark" else [0,0,0,.7]
+                    markup: True
+                    font_style:"BigMoney"
+                    bold: True
+                    pos_hint:{"center_y": .5}
 
         ScrollView:
             effect_cls: ScrollEffect
@@ -24,6 +40,7 @@
                     id: rule1
                     orientation:"vertical"
                     radius: [dp(10)]
+                    root: root
                     items:
                         {\
                         "My Details": "account-details",\
@@ -38,6 +55,7 @@
                     id: rule2
                     orientation:"vertical"
                     radius: [dp(10)]
+                    root: root
                     items:
                         {\
                         "Dark Mode": "moon-waxing-crescent",\
@@ -71,26 +89,32 @@
     MDSwitch:
         pos_hint: {"center_x": .7, "center_y": .4}
         active: True if app.theme_cls.theme_style == "Dark" else False
+        on_active:
+            root.parent.parent.root.check_theme_active()
+
 
 <DetailContent@MDBoxLayout>:
     adaptive_height: True
     padding: dp(20)
     spacing: dp(20)
     orientation:"vertical"
-    name: ""
-    email: ""
-    phone: ""
+    name: app.firebase["name"] if app.firebase else ""
+    email: app.firebase["email"] if app.firebase else ""
+    phone: app.firebase["phone"] if app.firebase else ""
     MDLabel:
+        id: name
         text: f"Name: {root.name}"
         size_hint_y: None
         height: self.texture_size[1]
 
     MDLabel:
+        id: email
         text: f"Email: {root.email}"
         size_hint_y: None
         height: self.texture_size[1]
 
     MDLabel:
+        id: phone
         text: f"Phone no: {root.phone}"
         size_hint_y: None
         height: self.texture_size[1]
@@ -104,14 +128,38 @@
         icon: "email"
         text: "Request Password Reset"
         pos_hint:{"center_x": .5}
+        on_release:
+            root.parent.parent.root.reset_password()
 
 <NumberContent@MDBoxLayout>
-    adaptive_height: True
     padding: dp(20)
     spacing: dp(20)
-    MDTextField:
+    PhoneTextField:
+        id: number
         hint_text: "change phone number :"
-    MDIconButton:
-        icon: "check"
-        theme_text_color: "Custom"
-        text_color: app.theme_cls.primary_color
+        input_filter: "int"
+        on_text_validate:
+            root.parent.parent.root.change_number(self.text)
+    MDCard:
+        size_hint: None, None
+        size: self.minimum_width, self.minimum_height
+        radius: [dp(5)]
+        on_release:
+            root.parent.parent.root.change_number(number.text)
+        MDIconButton:
+            icon: "check"
+            theme_text_color: "Custom"
+            text_color: app.theme_cls.primary_color
+
+<Loader@MDBoxLayout>:
+    spacing: dp(15)
+    adaptive_height: True
+    padding: [0, 0, 0, dp(10)]
+    MDSpinner:
+        size_hint: None, None
+        size: "40dp", "40dp"
+        active: True
+    MDLabel:
+        text: "please wait...."
+        text_size: self.size
+        valign: "center"

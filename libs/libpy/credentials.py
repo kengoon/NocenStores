@@ -60,6 +60,9 @@ class Login(Screen):
             self.manager.ids.lookout.clear_cache()
             self.manager.ids.lookout.update_interface(self.manager.ids.lookout.tmp_data)
         app.current = ""
+        self.manager.ids.home.ids.profiles.ids.user.text = f"Welcome {app.firebase['name']}!"
+        self.manager.ids.home.ids.profiles.ids.email.text = app.firebase["email"]
+        print(self.manager.ids.setting.ids.rule1.ids)
 
 
 class SignUp(Screen):
@@ -148,3 +151,5 @@ class SignUp(Screen):
             self.manager.ids.lookout.clear_cache()
             self.manager.ids.lookout.update_interface(self.manager.ids.lookout.tmp_data)
         app.current = ""
+        self.manager.ids.home.ids.profile.ids.user.text = f"Welcome {app.firebase['name']}!"
+        self.manager.ids.home.ids.profile.ids.email.text = app.firebase["email"]

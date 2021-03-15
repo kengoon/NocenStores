@@ -1,7 +1,22 @@
 <Used>:
+    RelativeLayout:
+        id: non
+        opacity: 0
+        MDIcon:
+            id: ico
+            icon:"package-variant-closed"
+            color: app.theme_cls.disabled_hint_text_color
+            font_size: dp(70)
+            pos_hint: {"center_x":.5, "center_y":.5}
+            halign: "center"
+        MDLabel:
+            id: lbl
+            text: "Fairly Used Products Unavailable"
+            color: app.theme_cls.disabled_hint_text_color
+            halign: "center"
+            pos_hint: {"center_x":.5, "center_y":.4}
     MDBoxLayout:
         orientation:"vertical"
-        md_bg_color: get_color_from_hex("#EEEEEE") if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
         MDBoxLayout:
             adaptive_height: True
             padding: dp(10)
@@ -31,3 +46,12 @@
                 spacing:dp(15), dp(15)
                 cols: 2
                 padding: dp(10)
+    MDRelativeLayout:
+        id: progress_box
+        adaptive_height: True
+        pos_hint: {"center_y": .5}
+        AKSpinnerDoubleBounce:
+            id: progress
+            spinner_size: dp(50)
+            active: True
+            pos_hint: {"center_x": .5}

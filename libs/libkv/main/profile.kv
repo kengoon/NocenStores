@@ -13,7 +13,8 @@
 
                 MDLabel:
                     text: "Account"
-                    color: 1,1,1,1
+                    theme_text_color: "Custom"
+                    text_color: [1,1,1,1]
                     font_style:"H5"
                     bold: True
                 MDIconButton:
@@ -35,17 +36,21 @@
                 adaptive_height: True
                 orientation: "vertical"
                 MDLabel:
-                    text: "Welcome User!"
+                    id: user
+                    text: f"Welcome {app.firebase['name'] if app.firebase else ''}!"
                     font_style: "BigMoney"
                     size_hint_y: None
                     height: self.texture_size[1]
-                    color: app.theme_cls.accent_color
+                    theme_text_color: "Custom"
+                    text_color: app.theme_cls.accent_color
 
                 MDLabel:
-                    text: "yahoome@gmail.com"
+                    id: email
+                    text: app.firebase["email"] if app.firebase else ""
                     size_hint_y: None
                     height: self.texture_size[1]
-                    color: 1,1,1,1
+                    theme_text_color: "Custom"
+                    text_color: 1,1,1,1
 
         ScrollView:
             effect_cls: ScrollEffect
@@ -138,10 +143,12 @@
                         text:"Saved Items"
                         text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
                         theme_text_color: "Custom"
+                        on_release: root.to_next("saved items")
                         IconLeftWidget:
                             icon: "heart-outline"
                             text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
                             theme_text_color: "Custom"
+                            on_release: root.to_next("saved items")
 
                     OneLineIconListItem:
                         divider: None

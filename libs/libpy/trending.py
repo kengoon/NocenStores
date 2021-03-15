@@ -1,4 +1,7 @@
 from json import loads
+
+from kivy.clock import Clock
+
 from classes.notification import notify
 from kivy.network.urlrequest import UrlRequest
 from kivy.uix.screenmanager import Screen
@@ -33,10 +36,11 @@ class Trending(Screen):
             self.ids.lbl.text = "No Trending Product"
             return
         self.data = loads(data)
-        for _, deals in enumerate(self.data):
-            if _ == 20:
+        length_data = len(self.data)
+        for index, _ in enumerate(range(length_data)):
+            if index == 20:
                 break
-            self.ids.rv.data.append(deals)
+            self.ids.rv.data.append(self.data.pop(0))
         self.update = False
 
     def network_error(self, instance, data):
@@ -55,3 +59,13 @@ class Trending(Screen):
         self.ids.ico.icon = "server-network-off"
         self.ids.lbl.text = "server is being updated, will be fixed soon"
         notify("server is being updated, will be fixed soon")
+
+    def schedule_load(self):
+        def continue_update():
+            if self.data:
+                length_data = len(self.data)
+                for i, _ in enumerate(range(length_data)):
+                    if i == 20:
+                        break
+                    self.ids.rv.data.append(self.data.pop(0))
+        Clock.schedule_once(continue_update, 5)

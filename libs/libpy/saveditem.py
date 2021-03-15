@@ -73,7 +73,7 @@ class SavedProduct(Screen):
         self.manager.current = "home"
 
     def schedule_load(self):
-        def continue_update():
+        def continue_update(*args):
             if self.data:
                 length_data = len(self.data)
                 for i, _ in enumerate(range(length_data)):

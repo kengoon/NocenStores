@@ -50,8 +50,8 @@
         RecycleView:
             id: rv
             effect_cls: ScrollEffect
-            # data: [{"source": "assets/1.jpg"}, {"source": "assets/2.jpg"}, {"source": "assets/3.jpg"}]
             viewclass: "DealsCard"
+            on_scroll_start: root.schedule_load()
             RecycleGridLayout:
                 root: root
                 default_size_hint: 1, None

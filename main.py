@@ -28,7 +28,7 @@ from classes.m_loader import M_AKImageLoader, M_AKLabelLoader
 from classes.m_cardloader import M_CardLoader
 from kivymd_extensions.akivymd.uix.statusbarcolor import change_statusbar_color
 from classes.fitimage import M_FitImage
-from requests import post
+import requests
 
 os.environ['SSL_CERT_FILE'] = where()
 
@@ -62,6 +62,7 @@ class NocenStore(MDApp):
         change_statusbar_color(self.theme_cls.primary_color)
         Window.bind(on_keyboard=self.on_back_button)
         self.dialog = None
+        self.theme_no_active = False
         self.firebase = {}
         self.current = ""
         self.login = None
@@ -104,12 +105,16 @@ class NocenStore(MDApp):
         sleep(1)
         self.root.screens[0].ids.spinner.active = True
         if self.firebase:
-            data = post(url=self.url, data=dumps({"refreshToken": self.firebase["refreshToken"], "version": "0.2"}))
-            if data.text:
-                with open("token.json", "w") as file:
-                    new_data = loads(data.text)
-                    file.write(dumps(new_data, indent=4))
+            try:
+                data = requests.post(url=self.url, data=dumps({"refreshToken": self.firebase["refreshToken"], "version": "0.2"}))
+                if data.text:
+                    with open("token.json", "w") as file:
+                        new_data = loads(data.text)
+                        file.write(dumps(new_data, indent=4))
+                    self.login = True
+            except requests.exceptions.RequestException:
                 self.login = True
+                print(self.login)
         Builder.load_file("libs/kv_widget/widget.kv")
         Builder.load_file("libs/libkv/init/credentials.kv")
         Builder.load_file("libs/manager.kv")

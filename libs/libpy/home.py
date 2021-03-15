@@ -3,7 +3,6 @@ from functools import partial
 from json import loads
 from os import listdir
 from threading import Thread
-
 from kivy.animation import Animation
 from kivy.clock import Clock, mainthread
 from kivy.core.window import Window
@@ -32,22 +31,23 @@ class Home(Screen, EventDispatcher):
         self.data = []
 
     def on_enter(self, *args):
+        if self.update:
+            return
         self.start_clock()
-        if not self.update:
-            self.get_ads()
-            self.ids.home.header.ids._label.font_style = "Caption"
-            self.ids.profile.header.ids._label.font_style = "Caption"
-            self.ids.sell.header.children[0].remove_widget(self.ids.sell.header.ids._label)
-            self.ids.sell.header.ids._label_icon.pos_hint = {"center_x": .5, "center_y": .5}
-            self.ids.sell.header.ids._label_icon.font_size = dp(35)
-            self.ids.used.header.ids._label.font_style = "Caption"
-            self.ids.feeds.header.ids._label.font_style = "Caption"
-            for data in self.data:
-                self.ids.rc.data.append(data)
-            anim = Animation(opacity=0) + Animation(opacity=1)
-            anim.repeat = True
-            anim.start(self.ids.but)
-            self.update = True
+        self.get_ads()
+        self.ids.home.header.ids._label.font_style = "Caption"
+        self.ids.profile.header.ids._label.font_style = "Caption"
+        self.ids.sell.header.children[0].remove_widget(self.ids.sell.header.ids._label)
+        self.ids.sell.header.ids._label_icon.pos_hint = {"center_x": .5, "center_y": .5}
+        self.ids.sell.header.ids._label_icon.font_size = dp(35)
+        self.ids.used.header.ids._label.font_style = "Caption"
+        self.ids.feeds.header.ids._label.font_style = "Caption"
+        for data in self.data:
+            self.ids.rc.data.append(data)
+        anim = Animation(opacity=0) + Animation(opacity=1)
+        anim.repeat = True
+        anim.start(self.ids.but)
+        self.update = True
 
     def start_clock(self):
         self.clock = Clock.schedule_interval(self._start_animation, 5)
@@ -99,27 +99,25 @@ class Home(Screen, EventDispatcher):
         self.clock.cancel()
 
     def change_theme(self):
-        from kivymd.uix.button import MDRaisedButton, MDFlatButton
+        with open("theme.txt", "w") as theme:
+            theme.write("Dark") if self.app.theme_cls.theme_style == "Light" else theme.write("Light")
+            self.app.theme_no_active = True
+            self.app.theme_cls.theme_style = "Dark" if self.app.theme_cls.theme_style == "Light" else "Light"
 
-        def restart_app(*args):
-            with open("theme.txt", "w") as theme:
-                theme.write("Dark") if self.app.theme_cls.theme_style == "Light" else theme.write("Light")
-                self.app.stop()
-
-        def dismiss_dialog(*args):
-            dialog.dismiss()
-
-        button1 = MDFlatButton(text="Cancel", on_release=dismiss_dialog)
-        button2 = MDRaisedButton(text="Continue", on_release=restart_app)
-        dialog = MDDialog(
-            title="Change Theme",
-            text="app restart is required for Dark Mode" if self.app.theme_cls.theme_style == "Light"
-            else "app restart is required for Light Mode",
-            buttons=[button1, button2], auto_dismiss=False,
-            size_hint_x=None,
-            width=Window.width - dp(20)
-        )
-        dialog.open()
+        # def dismiss_dialog(*args):
+        #     dialog.dismiss()
+        #
+        # button1 = MDFlatButton(text="Cancel", on_release=dismiss_dialog)
+        # button2 = MDRaisedButton(text="Continue", on_release=restart_app)
+        # dialog = MDDialog(
+        #     title="Change Theme",
+        #     text="app restart is required for Dark Mode" if self.app.theme_cls.theme_style == "Light"
+        #     else "app restart is required for Light Mode",
+        #     buttons=[button1, button2], auto_dismiss=False,
+        #     size_hint_x=None,
+        #     width=Window.width - dp(20)
+        # )
+        # dialog.open()
 
     @staticmethod
     def outline(icon: list, instance):

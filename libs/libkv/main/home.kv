@@ -7,8 +7,8 @@
 #            Screen:
     MDBottomNavigation:
         id: raw
-        text_color_normal: [0,0,0,1] if app.theme_cls.theme_style == "Light" else [1,1,1,1]
-        panel_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else self.panel_color
+        # text_color_normal: [1, 1, 1, 1] if app.theme_cls.theme_style == "Dark" else [0, 0, 0, 1]
+        #panel_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else self.panel_color
         MDBottomNavigationItem:
             id: home
             icon: "home"
@@ -232,10 +232,11 @@
                 a.remove(self)
                 root.outline(a, self)
             Profile:
+                id: profiles
                 root: root
 
-    MDFloatingActionButton:
-        icon: "brightness-4"
-        pos_hint: {"center_y":.15}
-        on_release:
-            root.change_theme()
+#    MDFloatingActionButton:
+#        icon: "brightness-4"
+#        pos_hint: {"center_y":.15}
+#        on_release:
+#            root.change_theme()

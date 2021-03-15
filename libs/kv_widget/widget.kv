@@ -463,7 +463,6 @@
         #do_scroll_y: False
         viewclass: "AccoCard"
         bar_width: 0
-        #data:[{"source":"assets/7.jpg", "product_price": "1000", "product_name":"crab"}, {"source":"assets/9.jpg", "product_price": "34500", "product_name":"house"}, {"source":"assets/10.jpg", "product_price": "1000", "product_name":"crane"},{"source":"assets/11.jpg","product_price": "22431000", "product_name":"Mansion"},{"source":"assets/12.jpg", "product_price": "1000", "product_name":"crab"},{"source":"assets/13.jpg", "product_price": "1000", "product_name":"crab"},{"source":"assets/14.jpg", "product_price": "1000", "product_name":"crab"},{"source":"assets/15.jpg", "product_price": "1000", "product_name":"crab"},{"source":"assets/16.jpg", "product_price": "1000", "product_name":"crab", "product_price": "1000", "product_name":"crab", "product_price": "1000", "product_name":"crab", "product_price": "1000", "product_name":"crab", "product_price": "1000", "product_name":"crab", "product_price": "1000", "product_name":"crab"}]
         RecycleBoxLayout:
             id: rb
             default_size_hint: None, None
@@ -570,7 +569,7 @@
             md_bg_color: 0, 0, 0, .4
             radius: [0, 0, root.radius[0], root.radius[0]]
             M_AKLabelLoader:
-                text: "" if not root.product else f"Deal: {root.product}\n₦{root.price}\nstore:{root.store}"
+                text: "" if not root.product else f"Deal: {root.product}\n₦{int(root.price):,}\nstore:{root.store}"
                 radius: root.text_radius
                 size_hint_y: None
                 theme_text_color: "Custom"
