@@ -62,13 +62,14 @@ class Home(Screen, EventDispatcher):
     def update_ads_data(self, instance, data):
         data = loads(data)
         Thread(target=partial(self.download_ads, data)).start()
-        for ads_url, child in zip(data, self.ids.swiper.children[0].children):
-            child.children[0].children[0].source = ads_url
+        for content, child in zip(data, self.ids.swiper.children[0].children):
+            child.children[0].children[0].source = content["image_url"]
+            child.children[0].children[0].text = content["name"]
 
     @staticmethod
     def download_ads(data):
         for i, image in enumerate(data):
-            urllib.request.urlretrieve(image, f"assets/ads/{i}.jpg")
+            urllib.request.urlretrieve(image["image_url"], f"assets/ads/{i}.jpg")
 
     def check_cache(self, *args):
         self.get_ads()
@@ -92,7 +93,7 @@ class Home(Screen, EventDispatcher):
 
     def _start_animation(self, *args):
         self.counter += 1
-        self.counter = 0 if self.counter == 3 else self.counter
+        self.counter = 0 if self.counter == 5 else self.counter
         self.ids.swiper.set_current(self.counter)
 
     def _stop_animation(self):

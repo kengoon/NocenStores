@@ -7,6 +7,7 @@ from threading import Thread
 from time import sleep
 from certifi import where
 from kivy import platform
+from kivy.animation import Animation
 from kivy.clock import Clock
 from kivy.core.window import Window
 from kivy.effects.scroll import ScrollEffect
@@ -102,11 +103,18 @@ class NocenStore(MDApp):
         Thread(target=self.initialize_connection).start()
 
     def initialize_connection(self):
-        sleep(1)
+        sleep(2)
+
+        def animate_label(*args):
+            Animation(pos_hint={"center_x": .5}).start(self.root.ids.init.ids.logo)
+            Animation(pos_hint={"center_x": .5}).start(self.root.ids.init.ids.des)
+
+        Clock.schedule_once(animate_label)
         self.root.screens[0].ids.spinner.active = True
         if self.firebase:
             try:
-                data = requests.post(url=self.url, data=dumps({"refreshToken": self.firebase["refreshToken"], "version": "0.2"}))
+                data = requests.post(url=self.url,
+                                     data=dumps({"refreshToken": self.firebase["refreshToken"], "version": "0.2"}))
                 if data.text:
                     with open("token.json", "w") as file:
                         new_data = loads(data.text)

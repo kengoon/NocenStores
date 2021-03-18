@@ -72,14 +72,14 @@
 
 <FeedsCard@MDCard>:
     elevation: 0 if app.theme_cls.theme_style == "Light" else 1
-    source: ""
+    image_url: ""
     radius: [dp(6)]
     store: ""
-    product_name: ""
-    product_price: int()
+    name: ""
+    price: ""
     text_radius: [dp(5)]
-    product_owner: ""
-    #text_color: [1, 1, 1, 1]
+    phone: ""
+    url: ""
     orientation: "vertical"
     rates: rates
     ripple_color: app.theme_cls.primary_color
@@ -87,7 +87,7 @@
     RelativeLayout:
         AsyncImage:
             id: image
-            source: root.source
+            source: root.image_url
             anim_delay: .1
             allow_stretch: True
             keep_ratio: False #if app.image_has_transparency(self, self.source) else False
@@ -146,8 +146,8 @@
         padding: dp(10)
         M_AKLabelLoader:
             text:
-                "" if not (root.product_price and root.product_name) else \
-                f"{root.product_name}\n[b][color={get_hex_from_color(app.theme_cls.primary_color)}]₦{root.product_price:,}[/color][/b]"
+                "" if not root.price and not root.name else \
+                f"{root.name}\n[b][color={get_hex_from_color(app.theme_cls.primary_color)}]₦{int(root.price if root.price else 0):,}[/color][/b]"
             radius: root.text_radius
             size_hint_y: None
             markup: True

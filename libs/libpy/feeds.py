@@ -18,7 +18,7 @@ class Feeds(Screen):
 
     def get_data(self):
         UrlRequest(
-            url=f"{self.url}getAllFeeds",
+            url=f"{self.url}get_ads",
             on_error=self.network_error,
             on_success=self.post_data,
             on_failure=self.server_error

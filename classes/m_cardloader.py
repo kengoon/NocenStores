@@ -21,6 +21,7 @@ Builder.load_string(
             anim_delay: .1
             allow_stretch: True
             keep_ratio: False
+            nocache: True
             on_load:
                 root.dispatch("on_load")
             canvas.before:
@@ -47,7 +48,7 @@ Builder.load_string(
             id:box
             padding: dp(10)
             adaptive_height: True
-            md_bg_color: 0, 0, 0, .4
+            md_bg_color: 0, 0, 0, .6
             radius: [0, 0, root.radius[0], root.radius[0]]
             M_AKLabelLoader:
                 text: root.text
