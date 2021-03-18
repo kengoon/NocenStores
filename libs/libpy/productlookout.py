@@ -15,6 +15,10 @@ class ProductLookOut(Screen):
     def go_back(self):
         self.manager.current = "category"
 
+    def enter_cart(self):
+        self.app.current = self.name
+        self.manager.current = "cart"
+
     def on_leave(self, *args):
         if not self.app.current:
             self.clear_cache()

@@ -3,21 +3,10 @@
     BoxLayout:
         orientation: "vertical"
         spacing: dp(50)
-        MDBoxLayout:
-            adaptive_height: True
-            padding: dp(10)
-            spacing: dp(10)
-            MDIconButton:
-                icon: "arrow-left"
-                on_release: root.go_home()
-                pos_hint: {"center_y": .5}
-            MDLabel:
-                text: f"Customer Care[color={get_hex_from_color(app.theme_cls.primary_color)}]•[/color]"
-                color: [1,1,1,1] if app.theme_cls.theme_style == "Dark" else [0,0,0,.7]
-                markup: True
-                font_style:"BigMoney"
-                bold: True
-                pos_hint:{"center_y": .5}
+        LeftIconToolBar:
+            icon: "arrow_left"
+            callback: root.go_home
+            title: "Customer Care"
         ScrollView:
             effect_cls: ScrollEffect
             MDList:

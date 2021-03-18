@@ -36,7 +36,7 @@ version = 0.2
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,kivy==master,ffpyplayer,ffmpeg,https://github.com/kengoon/akivymd-1/archive/master.zip,http://127.0.0.1:8887/kivymd.zip,sdl2_ttf==2.0.15,plyer,pillow,certifi,requests_toolbelt,requests,urllib3,chardet,idna
+requirements = python3,kivy==2.0.0,https://github.com/kengoon/akivymd-1/archive/master.zip,http://127.0.0.1:8887/kivymd.zip,sdl2_ttf==2.0.15,plyer,pillow,certifi,requests_toolbelt,requests,urllib3,chardet,idna,oscpy
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
@@ -55,7 +55,7 @@ presplash.filename = %(source.dir)s/assets/N1d.PNG
 orientation = portrait
 
 # (list) List of service to declare
-#services = NAME:ENTRYPOINT_TO_PY,NAME2:ENTRYPOINT2_TO_PY
+services = Notification:service.py
 
 #
 # OSX Specific
@@ -85,7 +85,7 @@ fullscreen = 0
 android.presplash_color = #FFFFFF
 
 # (list) Permissions
-android.permissions = INTERNET, READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE, CALL_PHONE
+android.permissions = INTERNET, READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE, CALL_PHONE, RECEIVE_BOOT_COMPLETED
 
 # (int) Target Android API, should be as high as possible.
 android.api = 30
@@ -129,7 +129,7 @@ android.accept_sdk_license = True
 #android.entrypoint = org.renpy.android.PythonActivity
 
 # (str) Android app theme, default is ok for Kivy-based app
-# android.apptheme = "@android:style/Theme.NoTitleBar"
+android.apptheme = "@android:style/AppFullScreenTheme"
 
 # (list) Pattern to whitelist for the whole project
 #android.whitelist =
@@ -156,7 +156,7 @@ android.accept_sdk_license = True
 
 # (list) Gradle dependencies to add (currently works only with sdl2_gradle
 # bootstrap)
-#android.gradle_dependencies =
+android.gradle_dependencies = com.android.support:appcompat-v7:28.0.0
 
 # (list) add java compile options
 # this can for example be necessary when importing certain java libraries using the 'android.gradle_dependencies' option

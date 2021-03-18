@@ -16,6 +16,10 @@ class SavedProduct(Screen):
     enter = False
     app = MDApp.get_running_app()
 
+    def enter_search(self):
+        self.manager.prev_screen.append(self.name)
+        self.manager.current = "search"
+
     def on_enter(self):
         if self.update and self.app.login:
             self.ids.progress_box.opacity = 1

@@ -65,4 +65,4 @@ class Feeds(Screen):
                         break
                     self.ids.rv.data.append(self.data.pop(0))
 
-        Clock.schedule_once(continue_update, 5)
+        Clock.schedule_once(continue_update, 2)

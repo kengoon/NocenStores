@@ -20,7 +20,6 @@ from kivymd.app import MDApp
 from kivymd.theming import ThemableBehavior
 from kivymd.uix.behaviors import MagicBehavior
 from kivymd.uix.boxlayout import MDBoxLayout
-from kivymd.uix.card import MDCard
 from kivymd.uix.textfield import MDTextField
 from classes.card import MsCard
 from libs.classes_wigdet.asyncimage import AsyncMe
@@ -30,8 +29,15 @@ from classes.m_cardloader import M_CardLoader
 from kivymd_extensions.akivymd.uix.statusbarcolor import change_statusbar_color
 from classes.fitimage import M_FitImage
 import requests
+from jnius import autoclass
+from oscpy.client import OSCClient
+from oscpy.server import OSCThreadServer
 
 os.environ['SSL_CERT_FILE'] = where()
+SERVICE_NAME = u'{packagename}.Service{servicename}'.format(
+    packagename=u'org.mindset.nocenstore.nocenstore',
+    servicename=u'Notification'
+)
 
 r = Factory.register
 r("M_CardLoader", cls=M_CardLoader)
@@ -63,10 +69,14 @@ class NocenStore(MDApp):
         change_statusbar_color(self.theme_cls.primary_color)
         Window.bind(on_keyboard=self.on_back_button)
         self.dialog = None
+        self.service = None
+        self.on_service = None
+        self.server = None
         self.theme_no_active = False
         self.firebase = {}
         self.current = ""
         self.login = None
+        self.client = None
         self.url = "https://nocenstore.pythonanywhere.com/"
         self.close_dialog = False
         self.menu = None
@@ -85,9 +95,48 @@ class NocenStore(MDApp):
                 self.theme_cls.theme_style = theme.read()
 
     def build(self):
+        self.server = server = OSCThreadServer()
+        server.listen(
+            address='localhost',
+            port=3001,
+            default=True,
+        )
+        server.bind(b'/message', self.display_message)
+        server.bind(b'/date', self.date)
+
+        self.client = OSCClient('localhost', 3000)
         for modules in os.listdir("libs/libpy"):
             exec(f"from libs.libpy import {modules.rstrip('.pyc')}")
         return Builder.load_file("manager.kv")
+
+    def start_service(self):
+        if platform == 'android':
+            service = autoclass(SERVICE_NAME)
+            mActivity = autoclass(u'org.kivy.android.PythonActivity').mActivity
+            argument = ''
+            service.start(mActivity, argument)
+            self.service = service
+
+        # elif platform in ('linux', 'linux2', 'macos', 'win'):
+        #     from runpy import run_path
+        #     from threading import Thread
+        #     self.service = Thread(
+        #         target=run_path,
+        #         args=['service.py'],
+        #         kwargs={'run_name': '__main__'},
+        #         daemon=True
+        #     )
+        #     self.service.start()
+        # else:
+        #     raise NotImplementedError(
+        #         "service start not implemented on this platform"
+        #     )
+
+    def display_message(self, message):
+        print(message)
+
+    def date(self, message):
+        print(message)
 
     def on_back_button(self, *args):
         if args[1] == 27 and self.root.current == "initializer":
@@ -100,6 +149,7 @@ class NocenStore(MDApp):
         return True
 
     def on_start(self):
+        self.start_service()
         Thread(target=self.initialize_connection).start()
 
     def initialize_connection(self):

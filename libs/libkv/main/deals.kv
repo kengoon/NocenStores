@@ -19,33 +19,12 @@
 
     BoxLayout:
         orientation: "vertical"
-        MDCard:
-            size_hint_y: None
-            height: self.minimum_height
-            orientation: "vertical"
-            padding: [dp(10), 0, dp(10), 0]
-            md_bg_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
-
-            MDBoxLayout:
-                size_hint: 1, None
-                height: app.theme_cls.standard_increment
-                spacing: dp(10)
-                MDIconButton:
-                    icon: "arrow-left"
-                    pos_hint: {"center_y": .5}
-                    on_release: root.go_home()
-
-                MDLabel:
-                    text: f"Deals Of The Day[color={get_hex_from_color(app.theme_cls.primary_color)}]•[/color]"
-                    color: [1,1,1,1] if app.theme_cls.theme_style == "Dark" else [0,0,0,.7]
-                    markup: True
-                    font_style:"BigMoney"
-                    bold: True
-                    pos_hint:{"center_y": .5}
-                MDIconButton:
-                    icon: "magnify"
-                    pos_hint: {"center_y": .5}
-                    on_release: root.manager.current = "search"
+        DoubleIconToolBar:
+            title: "Deals of The Day"
+            icon_left: "arrow-left"
+            icon_right: "magnify"
+            icon_left_callback: root.go_home
+            icon_right_callback: root.enter_search
 
         RecycleView:
             id: rv

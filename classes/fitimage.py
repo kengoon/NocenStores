@@ -113,6 +113,7 @@ class M_FitImage(BoxLayout):
     radius = ListProperty([0, 0, 0, 0])
     mipmap = BooleanProperty(False)
     load_callback = ObjectProperty(lambda x: None)
+    nocache = BooleanProperty(True)
     anim_delay = .1
 
     def __init__(self, **kwargs):
@@ -120,7 +121,7 @@ class M_FitImage(BoxLayout):
         Clock.schedule_once(self._late_init)
 
     def _late_init(self, *args):
-        self.container = Container(self.source, self.mipmap, self.load_callback, self.anim_delay)
+        self.container = Container(self.source, self.mipmap, self.load_callback, self.anim_delay, self.nocache)
         self.bind(source=self.container.setter("source"))
         self.add_widget(self.container)
 
@@ -129,9 +130,9 @@ class Container(Widget):
     source = ObjectProperty()
     image = ObjectProperty()
 
-    def __init__(self, source, mipmap, load_callback, anim_delay, **kwargs):
+    def __init__(self, source, mipmap, load_callback, anim_delay, nocache, **kwargs):
         super().__init__(**kwargs)
-        self.image = AsyncImage(mipmap=mipmap, on_load=load_callback, anim_delay=anim_delay)
+        self.image = AsyncImage(mipmap=mipmap, on_load=load_callback, anim_delay=anim_delay, nocache=nocache)
         self.image.bind(on_load=self.adjust_size)
         self.source = source
         self.bind(size=self.adjust_size, pos=self.adjust_size)

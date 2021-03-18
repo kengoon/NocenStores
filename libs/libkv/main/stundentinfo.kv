@@ -1,5 +1,21 @@
 <StudentInfo>:
     name: "student zone"
+    RelativeLayout:
+        id: non
+        opacity: 0
+        MDIcon:
+            id: ico
+            icon:"newspaper"
+            color: app.theme_cls.disabled_hint_text_color
+            font_size: dp(70)
+            pos_hint: {"center_x":.5, "center_y":.5}
+            halign: "center"
+        MDLabel:
+            id: lbl
+            text: "No News Update"
+            color: app.theme_cls.disabled_hint_text_color
+            halign: "center"
+            pos_hint: {"center_x":.5, "center_y":.4}
     MDBoxLayout:
         orientation: "vertical"
         md_bg_color: get_color_from_hex("#EEEEEE") if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
@@ -31,7 +47,6 @@
             id: rv
             effect_cls: ScrollEffect
             viewclass: "NewsCard"
-            data:[{"news": "kdfjkdjfkdjfdkjjfsd\ndkjfksdjfkjdkjfksdfjksjdkjkfjskjfkdj", "source": "https://www.gettyimages.com/gi-resources/images/500px/983794168.jpg"}, {"news": "kdfjkdjfkdjfdkjjfsd\ndkjfksdjfkjdkjfksdfjksjdkjkfjskjfkdj", "source": "assets/1.jpg"}, {"news": "kdfjkdjfkdjfdkjjfsd\ndkjfksdjfkjdkjfksdfjksjdkjkfjskjfkdj", "source": "assets/1.jpg"}, {"news": "kdfjkdjfkdjfdkjjfsd\ndkjfksdjfkjdkjfksdfjksjdkjkfjskjfkdj", "source": "assets/beauty.png"}]
             RecycleGridLayout:
                 id: holder
                 root: root.manager
@@ -43,3 +58,12 @@
                 spacing:dp(5)
                 padding: dp(5)
                 cols: 1
+    MDRelativeLayout:
+        id: progress_box
+        adaptive_height: True
+        pos_hint: {"center_y": .5}
+        AKSpinnerDoubleBounce:
+            id: progress
+            spinner_size: dp(50)
+            active: True
+            pos_hint: {"center_x": .5}

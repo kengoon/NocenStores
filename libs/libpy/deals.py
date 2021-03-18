@@ -17,6 +17,9 @@ class Deals(Screen):
         if self.update:
             self.get_data()
 
+    def enter_search(self):
+        self.manager.current = "search"
+
     def get_data(self):
         UrlRequest(
             url=f"{self.url}getAllDeals",
@@ -68,4 +71,4 @@ class Deals(Screen):
                     if i == 20:
                         break
                     self.ids.rv.data.append(self.data.pop(0))
-        Clock.schedule_once(continue_update, 5)
+        Clock.schedule_once(continue_update, 2)

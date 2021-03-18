@@ -36,7 +36,7 @@ class Category(Screen):
     def on_enter(self, *args):
         self.toast = True
         if eval(f"self.{self.exec_type}_tmp_data"):
-            exec(f"self.{self.exec_type}_data = self.{self.exec_type}_tmp_data")
+            exec(f"self.{self.exec_type}_data = self.{self.exec_type}_tmp_data.copy()")
             self.post_data()
             self.update = True
         else:
@@ -74,10 +74,11 @@ class Category(Screen):
             exec(f"self.{self.exec_type}_tmp_data = loads(data)")
             for _ in range(counter):
                 exec(f"self.{self.exec_type}_data.append(self.{self.exec_type}_tmp_data[_ - counter])")
+        else:
+            return
 
-        if not self.update:
-            self.post_data()
-            self.update = True
+        self.post_data()
+        self.update = True
 
     def post_data(self, data="not_empty"):
         self.toast = True
@@ -111,7 +112,7 @@ class Category(Screen):
         notify("server is being updated, will be fixed soon")
 
     def schedule_load(self):
-        Clock.schedule_once(self.check_update_data, 5)
+        Clock.schedule_once(self.check_update_data, 2)
 
     def check_update_data(self, *args):
         exec(f"self.{self.exec_type}_data = self.{self.exec_type}_data")

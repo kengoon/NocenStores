@@ -6,17 +6,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4cb93fcd-1f5d-4fef-8c90-3198d866ca2d" name="Default Changelist" comment="changed a lot">
-      <change afterPath="$PROJECT_DIR$/assets/ads/4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/sp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libkv/main/payment.kv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libpy/payment.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notification/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notification/android_notification.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notification/facade_notification.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notification/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/NocenStore.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/NocenStore.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/nocenstore-0.1-armeabi-v7a-debug.apk" beforeDir="false" afterPath="$PROJECT_DIR$/bin/nocenstore-0.1-armeabi-v7a-debug.apk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/m_cardloader.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes/m_cardloader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildozer.spec" beforeDir="false" afterPath="$PROJECT_DIR$/buildozer.spec" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/fitimage.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes/fitimage.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/kv_widget/widget.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/kv_widget/widget.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/init/credentials.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/init/credentials.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/main/cart.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/cart.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/main/cartcheckout.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/cartcheckout.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/main/customercare.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/customercare.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/main/deals.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/deals.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libkv/main/home.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/home.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/main/orders.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/orders.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/main/productlookout.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/productlookout.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/main/review.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/review.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/main/saveditem.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/saveditem.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/main/settings.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/settings.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/main/stundentinfo.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/stundentinfo.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libpy/categories.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/categories.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libpy/credentials.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/credentials.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libpy/deals.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/deals.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libpy/feeds.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/feeds.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libpy/home.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/home.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libpy/orders.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/orders.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libpy/productlookout.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/productlookout.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libpy/review.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/review.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libpy/saveditem.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/saveditem.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libpy/studentinfo.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/studentinfo.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/manager.kv" beforeDir="false" afterPath="$PROJECT_DIR$/manager.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/theme.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +53,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="XML Properties File" />
         <option value="Python Script" />
       </list>
     </option>
@@ -43,22 +70,23 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file:///usr/local/lib/python3.7/dist-packages/kivy/uix/button.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file:///usr/local/lib/python3.7/dist-packages/kivymd/uix/behaviors/touch_behavior.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file:///usr/local/lib/python3.7/dist-packages/kivymd/uix/button.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file:///usr/local/lib/python3.7/dist-packages/kivymd/uix/tooltip.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file:///usr/local/lib/python3.7/dist-packages/kivymd/__init__.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file:///usr/local/lib/python3.7/dist-packages/kivymd/uix/label.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file:///usr/local/lib/python3.7/dist-packages/kivymd/uix/textfield.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file:///usr/local/lib/python3.7/dist-packages/kivymd/uix/behaviors/touch_behavior.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file:///usr/local/lib/python3.7/dist-packages/kivymd/uix/button.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file:///usr/local/lib/python3.7/dist-packages/kivy/uix/button.py" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedIndex" value="1" />
+    <option name="selectedIndex" value="2" />
   </component>
   <component name="ProjectId" id="1ljyU9VpfmcGHt3yOxK1YgBxIXA" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
@@ -68,7 +96,7 @@
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="eu.ydp.idea.ts.spec.generator.settings.spec.template" value="import {$ClassName$} from '$TestsRelativePath$../src/$classRelativePath$/$ClassName$';&#10;&#10;describe('$ClassName$', () =&gt; {&#10;  let $ObjName$:$ClassName$;&#10;&#10;  beforeEach(() =&gt; {&#10;    $ObjName$ = new $ClassName$();&#10;  });&#10;&#10;  describe('', () =&gt; {&#10;    it('', () =&gt; {&#10;      // given&#10;&#10;      // when&#10;&#10;      // then&#10;    });&#10;  });&#10;});&#10;" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/res/values" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="ReaderModeSettings">
@@ -76,11 +104,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/res/values" />
       <recent name="$PROJECT_DIR$/assets" />
       <recent name="$PROJECT_DIR$/libs/libpy" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/classes" />
-      <recent name="$APPLICATION_CONFIG_DIR$/scratches" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -501,7 +529,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615806672726</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="changed a lot">
+      <created>1616051105587</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1616051105587</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

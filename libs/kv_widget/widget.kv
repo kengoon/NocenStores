@@ -315,8 +315,8 @@
             circle: False
     MDBoxLayout:
         orientation: "vertical"
-        padding: dp(20)
-        spacing: dp(10)
+        padding: dp(10)
+        spacing: dp(5)
         M_AKLabelLoader:
             text:
                 "" if not (root.price and root.product) else \
@@ -588,10 +588,11 @@
     elevation: 0 if app.theme_cls.theme_style == "Light" else 1
     radius: [dp(10)]
     news: ""
-    source:""
+    image_url:""
     news_app_url: ""
+    news_url:""
     on_release:
-        root.parent.roots.open_web()
+        root.parent.roots.open_web(self)
     MDBoxLayout:
         adaptive_height: True
         spacing: dp(10)
@@ -629,7 +630,7 @@
     MDRelativeLayout:
         M_FitImage:
             id: image
-            source: root.source
+            source: root.image_url
             radius: root.radius
             load_callback: lambda x: exec("loader.opacity = 0")
         M_AKImageLoader:
@@ -736,5 +737,64 @@
             MDIconButton:
                 icon: "plus-box"
 
+<LeftIconToolBar@MDCard>:
+    size_hint_y: None
+    icon: ""
+    title: ""
+    height: self.minimum_height
+    callback: None
+    orientation: "vertical"
+    padding: [dp(10), 0, dp(10), 0]
+    md_bg_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
 
+    MDBoxLayout:
+        size_hint: 1, None
+        height: app.theme_cls.standard_increment
+        spacing: dp(10)
+        MDIconButton:
+            icon: root.icon
+            pos_hint: {"center_y": .5}
+            on_release:
+                print(root.title)
+                root.callback()
 
+        MDLabel:
+            text: root.title + f"[color={get_hex_from_color(app.theme_cls.primary_color)}]•[/color]"
+            color: [1,1,1,1] if app.theme_cls.theme_style == "Dark" else [0,0,0,.7]
+            markup: True
+            font_style:"BigMoney"
+            bold: True
+            pos_hint:{"center_y": .5}
+
+<DoubleIconToolBar@MDCard>:
+    icon_right: ""
+    icon_left: ""
+    title: ""
+    icon_right_callback: None
+    icon_left_callback: None
+    size_hint_y: None
+    height: self.minimum_height
+    orientation: "vertical"
+    padding: [dp(10), 0, dp(10), 0]
+    md_bg_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
+
+    MDBoxLayout:
+        size_hint: 1, None
+        height: app.theme_cls.standard_increment
+        spacing: dp(10)
+        MDIconButton:
+            icon: root.icon_left
+            pos_hint: {"center_y": .5}
+            on_release: root.icon_left_callback()
+
+        MDLabel:
+            text: root.title + f"[color={get_hex_from_color(app.theme_cls.primary_color)}]•[/color]"
+            color: [1,1,1,1] if app.theme_cls.theme_style == "Dark" else [0,0,0,.7]
+            markup: True
+            font_style:"BigMoney"
+            bold: True
+            pos_hint:{"center_y": .5}
+        MDIconButton:
+            icon: root.icon_right
+            pos_hint: {"center_y": .5}
+            on_release: root.icon_right_callback()
