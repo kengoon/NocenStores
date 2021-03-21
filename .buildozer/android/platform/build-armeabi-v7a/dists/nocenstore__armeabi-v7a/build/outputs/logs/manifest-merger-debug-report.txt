@@ -1,0 +1,203 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:5:1-110:12
+INJECTED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:5:1-110:12
+INJECTED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:5:1-110:12
+MERGED from [com.android.support:appcompat-v7:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/729f815913d8ce974fdfe01f3f451293/appcompat-v7-28.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-fragment:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/30a0c3e3d9d58d6ddd714b5349387a51/support-fragment-28.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/51b0d4dba38ba0cc29ea1407d63a7444/animated-vector-drawable-28.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/6989e7318f89f00b083d8f791df249ad/support-core-ui-28.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/be65a7eb1f336b538f64fa061cff79ac/support-core-utils-28.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/35e7e09c6651cc55d02dc056bb0bd689/support-vector-drawable-28.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:loader:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/9559519c799e8c6a1a26107be5bac08b/loader-28.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:viewpager:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/78b24b6908283a56053faab7a8f1d0e4/viewpager-28.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:coordinatorlayout:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/a61bf17cad000c9f6c76e7c6f30da701/coordinatorlayout-28.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:drawerlayout:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/135584894c2c1481f0f0e6de45f5f285/drawerlayout-28.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:slidingpanelayout:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/700b3b2e029efa111937b325926cb809/slidingpanelayout-28.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:customview:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/a7b3d78e2d816b0cc9da520e2e325043/customview-28.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/937dbab0f2c9dfb48766e38fdca3b215/swiperefreshlayout-28.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/200bc58b9b1677f5c987edda1c64a0e7/asynclayoutinflater-28.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/37b86cf69f9f5dfc16b04753e7aae807/support-compat-28.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support:versionedparcelable:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/a71d508d1c6e00dc7a8db01f226aee86/versionedparcelable-28.0.0/AndroidManifest.xml:17:1-25:12
+MERGED from [com.android.support:cursoradapter:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/1ce8179c2d21d3cb0c38b5f6caed6292/cursoradapter-28.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:runtime:1.1.1] /home/kengo/.gradle/caches/transforms-2/files-2.1/aea0bce124cb9d96180a8cfabde17217/runtime-1.1.1/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:documentfile:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/4d9c7bc168d9c88cf71a0f5e0d582ca3/documentfile-28.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/26bbed4aefd1fe328f0a5705125b68ca/localbroadcastmanager-28.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:print:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/e687906c6d3476c06a6d405a7957cb06/print-28.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /home/kengo/.gradle/caches/transforms-2/files-2.1/e383af2694692fafeec59adf579268ab/viewmodel-1.1.1/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata:1.1.1] /home/kengo/.gradle/caches/transforms-2/files-2.1/14ba9e09e3bf9e00aacabc5fc7fec365/livedata-1.1.1/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] /home/kengo/.gradle/caches/transforms-2/files-2.1/ac39245ed4d41bbbeb9ed5cb0ac0aa55/livedata-core-1.1.1/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.1] /home/kengo/.gradle/caches/transforms-2/files-2.1/82c684dcdfe15d58eecce4f6973ca352/runtime-1.1.1/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:interpolator:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/88c66757b61df9498798a4b16028e55f/interpolator-28.0.0/AndroidManifest.xml:17:1-22:12
+INJECTED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:5:1-110:12
+INJECTED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:5:1-110:12
+	package
+		ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:6:7-50
+	android:versionName
+		ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:8:7-32
+		INJECTED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml
+		INJECTED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:5:11-69
+	android:versionCode
+		ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:7:7-33
+		INJECTED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml
+		INJECTED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml
+	android:installLocation
+		ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:9:7-37
+supports-screens
+ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:11:5-19:7
+	android:largeScreens
+		ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:14:13-40
+	android:smallScreens
+		ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:12:13-40
+	android:normalScreens
+		ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:13:13-41
+	android:xlargeScreens
+		ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:17:13-41
+	android:anyDensity
+		ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:15:13-38
+uses-sdk
+ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:22:5-74
+INJECTED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:22:5-74
+INJECTED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:22:5-74
+MERGED from [com.android.support:appcompat-v7:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/729f815913d8ce974fdfe01f3f451293/appcompat-v7-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/729f815913d8ce974fdfe01f3f451293/appcompat-v7-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/30a0c3e3d9d58d6ddd714b5349387a51/support-fragment-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/30a0c3e3d9d58d6ddd714b5349387a51/support-fragment-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/51b0d4dba38ba0cc29ea1407d63a7444/animated-vector-drawable-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/51b0d4dba38ba0cc29ea1407d63a7444/animated-vector-drawable-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/6989e7318f89f00b083d8f791df249ad/support-core-ui-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/6989e7318f89f00b083d8f791df249ad/support-core-ui-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/be65a7eb1f336b538f64fa061cff79ac/support-core-utils-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/be65a7eb1f336b538f64fa061cff79ac/support-core-utils-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/35e7e09c6651cc55d02dc056bb0bd689/support-vector-drawable-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/35e7e09c6651cc55d02dc056bb0bd689/support-vector-drawable-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:loader:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/9559519c799e8c6a1a26107be5bac08b/loader-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:loader:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/9559519c799e8c6a1a26107be5bac08b/loader-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:viewpager:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/78b24b6908283a56053faab7a8f1d0e4/viewpager-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:viewpager:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/78b24b6908283a56053faab7a8f1d0e4/viewpager-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:coordinatorlayout:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/a61bf17cad000c9f6c76e7c6f30da701/coordinatorlayout-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:coordinatorlayout:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/a61bf17cad000c9f6c76e7c6f30da701/coordinatorlayout-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:drawerlayout:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/135584894c2c1481f0f0e6de45f5f285/drawerlayout-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:drawerlayout:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/135584894c2c1481f0f0e6de45f5f285/drawerlayout-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:slidingpanelayout:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/700b3b2e029efa111937b325926cb809/slidingpanelayout-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:slidingpanelayout:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/700b3b2e029efa111937b325926cb809/slidingpanelayout-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customview:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/a7b3d78e2d816b0cc9da520e2e325043/customview-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customview:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/a7b3d78e2d816b0cc9da520e2e325043/customview-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/937dbab0f2c9dfb48766e38fdca3b215/swiperefreshlayout-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/937dbab0f2c9dfb48766e38fdca3b215/swiperefreshlayout-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/200bc58b9b1677f5c987edda1c64a0e7/asynclayoutinflater-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/200bc58b9b1677f5c987edda1c64a0e7/asynclayoutinflater-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/37b86cf69f9f5dfc16b04753e7aae807/support-compat-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/37b86cf69f9f5dfc16b04753e7aae807/support-compat-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:versionedparcelable:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/a71d508d1c6e00dc7a8db01f226aee86/versionedparcelable-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:versionedparcelable:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/a71d508d1c6e00dc7a8db01f226aee86/versionedparcelable-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cursoradapter:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/1ce8179c2d21d3cb0c38b5f6caed6292/cursoradapter-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cursoradapter:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/1ce8179c2d21d3cb0c38b5f6caed6292/cursoradapter-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.1] /home/kengo/.gradle/caches/transforms-2/files-2.1/aea0bce124cb9d96180a8cfabde17217/runtime-1.1.1/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.1] /home/kengo/.gradle/caches/transforms-2/files-2.1/aea0bce124cb9d96180a8cfabde17217/runtime-1.1.1/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:documentfile:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/4d9c7bc168d9c88cf71a0f5e0d582ca3/documentfile-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:documentfile:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/4d9c7bc168d9c88cf71a0f5e0d582ca3/documentfile-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/26bbed4aefd1fe328f0a5705125b68ca/localbroadcastmanager-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/26bbed4aefd1fe328f0a5705125b68ca/localbroadcastmanager-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:print:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/e687906c6d3476c06a6d405a7957cb06/print-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:print:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/e687906c6d3476c06a6d405a7957cb06/print-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /home/kengo/.gradle/caches/transforms-2/files-2.1/e383af2694692fafeec59adf579268ab/viewmodel-1.1.1/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /home/kengo/.gradle/caches/transforms-2/files-2.1/e383af2694692fafeec59adf579268ab/viewmodel-1.1.1/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata:1.1.1] /home/kengo/.gradle/caches/transforms-2/files-2.1/14ba9e09e3bf9e00aacabc5fc7fec365/livedata-1.1.1/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata:1.1.1] /home/kengo/.gradle/caches/transforms-2/files-2.1/14ba9e09e3bf9e00aacabc5fc7fec365/livedata-1.1.1/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] /home/kengo/.gradle/caches/transforms-2/files-2.1/ac39245ed4d41bbbeb9ed5cb0ac0aa55/livedata-core-1.1.1/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] /home/kengo/.gradle/caches/transforms-2/files-2.1/ac39245ed4d41bbbeb9ed5cb0ac0aa55/livedata-core-1.1.1/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] /home/kengo/.gradle/caches/transforms-2/files-2.1/82c684dcdfe15d58eecce4f6973ca352/runtime-1.1.1/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] /home/kengo/.gradle/caches/transforms-2/files-2.1/82c684dcdfe15d58eecce4f6973ca352/runtime-1.1.1/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:interpolator:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/88c66757b61df9498798a4b16028e55f/interpolator-28.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:interpolator:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/88c66757b61df9498798a4b16028e55f/interpolator-28.0.0/AndroidManifest.xml:20:5-44
+INJECTED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:22:5-74
+INJECTED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:22:5-74
+	android:targetSdkVersion
+		ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:22:42-71
+		INJECTED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml
+		INJECTED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:22:15-41
+		INJECTED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml
+		INJECTED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml
+uses-feature#0x00020000
+ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:25:5-54
+	android:glEsVersion
+		ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:25:19-51
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:28:5-81
+	android:name
+		ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:28:22-78
+uses-permission#android.permission.INTERNET
+ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:31:5-67
+	android:name
+		ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:31:22-64
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:35:5-80
+	android:name
+		ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:35:22-77
+uses-permission#android.permission.CALL_PHONE
+ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:43:5-69
+	android:name
+		ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:43:22-66
+uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
+ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:47:5-81
+	android:name
+		ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:47:22-78
+application
+ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:67:5-108:19
+MERGED from [com.android.support:support-compat:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/37b86cf69f9f5dfc16b04753e7aae807/support-compat-28.0.0/AndroidManifest.xml:22:5-94
+MERGED from [com.android.support:support-compat:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/37b86cf69f9f5dfc16b04753e7aae807/support-compat-28.0.0/AndroidManifest.xml:22:5-94
+MERGED from [com.android.support:versionedparcelable:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/a71d508d1c6e00dc7a8db01f226aee86/versionedparcelable-28.0.0/AndroidManifest.xml:22:5-23:19
+MERGED from [com.android.support:versionedparcelable:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/a71d508d1c6e00dc7a8db01f226aee86/versionedparcelable-28.0.0/AndroidManifest.xml:22:5-23:19
+	android:appComponentFactory
+		ADDED from [com.android.support:support-compat:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/37b86cf69f9f5dfc16b04753e7aae807/support-compat-28.0.0/AndroidManifest.xml:22:18-91
+	android:label
+		ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:67:18-50
+	android:hardwareAccelerated
+		ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:74:18-52
+	android:debuggable
+		ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:68:18-43
+	android:icon
+		ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:69:18-58
+	android:allowBackup
+		ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:70:18-44
+	android:theme
+		ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:73:18-59
+meta-data#wakelock
+ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:79:9-63
+	android:value
+		ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:79:44-61
+	android:name
+		ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:79:20-43
+activity#org.kivy.android.PythonActivity
+ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:81:9-95:24
+	android:screenOrientation
+		ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:84:19-55
+	android:label
+		ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:82:19-51
+	android:launchMode
+		ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:86:19-50
+	android:configChanges
+		ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:83:19-199
+	android:name
+		ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:81:19-65
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:91:13-94:29
+action#android.intent.action.MAIN
+ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:92:17-69
+	android:name
+		ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:92:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:93:17-77
+	android:name
+		ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:93:27-74
+service#org.mindset.nocenstore.nocenstore.ServiceNotification
+ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:101:9-102:60
+	android:process
+		ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:102:18-57
+	android:name
+		ADDED from /home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:101:18-86

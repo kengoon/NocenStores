@@ -1,0 +1,122 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<!--
+3 Replace org.libsdl.app with the identifier of your game below, e.g.
+4     com.gamemaker.game
+5-->
+6<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+7    package="org.mindset.nocenstore.nocenstore"
+8    android:installLocation="auto"
+9    android:versionCode="7212"
+10    android:versionName="0.2" > <!-- Android 2.3.3 -->
+11    <uses-sdk
+11-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:22:5-74
+12        android:minSdkVersion="21"
+12-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:22:15-41
+13        android:targetSdkVersion="30" />
+13-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:22:42-71
+14
+15    <supports-screens
+15-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:11:5-19:7
+16        android:anyDensity="true"
+16-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:15:13-38
+17        android:largeScreens="true"
+17-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:14:13-40
+18        android:normalScreens="true"
+18-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:13:13-41
+19        android:smallScreens="true"
+19-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:12:13-40
+20        android:xlargeScreens="true" />
+20-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:17:13-41
+21
+22    <!-- OpenGL ES 2.0 -->
+23    <uses-feature android:glEsVersion="0x00020000" />
+23-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:25:5-54
+23-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:25:19-51
+24
+25    <!-- Allow writing to external storage -->
+26    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+26-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:28:5-81
+26-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:28:22-78
+27    <uses-permission android:name="android.permission.INTERNET" />
+27-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:31:5-67
+27-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:31:22-64
+28    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+28-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:35:5-80
+28-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:35:22-77
+29    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+29-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:28:5-81
+29-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:28:22-78
+30    <uses-permission android:name="android.permission.CALL_PHONE" />
+30-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:43:5-69
+30-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:43:22-66
+31    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+31-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:47:5-81
+31-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:47:22-78
+32
+33    <!--
+34     Create a Java class extending SDLActivity and place it in a
+35         directory under src matching the package, e.g.
+36         	src/com/gamemaker/game/MyGame.java
+37
+38         then replace "SDLActivity" with the name of your class (e.g. "MyGame")
+39         in the XML below.
+40
+41         An example Java class can be found in README-android.txt
+42    -->
+43    <application
+43-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:67:5-108:19
+44        android:allowBackup="true"
+44-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:70:18-44
+45        android:appComponentFactory="android.support.v4.app.CoreComponentFactory"
+45-->[com.android.support:support-compat:28.0.0] /home/kengo/.gradle/caches/transforms-2/files-2.1/37b86cf69f9f5dfc16b04753e7aae807/support-compat-28.0.0/AndroidManifest.xml:22:18-91
+46        android:debuggable="true"
+46-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:68:18-43
+47        android:hardwareAccelerated="true"
+47-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:74:18-52
+48        android:icon="@mipmap/ic_launcher_round"
+48-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:69:18-58
+49        android:label="@string/app_name"
+49-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:67:18-50
+50        android:testOnly="true"
+51        android:theme="@style/AppFullScreenTheme" >
+51-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:73:18-59
+52        <meta-data
+52-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:79:9-63
+53            android:name="wakelock"
+53-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:79:20-43
+54            android:value="0" />
+54-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:79:44-61
+55
+56        <activity
+56-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:81:9-95:24
+57            android:name="org.kivy.android.PythonActivity"
+57-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:81:19-65
+58            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale|uiMode|uiMode|screenSize|smallestScreenSize|layoutDirection"
+58-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:83:19-199
+59            android:label="@string/app_name"
+59-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:82:19-51
+60            android:launchMode="singleTask"
+60-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:86:19-50
+61            android:screenOrientation="portrait" >
+61-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:84:19-55
+62            <intent-filter>
+62-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:91:13-94:29
+63                <action android:name="android.intent.action.MAIN" />
+63-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:92:17-69
+63-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:92:25-66
+64
+65                <category android:name="android.intent.category.LAUNCHER" />
+65-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:93:17-77
+65-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:93:27-74
+66            </intent-filter>
+67        </activity>
+68
+69        <service
+69-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:101:9-102:60
+70            android:name="org.mindset.nocenstore.nocenstore.ServiceNotification"
+70-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:101:18-86
+71            android:process=":service_Notification" />
+71-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:102:18-57
+72    </application>
+73
+74</manifest>
