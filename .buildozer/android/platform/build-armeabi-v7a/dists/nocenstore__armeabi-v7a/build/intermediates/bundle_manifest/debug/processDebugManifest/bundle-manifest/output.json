@@ -1,0 +1,1 @@
+[{"outputType":{"type":"BUNDLE_MANIFEST"},"apkData":{"type":"MAIN","splits":[],"versionCode":7212,"versionName":"0.2","enabled":true,"outputFile":"nocenstore__armeabi-v7a-debug.apk","fullName":"debug","baseName":"debug"},"path":"AndroidManifest.xml","properties":{"packageId":"org.mindset.nocenstore.nocenstore","split":"","minSdkVersion":"21"}}]

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NocenStore</string>
+    <string name="private_version">07dfce0c6f519197a2257391320953452dc7446c</string>
+    <string name="presplash_color">#FFFFFF</string>
+    <string name="urlScheme">kivy</string>
+</resources>

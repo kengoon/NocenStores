@@ -1,0 +1,7 @@
+#Sun Mar 21 23:33:01 WAT 2021
+base.1=/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/build/intermediates/dex/debug/mergeProjectDexDebug/out/classes.dex
+path.1=classes.dex
+base.0=/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/build/intermediates/dex/debug/mergeExtDexDebug/out/classes.dex
+renamed.1=classes2.dex
+renamed.0=classes.dex
+path.0=classes.dex

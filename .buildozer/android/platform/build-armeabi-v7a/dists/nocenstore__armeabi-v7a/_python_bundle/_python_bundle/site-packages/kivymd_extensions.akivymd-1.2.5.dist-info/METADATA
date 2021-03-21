@@ -1,0 +1,153 @@
+Metadata-Version: 2.1
+Name: kivymd-extensions.akivymd
+Version: 1.2.5
+Summary: A set of fancy widgets for KivyMD
+Home-page: https://github.com/kivymd-extensions/akivymd
+Author: quitegreensky, KivyMD Team and other contributors
+Author-email: quitegreensky@gmail.com
+License: MIT
+Project-URL: Tracker, https://github.com/kivymd-extensions/akivymd/issues
+Keywords: kivymd_extensions,kivymd,kivy,material,ui
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Operating System :: OS Independent
+Classifier: Operating System :: Android
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: POSIX :: BSD :: FreeBSD
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: iOS
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Environment :: MacOS X
+Classifier: Environment :: Win32 (MS Windows)
+Classifier: Environment :: X11 Applications
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Software Development :: User Interfaces
+Classifier: Topic :: Scientific/Engineering :: Human Machine Interfaces
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown; charset=UTF-8
+Requires-Dist: kivymd (>=0.104.1)
+Requires-Dist: kivy (>=1.11.1)
+Provides-Extra: dev
+Requires-Dist: pre-commit ; extra == 'dev'
+Requires-Dist: black ; extra == 'dev'
+Requires-Dist: isort[pyproject] ; extra == 'dev'
+Requires-Dist: flake8 ; extra == 'dev'
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: pytest-cov ; extra == 'dev'
+Requires-Dist: pytest-asyncio ; extra == 'dev'
+Requires-Dist: pytest-timeout ; extra == 'dev'
+Requires-Dist: coveralls ; extra == 'dev'
+Provides-Extra: docs
+Requires-Dist: sphinx ; extra == 'docs'
+Requires-Dist: sphinx-autoapi (==1.4.0) ; extra == 'docs'
+Requires-Dist: sphinx-rtd-theme ; extra == 'docs'
+
+# Awesome KivyMD
+
+Awesome KivyMD is a package containing customized and non-material widgets for KivyMD.
+
+<p align="center">
+    <img align="center" width="512" src="https://raw.githubusercontent.com/quitegreensky/akivymd/master/images/preview.gif"/>
+</p>
+
+## Installation
+
+```bash
+pip install kivymd_extensions.akivymd
+
+#or 
+
+pip install https://github.com/kivymd-extensions/akivymd/archive/main.zip
+```
+
+## Usage with Buildozer
+
+```bash
+requirements = https://github.com/kivymd-extensions/akivymd/archive/main.zip
+```
+
+### Dependencies:
+
+- [KivyMD](https://github.com/kivymd/KivyMD) >= 0.104.2 (from master branch)
+- [Kivy](https://github.com/kivy/kivy) >= 1.11.1 ([Installation](https://kivy.org/doc/stable/gettingstarted/installation.html))
+- [Python 3.6+](https://www.python.org/)
+
+## Documentation
+
+### Usage
+
+```python
+from kivy.lang import Builder
+
+from kivymd.app import MDApp
+import kivymd_extensions.akivymd
+
+KV = """
+<NavigationButton@Button_Item>
+    icon_color: app.theme_cls.text_color
+    text_color: app.theme_cls.text_color
+    button_bg_color: app.theme_cls.primary_color
+    mode: 'color_on_active'
+    badge_disabled: True
+
+
+MDScreen:
+
+    AKBottomNavigation2:
+        bg_color: app.theme_cls.bg_darkest
+
+        NavigationButton:
+            text: 'Alert'
+            icon: 'bell-outline'
+
+        NavigationButton:
+            text: 'Bank'
+            icon: 'bank-outline'
+
+        NavigationButton:
+            text: 'Download'
+            icon: 'arrow-down-bold-outline'
+"""
+
+
+class Test(MDApp):
+    def build(self):
+        return Builder.load_string(KV)
+
+
+Test().run()
+```
+
+## Examples
+
+```bash
+git clone https://github.com/kivymd-extensions/akivymd.git
+cd akivymd
+cd examples/full_example
+python main.py
+```
+
+## Support
+
+If you need assistance or you have a question, you can ask for help on our mailing list:
+
+- **Discord server:** https://discord.gg/wu3qBST
+- _Email:_ kivydevelopment@gmail.com
+
+## License
+
+[MIT License](LICENSE)
+
+
