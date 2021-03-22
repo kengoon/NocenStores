@@ -129,7 +129,7 @@ android.accept_sdk_license = True
 #android.entrypoint = org.renpy.android.PythonActivity
 
 # (str) Android app theme, default is ok for Kivy-based app
-android.apptheme = "@android:style/AppFullScreenTheme"
+android.apptheme = "@style/AppFullScreenTheme"
 
 # (list) Pattern to whitelist for the whole project
 #android.whitelist =

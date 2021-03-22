@@ -37,6 +37,7 @@ import org.libsdl.app.SDLActivity;
 
 import org.kivy.android.launcher.Project;
 
+import org.mindset.nocenstore.nocenstore.R;
 import org.renpy.android.ResourceManager;
 
 

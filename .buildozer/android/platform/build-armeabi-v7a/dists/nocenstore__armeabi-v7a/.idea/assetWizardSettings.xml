@@ -81,8 +81,8 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="$USER_HOME$/Documents/old_nocenstore_apks/0.1/assets/n_cheap.png" />
-                                                <entry key="scalingPercent" value="107" />
+                                                <entry key="imagePath" value="$USER_HOME$/Pictures/logons2.png" />
+                                                <entry key="scalingPercent" value="127" />
                                                 <entry key="trimmed" value="true" />
                                               </map>
                                             </option>
@@ -293,7 +293,26 @@
         </entry>
         <entry key="vectorWizard">
           <value>
-            <PersistentState />
+            <PersistentState>
+              <option name="children">
+                <map>
+                  <entry key="vectorAssetStep">
+                    <value>
+                      <PersistentState>
+                        <option name="values">
+                          <map>
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="autoMirrored" value="true" />
+                            <entry key="outputName" value="ic_n_cheap" />
+                            <entry key="sourceFile" value="$USER_HOME$/Pictures/n_cheap.svg" />
+                          </map>
+                        </option>
+                      </PersistentState>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </PersistentState>
           </value>
         </entry>
       </map>

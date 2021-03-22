@@ -12,6 +12,10 @@
         "source": "/home/kengo/.gradle/caches/transforms-2/files-2.1/729f815913d8ce974fdfe01f3f451293/appcompat-v7-28.0.0/res/drawable-xhdpi-v4/abc_scrubber_control_to_pressed_mtrl_005.png"
     },
     {
+        "merged": "/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/build/intermediates/res/merged/debug/drawable_ic_n_cheap.xml.flat",
+        "source": "/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/res/drawable/ic_n_cheap.xml"
+    },
+    {
         "merged": "/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/build/intermediates/res/merged/debug/drawable-hdpi-v4_abc_list_selector_disabled_holo_dark.9.png.flat",
         "source": "/home/kengo/.gradle/caches/transforms-2/files-2.1/729f815913d8ce974fdfe01f3f451293/appcompat-v7-28.0.0/res/drawable-hdpi-v4/abc_list_selector_disabled_holo_dark.9.png"
     },
