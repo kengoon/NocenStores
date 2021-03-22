@@ -77,46 +77,45 @@
 48-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:69:18-58
 49        android:label="@string/app_name"
 49-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:67:18-50
-50        android:testOnly="true"
-51        android:theme="@style/AppFullScreenTheme" >
-51-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:73:18-59
-52        <meta-data
-52-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:79:9-63
-53            android:name="wakelock"
-53-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:79:20-43
-54            android:value="0" />
-54-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:79:44-61
-55
-56        <activity
-56-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:81:9-95:24
-57            android:name="org.kivy.android.PythonActivity"
-57-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:81:19-65
-58            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale|uiMode|uiMode|screenSize|smallestScreenSize|layoutDirection"
-58-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:83:19-199
-59            android:label="@string/app_name"
-59-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:82:19-51
-60            android:launchMode="singleTask"
-60-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:86:19-50
-61            android:screenOrientation="portrait" >
-61-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:84:19-55
-62            <intent-filter>
-62-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:91:13-94:29
-63                <action android:name="android.intent.action.MAIN" />
-63-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:92:17-69
-63-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:92:25-66
-64
-65                <category android:name="android.intent.category.LAUNCHER" />
-65-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:93:17-77
-65-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:93:27-74
-66            </intent-filter>
-67        </activity>
-68
-69        <service
-69-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:101:9-102:60
-70            android:name="org.mindset.nocenstore.nocenstore.ServiceNotification"
-70-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:101:18-86
-71            android:process=":service_Notification" />
-71-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:102:18-57
-72    </application>
-73
-74</manifest>
+50        android:theme="@style/AppFullScreenTheme" >
+50-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:73:18-59
+51        <meta-data
+51-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:79:9-63
+52            android:name="wakelock"
+52-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:79:20-43
+53            android:value="0" />
+53-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:79:44-61
+54
+55        <activity
+55-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:81:9-95:24
+56            android:name="org.kivy.android.PythonActivity"
+56-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:81:19-65
+57            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale|uiMode|uiMode|screenSize|smallestScreenSize|layoutDirection"
+57-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:83:19-199
+58            android:label="@string/app_name"
+58-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:82:19-51
+59            android:launchMode="singleTask"
+59-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:86:19-50
+60            android:screenOrientation="portrait" >
+60-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:84:19-55
+61            <intent-filter>
+61-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:91:13-94:29
+62                <action android:name="android.intent.action.MAIN" />
+62-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:92:17-69
+62-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:92:25-66
+63
+64                <category android:name="android.intent.category.LAUNCHER" />
+64-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:93:17-77
+64-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:93:27-74
+65            </intent-filter>
+66        </activity>
+67
+68        <service
+68-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:101:9-102:60
+69            android:name="org.mindset.nocenstore.nocenstore.ServiceNotification"
+69-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:101:18-86
+70            android:process=":service_Notification" />
+70-->/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml:102:18-57
+71    </application>
+72
+73</manifest>

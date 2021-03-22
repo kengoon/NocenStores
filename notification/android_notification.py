@@ -27,7 +27,7 @@ Context = autoclass('android.content.Context')
 NotificationBuilder = autoclass('android.app.Notification$Builder')
 NotificationManager = autoclass('android.app.NotificationManager')
 Drawable = autoclass("{}.R$drawable".format(activity.getPackageName()))
-color = autoclass("{}.R$color".format(activity.getPackageName()))
+Color = autoclass("{}.R$color".format(activity.getPackageName()))
 PendingIntent = autoclass('android.app.PendingIntent')
 Intent = autoclass('android.content.Intent')
 Toast = autoclass('android.widget.Toast')
@@ -98,10 +98,9 @@ class AndroidNotification(Notification):
 
         .. versionadded:: 1.4.0
         '''
-        app_icon = Drawable.icon
+        app_icon = Drawable.ic_n_cheap
         notification.setSmallIcon(app_icon)
-        notification.setColor(python_act.getResources().getColor(color.notification_color))
-        print("set me yesss")
+        notification.setColor(activity.getResources().getColor(Color.green))
 
         bitmap_icon = app_icon
         if icon is not None:

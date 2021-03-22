@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="src/main/res/drawable/ic_launcher_background.xml" value="0.12604166666666666" />
+        <entry key="src/main/res/drawable/ic_n_cheap.xml" value="0.12604166666666666" />
         <entry key="src/main/res/layout/chooser_item.xml" value="0.24270833333333333" />
         <entry key="src/main/res/layout/main.xml" value="0.18" />
         <entry key="src/main/res/layout/project_chooser.xml" value="0.24270833333333333" />
