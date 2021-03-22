@@ -153,13 +153,13 @@ class NocenStore(MDApp):
         Thread(target=self.initialize_connection).start()
 
     def initialize_connection(self):
-        sleep(2)
+        sleep(1)
 
-        def animate_label(*args):
-            Animation(pos_hint={"center_x": .5}).start(self.root.ids.init.ids.logo)
-            Animation(pos_hint={"center_x": .5}).start(self.root.ids.init.ids.des)
-
-        Clock.schedule_once(animate_label)
+        # def animate_label(*args):
+        #     Animation(pos_hint={"center_x": .5}).start(self.root.ids.init.ids.logo)
+        #     Animation(pos_hint={"center_x": .5}).start(self.root.ids.init.ids.des)
+        #
+        # Clock.schedule_once(animate_label)
         self.root.screens[0].ids.spinner.active = True
         if self.firebase:
             try:
