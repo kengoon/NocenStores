@@ -92,7 +92,7 @@ class Category(Screen):
         for index, _ in enumerate(range(length_data)):
             if index == 20:
                 break
-            self.ids.rv.data.append(eval(f"self.{self.exec_type}_data.pop(0)"))
+            self.ids.rv.data.insert(0, eval(f"self.{self.exec_type}_data.pop(0)"))
 
     def check_network(self, instance, data):
         self.get_data()

@@ -1,22 +1,107 @@
 <CartCheckOut>
     name: "checkout"
-    RelativeLayout:
-        opacity: 1 if not rv.data else 0
-        MDIcon:
-            icon:"cart-variant"
-            color: app.theme_cls.disabled_hint_text_color
-            font_size: dp(70)
-            pos_hint: {"center_x":.5, "center_y":.5}
-            halign: "center"
-        MDLabel:
-            text: "You have not added any product yet"
-            color: app.theme_cls.disabled_hint_text_color
-            halign: "center"
-            pos_hint: {"center_x":.5, "center_y":.4}
     BoxLayout:
         orientation: "vertical"
-        DoubleIconToolBar:
-            icon_left: "arrow_left"
-            icon_right: "magnify"
+        LeftIconToolBar:
+            icon: "arrow-left"
             title: "CheckOut"
-            icon_left_callback: root.go_home
+            callback: root.go_back
+        ScrollView:
+            effect_cls: ScrollEffect
+            do_scroll_x: False
+            MDList:
+                MDList:
+                    padding: dp(15)
+                    spacing: dp(20)
+                    M_CardTextField:
+                        id: location
+                        elevation: 10
+                        hint_text: "select location"
+                        icon_left: "google-maps"
+                        text_field_disabled: True
+                        icon_left_color: app.theme_cls.primary_color
+                        foreground_color: [0, 0, 0, 0.8] if app.theme_cls.theme_style == "Light" else [1,1,1,1]
+                        cursor_color: [0, 0, 0, .7] if app.theme_cls.theme_style == "Light" else [1,1,1,1]
+                        md_bg_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
+                        background_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
+                        disabled_foreground_color: [0.5, 0.5, 0.5, 1.0]
+                        on_release: root.menu.open()
+                        on_text:
+                            btn.disabled = False
+                            btn.opacity = 1
+                    M_CardTextField:
+                        id: email
+                        grow: False
+                        elevation: 10
+                        hint_text: "current email address:"
+                        icon_left: "email"
+                        text: app.firebase["email"] if app.firebase else ""
+                        icon_left_color: app.theme_cls.primary_color
+                        foreground_color: [0, 0, 0, 0.8] if app.theme_cls.theme_style == "Light" else [1,1,1,1]
+                        cursor_color: [0, 0, 0, .7] if app.theme_cls.theme_style == "Light" else [1,1,1,1]
+                        md_bg_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
+                        background_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
+                        disabled_foreground_color: [0.5, 0.5, 0.5, 1.0]
+                    M_CardTextField:
+                        id: phone
+                        grow: False
+                        elevation: 10
+                        hint_text: "current phone number:"
+                        icon_left: "phone"
+                        text: app.firebase["phone"] if app.firebase else ""
+                        icon_left_color: app.theme_cls.primary_color
+                        foreground_color: [0, 0, 0, 0.8] if app.theme_cls.theme_style == "Light" else [1,1,1,1]
+                        cursor_color: [0, 0, 0, .7] if app.theme_cls.theme_style == "Light" else [1,1,1,1]
+                        md_bg_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
+                        background_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
+                        disabled_foreground_color: [0.5, 0.5, 0.5, 1.0]
+
+        MDBoxLayout:
+            adaptive_height: True
+            padding: dp(7)
+            MDCard:
+                orientation: "vertical"
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: dp(30)
+                radius: [dp(5)]
+                ProtoLabel:
+                    id: fee
+                    left_text: "shipping fee:"
+                    right_text: "₦0"
+                ProtoLabel:
+                    id: total
+                    left_text: "total"
+                MDBoxLayout
+                    padding: [dp(30), dp(20), dp(30), dp(20)]
+                    MDLabel
+                        text: "Note: Shipping Fee is non refundable in case of a return"
+                        color: 0,0,0,.5
+                MDBoxLayout
+                    id: btn
+                    adaptive_height: True
+                    padding: dp(7)
+                    disabled: True
+                    opacity: .5
+                    MDCard:
+                        size_hint_y: None
+                        height: self.minimum_height
+                        md_bg_color: app.theme_cls.primary_color
+                        radius: [dp(5)]
+                        on_release:
+                            root.manager.prev_screen.append(root.name)
+                            root.manager.current = "payment"
+                            app.current_email = email.text
+                            app.current_phone = phone.text
+                            app.current_location = location.text
+                        MDIconButton:
+                            icon: "check"
+                            opacity: 1
+                            theme_text_color: "Custom"
+                            text_color: 1,1,1,1
+                        MDLabel:
+                            halign: "center"
+                            pos_hint: {"center_x": .5}
+                            text: "Proceed To Purchases"
+                            font_style: "Button"
+                            color: 1,1,1,1

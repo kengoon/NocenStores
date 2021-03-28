@@ -3,6 +3,7 @@ from classes.notification import notify
 from kivy.network.urlrequest import UrlRequest
 from kivy.uix.screenmanager import Screen
 from kivymd.app import MDApp
+from plyer import call
 
 
 class ProductLookOut(Screen):
@@ -15,8 +16,13 @@ class ProductLookOut(Screen):
     def go_back(self):
         self.manager.current = "category"
 
+    @staticmethod
+    def call_customer_care():
+        call.makecall("08129330697")
+
     def enter_cart(self):
         self.app.current = self.name
+        self.manager.prev_screen.append(self.name)
         self.manager.current = "cart"
 
     def on_leave(self, *args):
@@ -42,7 +48,7 @@ class ProductLookOut(Screen):
     def post_data(self, instance, data):
         new_data = loads(data)
         self._tmp_data = new_data.copy()
-        self.ids.product_price.text = f"₦{new_data['price']}"
+        self.ids.product_price.text = f"₦{float(new_data['price']) + 5/100 * float(new_data['price']):,}"
         self.ids.description.text = new_data["description"].split("size(")[0]
         for i in range(1, 4):
             self.ids[f"image{i}"].source = new_data[str(i)]
@@ -137,12 +143,11 @@ class ProductLookOut(Screen):
             "count": 1,
             "base_price": self.ids.product_price.text.translate({ord(i): None for i in "₦,"})
         }
-        a = list(filter(lambda product: self.ids.product_name.text in product["product"] and
-                        len(self.ids.product_name.text) == len(product["product"]),
+        a = list(filter(lambda product: self.ids.product_name.text == product["product"],
                         self.manager.ids.cart.ids.rv.data))
         if a:
             cart["count"] = a[0]["count"]
-            top_up = f'₦{int(a[0]["price"].translate({ord(i): None for i in "₦,"})) + int(cart["price"].translate({ord(i): None for i in "₦,"})):,}'
+            top_up = f'₦{float(a[0]["price"].translate({ord(i): None for i in "₦,"})) + float(cart["price"].translate({ord(i): None for i in "₦,"})):,}'
             cart["price"] = a[0]["price"]
             index = self.manager.ids.cart.ids.rv.data.index(cart)
             cart["count"] += 1
@@ -155,9 +160,8 @@ class ProductLookOut(Screen):
         self.ids.save.dispatch("on_release") if self.ids.save.icon == "heart-outline" else None
         cart_data = self.manager.ids.cart.ids.rv.data
         cart_total = sum(
-            int(cart_data[i]["price"].translate({ord(i): None for i in "₦,"}))
-            for i, _ in enumerate(cart_data)
+            float(cart_data[i]["price"].translate({ord(i): None for i in "₦,"})) for
+            i, _ in enumerate(cart_data)
         )
         self.manager.ids.cart.ids.total.text = f"₦{cart_total:,}"
-        print(cart_total)
 

@@ -1,6 +1,6 @@
 import os
 from functools import partial
-from json import dumps, loads
+from json import dumps, loads, decoder
 from os.path import exists
 from shutil import rmtree
 from threading import Thread
@@ -68,6 +68,11 @@ class NocenStore(MDApp):
             rmtree("assets/compressed")
         change_statusbar_color(self.theme_cls.primary_color)
         Window.bind(on_keyboard=self.on_back_button)
+        self.data_product = []
+        self.current_email = ""
+        self.current_phone = ""
+        self.total_payment = ""
+        self.current_location = ""
         self.dialog = None
         self.service = None
         self.on_service = None
@@ -154,12 +159,6 @@ class NocenStore(MDApp):
 
     def initialize_connection(self):
         sleep(1)
-
-        # def animate_label(*args):
-        #     Animation(pos_hint={"center_x": .5}).start(self.root.ids.init.ids.logo)
-        #     Animation(pos_hint={"center_x": .5}).start(self.root.ids.init.ids.des)
-        #
-        # Clock.schedule_once(animate_label)
         self.root.screens[0].ids.spinner.active = True
         if self.firebase:
             try:
@@ -173,6 +172,9 @@ class NocenStore(MDApp):
             except requests.exceptions.RequestException:
                 self.login = True
                 print(self.login)
+            except decoder.JSONDecodeError:
+                os.remove("token.json")
+                self.login = False
         Builder.load_file("libs/kv_widget/widget.kv")
         Builder.load_file("libs/libkv/init/credentials.kv")
         Builder.load_file("libs/manager.kv")

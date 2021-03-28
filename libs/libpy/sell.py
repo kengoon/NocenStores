@@ -58,7 +58,7 @@ class Sell(Screen):
                 notify("please select an image file")
                 return None
 
-        filechooser.open_file(preview=True, filters=["*.jpg", "*.png", "*.jpeg"], on_selection=call, multiple=True)
+        filechooser.open_file(preview=True, filters=["image"], on_selection=call, multiple=True)
 
     def upload_product_data(self, name, des, price, phone, email, _pic1, _pic2, _pic3):
         self.make_room_for_new_items()

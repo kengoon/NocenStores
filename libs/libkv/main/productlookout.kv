@@ -7,8 +7,9 @@
     BoxLayout:
         orientation: "vertical"
         DoubleIconToolBar:
+            id: toolbar
             title: "Details"
-            icon_left: "arrow_left"
+            icon_left: "arrow-left"
             icon_right: "cart-variant"
             icon_left_callback: root.go_back
             icon_right_callback: root.enter_cart
@@ -302,7 +303,17 @@
             opacity: .5 if app.login else 1
             adaptive_height: True
             padding: dp(10), dp(5), dp(10), dp(10)
-            spacing: dp(20)
+            spacing: dp(10)
+            MDCard:
+                size_hint: None, None
+                size: self.minimum_width, self.minimum_height
+                radius: [dp(5)]
+                MDIconButton:
+                    id: save
+                    icon: "phone"
+                    theme_text_color: "Custom"
+                    text_color: app.theme_cls.primary_color
+                    on_release: root.call_customer_care()
             CardIconButton:
                 md_bg_color: app.theme_cls.primary_color
                 label_halign: "center"
@@ -313,6 +324,7 @@
                 text_color: 1,1,1,1
                 icon_width: root.width/2.5
                 on_release:
+                    toolbar.icon_right_color = [1,0,0,1]
                     root.add_to_cart()
             MDCard:
                 size_hint: None, None

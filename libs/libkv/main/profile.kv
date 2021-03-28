@@ -31,6 +31,9 @@
                     icon: "cart-variant"
                     theme_text_color: "Custom"
                     text_color: 1,1,1,1
+                    on_release:
+                        root.root.manager.prev_screen.append(root.root.name)
+                        root.root.manager.current = "cart"
 
             MDBoxLayout:
                 adaptive_height: True
@@ -152,11 +155,12 @@
 
                     OneLineIconListItem:
                         divider: None
-                        text:"Recently Viewed"
+                        text:"Log Out"
                         text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
                         theme_text_color: "Custom"
+                        on_release: root.logout()
                         IconLeftWidget:
-                            icon: "history"
+                            icon: "logout"
                             text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
                             theme_text_color: "Custom"
 

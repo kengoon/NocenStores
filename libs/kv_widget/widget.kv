@@ -147,7 +147,7 @@
         M_AKLabelLoader:
             text:
                 "" if not root.price and not root.name else \
-                f"{root.name}\n[b][color={get_hex_from_color(app.theme_cls.primary_color)}]₦{int(root.price if root.price else 0):,}[/color][/b]"
+                f"{root.name}\n[b][color={get_hex_from_color(app.theme_cls.primary_color)}]₦{float(root.price if root.price else 0) + 5/100 * float(root.price if root.price else 0):,}[/color][/b]"
             radius: root.text_radius
             size_hint_y: None
             markup: True
@@ -275,7 +275,8 @@
     imagePath: ""
     store: ""
     product: ""
-    price: int()
+    price: "0"
+    check: ""
     text_radius: [dp(5)]
     rate: 4
     radius: [dp(10)]
@@ -320,7 +321,8 @@
         M_AKLabelLoader:
             text:
                 "" if not (root.price and root.product) else \
-                f"[font=assets/Eczar-Regular.ttf]{root.product}[/font]\n[b][color={get_hex_from_color(app.theme_cls.primary_color)}]₦{int(root.price) + 5/100 * int(root.price):,}[/color][/b]"
+                f"[font=assets/Eczar-Regular.ttf]{root.product}[/font]\n[b][color={get_hex_from_color(app.theme_cls.primary_color)}]₦{float(root.price) + 5/100 * float(root.price):,}[/color][/b]" if \
+                not root.check else f"[font=assets/Eczar-Regular.ttf]{root.product}[/font]\n[b][color={get_hex_from_color(app.theme_cls.primary_color)}]{root.price}[/color][/b]"
             radius: root.text_radius
             size_hint_y: None
             markup: True
@@ -350,7 +352,7 @@
             radius: [dp(5)]
             MDLabel:
                 id: la
-                text: "NOCENSTORE"
+                text: "NOCENSTORE" if not root.check else root.check
                 font_style: "Money"
                 italic: True
                 color: app.theme_cls.primary_color
@@ -569,7 +571,7 @@
             md_bg_color: 0, 0, 0, .4
             radius: [0, 0, root.radius[0], root.radius[0]]
             M_AKLabelLoader:
-                text: "" if not root.product else f"Deal: {root.product}\n₦{int(root.price):,}\nstore:{root.store}"
+                text: "" if not root.product else f"Deal: {root.product}\n₦{float(root.price):,}\nstore:{root.store}"
                 radius: root.text_radius
                 size_hint_y: None
                 theme_text_color: "Custom"
@@ -721,6 +723,7 @@
             adaptive_height: True
             MDIconButton:
                 icon: "delete"
+                on_release: root.parent.roots.remove_product(root)
             MDTextButton:
                 text: "REMOVE"
                 pos_hint: {"center_y": .4}
@@ -728,7 +731,9 @@
             adaptive_height: True
             MDIconButton:
                 icon: "minus-box"
+                on_release: root.parent.roots.minus_one(root)
             MDTextField:
+                id: count
                 text: str(root.count)
                 input_type: "number"
                 input_filter: "int"
@@ -736,6 +741,7 @@
                 width: dp(20)
             MDIconButton:
                 icon: "plus-box"
+                on_release: root.parent.roots.add_more(root)
 
 <LeftIconToolBar@MDCard>:
     size_hint_y: None
@@ -770,6 +776,7 @@
     icon_right: ""
     icon_left: ""
     title: ""
+    icon_right_color: app.theme_cls.text_color
     icon_right_callback: None
     icon_left_callback: None
     size_hint_y: None
@@ -797,4 +804,32 @@
         MDIconButton:
             icon: root.icon_right
             pos_hint: {"center_y": .5}
+            theme_text_color: "Custom"
+            text_color: root.icon_right_color
             on_release: root.icon_right_callback()
+
+<ProtoLabel@MDBoxLayout>:
+    adaptive_height: True
+    padding: dp(20)
+    left_text: ""
+    right_text: ""
+    MDLabel:
+        text: root.left_text
+        bold: True
+    MDLabel:
+        halign: "right"
+        text: root.right_text
+        bold: True
+        color: app.theme_cls.primary_color
+
+<TextField@M_CardTextField>:
+    grow: False
+    elevation: 10
+    hint_text: ""
+    icon_left: ""
+    icon_left_color: app.theme_cls.primary_color
+    foreground_color: [0, 0, 0, 0.8] if app.theme_cls.theme_style == "Light" else [1,1,1,1]
+    cursor_color: [0, 0, 0, .7] if app.theme_cls.theme_style == "Light" else [1,1,1,1]
+    md_bg_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
+    background_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
+    disabled_foreground_color: [0.5, 0.5, 0.5, 1.0]

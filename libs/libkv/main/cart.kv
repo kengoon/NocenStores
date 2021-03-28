@@ -21,7 +21,7 @@
         LeftIconToolBar:
             icon: "arrow-left"
             title: "Cart"
-            callback: root.go_home
+            callback: root.go_back
 
         RecycleView:
             id: rv
@@ -66,12 +66,19 @@
                     adaptive_height: True
                     padding: dp(7)
                     MDCard:
+                        id: t_card
                         size_hint_y: None
                         height: self.minimum_height
                         md_bg_color: app.theme_cls.primary_color
+                        disabled: True if total.text == "₦0" or total.text == "₦0.0" else False
                         radius: [dp(5)]
+                        on_release:
+                            root.transit_to_cartcheckout()
                         MDIconButton:
-                            opacity: 0
+                            icon: "check"
+                            opacity: 1
+                            theme_text_color: "Custom"
+                            text_color: 1,1,1,1
                         MDLabel:
                             halign: "center"
                             pos_hint: {"center_x": .5}

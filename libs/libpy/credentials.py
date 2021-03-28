@@ -57,6 +57,7 @@ class Login(Screen):
         app.firebase = user_data
         self.manager.current = app.current or "home"
         if app.current:
+            self.manager.ids.lookout.ids.buttons.disabled = True
             self.manager.ids.lookout.clear_cache()
             self.manager.ids.lookout.update_interface(self.manager.ids.lookout.tmp_data)
         app.current = ""
@@ -148,6 +149,7 @@ class SignUp(Screen):
         app.firebase = user_data
         self.manager.current = app.current or "home"
         if app.current:
+            self.manager.ids.lookout.ids.buttons.disabled = True
             self.manager.ids.lookout.clear_cache()
             self.manager.ids.lookout.update_interface(self.manager.ids.lookout.tmp_data)
         app.current = ""

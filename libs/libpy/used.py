@@ -65,3 +65,7 @@ class Used(Screen):
                     self.ids.rv.data.append(self.data.pop(0))
 
         Clock.schedule_once(continue_update, 5)
+
+    def go_cart(self, instance):
+        self.root.manager.prev_screen.append(self.root.name)
+        self.root.manager.current = "cart"

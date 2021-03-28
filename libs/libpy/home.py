@@ -30,6 +30,10 @@ class Home(Screen, EventDispatcher):
         self.register_event_type("on_menu")
         self.data = []
 
+    def go_cart(self, instance):
+        self.manager.prev_screen.append(self.name)
+        self.manager.current = "cart"
+
     def on_enter(self, *args):
         if self.update:
             return
@@ -78,9 +82,6 @@ class Home(Screen, EventDispatcher):
                 if child.children[0].children[0].source:
                     return
                 child.children[0].children[0].source = f"assets/ads/{image}"
-
-    def on_leave(self, *args):
-        self._stop_animation()
 
     def pause_clock(self, *args):
         self._stop_animation()

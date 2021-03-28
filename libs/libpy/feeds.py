@@ -36,7 +36,7 @@ class Feeds(Screen):
         for index, _ in enumerate(range(length_data)):
             if index == 20:
                 break
-            self.ids.rv.data.append(self.data.pop(0))
+            self.ids.rv.data.insert(0, self.data.pop(0))
         self.update = False
 
     def network_error(self, instance, data):
@@ -66,3 +66,7 @@ class Feeds(Screen):
                     self.ids.rv.data.append(self.data.pop(0))
 
         Clock.schedule_once(continue_update, 2)
+
+    def go_cart(self, instance):
+        self.root.manager.prev_screen.append(self.root.name)
+        self.root.manager.current = "cart"
