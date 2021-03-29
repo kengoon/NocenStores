@@ -1,15 +1,18 @@
+import re
+
 from kivy.uix.screenmanager import Screen
 from kivymd.app import MDApp
 from kivymd.uix.menu import MDDropdownMenu, m_res
 from kivy.metrics import dp
 from json import loads
 from kivy.core.window import Window
+from classes.notification import notify
 
 m_res.STANDARD_INCREMENT = dp(150)
 
 
 class DropDown(MDDropdownMenu):
-    def set_menu_properties(self, interval=0):
+    def set_menu_properties(self, interval=0):  # sourcery no-metrics
         """Sets the size and position for the menu window."""
 
         if not self.caller:
@@ -126,6 +129,10 @@ class DropDown(MDDropdownMenu):
 
 class CartCheckOut(Screen):
     app = MDApp.get_running_app()
+    regex = [
+        '^[a-z0-9]+[\\._]?[a-z0-9]+[@]\\w+[.]\\w+[.]\\w{2,3}$',
+        '^[a-z0-9]+[\\._]?[a-z0-9]+[@]\\w+[.]\\w{2,3}$'
+    ]
 
     def go_back(self):
         self.manager.current = "cart"
@@ -143,6 +150,8 @@ class CartCheckOut(Screen):
         self.menu.bind(on_release=self.set_item)
 
     def on_enter(self, *args):
+        self.ids.email.text = self.app.firebase["email"]
+        self.ids.phone.text = self.app.firebase["phone"]
         if not self.menu_set:
             self.menu.caller = self.ids.location
             self.menu_set = True
@@ -155,3 +164,14 @@ class CartCheckOut(Screen):
         self.ids.total.right_text = f"₦{total:,}"
         self.app.total_payment = total
         instance_menu.dismiss()
+
+    def proceed(self):
+        if len(self.ids.phone.text) != 11:
+            return notify("incorrect phone number")
+        if not re.search(self.regex[1], self.ids.email.text) and not re.search(self.regex[0], self.ids.email.text):
+            return notify("incorrect email format", background=[0.2, 0.2, 0.2, 1])
+        self.manager.prev_screen.append(self.name)
+        self.manager.current = "payment"
+        self.app.current_email = self.ids.email.text
+        self.app.current_phone = self.ids.phone.text
+        self.app.current_location = self.ids.location.text

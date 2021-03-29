@@ -41,7 +41,100 @@ class Payment(Screen):
         instance_menu.dismiss()
 
     def make_payment_bank(self):
-        print("banking")
+        YES = MDRaisedButton(
+            text='PROCEED',
+            font_size=16,
+            on_release=lambda x: self.proceed_with_bank_payment(),
+        )
+        NO = MDRaisedButton(
+            text='NO',
+            font_size=16,
+            on_release=lambda x: self.alert.dismiss()
+        )
+        NO.md_bg_color = get_color_from_hex('#dd3b34')
+        self.alert = SweetAlert()
+        self.alert.fire(
+            "Your Bank Will Be Debited, Do You Want To Proceed?",
+            type="question",
+            buttons=[YES, NO]
+        )
+
+    def proceed_with_bank_payment(self):
+        try:
+            self.alert.content_cls.children[1].text = "Processing Your Request"
+            self.alert.request = True
+            self.alert.auto_dismiss = False
+            self.payload = {
+                "accountnumber": self.ids.acc_no.text,
+                "accountbank": self.banks[self.ids.bank_name.text],
+                "currency": "NGN",
+                "country": "NG",
+                "amount": self.app.total_payment,
+                "email": self.app.current_email,
+                "phonenumber": self.app.current_phone,
+                "firstname": self.app.firebase["name"].split(" ")[1],
+                "lastname": self.app.firebase["name"].split(" ")[0],
+                "IP": "355426087298442",
+            }
+            UrlRequest(
+                self.url + "bankPayment",
+                req_body=dumps(self.payload),
+                on_success=self.bank_payment_successful,
+                on_error=self.payment_unsuccessful,
+                on_failure=self.server_error
+            )
+        except KeyError:
+            self.alert.dismiss()
+            self.alert = SweetAlert()
+            self.alert.fire("Please Select A Valid Bank Name and And Account Number", type="warning")
+
+    def bank_payment_successful(self, instance, data):
+        self.alert.dismiss()
+        payload = loads(data)
+        if payload["validationRequired"]:
+            self.payload.update(payload)
+            self.payload.update({"product": self.app.data_product})
+            SUBMIT = MDRaisedButton(
+                text='SUBMIT',
+                font_size=16,
+                on_release=lambda x: self.submit_bank_otp(),
+            )
+            CANCEL = MDRaisedButton(
+                text='CANCEL',
+                font_size=16,
+                on_release=lambda x: self.alert.dismiss()
+            )
+            CANCEL.md_bg_color = get_color_from_hex('#dd3b34')
+            self.alert = SweetAlert()
+            self.alert.fire(
+                title="Enter the OTP that was sent to your phone! Didn't get the OTP? Dial * 322 * 0 # on "
+                      "your phone (MTN, Etisalat, Airtel) Glo, use * 805 * 0 #",
+                type="info",
+                input="otp",
+                buttons=[SUBMIT, CANCEL]
+            )
+            self.alert.content_cls.children[1].input_filter = "int"
+            self.alert.auto_dismiss = False
+
+    def submit_bank_otp(self):
+        self.alert.content_cls.children[2].text = "Processing Your Request"
+        self.alert.content_cls.children[1].disabled = True
+        self.payload.update({"otp": self.alert.content_cls.children[1].text})
+        self.alert.request = True
+
+        def submit_otp(instance, data):
+            print(data)
+            self.alert.dismiss()
+            self.alert = SweetAlert()
+            self.alert.fire("Payment Successfully Completed", type="success")
+
+        UrlRequest(
+            self.url + "submitBankOtp",
+            req_body=dumps(self.payload),
+            on_success=submit_otp,
+            on_failure=self.server_error,
+            on_error=self.payment_unsuccessful
+        )
 
     def make_payment_card(self):
         YES = MDRaisedButton(
@@ -61,6 +154,16 @@ class Payment(Screen):
             type="question",
             buttons=[YES, NO]
         )
+
+    def bank_payment_unsuccessful(self, *args):
+        self.alert.dismiss()
+        self.alert = SweetAlert()
+        self.alert.fire("Network Error!", type="failure")
+
+    def bank_server_error(self, *args):
+        self.alert.dismiss()
+        self.alert = SweetAlert()
+        self.alert.fire("Transaction Failed! Check Your Bank Details, You Can Use Card instead", type='failure')
 
     def proceed_with_card_payment(self):
         self.alert.content_cls.children[1].text = "Processing Your Request"
@@ -114,6 +217,7 @@ class Payment(Screen):
                 input="otp",
                 buttons=[SUBMIT, CANCEL]
             )
+            self.alert.content_cls.children[1].input_filter = "int"
             self.alert.auto_dismiss = False
 
     def submit_otp(self):
@@ -127,6 +231,7 @@ class Payment(Screen):
             self.alert.dismiss()
             self.alert = SweetAlert()
             self.alert.fire("Payment Successfully Completed", type="success")
+
         UrlRequest(
             self.url + "submitOtp",
             req_body=dumps(self.payload),
@@ -140,10 +245,8 @@ class Payment(Screen):
         self.alert.dismiss()
         self.alert = SweetAlert()
         self.alert.fire("Network Error!", type="failure")
-        print(args)
 
     def server_error(self, *args):
         self.alert.dismiss()
         self.alert = SweetAlert()
         self.alert.fire("Transaction Failed! Check Your Card Details", type='failure')
-        print(args)

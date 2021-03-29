@@ -258,6 +258,9 @@
 
 
 <OrderCard@BaseProductCard>
+    source: ""
+    imagePath: self.source
+
     on_release:
         None
 
@@ -321,7 +324,7 @@
         M_AKLabelLoader:
             text:
                 "" if not (root.price and root.product) else \
-                f"[font=assets/Eczar-Regular.ttf]{root.product}[/font]\n[b][color={get_hex_from_color(app.theme_cls.primary_color)}]₦{float(root.price) + 5/100 * float(root.price):,}[/color][/b]" if \
+                f"[font=assets/Eczar-Regular.ttf]{root.product}[/font]\n[b][color={get_hex_from_color(app.theme_cls.primary_color)}]₦{float(root.price.replace(',', '')) + 5/100 * float(root.price.replace(',', '')):,}[/color][/b]" if \
                 not root.check else f"[font=assets/Eczar-Regular.ttf]{root.product}[/font]\n[b][color={get_hex_from_color(app.theme_cls.primary_color)}]{root.price}[/color][/b]"
             radius: root.text_radius
             size_hint_y: None
@@ -675,6 +678,7 @@
     store: ""
     base_price:
     count: 1
+    p_type: False
     padding: [dp(5), 0, dp(5), 0]
     MDBoxLayout:
         adaptive_height: True
@@ -717,6 +721,7 @@
     MDSeparator:
     MDBoxLayout:
         id: down
+        disabled: True if root.p_type else False
         adaptive_height: True
         spacing: root.width/3
         MDBoxLayout

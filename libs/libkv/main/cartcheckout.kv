@@ -48,6 +48,7 @@
                         elevation: 10
                         hint_text: "current phone number:"
                         icon_left: "phone"
+                        input_filter: "int"
                         text: app.firebase["phone"] if app.firebase else ""
                         icon_left_color: app.theme_cls.primary_color
                         foreground_color: [0, 0, 0, 0.8] if app.theme_cls.theme_style == "Light" else [1,1,1,1]
@@ -55,6 +56,8 @@
                         md_bg_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
                         background_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
                         disabled_foreground_color: [0.5, 0.5, 0.5, 1.0]
+                        on_text:
+                            if len(self.text) > 11: self.text = self.text[:-1]
 
         MDBoxLayout:
             adaptive_height: True
@@ -89,11 +92,7 @@
                         md_bg_color: app.theme_cls.primary_color
                         radius: [dp(5)]
                         on_release:
-                            root.manager.prev_screen.append(root.name)
-                            root.manager.current = "payment"
-                            app.current_email = email.text
-                            app.current_phone = phone.text
-                            app.current_location = location.text
+                            root.proceed()
                         MDIconButton:
                             icon: "check"
                             opacity: 1

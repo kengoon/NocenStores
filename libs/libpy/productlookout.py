@@ -12,6 +12,7 @@ class ProductLookOut(Screen):
     _tmp_data = None
     selected_size = ""
     app = MDApp.get_running_app()
+    p_type = ""
 
     def go_back(self):
         self.manager.current = "category"
@@ -62,6 +63,9 @@ class ProductLookOut(Screen):
         self.ids.buttons.opacity = 1
         if "saved" in new_data and new_data["saved"]:
             self.ids.save.icon = "heart"
+        if "FairlyUsed" == new_data["type"]:
+            self.ids.save.disabled = True
+            self.p_type = new_data["type"]
 
     def change_circle(self):
         for i in range(1, 4):
@@ -146,6 +150,9 @@ class ProductLookOut(Screen):
         a = list(filter(lambda product: self.ids.product_name.text == product["product"],
                         self.manager.ids.cart.ids.rv.data))
         if a:
+            if self.p_type == "FairlyUsed":
+                self.manager.current = "cart"
+                return
             cart["count"] = a[0]["count"]
             top_up = f'₦{float(a[0]["price"].translate({ord(i): None for i in "₦,"})) + float(cart["price"].translate({ord(i): None for i in "₦,"})):,}'
             cart["price"] = a[0]["price"]
@@ -155,8 +162,19 @@ class ProductLookOut(Screen):
             self.manager.ids.cart.ids.rv.data[index] = cart
             notify(f"{self.ids.product_name.text} = {self.manager.ids.cart.ids.rv.data[index]['count']} product")
         else:
+            if self.p_type == "FairlyUsed":
+                cart.update({"p_type": True})
             self.manager.ids.cart.ids.rv.data.append(cart)
             notify(f"{self.ids.product_name.text} = 1 product")
+            if self.p_type == "FairlyUsed":
+                self.manager.current = "cart"
+                cart_data = self.manager.ids.cart.ids.rv.data
+                cart_total = sum(
+                    float(cart_data[i]["price"].translate({ord(i): None for i in "₦,"})) for
+                    i, _ in enumerate(cart_data)
+                )
+                self.manager.ids.cart.ids.total.text = f"₦{cart_total:,}"
+                return
         self.ids.save.dispatch("on_release") if self.ids.save.icon == "heart-outline" else None
         cart_data = self.manager.ids.cart.ids.rv.data
         cart_total = sum(

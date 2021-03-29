@@ -6,6 +6,7 @@ from kivymd.app import MDApp
 
 class Cart(Screen):
     app = MDApp.get_running_app()
+    p_type = ""
 
     def go_back(self):
         self.manager.current = self.app.current or "home"
