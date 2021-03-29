@@ -47,7 +47,6 @@ class Cart(Screen):
             "base_price": instance.base_price
         }
         pos = get_dict_pos(self.ids.rv.data, "product", instance.product)
-        print(pos)
         self.ids.rv.data[pos] = properties
         self.ids.rv.data.remove(properties)
         self.ids.total.text = \

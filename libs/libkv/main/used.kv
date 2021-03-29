@@ -39,7 +39,9 @@
             id: rv
             effect_cls: ScrollEffect
             viewclass: "SalesCard"
+            on_scroll_start: root.schedule_load()
             RecycleGridLayout:
+                root: root
                 default_size_hint: None, None
                 default_size: root.width/2 - dp(20), Window.height/3
                 size_hint_y: None

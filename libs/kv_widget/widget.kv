@@ -8,18 +8,26 @@
     ripple_behavior: True
 
 <SalesCard@BaseSalesCard>
-    elevation: 0 if app.theme_cls.theme_style == "Light" else 1
+    imagePath: ""
+    source: self.imagePath
+    on_release:
+        self.parent.root.root.manager.prev_screen.append(self.parent.root.root.name)
+        self.parent.root.root.manager.current = "lookout"
+        self.parent.root.root.manager.ids.lookout.ids.product_name.text = self.product
+        self.parent.root.root.manager.ids.lookout.ids.store.text = self.store
+        self.parent.root.root.manager.ids.lookout.update_interface(self.data)
 
 <BaseSalesCard@MDCard>:
     source: ""
     text: ""
     radius: [dp(6)]
-    product_name: ""
-    product_price: 0
+    product: ""
+    price: 0
     text_radius: [dp(5)]
-    product_owner: ""
+    store: ""
     #text_color: [1, 1, 1, 1]
     orientation: "vertical"
+    data: {"product": self.product, "store": self.store}
     RelativeLayout:
         AsyncImage:
             id: image
@@ -55,9 +63,9 @@
         padding: dp(10)
         M_AKLabelLoader:
             text:
-                "" if not ((root.product_price and root.product_name) or root.text) else\
-                f"{root.product_name}\n[b][color={get_hex_from_color(app.theme_cls.primary_color)}]₦{root.product_price:,}[/color][/b]" \
-                if root.product_price and root.product_name else\
+                "" if not ((root.price and root.product) or root.text) else\
+                f"{root.product}\n[b][color={get_hex_from_color(app.theme_cls.primary_color)}]₦{float(root.price) + 5/100 * float(root.price):,}[/color][/b]" \
+                if root.price and root.product else\
                 root.text
             radius: root.text_radius
             size_hint_y: None
@@ -71,7 +79,7 @@
             pos_hint:{"center_y": .5}
 
 <FeedsCard@MDCard>:
-    elevation: 0 if app.theme_cls.theme_style == "Light" else 1
+    #elevation: 0 if app.theme_cls.theme_style == "Light" else 1
     image_url: ""
     radius: [dp(6)]
     store: ""
@@ -82,8 +90,10 @@
     url: ""
     orientation: "vertical"
     rates: rates
+    data: {"product": self.name, "store": self.store}
     ripple_color: app.theme_cls.primary_color
     ripple_behavior: True
+    on_release: root.parent.root.proceed_to_lookout(self)
     RelativeLayout:
         AsyncImage:
             id: image
@@ -766,7 +776,6 @@
             icon: root.icon
             pos_hint: {"center_y": .5}
             on_release:
-                print(root.title)
                 root.callback()
 
         MDLabel:

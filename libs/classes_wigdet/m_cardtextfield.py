@@ -522,10 +522,8 @@ if __name__ == "__main__":
             return root
 
         def search(self, instance):
-            print("searching", instance)
 
         def login(self, instance):
-            print("login", instance)
 
 
     Opera().run()

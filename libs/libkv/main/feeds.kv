@@ -41,8 +41,10 @@
             id: rv
             effect_cls: ScrollEffect
             viewclass: "FeedsCard"
+            on_scroll_start: root.schedule_load()
             RecycleGridLayout:
                 id: holder
+                root: root
                 default_size_hint: 1, None
                 default_size: None, Window.height/3
                 size_hint_y: None

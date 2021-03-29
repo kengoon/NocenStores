@@ -60,24 +60,24 @@
             MDList
                 spacing: dp(25)
                 padding: dp(10)
-                MDCard:
-                    spacing: dp(26)
-                    size_hint_y: None
-                    height: self.minimum_height
-                    orientation: "vertical"
-                    radius: [dp(10)]
-
-                    OneLineIconListItem:
-                        divider: None
-                        text:"Notification"
-                        text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
-                        theme_text_color: "Custom"
-                        on_release: root.to_next("notify")
-                        IconLeftWidget:
-                            icon: "bell"
-                            text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
-                            theme_text_color: "Custom"
-                            on_release: root.to_next("notify")
+#                MDCard:
+#                    spacing: dp(26)
+#                    size_hint_y: None
+#                    height: self.minimum_height
+#                    orientation: "vertical"
+#                    radius: [dp(10)]
+#
+#                    OneLineIconListItem:
+#                        divider: None
+#                        text:"Notification"
+#                        text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
+#                        theme_text_color: "Custom"
+#                        on_release: root.to_next("notify")
+#                        IconLeftWidget:
+#                            icon: "bell"
+#                            text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
+#                            theme_text_color: "Custom"
+#                            on_release: root.to_next("notify")
 
                 MDCard:
                     spacing: dp(26)
@@ -129,17 +129,17 @@
                             theme_text_color: "Custom"
                             on_release: root.to_next("order")
 
-#                    OneLineIconListItem:
-#                        divider: None
-#                        text:"Pending Reviews"
-#                        text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
-#                        theme_text_color: "Custom"
-#                        on_release: root.to_next("review")
-#                        IconLeftWidget:
-#                            icon: "comment-edit-outline"
-#                            text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
-#                            theme_text_color: "Custom"
-#                            on_release: root.to_next("order")
+                    OneLineIconListItem:
+                        divider: None
+                        text:"Share App To Your Friends"
+                        text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
+                        theme_text_color: "Custom"
+                        # on_release: share_text("Buy and Sell Your Goods Faster at NocenStore https://play.google.com/store/apps/details?id=org.mindset.nocenstore.nocenstore")
+                        IconLeftWidget:
+                            icon: "share-variant"
+                            text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
+                            theme_text_color: "Custom"
+                            on_release: root.to_next("order")
 
                     OneLineIconListItem:
                         divider: None

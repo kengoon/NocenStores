@@ -66,6 +66,9 @@ class ProductLookOut(Screen):
         if "FairlyUsed" == new_data["type"]:
             self.ids.save.disabled = True
             self.p_type = new_data["type"]
+        else:
+            self.ids.save.disabled = False
+            self.p_type = ""
 
     def change_circle(self):
         for i in range(1, 4):
@@ -153,6 +156,7 @@ class ProductLookOut(Screen):
             if self.p_type == "FairlyUsed":
                 self.manager.current = "cart"
                 return
+            cart.update({"p_type": False})
             cart["count"] = a[0]["count"]
             top_up = f'₦{float(a[0]["price"].translate({ord(i): None for i in "₦,"})) + float(cart["price"].translate({ord(i): None for i in "₦,"})):,}'
             cart["price"] = a[0]["price"]
@@ -164,6 +168,8 @@ class ProductLookOut(Screen):
         else:
             if self.p_type == "FairlyUsed":
                 cart.update({"p_type": True})
+            else:
+                cart.update({"p_type": False})
             self.manager.ids.cart.ids.rv.data.append(cart)
             notify(f"{self.ids.product_name.text} = 1 product")
             if self.p_type == "FairlyUsed":

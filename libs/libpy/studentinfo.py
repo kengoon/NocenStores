@@ -4,9 +4,7 @@ from kivy.uix.screenmanager import Screen
 from kivy import platform
 from kivy.clock import Clock
 from kivy.network.urlrequest import UrlRequest
-
-if platform == "android":
-    import android_webview
+import webbrowser
 
 
 class StudentInfo(Screen):
@@ -19,9 +17,13 @@ class StudentInfo(Screen):
         self.manager.current = "home"
 
     @staticmethod
-    def open_web(self):
-        if platform == "android" and self.news_url:
-            android_webview.webbrowser.open(self.news_url)
+    def open_web(instance):
+        if instance.news_app_url:
+            webbrowser.open(instance.news_app_url)
+
+        elif platform == "android" and instance.news_url:
+            import android_webview
+            android_webview.webbrowser.open(instance.news_url)
 
     def on_enter(self, *args):
         if self.update:
@@ -51,7 +53,6 @@ class StudentInfo(Screen):
                 self.data.append(self.tmp_data[i - data_len])
         else:
             return
-        print(self.data)
         self.post_data()
 
     def post_data(self, data="not_empty"):

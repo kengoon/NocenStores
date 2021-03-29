@@ -1,6 +1,7 @@
 import glob
 import imghdr
 import os
+import re
 from json import dumps
 from os.path import exists, basename
 from shutil import rmtree
@@ -32,6 +33,11 @@ class Sell(Screen):
     binary_images = []
     image_type = []
     mime_type = []
+    url = "https://nocenstore.pythonanywhere.com/"
+    regex = [
+        '^[a-z0-9]+[\\._]?[a-z0-9]+[@]\\w+[.]\\w+[.]\\w{2,3}$',
+        '^[a-z0-9]+[\\._]?[a-z0-9]+[@]\\w+[.]\\w{2,3}$'
+    ]
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -42,7 +48,7 @@ class Sell(Screen):
             size_hint_x=None,
             width=Window.width - dp(20)
         )
-        self.dialog.auto_dismiss = False
+        self.dialog.auto_dismiss = True
 
     @staticmethod
     def open_filechooser(instance):
@@ -57,10 +63,17 @@ class Sell(Screen):
             if not instance.source:
                 notify("please select an image file")
                 return None
-
-        filechooser.open_file(preview=True, filters=["image"], on_selection=call, multiple=True)
+        if platform == "android":
+            filechooser.open_file(preview=True, filters=["image"], on_selection=call, multiple=True)
+        else:
+            filechooser.open_file(preview=True, filters=["*.jpg", "*.png", "*.jpeg", "*.gif"],
+                                  on_selection=call, multiple=True)
 
     def upload_product_data(self, name, des, price, phone, email, _pic1, _pic2, _pic3):
+        if len(self.ids.phone.text) != 11:
+            return notify("incorrect phone number")
+        if not re.search(self.regex[1], self.ids.email.text) and not re.search(self.regex[0], self.ids.email.text):
+            return notify("incorrect email format", background=[0.2, 0.2, 0.2, 1])
         self.make_room_for_new_items()
         instance = [name, des, price, phone, email, _pic1, _pic2, _pic3]
         self.images = [_pic1.text, _pic2.text, _pic3.text]
@@ -103,7 +116,8 @@ class Sell(Screen):
     def upload2server(self):
         im_name = [basename(image_name) for image_name in self.server_image]
         data = MultipartEncoder(fields=
-                                {'product': self.ids.name.text, 'price': self.ids.price.text, 'type': "FairlyUsed",
+                                {'product': self.ids.name.text, 'price': self.ids.price.text,
+                                 'category': '', 'type': "FairlyUsed",
                                  'description': self.ids.des.text, 'store': self.ids.email.text.split("@")[0],
                                  'phone': self.ids.phone.text, 'im_size': dumps(self.image_sizes),
                                  'path1': f"{self.ids.email.text.split('@')[0]}/{self.ids.name.text}/{im_name[0]}",
@@ -136,13 +150,16 @@ class Sell(Screen):
 
         for instance in self.ids:
             # get all the variables that exist on the instance class
-            members = [attr for attr in dir(self.ids[instance]) if
-                       not callable(getattr(self.ids[instance], attr)) and not attr.startswith("__")]
+            try:
+                members = [attr for attr in dir(self.ids[instance]) if
+                           not callable(getattr(self.ids[instance], attr)) and not attr.startswith("__")]
 
-            if "text" in members:
-                self.ids[instance].text = ""
-            elif "source" in members:
-                self.ids[instance].source = ""
+                if "text" in members:
+                    self.ids[instance].text = ""
+                elif "source" in members:
+                    self.ids[instance].source = ""
+            except (KeyError, AttributeError):
+                pass
 
     def market_failed(self, *args):
         self.dialog.dismiss()

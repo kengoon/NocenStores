@@ -1,5 +1,4 @@
 import os
-
 from kivy.uix.screenmanager import Screen
 from kivy.utils import get_color_from_hex
 from kivymd.app import MDApp
@@ -31,7 +30,6 @@ class Profile(Screen):
 
     def on_enter(self, *args):
         if not self.app.login:
-            print(self.app.login)
             notify("please login to continue")
             self.app.current = self.name
             self.root.manager.current = "login"

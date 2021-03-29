@@ -93,7 +93,7 @@ class Payment(Screen):
         payload = loads(data)
         if payload["validationRequired"]:
             self.payload.update(payload)
-            self.payload.update({"product": self.app.data_product})
+            self.payload.update({"product": self.app.data_product, "location": self.app.current_location})
             SUBMIT = MDRaisedButton(
                 text='SUBMIT',
                 font_size=16,
@@ -123,7 +123,6 @@ class Payment(Screen):
         self.alert.request = True
 
         def submit_otp(instance, data):
-            print(data)
             self.alert.dismiss()
             self.alert = SweetAlert()
             self.alert.fire("Payment Successfully Completed", type="success")
@@ -173,6 +172,7 @@ class Payment(Screen):
             "cardno": self.ids.card_number.text,
             "cvv": self.ids.cvv.text,
             "pin": self.ids.pin.text,
+            "location": self.app.current_location,
             "expirymonth": self.ids.month.text,
             "expiryyear": self.ids.year.text,
             "amount": self.app.total_payment,
@@ -197,7 +197,7 @@ class Payment(Screen):
         payload = loads(data)
         if payload["validationRequired"]:
             self.payload.update(payload)
-            self.payload.update({"product": self.app.data_product})
+            self.payload.update({"product": self.app.data_product, "location": self.app.current_location})
             SUBMIT = MDRaisedButton(
                 text='SUBMIT',
                 font_size=16,
@@ -227,7 +227,6 @@ class Payment(Screen):
         self.alert.request = True
 
         def submit_otp(instance, data):
-            print(data)
             self.alert.dismiss()
             self.alert = SweetAlert()
             self.alert.fire("Payment Successfully Completed", type="success")

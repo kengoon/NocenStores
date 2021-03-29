@@ -14,26 +14,21 @@ class AsyncMe(AsyncImage):
         super().__init__(**kwargs)
 
     def on_load(self, *args):
-        print(*args, "ypooo")
+        pass
 
     def on_source(self, x, y):
-        print(self.source, "uuu")
-        #self._load_source()
+        pass
 
     def _on_source_load(self, value):
         image = self._coreimage.image
-        print(image, "image")
         if not image:
             return
         self.texture = image.texture
-        print("skdjskjdskd")
         self.dispatch('on_load')
 
     def _load_source(self, *args):
         source = self.source
         if not source:
-            print("ha")
-            print(self.source)
             self._clear_core_image()
             return
         if not self.is_uri(source):

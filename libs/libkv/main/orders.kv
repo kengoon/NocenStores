@@ -29,6 +29,7 @@
             id: rv
             effect_cls: ScrollEffect
             viewclass: "OrderCard"
+            on_scroll_start: root.schedule_load()
             RecycleGridLayout:
                 root: root.manager
                 roots: root

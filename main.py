@@ -171,7 +171,6 @@ class NocenStore(MDApp):
                     self.login = True
             except requests.exceptions.RequestException:
                 self.login = True
-                print(self.login)
             except decoder.JSONDecodeError:
                 os.remove("token.json")
                 self.login = False

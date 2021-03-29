@@ -63,7 +63,6 @@ class Login(Screen):
         app.current = ""
         self.manager.ids.home.ids.profiles.ids.user.text = f"Welcome {app.firebase['name']}!"
         self.manager.ids.home.ids.profiles.ids.email.text = app.firebase["email"]
-        print(self.manager.ids.setting.ids.rule1.ids)
 
 
 class SignUp(Screen):
@@ -127,14 +126,12 @@ class SignUp(Screen):
         self.disabled = False
         self.opacity = 1
         self.ids.spinner.active = False
-        print(args[1])
         notify("please check your network connection", background=[0.2, 0.2, 0.2, 1])
 
     def server_error(self, *args):
         self.disabled = False
         self.opacity = 1
         self.ids.spinner.active = False
-        print(args[1])
         notify("it looks like your email address already exist on our server, please sign in!!!",
                [0.2, 0.2, 0.2, 1], duration=10)
 
@@ -153,6 +150,5 @@ class SignUp(Screen):
             self.manager.ids.lookout.clear_cache()
             self.manager.ids.lookout.update_interface(self.manager.ids.lookout.tmp_data)
         app.current = ""
-        print(app.firebase)
         self.manager.ids.home.ids.profiles.ids.user.text = f"Welcome {app.firebase['name']}!"
         self.manager.ids.home.ids.profiles.ids.email.text = app.firebase["email"]

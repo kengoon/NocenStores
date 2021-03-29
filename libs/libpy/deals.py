@@ -40,7 +40,7 @@ class Deals(Screen):
         for index, _ in enumerate(range(length_data)):
             if index == 20:
                 break
-            self.ids.rv.data.append(self.data.pop(0))
+            self.ids.rv.data.insert(0, self.data.pop(0))
         self.update = False
 
     def network_error(self, instance, data):
