@@ -1,0 +1,6 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - init: sudo apt install python
+    command: 'echo "TODO: Replace with command to start project"'
