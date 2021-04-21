@@ -20,6 +20,7 @@ class Order(Screen):
         self.manager.current = "home"
 
     def enter_search(self):
+        self.manager.ids.search.p_type = True
         self.manager.prev_screen.append(self.name)
         self.manager.current = "search"
 
@@ -83,5 +84,5 @@ class Order(Screen):
                 for i, _ in enumerate(range(length_data)):
                     if i == 20:
                         break
-                    self.ids.rv.data.append(self.data.pop(0))
+                    self.ids.rv.data.insert(0, self.data.pop(0))
         Clock.schedule_once(continue_update, 5)

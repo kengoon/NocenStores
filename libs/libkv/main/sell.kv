@@ -1,127 +1,17 @@
 <Sell>:
-    ScrollView:
+    RecycleView:
+        id: rv
         effect_cls: ScrollEffect
-        do_scroll_x: False
-        MDList:
+        key_viewclass: "viewclass"
+        key_size: "height"
+        RecycleGridLayout:
+            id: holder
+            root: root.manager
+            roots: root
+            default_size_hint: 1, None
+            default_size: None, None
+            size_hint_y: None
+            height: self.minimum_height
+            spacing:dp(20)
             padding: dp(10)
-            spacing: dp(20)
-            MDBoxLayout:
-                adaptive_height: True
-                MDCard:
-                    size_hint_y: None
-                    height: self.minimum_height
-                    padding: dp(10)
-                    MDLabel:
-                        text: "Upload Your Product Information"
-                        size_hint_y: None
-                        height: self.texture_size[1]
-                        font_style:"Money"
-                        font_size: dp(18)
-
-            MDCard:
-                id: card
-                orientation: "vertical"
-                size_hint_y: None
-                height: root.height/2.5
-                radius: [dp(10)]
-                ScrollView:
-                    effect_cls: ScrollEffect
-                    do_scroll_y: False
-                    MDBoxLayout:
-                        adaptive_width: True
-                        padding: dp(20)
-                        spacing: dp(20)
-                        ProductCard:
-                            id: _pic1
-                            size_hint_x: None
-                            width: card.width/3.2
-                            ripple_behavior: True
-                            on_release:
-                                root.open_filechooser(self)
-
-                        ProductCard:
-                            id: _pic2
-                            size_hint_x: None
-                            width: card.width/3.2
-                            ripple_behavior: True
-                            on_release:
-                                root.open_filechooser(self)
-
-                        ProductCard:
-                            id: _pic3
-                            size_hint_x: None
-                            width: card.width/3.2
-                            ripple_behavior: True
-                            on_release:
-                                root.open_filechooser(self)
-                MDBoxLayout:
-                    adaptive_height: True
-                    padding: dp(10)
-                    MDLabel:
-                        text: "touch the widget above \nto select your product image"
-                        size_hint_y: None
-                        height: self.texture_size[1]
-                        font_style: "Money"
-
-            MDCard:
-                size_hint_y: None
-                height: self.minimum_height
-                orientation: "vertical"
-                radius: [dp(5)]
-                padding: dp(20)
-                spacing: dp(10)
-                MDTextField:
-                    id: name
-                    hint_text: "product name:"
-                    icon_right: "square-edit-outline"
-                    icon_right_color: app.theme_cls.text_color
-                    font_name: "assets/Eczar-Regular.ttf"
-                    helper_text_mode: "on_error"
-                    required: True
-
-                MDTextField:
-                    id: des
-                    hint_text: "product Description:"
-                    icon_right: "text-subject"
-                    icon_right_color: app.theme_cls.text_color
-                    font_name: "assets/Eczar-Regular.ttf"
-                    helper_text_mode: "on_error"
-                    required: True
-
-                MDTextField:
-                    id: price
-                    hint_text: "product price:"
-                    icon_right: "currency-ngn"
-                    icon_right_color: app.theme_cls.text_color
-                    font_name: "assets/Eczar-Regular.ttf"
-                    helper_text_mode: "on_error"
-                    input_filter: "float"
-                    required: True
-
-                PhoneTextField:
-                    id: phone
-                    hint_text: "current phone number:"
-                    icon_right: "card-account-phone-outline"
-                    icon_right_color: app.theme_cls.text_color
-                    font_name: "assets/Eczar-Regular.ttf"
-                    input_filter: "int"
-                    max_text_length: 11
-                    helper_text_mode: "on_error"
-                    required: True
-
-                MDTextField:
-                    id: email
-                    hint_text: "current email:"
-                    icon_right: "email"
-                    icon_right_color: app.theme_cls.text_color
-                    font_name: "assets/Eczar-Regular.ttf"
-                    helper_text_mode: "on_error"
-                    required: True
-
-                MDRoundFlatIconButton:
-                    font_name: "assets/Eczar-Regular"
-                    icon: "cloud-upload"
-                    text: "Upload All Information"
-                    pos_hint: {"center_x": .5}
-                    on_release:
-                        root.upload_product_data(name, des, price, phone, email, _pic1, _pic2, _pic3)
+            cols: 1

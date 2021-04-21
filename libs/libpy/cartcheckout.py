@@ -135,6 +135,7 @@ class CartCheckOut(Screen):
     ]
 
     def go_back(self):
+        self.ids.location.text = ""
         self.manager.current = "cart"
 
     def __init__(self, **kwargs):

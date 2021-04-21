@@ -117,10 +117,12 @@
 <NumberContent@MDBoxLayout>
     padding: dp(20)
     spacing: dp(20)
+    adaptive_height: True
     PhoneTextField:
         id: number
         hint_text: "change phone number :"
         input_filter: "int"
+        on_focus: self.do_focus(args[1])
         on_text_validate:
             root.parent.parent.root.change_number(self.text)
     MDCard:

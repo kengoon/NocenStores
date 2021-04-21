@@ -46,6 +46,7 @@ Builder.load_string(
             circle: False
         MDBoxLayout:
             id:box
+            opacity: 0
             padding: dp(10)
             adaptive_height: True
             md_bg_color: 0, 0, 0, .6
@@ -65,7 +66,7 @@ Builder.load_string(
 )
 
 
-class M_CardLoader(MDCard, EventDispatcher):
+class M_CardLoader(MDCard):
     text = StringProperty("")
     text_radius = ListProperty([dp(5), ])
     text_color = ListProperty([1, 1, 1, 1])
@@ -83,4 +84,10 @@ class M_CardLoader(MDCard, EventDispatcher):
         self.root.pause_clock()
 
     def on_touch_up(self, touch):
+        timer = touch.time_end - touch.time_start
+        if timer < 0.2:
+            self.root.ids.raw.switch_tab("feeds")
         self.root.resume_clock()
+
+    def on_release(self):
+        self.root.ids.feeds.dispatch("on_tab_release")

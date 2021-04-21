@@ -27,8 +27,8 @@
                         disabled_foreground_color: [0.5, 0.5, 0.5, 1.0]
                         on_release: root.menu.open()
                         on_text:
-                            btn.disabled = False
-                            btn.opacity = 1
+                            btn.disabled = False if self.text else True
+                            btn.opacity = 1 if self.text else .5
                     M_CardTextField:
                         id: email
                         grow: False

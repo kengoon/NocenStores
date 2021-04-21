@@ -24,9 +24,10 @@
             md_bg_color: app.theme_cls.primary_color
             M_CardTextField:
                 elevation: 10
-                hint_text: "search/voice search"
+                hint_text: "search"
                 icon_left: "arrow-left"
-                icon_right: "microphone"
+                icon_right: "refresh"
+                icon_right_callback: lambda x: rv.refresh_from_data()
                 icon_left_callback: root.go_home
                 text_field_disabled: True
                 icon_right_color: app.theme_cls.primary_color
@@ -36,7 +37,9 @@
                 md_bg_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
                 background_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
                 disabled_foreground_color: [0.5, 0.5, 0.5, 1.0]
-                on_release: root.manager.current = "search"
+                on_release:
+                    root.manager.ids.search.p_type = True
+                    root.manager.current = "search"
 
         RecycleView:
             id: rv
@@ -48,12 +51,13 @@
                 root: root.manager
                 roots: root
                 default_size_hint: 1, None
-                default_size: None, Window.height/4.5
+                default_size: None, Window.height/2.2
                 size_hint_y: None
                 height: self.minimum_height
                 spacing:dp(10)
                 padding: dp(10)
-                cols: 1
+                cols: 2
+                key_size: "height"
 
     MDRelativeLayout:
         id: progress_box

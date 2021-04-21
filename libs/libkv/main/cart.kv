@@ -65,12 +65,13 @@
                 MDBoxLayout
                     adaptive_height: True
                     padding: dp(7)
+                    disabled: True if total.text == "₦0" or total.text == "₦0.0" else False
+                    opacity: .5 if total.text == "₦0" or total.text == "₦0.0" else 1
                     MDCard:
                         id: t_card
                         size_hint_y: None
                         height: self.minimum_height
                         md_bg_color: app.theme_cls.primary_color
-                        disabled: True if total.text == "₦0" or total.text == "₦0.0" else False
                         radius: [dp(5)]
                         on_release:
                             root.transit_to_cartcheckout()

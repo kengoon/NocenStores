@@ -16,6 +16,7 @@
 
 
         ScrollView:
+            id: sv
             effect_cls: ScrollEffect
             MDList:
                 padding: 0
@@ -54,22 +55,25 @@
                             MDIcon:
                                 id: ico1
                                 icon: "circle"
-                                color: app.theme_cls.primary_color
+                                theme_text_color: "Custom"
+                                text_color: app.theme_cls.primary_color
                             MDIcon:
                                 id: ico2
                                 icon: "circle-outline"
-                                color: app.theme_cls.primary_color
+                                theme_text_color: "Custom"
+                                text_color: app.theme_cls.primary_color
                             MDIcon:
                                 id: ico3
                                 icon: "circle-outline"
-                                color: app.theme_cls.primary_color
+                                theme_text_color: "Custom"
+                                text_color: app.theme_cls.primary_color
 
                         MDIconButton:
                             icon: "chevron-left"
                             theme_text_color: "Custom"
-                            user_font_size: dp(30)
-                            text_color: app.theme_cls.primary_color
+                            text_color: 1,1,1,1
                             pos_hint: {"center_y": .5}
+                            md_bg_color: app.theme_cls.primary_color
                             on_release:
                                 mg.transition.direction = "right"
                                 mg.current = str(int(mg.current) - 1) if int(mg.current) > 1 else "1"
@@ -78,9 +82,9 @@
                         MDIconButton:
                             icon: "chevron-right"
                             theme_text_color: "Custom"
-                            user_font_size: dp(30)
-                            text_color: app.theme_cls.primary_color
+                            text_color: 1,1,1,1
                             pos_hint: {"center_y": .5, "right": 1}
+                            md_bg_color: app.theme_cls.primary_color
                             on_release:
                                 mg.transition.direction = "left"
                                 mg.current = str(int(mg.current) + 1) if int(mg.current) < 3 else "3"
@@ -141,7 +145,7 @@
                                     underline: True
                                 M_AKLabelLoader:
                                     id: store
-                                    text: ""
+                                    text: "NocenStore"
                                     bold: True
                                     size_hint_y: None
                                     height: dp(30) if not self.text else self.texture_size[1]
@@ -170,6 +174,7 @@
                                     icon_size: dp(20)
                                     disabled: True
                                     pos_hint: {"center_x": .5, "center_y": .5}
+                                    _selected: 5
                         MDCard:
                             size_hint_y: None
                             height: self.minimum_height
@@ -196,6 +201,7 @@
                                 font_style: "Money"
 
                         MDCard:
+                            id: sizes
                             size_hint_y: None
                             orientation:"vertical"
                             height: dp(100)

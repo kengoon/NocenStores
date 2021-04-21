@@ -10,7 +10,6 @@
 #: import MDExpansionPanelOneLine kivymd.uix.expansionpanel.MDExpansionPanelOneLine
 #: import Factory kivy.factory.Factory
 #: import webbrowser webbrowser
-##: import share_text kvdroid.share_text
 ScreenManager:
     Initializer:
         id: init
@@ -20,6 +19,12 @@ ScreenManager:
 
 <Initializer>:
     name: "initializer"
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
     Image:
         allow_stretch: True
         keep_ratio: True

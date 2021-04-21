@@ -30,9 +30,17 @@
             id: rv
             effect_cls: ScrollEffect
             viewclass: "DealsCard"
-            on_scroll_start: root.schedule_load()
+            on_scroll_start:
+                root.schedule_load()
+                [exec("child.disabled = True", {"child": child}) for child in holder.children]
+            on_scroll_stop:
+                [exec("child.disabled = False", {"child": child}) for child in holder.children]
+            on_touch_up:
+                [exec("child.disabled = False", {"child": child}) for child in holder.children]
             RecycleGridLayout:
-                root: root
+                id: holder
+                root: root.manager
+                roots: root
                 default_size_hint: 1, None
                 default_size: None, Window.height/3.5
                 size_hint_y: None

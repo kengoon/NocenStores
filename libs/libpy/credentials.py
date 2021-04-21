@@ -51,12 +51,15 @@ class Login(Screen):
         self.disabled = False
         self.ids.spinner.active = False
         user_data = loads(data)
-        with open("token.json", "w") as file:
-            file.write(dumps(user_data, indent=4, sort_keys=True))
+        try:
+            with open("token.json", "w") as file:
+                file.write(dumps(user_data, indent=4, sort_keys=True))
+        except FileNotFoundError:
+            pass
         app.login = True
         app.firebase = user_data
-        self.manager.current = app.current or "home"
-        if app.current:
+        self.manager.current = app.current or "home" if app.current != "profile" else "home"
+        if app.current == "lookout":
             self.manager.ids.lookout.ids.buttons.disabled = True
             self.manager.ids.lookout.clear_cache()
             self.manager.ids.lookout.update_interface(self.manager.ids.lookout.tmp_data)
@@ -140,12 +143,15 @@ class SignUp(Screen):
         self.ids.spinner.active = False
         user_data = loads(data)
         user_data.update({"name": self.ids.name.text, "email": self.ids.email.text, "phone": self.ids.phone.text})
-        with open("token.json", "w") as file:
-            file.write(dumps(user_data, indent=4, sort_keys=True))
+        try:
+            with open("token.json", "w") as file:
+                file.write(dumps(user_data, indent=4, sort_keys=True))
+        except FileNotFoundError:
+            pass
         app.login = True
         app.firebase = user_data
-        self.manager.current = app.current or "home"
-        if app.current:
+        self.manager.current = app.current or "home" if app.current != "profile" else "home"
+        if app.current == "lookout":
             self.manager.ids.lookout.ids.buttons.disabled = True
             self.manager.ids.lookout.clear_cache()
             self.manager.ids.lookout.update_interface(self.manager.ids.lookout.tmp_data)

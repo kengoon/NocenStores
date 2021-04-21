@@ -1,3 +1,4 @@
+import os
 import urllib.request
 from functools import partial
 from json import loads
@@ -12,8 +13,12 @@ from kivy.metrics import dp
 from kivy.network.urlrequest import UrlRequest
 from kivy.properties import ObjectProperty, NumericProperty
 from kivy.uix.screenmanager import Screen
+from kivy.utils import get_color_from_hex
 from kivymd.app import MDApp
+from kivymd.uix.button import MDRaisedButton
 from kivymd.uix.dialog import MDDialog
+from kivymd_extensions.sweetalert import SweetAlert
+from classes.notification import notify
 
 
 class Home(Screen, EventDispatcher):
@@ -24,21 +29,68 @@ class Home(Screen, EventDispatcher):
     pause = False
     menu = None
     url = "https://nocenstore.pythonanywhere.com/"
+    toast = True
+    data_trending = []
+    swiper = ObjectProperty()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.register_event_type("on_menu")
+        self.alert = SweetAlert(size_hint_x=None, width=Window.width - dp(20))
         self.data = []
+        self.widgets = [{"viewclass": "Swiper", "root": self}, {"viewclass": "Platform", "root": self},
+                        {"viewclass": "Gridad", "root": self}]
 
     def go_cart(self, instance):
         self.manager.prev_screen.append(self.name)
         self.manager.current = "cart"
 
+    def fire(self):
+        logout = MDRaisedButton(text="LOG OUT", on_release=self.delete_token)
+        logout.md_bg_color = get_color_from_hex('#dd3b34')
+        self.alert.fire(
+            "Your email is not verified. Visit your email provider (gmail, outlook,....) to verify your email",
+            buttons=[MDRaisedButton(text="CONTINUE", on_release=self.check_email),
+                     logout],
+            type="info"
+        )
+
+    def delete_token(self, instance):
+        self.alert.dismiss()
+        self.app.firebase = {}
+        os.remove("token.json")
+        self.manager.current = "login"
+
     def on_enter(self, *args):
+        if self.app.firebase and not self.app.firebase["profile"]["users"][0]["emailVerified"]:
+            self.fire()
         if self.update:
             return
-        self.start_clock()
-        self.get_ads()
+        Clock.schedule_once(self.screen_update, 1.5)
+
+    def check_email(self, instance):
+        self.alert.content_cls.children[1].text = "Checking if you have verified your email"
+        self.alert.request = True
+
+        def check(instance, data):
+            if data == "False":
+                self.alert.dismiss()
+                self.alert = SweetAlert(size_hint_x=None, width=Window.width - dp(20))
+                self.fire()
+            else:
+                self.app.firebase["profile"]["users"][0]["emailVerified"] = True
+                self.alert.dismiss()
+
+        UrlRequest(
+            self.url + "verifyEmail",
+            req_body=str(self.app.firebase["refreshToken"]),
+            on_success=check,
+            on_failure=lambda x: print("failed")
+        )
+
+    def screen_update(self, *args):
+        for data in self.widgets:
+            self.ids.rv.data.append(data)
         self.ids.home.header.ids._label.font_style = "Caption"
         self.ids.profile.header.ids._label.font_style = "Caption"
         self.ids.sell.header.children[0].remove_widget(self.ids.sell.header.ids._label)
@@ -46,11 +98,9 @@ class Home(Screen, EventDispatcher):
         self.ids.sell.header.ids._label_icon.font_size = dp(35)
         self.ids.used.header.ids._label.font_style = "Caption"
         self.ids.feeds.header.ids._label.font_style = "Caption"
-        for data in self.data:
-            self.ids.rc.data.append(data)
-        anim = Animation(opacity=0) + Animation(opacity=1)
-        anim.repeat = True
-        anim.start(self.ids.but)
+        self.get_ads()
+        self.get_data()
+        self.start_clock()
         self.update = True
 
     def start_clock(self):
@@ -66,7 +116,9 @@ class Home(Screen, EventDispatcher):
     def update_ads_data(self, instance, data):
         data = loads(data)
         Thread(target=partial(self.download_ads, data)).start()
-        for content, child in zip(data, self.ids.swiper.children[0].children):
+        # for content, child in zip(data, self.ids.swiper.children[0].children):
+        # self.swiper = self.ids.holder.children[-1].ids.swiper
+        for content, child in zip(data, self.swiper.children[0].children):
             child.children[0].children[0].source = content["image_url"]
             child.children[0].children[0].text = content["name"]
 
@@ -78,7 +130,8 @@ class Home(Screen, EventDispatcher):
     def check_cache(self, *args):
         self.get_ads()
         if listdir("assets/ads"):
-            for image, child in zip(listdir("assets/ads"), self.ids.swiper.children[0].children):
+            # self.swiper = self.ids.holder.children[-1].ids.swiper
+            for image, child in zip(listdir("assets/ads"), self.swiper.children[0].children):
                 if child.children[0].children[0].source:
                     return
                 child.children[0].children[0].source = f"assets/ads/{image}"
@@ -93,9 +146,13 @@ class Home(Screen, EventDispatcher):
             self.start_clock()
 
     def _start_animation(self, *args):
-        self.counter += 1
+        self.counter = self.swiper.get_current_index() + 1
         self.counter = 0 if self.counter == 5 else self.counter
-        self.ids.swiper.set_current(self.counter)
+        try:
+            self.swiper = self.ids.holder.children[-1].ids.swiper
+        except AttributeError:
+            pass
+        self.swiper.set_current(self.counter)
 
     def _stop_animation(self):
         self.clock.cancel()
@@ -141,3 +198,56 @@ class Home(Screen, EventDispatcher):
         self.manager.current = screen
         self.manager.ids.category.data_type = instance.text.lower()
         self.manager.ids.category.exec_type = "_".join(instance.text.lower().split(" "))
+
+    def get_data(self):
+        UrlRequest(
+            url=f"{self.url}getTrendingProduct",
+            on_error=self.network_error,
+            on_success=self.post_data,
+            on_failure=self.server_error
+        )
+
+    def post_data(self, instance, data):
+        if data == "None":
+            return
+        self.data_trending = loads(data)
+        length_data = len(self.data_trending)
+        # try:
+        #     Clock.schedule_interval(
+        #         lambda x: exec(
+        #             'try:\n\tdatum = self.data_trending.pop(0)\n\tdatum.update({"viewclass": '
+        #             '"CategoryProductCard"})\n\tself.ids.rv.data.append(datum)\nexcept IndexError:\n\tpass',
+        #             {"self": self}
+        #         ), timeout=1)
+        # except IndexError:
+        #     pass
+
+        for index, _ in enumerate(range(length_data)):
+            if index == 20:
+                break
+            datum = self.data_trending.pop(0)
+            datum.update({"viewclass": "CategoryProductCard"})
+            self.ids.rv.data.append(datum)
+
+    def network_error(self, instance, data):
+        self.get_data()
+        if self.toast:
+            notify("please turn on your data or subscribe")
+            self.toast = False
+
+    @staticmethod
+    def server_error(instance, data):
+        notify("server is being updated, will be fixed soon")
+
+    def schedule_load(self):
+        def continue_update(*args):
+            if self.data_trending:
+                length_data = len(self.data_trending)
+                for i, _ in enumerate(range(length_data)):
+                    if i == 20:
+                        break
+                    datum = self.data_trending.pop(0)
+                    datum.update({"viewclass": "CategoryProductCard"})
+                    self.ids.rv.data.append(datum)
+
+        Clock.schedule_once(continue_update, 2)

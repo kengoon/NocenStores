@@ -24,9 +24,10 @@
             M_CardTextField:
                 elevation: 10
                 hint_text: "search"
-                icon_left: "magnify"
+                icon_left: "refresh"
                 icon_right: "cart-variant"
                 icon_right_callback: root.go_cart
+                icon_left_callback: lambda x: rv.refresh_from_data()
                 text_field_disabled: True
                 icon_right_color: app.theme_cls.primary_color
                 icon_left_color: app.theme_cls.primary_color
@@ -35,6 +36,10 @@
                 md_bg_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
                 background_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
                 disabled_foreground_color: [0.5, 0.5, 0.5, 1.0]
+                on_release:
+                    root.root.manager.prev_screen.append(root.root.name)
+                    root.root.manager.ids.search.p_type = False
+                    root.root.manager.current = "search"
         RecycleView:
             id: rv
             effect_cls: ScrollEffect

@@ -29,9 +29,10 @@
                     M_CardTextField:
                         elevation: 10
                         hint_text: "search"
-                        icon_left: "magnify"
+                        icon_left: "refresh"
                         icon_right: "cart-variant"
                         icon_right_callback: root.go_cart
+                        icon_left_callback: lambda x: rv.refresh_from_data()
                         text_field_disabled: True
                         icon_right_color: app.theme_cls.primary_color
                         icon_left_color: app.theme_cls.primary_color
@@ -40,153 +41,38 @@
                         md_bg_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
                         background_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
                         disabled_foreground_color: [0.5, 0.5, 0.5, 1.0]
-                        on_release: root.manager.current = "search"
+                        on_release:
+                            root.manager.prev_screen.append(root.name)
+                            root.manager.ids.search.p_type = True
+                            root.manager.current = "search"
 
-                ScrollView:
+                RecycleView:
+                    id: rv
                     effect_cls: ScrollEffect
-                    MDList:
-                        padding: 0
-                        spacing: 0
-                        MDBoxLayout:
-                            id: box
-                            adaptive_height: True
-                            padding: [0, 0, 0, dp(10)]
-                            canvas.before:
-                                Color:
-                                    rgba: app.theme_cls.primary_color
-                                Rectangle:
-                                    size:self.size[0], (root.height/3)/1.5
-                                    pos: self.pos[0], self.pos[1] + dp(100)
-                            MDSwiper:
-                                id: swiper
-                                size_hint_y: None
-                                height: Window.height/4.5
-                                items_spacing: "10dp"
-                                MDSwiperItem:
-                                    M_CardLoader:
-                                        source:""
-                                        text: ""
-                                        root: root
-
-                                MDSwiperItem:
-                                    M_CardLoader
-                                        source: ""
-                                        text: ""
-                                        root: root
-
-                                MDSwiperItem:
-                                    M_CardLoader
-                                        source: ""
-                                        text: ""
-                                        root: root
-
-                                MDSwiperItem:
-                                    M_CardLoader
-                                        source: ""
-                                        text: ""
-                                        root: root
-
-                                MDSwiperItem:
-                                    M_CardLoader
-                                        source: ""
-                                        text: ""
-                                        root: root
-                        MDBoxLayout:
-                            adaptive_height: True
-                            padding: dp(5)
-                            MDCard:
-                                size_hint_y: None
-                                height: self.minimum_height
-                                radius: [dp(10)]
-                                MDGridLayout:
-                                    adaptive_height: True
-                                    cols: 4
-                                    padding: dp(10)
-                                    spacing: dp(10)
-                                    PlatformCan:
-                                        root: root
-                                        icon: "shopping"
-                                        text: "Deals"
-                                        bg_color: .8, 0, 0, 1
-
-                                    PlatformCan:
-                                        root: root
-                                        icon: "headset"
-                                        bg_color: app.theme_cls.primary_color
-                                        text: "Customer Care"
-
-                                    PlatformCan:
-                                        root: root
-                                        icon: "heart"
-                                        text: "Saved Items"
-                                        bg_color: 1, .7, 0, 1
-
-                                    PlatformCan:
-                                        root: root
-                                        icon: "school"
-                                        text: "Student Zone"
-                                        bg_color: 1, 0, .8, 1
-
-                        MDGridLayout:
-                            id: grid_cat
-                            adaptive_height: True
-                            cols: 3
-                            padding: [dp(5), dp(10), dp(5), dp(5)]
-                            spacing: dp(5)
-                            CategoryCard:
-                                text: "Electronics"
-                                #text_color: 1, 1, 1, 1
-                                source: "assets/electronics.png"
-                                on_release:
-                                    root.change_screen(self, "category")
-
-                            CategoryCard:
-                                text: "Portable Devices"
-                                source: "assets/portables.png"
-                                on_release:
-                                    root.change_screen(self, "category")
-                                #text_color: 1, 1, 1, 1
-
-                            CategoryCard:
-                                text: "Clothing"
-                                source: "assets/clothing.png"
-                                #text_color: 1, 1, 1, 1
-                                on_release:
-                                    root.change_screen(self, "category")
-
-                            CategoryCard:
-                                text: "Furniture"
-                                source: "assets/furniture.png"
-                                #text_color: 1, 1, 1, 1
-                                on_release:
-                                    root.change_screen(self, "category")
-
-                            CategoryCard:
-                                text: "Kitchen"
-                                source: "assets/kitchen.png"
-                                #text_color: 1, 1, 1, 1
-                                on_release:
-                                    root.change_screen(self, "category")
-
-                            CategoryCard:
-                                text: "Beauty"
-                                source: "assets/beauty.png"
-                                on_release:
-                                    root.change_screen(self, "category")
-
-                MDBoxLayout:
-                    adaptive_height: True
-                    orientation: "vertical"
-                    padding: [0, dp(6), 0, dp(10)]
-                    md_bg_color: 0, 0, 0, 0
-                    MDFillRoundFlatIconButton:
-                        id: but
-                        oh: self.height
-                        icon: "trending-up"
-                        text: "Trending"
-                        bold: True
-                        pos_hint: {"center_x": .5}
-                        on_release: root.manager.current = "trending"
+                    key_viewclass: "viewclass"
+                    do_scroll_x: False
+                    scroll_type: ["content", "bars"]
+                    bar_width: "10dp"
+                    on_scroll_start: root.schedule_load()
+#                    on_scroll_start:
+#                        [exec("child.disabled = True if not issubclass(child.__class__, Swiper) else False", {"child": child, "Swiper": Factory.Swiper}) for child in holder.children]
+#                        root.schedule_load()
+#                    on_scroll_stop:
+#                        [exec("child.disabled = False", {"child": child}) for child in holder.children]
+#                    on_touch_up:
+#                        [exec("child.disabled = False", {"child": child}) for child in holder.children]
+                    RecycleGridLayout:
+                        id: holder
+                        root: root.manager
+                        roots: root
+                        default_size_hint: 1, None
+                        default_size: None, None
+                        size_hint_y: None
+                        height: self.minimum_height
+                        spacing:dp(10)
+                        padding: dp(0)
+                        cols: 1
+                        key_size: "height"
 
 
 
@@ -212,6 +98,10 @@
             name: "sell"
             text: "sell"
             icon: "plus-circle-outline"
+            on_enter:
+                self.children[0].dispatch("on_enter")
+            on_leave:
+                self.children[0].dispatch("on_leave")
             on_tab_release:
                 a = root.outliner.copy()
                 a.remove(self)

@@ -1,6 +1,9 @@
+from kivy.core.window import Window
+from kivy.metrics import dp
 from kivy.uix.screenmanager import Screen
 from json import loads, dumps
 from os import environ
+from kivy import platform
 from kivy.utils import get_color_from_hex
 from kivymd.uix.button import MDRaisedButton
 
@@ -20,7 +23,7 @@ class Payment(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.payload = {}
-        self.alert = SweetAlert()
+        self.alert = SweetAlert(size_hint_x=None, width=Window.width - dp(20))
         self.menu_set = False
         with open("bank.json") as file:
             self.banks = loads(file.read())
@@ -52,7 +55,7 @@ class Payment(Screen):
             on_release=lambda x: self.alert.dismiss()
         )
         NO.md_bg_color = get_color_from_hex('#dd3b34')
-        self.alert = SweetAlert()
+        self.alert = SweetAlert(size_hint_x=None, width=Window.width - dp(20))
         self.alert.fire(
             "Your Bank Will Be Debited, Do You Want To Proceed?",
             type="question",
@@ -60,6 +63,11 @@ class Payment(Screen):
         )
 
     def proceed_with_bank_payment(self):
+        if not self.ids.acc_no.text or not self.ids.bank_name.text:
+            self.alert.dismiss()
+            self.alert = SweetAlert(size_hint_x=None, width=Window.width - dp(20))
+            self.alert.fire("Fill all fields", type="warning")
+            return
         try:
             self.alert.content_cls.children[1].text = "Processing Your Request"
             self.alert.request = True
@@ -81,11 +89,11 @@ class Payment(Screen):
                 req_body=dumps(self.payload),
                 on_success=self.bank_payment_successful,
                 on_error=self.payment_unsuccessful,
-                on_failure=self.server_error
+                on_failure=self.bank_server_error
             )
         except KeyError:
             self.alert.dismiss()
-            self.alert = SweetAlert()
+            self.alert = SweetAlert(size_hint_x=None, width=Window.width - dp(20))
             self.alert.fire("Please Select A Valid Bank Name and And Account Number", type="warning")
 
     def bank_payment_successful(self, instance, data):
@@ -105,7 +113,7 @@ class Payment(Screen):
                 on_release=lambda x: self.alert.dismiss()
             )
             CANCEL.md_bg_color = get_color_from_hex('#dd3b34')
-            self.alert = SweetAlert()
+            self.alert = SweetAlert(size_hint_x=None, width=Window.width - dp(20))
             self.alert.fire(
                 title="Enter the OTP that was sent to your phone! Didn't get the OTP? Dial * 322 * 0 # on "
                       "your phone (MTN, Etisalat, Airtel) Glo, use * 805 * 0 #",
@@ -114,6 +122,7 @@ class Payment(Screen):
                 buttons=[SUBMIT, CANCEL]
             )
             self.alert.content_cls.children[1].input_filter = "int"
+            self.alert.content_cls.children[1].bind(focus=self.on_focus)
             self.alert.auto_dismiss = False
 
     def submit_bank_otp(self):
@@ -124,14 +133,14 @@ class Payment(Screen):
 
         def submit_otp(instance, data):
             self.alert.dismiss()
-            self.alert = SweetAlert()
+            self.alert = SweetAlert(size_hint_x=None, width=Window.width - dp(20))
             self.alert.fire("Payment Successfully Completed", type="success")
 
         UrlRequest(
             self.url + "submitBankOtp",
             req_body=dumps(self.payload),
             on_success=submit_otp,
-            on_failure=self.server_error,
+            on_failure=self.bank_server_error,
             on_error=self.payment_unsuccessful
         )
 
@@ -147,24 +156,25 @@ class Payment(Screen):
             on_release=lambda x: self.alert.dismiss()
         )
         NO.md_bg_color = get_color_from_hex('#dd3b34')
-        self.alert = SweetAlert()
+        self.alert = SweetAlert(size_hint_x=None, width=Window.width - dp(20))
         self.alert.fire(
             "Your Card Will Be Debited, Do You Want To Proceed?",
             type="question",
             buttons=[YES, NO]
         )
 
-    def bank_payment_unsuccessful(self, *args):
-        self.alert.dismiss()
-        self.alert = SweetAlert()
-        self.alert.fire("Network Error!", type="failure")
-
     def bank_server_error(self, *args):
         self.alert.dismiss()
-        self.alert = SweetAlert()
+        self.alert = SweetAlert(size_hint_x=None, width=Window.width - dp(20))
         self.alert.fire("Transaction Failed! Check Your Bank Details, You Can Use Card instead", type='failure')
 
     def proceed_with_card_payment(self):
+        if (not self.ids.card_number.text or not self.ids.cvv.text or not self.ids.pin.text
+                or not self.ids.month.text or not self.ids.year.text):
+            self.alert.dismiss()
+            self.alert = SweetAlert(size_hint_x=None, width=Window.width - dp(20))
+            self.alert.fire("Fill all fields", type="warning")
+            return
         self.alert.content_cls.children[1].text = "Processing Your Request"
         self.alert.request = True
         self.alert.auto_dismiss = False
@@ -209,7 +219,7 @@ class Payment(Screen):
                 on_release=lambda x: self.alert.dismiss()
             )
             CANCEL.md_bg_color = get_color_from_hex('#dd3b34')
-            self.alert = SweetAlert()
+            self.alert = SweetAlert(size_hint_x=None, width=Window.width - dp(20))
             self.alert.fire(
                 title="Enter the OTP that was sent to your phone! Didn't get the OTP? Dial * 322 * 0 # on "
                       "your phone (MTN, Etisalat, Airtel) Glo, use * 805 * 0 #",
@@ -218,7 +228,22 @@ class Payment(Screen):
                 buttons=[SUBMIT, CANCEL]
             )
             self.alert.content_cls.children[1].input_filter = "int"
+            self.alert.content_cls.children[1].bind(focus=self.on_focus)
             self.alert.auto_dismiss = False
+
+    @staticmethod
+    def on_focus(instance, value):
+        if platform == "android":
+            from kvdroid import activity
+            from android.runnable import run_on_ui_thread
+
+            @run_on_ui_thread
+            def fix_back_button():
+                activity.onWindowFocusChanged(False)
+                activity.onWindowFocusChanged(True)
+
+            if not value:
+                fix_back_button()
 
     def submit_otp(self):
         self.alert.content_cls.children[2].text = "Processing Your Request"
@@ -228,7 +253,7 @@ class Payment(Screen):
 
         def submit_otp(instance, data):
             self.alert.dismiss()
-            self.alert = SweetAlert()
+            self.alert = SweetAlert(size_hint_x=None, width=Window.width - dp(20))
             self.alert.fire("Payment Successfully Completed", type="success")
 
         UrlRequest(
@@ -242,10 +267,10 @@ class Payment(Screen):
 
     def payment_unsuccessful(self, *args):
         self.alert.dismiss()
-        self.alert = SweetAlert()
+        self.alert = SweetAlert(size_hint_x=None, width=Window.width - dp(20))
         self.alert.fire("Network Error!", type="failure")
 
     def server_error(self, *args):
         self.alert.dismiss()
-        self.alert = SweetAlert()
+        self.alert = SweetAlert(size_hint_x=None, width=Window.width - dp(20))
         self.alert.fire("Transaction Failed! Check Your Card Details", type='failure')
