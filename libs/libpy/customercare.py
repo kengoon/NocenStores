@@ -15,6 +15,5 @@ class CustomerCare(Screen):
         )
         toast("select gmail or email when app chooser opens", length_long=True)
 
-    @staticmethod
-    def call_customer_care():
-        call.makecall("08129330697")
+    def call_customer_care(self):
+        self.manager.ids.lookout.call_customer_care("Do You Want To CallCustomer Care?", "call")

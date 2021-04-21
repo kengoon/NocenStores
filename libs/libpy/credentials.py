@@ -51,18 +51,21 @@ class Login(Screen):
         self.disabled = False
         self.ids.spinner.active = False
         user_data = loads(data)
-        with open("token.json", "w") as file:
-            file.write(dumps(user_data, indent=4, sort_keys=True))
+        try:
+            with open("token.json", "w") as file:
+                file.write(dumps(user_data, indent=4, sort_keys=True))
+        except FileNotFoundError:
+            pass
         app.login = True
         app.firebase = user_data
-        self.manager.current = app.current or "home"
-        if app.current:
+        self.manager.current = app.current or "home" if app.current != "profile" else "home"
+        if app.current == "lookout":
+            self.manager.ids.lookout.ids.buttons.disabled = True
             self.manager.ids.lookout.clear_cache()
             self.manager.ids.lookout.update_interface(self.manager.ids.lookout.tmp_data)
         app.current = ""
         self.manager.ids.home.ids.profiles.ids.user.text = f"Welcome {app.firebase['name']}!"
         self.manager.ids.home.ids.profiles.ids.email.text = app.firebase["email"]
-        print(self.manager.ids.setting.ids.rule1.ids)
 
 
 class SignUp(Screen):
@@ -126,14 +129,12 @@ class SignUp(Screen):
         self.disabled = False
         self.opacity = 1
         self.ids.spinner.active = False
-        print(args[1])
         notify("please check your network connection", background=[0.2, 0.2, 0.2, 1])
 
     def server_error(self, *args):
         self.disabled = False
         self.opacity = 1
         self.ids.spinner.active = False
-        print(args[1])
         notify("it looks like your email address already exist on our server, please sign in!!!",
                [0.2, 0.2, 0.2, 1], duration=10)
 
@@ -142,15 +143,18 @@ class SignUp(Screen):
         self.ids.spinner.active = False
         user_data = loads(data)
         user_data.update({"name": self.ids.name.text, "email": self.ids.email.text, "phone": self.ids.phone.text})
-        with open("token.json", "w") as file:
-            file.write(dumps(user_data, indent=4, sort_keys=True))
+        try:
+            with open("token.json", "w") as file:
+                file.write(dumps(user_data, indent=4, sort_keys=True))
+        except FileNotFoundError:
+            pass
         app.login = True
         app.firebase = user_data
-        self.manager.current = app.current or "home"
-        if app.current:
+        self.manager.current = app.current or "home" if app.current != "profile" else "home"
+        if app.current == "lookout":
+            self.manager.ids.lookout.ids.buttons.disabled = True
             self.manager.ids.lookout.clear_cache()
             self.manager.ids.lookout.update_interface(self.manager.ids.lookout.tmp_data)
         app.current = ""
-        print(app.firebase)
         self.manager.ids.home.ids.profiles.ids.user.text = f"Welcome {app.firebase['name']}!"
         self.manager.ids.home.ids.profiles.ids.email.text = app.firebase["email"]

@@ -127,7 +127,7 @@ Builder.load_string(
                 root.dispatch("on_text_validate")
                 
             on_focus:
-                root.dispatch("on_focus")
+                root.dispatch("on_focus", args[0], args[1])
                 
             on_triple_tap:
                 root.dispatch("on_triple_tap")
@@ -474,6 +474,16 @@ class M_CardTextField(MDBoxLayout, RectangularElevationBehavior, ThemableBehavio
         simulates on_focus event in kivy default
         TextInput
         """
+        if platform == "android":
+            from kvdroid import activity
+            from android.runnable import run_on_ui_thread
+
+            @run_on_ui_thread
+            def fix_back_button():
+                activity.onWindowFocusChanged(False)
+                activity.onWindowFocusChanged(True)
+            if not args[1]:
+                fix_back_button()
 
     def on_quad_touch(self):
         """[summary]
@@ -522,10 +532,10 @@ if __name__ == "__main__":
             return root
 
         def search(self, instance):
-            print("searching", instance)
+            pass
 
         def login(self, instance):
-            print("login", instance)
+            pass
 
 
     Opera().run()

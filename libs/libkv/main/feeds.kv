@@ -23,10 +23,12 @@
             md_bg_color: app.theme_cls.primary_color
             M_CardTextField:
                 elevation: 10
-                hint_text: "search/voice search"
-                icon_left: "microphone"
+                hint_text: "search"
+                icon_left: "refresh"
                 icon_right: "cart-variant"
+                icon_right_callback: root.go_cart
                 text_field_disabled: True
+                icon_left_callback: lambda x: rv.refresh_from_data()
                 icon_right_color: app.theme_cls.primary_color
                 icon_left_color: app.theme_cls.primary_color
                 foreground_color: [0, 0, 0, 0.8] if app.theme_cls.theme_style == "Light" else [1,1,1,1]
@@ -35,13 +37,23 @@
                 background_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
                 disabled_foreground_color: [0.5, 0.5, 0.5, 1.0]
                 on_release:
+                    root.root.manager.prev_screen.append(root.root.name)
+                    root.root.manager.ids.search.p_type = False
                     root.root.manager.current = "search"
         RecycleView:
             id: rv
             effect_cls: ScrollEffect
             viewclass: "FeedsCard"
+            on_scroll_start:
+                root.schedule_load()
+                [exec("child.disabled = True", {"child": child}) for child in holder.children]
+            on_scroll_stop:
+                [exec("child.disabled = False", {"child": child}) for child in holder.children]
+            on_touch_up:
+                [exec("child.disabled = False", {"child": child}) for child in holder.children]
             RecycleGridLayout:
                 id: holder
+                root: root
                 default_size_hint: 1, None
                 default_size: None, Window.height/3
                 size_hint_y: None

@@ -1,2 +1,139 @@
 <Payment>:
     name: "payment"
+    BoxLayout:
+        orientation: "vertical"
+        spacing: dp(20)
+        LeftIconToolBar:
+            icon: "arrow-left"
+            callback: root.go_back
+            title: "Payment"
+        ScrollView:
+            id: sv
+            effect_cls: ScrollEffect
+            MDList:
+                spacing: dp(30)
+                OneLineIconListItem
+                    text: "Pay Via Bank Transfer"
+                    on_release:
+                        card.disabled = True
+                        bank.disabled = False
+                    IconLeftWidget:
+                        icon: "bank"
+
+                OneLineIconListItem:
+                    text: "Pay Via Credit Card"
+                    on_release:
+                        card.disabled = False
+                        bank.disabled = True
+                    IconLeftWidget:
+                        icon: "credit-card"
+                MDCard
+                    id: card
+                    spacing: dp(15)
+                    padding: dp(10)
+                    orientation: "vertical"
+                    radius: [dp(10)]
+                    size_hint_y: None
+                    height: self.minimum_height
+                    MDBoxLayout:
+                        adaptive_height: True
+                        padding:[dp(10),0,0,0]
+                        MDLabel:
+                            text: "Pay Via Card"
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                    TextField:
+                        id: card_number
+                        hint_text: "card number:"
+                        icon_left: "credit-card-outline"
+                        input_filter: "int"
+                    MDBoxLayout:
+                        adaptive_height: True
+                        spacing: dp(5)
+                        TextField:
+                            id: month
+                            hint_text: "mm"
+                            icon_left: "calendar-month"
+                            input_filter: "int"
+                            on_text:
+                                if len(self.text) > 2: self.text = self.text[:-1]
+                        TextField:
+                            id: year
+                            hint_text: "yy"
+                            icon_left: "calendar-month-outline"
+                            input_filter: "int"
+                            on_text:
+                                if len(self.text) > 2: self.text = self.text[:-1]
+                    MDBoxLayout:
+                        adaptive_height: True
+                        spacing: dp(5)
+                        TextField:
+                            id: cvv
+                            hint_text:"cvv"
+                            icon_left: "credit-card"
+                            input_filter: "int"
+                            on_text:
+                                if len(self.text) > 3: self.text = self.text[:-1]
+                        TextField:
+                            id: pin
+                            hint_text:"pin"
+                            icon_left: "lock"
+                            input_filter: "int"
+                            password: True
+                            on_text:
+                                if len(self.text) > 4: self.text = self.text[:-1]
+
+                MDCard
+                    id: bank
+                    spacing: dp(15)
+                    padding: dp(10)
+                    orientation: "vertical"
+                    radius: [dp(10)]
+                    size_hint_y: None
+                    height: self.minimum_height
+                    disabled: True
+                    MDBoxLayout:
+                        adaptive_height: True
+                        padding:[dp(10),0,0,0]
+                        MDLabel:
+                            text: "Pay Via Bank Transfer"
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                    TextField:
+                        id: acc_no
+                        hint_text: "account number:"
+                        icon_left: "numeric"
+                        input_filter: "int"
+                    TextField:
+                        id: bank_name
+                        hint_text: "bank name:"
+                        icon_left: "bank"
+                        text_field_disabled: True
+                        on_release: root.menu.open()
+
+        MDBoxLayout
+            adaptive_height: True
+            padding: dp(7)
+            MDCard:
+                size_hint_y: None
+                height: self.minimum_height
+                md_bg_color: app.theme_cls.primary_color
+                ripple_behavior: True
+                radius: [dp(5)]
+                on_release:
+                    root.make_payment_card() if not card.disabled else root.make_payment_bank()
+                MDIconButton:
+                    icon: "check"
+                    opacity: 1
+                    theme_text_color: "Custom"
+                    text_color: 1,1,1,1
+                MDLabel:
+                    halign: "center"
+                    pos_hint: {"center_x": .5}
+                    text: "Click To Pay"
+                    font_style: "Button"
+                    color: 1,1,1,1
+
+
+
+

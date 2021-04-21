@@ -1,13 +1,11 @@
 import os
 from functools import partial
-from json import dumps, loads
+from json import dumps, loads, decoder
 from os.path import exists
 from shutil import rmtree
 from threading import Thread
-from time import sleep
 from certifi import where
 from kivy import platform
-from kivy.animation import Animation
 from kivy.clock import Clock
 from kivy.core.window import Window
 from kivy.effects.scroll import ScrollEffect
@@ -67,7 +65,14 @@ class NocenStore(MDApp):
         if exists("assets/compressed"):
             rmtree("assets/compressed")
         change_statusbar_color(self.theme_cls.primary_color)
-        Window.bind(on_keyboard=self.on_back_button)
+        Window.bind(on_key_up=self.on_back_button)
+        Window.bind(on_keyboard=self.on_ignore)
+        # Window.bind(on_flip=self.fix_back_button)
+        self.data_product = []
+        self.current_email = ""
+        self.current_phone = ""
+        self.total_payment = ""
+        self.current_location = ""
         self.dialog = None
         self.service = None
         self.on_service = None
@@ -85,7 +90,7 @@ class NocenStore(MDApp):
                 self.firebase = loads(file.read())
         self.token = None
         self.label = None
-        self.no_screen = ["login", "initializer", "home"]
+        self.no_screen = ["initializer", "home"]
         Window.softinput_mode = 'below_target'
         self.theme_cls.font_styles.update({"Money": ["assets/Eczar-Regular", 16, False, 0.5],
                                            "BigMoney": ["assets/Eczar-SemiBold", 20, False, 0.5],
@@ -93,6 +98,18 @@ class NocenStore(MDApp):
         if os.path.exists("theme.txt"):
             with open("theme.txt") as theme:
                 self.theme_cls.theme_style = theme.read()
+
+    def fix_back_button(self, *args):
+        if platform == "android":
+            from kvdroid import activity
+            from android.runnable import run_on_ui_thread
+
+            @run_on_ui_thread
+            def fix():
+                activity.onWindowFocusChanged(False)
+                activity.onWindowFocusChanged(True)
+
+            fix()
 
     def build(self):
         self.server = server = OSCThreadServer()
@@ -138,11 +155,20 @@ class NocenStore(MDApp):
     def date(self, message):
         print(message)
 
+    def on_ignore(self, *args):
+        if args[1] == 27:
+            return True
+
     def on_back_button(self, *args):
         if args[1] == 27 and self.root.current == "initializer":
             self.exit_app()
         elif args[1] == 27 and self.root.ids.manager.children[0].current not in self.no_screen:
             self.root.ids.manager.children[0].on_back_button()
+            if self.current == "profile":
+                self.root.ids.manager.children[0].ids.home.ids.raw.switch_tab("home")
+            if self.current == "lookout":
+                self.root.ids.manager.children[0].ids.lookout.update_interface(
+                    self.root.ids.manager.children[0].ids.lookout.tmp_data)
         else:
             if args[1] == 27:
                 self.exit_app()
@@ -153,13 +179,6 @@ class NocenStore(MDApp):
         Thread(target=self.initialize_connection).start()
 
     def initialize_connection(self):
-        sleep(1)
-
-        # def animate_label(*args):
-        #     Animation(pos_hint={"center_x": .5}).start(self.root.ids.init.ids.logo)
-        #     Animation(pos_hint={"center_x": .5}).start(self.root.ids.init.ids.des)
-        #
-        # Clock.schedule_once(animate_label)
         self.root.screens[0].ids.spinner.active = True
         if self.firebase:
             try:
@@ -172,21 +191,25 @@ class NocenStore(MDApp):
                     self.login = True
             except requests.exceptions.RequestException:
                 self.login = True
-                print(self.login)
+            except decoder.JSONDecodeError:
+                os.remove("token.json")
+                self.login = False
         Builder.load_file("libs/kv_widget/widget.kv")
         Builder.load_file("libs/libkv/init/credentials.kv")
         Builder.load_file("libs/manager.kv")
         for file in os.listdir("libs/libkv/main"):
+            if file == os.listdir("libs/libkv/main")[-2]:
+                self.root.screens[0].ids.spinner.active = False
             Builder.load_file(f"libs/libkv/main/{file}")
         self.check_add_screen("Factory.Manager()", "manager")
-        self.root.screens[0].ids.spinner.active = False
 
     def check_add_screen(self, screen_object, screen_name):
         Clock.schedule_once(partial(self._add_screen, screen_object, screen_name))
 
     def _add_screen(self, screen_object, screen_name, _):
         self.root.ids.manager.add_widget(eval(screen_object))
-        self.root.current = screen_name
+        Clock.schedule_once(lambda x: exec(
+            "self.root.current = screen_name", {"self": self, "screen_name": screen_name}), timeout=.5)
 
     @staticmethod
     def open(menu, label):
@@ -200,6 +223,10 @@ class NocenStore(MDApp):
 
     def exit_app(self):
         from kivymd.uix.button import MDRaisedButton, MDFlatButton
+        if platform == "android":
+            from kvdroid import activity
+            activity.moveTaskToBack(True)
+            return
         if self.close_dialog:
             self.dialog.dismiss()
             self.close_dialog = False
@@ -225,6 +252,20 @@ class NocenStore(MDApp):
         self.dialog.open()
         self.close_dialog = True
 
+    @staticmethod
+    def on_focus(value):
+        if platform == "android":
+            from kvdroid import activity
+            from android.runnable import run_on_ui_thread
+
+            @run_on_ui_thread
+            def fix_back_button():
+                activity.onWindowFocusChanged(False)
+                activity.onWindowFocusChanged(True)
+
+            if not value:
+                fix_back_button()
+
 
 class PhoneTextField(MDTextField):
     def insert_text(self, substring, from_undo=False):
@@ -234,6 +275,20 @@ class PhoneTextField(MDTextField):
 
     def on_text(self, instance, text):
         instance.error = len(text) != 11
+
+    @staticmethod
+    def do_focus(value):
+        if platform == "android":
+            from kvdroid import activity
+            from android.runnable import run_on_ui_thread
+
+            @run_on_ui_thread
+            def fix_back_button():
+                activity.onWindowFocusChanged(False)
+                activity.onWindowFocusChanged(True)
+
+            if not value:
+                fix_back_button()
 
 
 class PhoneCardTextField(M_CardTextField):

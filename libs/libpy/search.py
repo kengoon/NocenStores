@@ -10,13 +10,15 @@ from functions.dict_search import search_engine
 
 class Search(Screen):
     update = True
-    data = []
+    data_False = []
     url = "https://nocenstore.pythonanywhere.com/"
     toast = True
     search_product = False
     blink = True
     wait_search = False
     product = None
+    p_type = True
+    data_True = []
 
     def go_home(self, *args):
         self.manager.current = "home"
@@ -25,12 +27,20 @@ class Search(Screen):
         self.get_data()
 
     def get_data(self):
-        UrlRequest(
-            url=f"{self.url}getTrendingProduct",
-            on_error=self.network_error,
-            on_success=self.post_data,
-            on_failure=self.server_error
-        )
+        if self.p_type:
+            UrlRequest(
+                url=f"{self.url}getTrendingProduct",
+                on_error=self.network_error,
+                on_success=self.post_data,
+                on_failure=self.server_error
+            )
+        else:
+            UrlRequest(
+                url=f"{self.url}getFairlyUsedProduct",
+                on_error=self.network_error,
+                on_success=self.post_data,
+                on_failure=self.server_error
+            )
 
     def post_data(self, instance, data):
         self.ids.progress_box.opacity = 0
@@ -39,7 +49,7 @@ class Search(Screen):
             self.ids.ico.icon = "package-variant-closed"
             self.ids.lbl.text = "No Trending Product"
             return
-        self.data = loads(data)
+        exec(f"self.data_{self.p_type} = loads(data)")
         self.search_product = True
         self.search(None) if self.wait_search else None
         self.wait_search = False
@@ -67,7 +77,7 @@ class Search(Screen):
         if self.blink:
             self.ids.progress_box.opacity = 1
             self.blink = False
-        if not self.data:
+        if not eval(f"self.data_{self.p_type}"):
             notify("searching..  ")
             self.wait_search = True
             return
@@ -75,7 +85,13 @@ class Search(Screen):
         for index, _ in enumerate(search_term):
             search_term[index] = search_term[index].capitalize()
         search_term = " ".join(search_term)
-        self.product = search_engine(search_term, "product", self.data)
+        self.product = search_engine(search_term, "product", eval(f"self.data_{self.p_type}"))
+        if not self.product:
+            search_term = self.ids.txt.text.split()
+            for index, _ in enumerate(search_term):
+                search_term[index] = search_term[index].lower()
+            search_term = " ".join(search_term)
+            self.product = search_engine(search_term, "product", eval(f"self.data_{self.p_type}"))
         if not self.product:
             self.ids.ico.icon = "cloud-off-outline"
             self.ids.lbl.text = "Search Term Not Found"

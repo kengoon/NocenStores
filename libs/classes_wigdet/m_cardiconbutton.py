@@ -45,10 +45,8 @@ class M_CardIconButton(MDCard):
         self.icon_widget = MDIcon(theme_text_color="Custom")
         self.icon_label_widget = Label(markup=True)
         self.label = MDLabel(theme_text_color="Custom")
-        print(self.icon)
         super().__init__(**kwargs)
         if self.icon and self.icon in md_icons:
-            print(True)
             self.icon_widget = MDIcon(
                 theme_text_color="Custom",
                 text_color=self.icon_color,
@@ -80,12 +78,10 @@ class M_CardIconButton(MDCard):
             self.ids.grid.add_widget(self.label)
 
     def on_icon(self, instance, value):
-        print("dssd")
         if value in md_icons:
             self.icon_widget.icon = value
             try:
                 self.add_widget(self.icon_widget, index=1)
-                print(self.children)
             except AttributeError:
                 self.children.clear()
         else:
@@ -99,7 +95,6 @@ class M_CardIconButton(MDCard):
         self.label.text = value
         try:
             self.add_widget(self.label)
-            print(value)
         except AttributeError:
             self.children.clear()
 

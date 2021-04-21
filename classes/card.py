@@ -669,9 +669,7 @@ class MsCard(
         )
 
     def _on_ripple_behavior(self, instance, value):
-        print(value)
         self._no_ripple_effect = not value
-        print(self._no_ripple_effect)
 
 
 class MDCardSwipe(RelativeLayout):

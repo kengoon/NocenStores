@@ -73,7 +73,6 @@ class AndroidWebView(object):
             mWebview.freeMemory()  # probably not needed anymore
 
             if mWebview.getParent():
-                print(mWebview.getParent())
                 activity.getLayout().removeView(mWebview)
 
             # self.webview = None

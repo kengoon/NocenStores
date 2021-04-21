@@ -17,6 +17,7 @@ class SavedProduct(Screen):
     app = MDApp.get_running_app()
 
     def enter_search(self):
+        self.manager.ids.search.p_type = True
         self.manager.prev_screen.append(self.name)
         self.manager.current = "search"
 

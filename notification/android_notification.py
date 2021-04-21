@@ -32,6 +32,7 @@ PendingIntent = autoclass('android.app.PendingIntent')
 Intent = autoclass('android.content.Intent')
 Toast = autoclass('android.widget.Toast')
 BitmapFactory = autoclass('android.graphics.BitmapFactory')
+System = autoclass('java.lang.System')
 
 
 class AndroidNotification(Notification):
@@ -178,6 +179,10 @@ class AndroidNotification(Notification):
         noti.setContentTitle(title)
         noti.setContentText(AndroidString(message))
         noti.setTicker(AndroidString(ticker))
+        noti.setWhen(System.currentTimeMillis())
+        noti.setDefaults(-1)
+        noti.setGroup("new")
+        noti.setGroupSummary(True)
 
         # set additional flags for notification
         self._set_icons(noti, icon=icon)

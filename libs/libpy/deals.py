@@ -18,6 +18,7 @@ class Deals(Screen):
             self.get_data()
 
     def enter_search(self):
+        self.manager.ids.search.p_type = True
         self.manager.current = "search"
 
     def get_data(self):
@@ -40,7 +41,7 @@ class Deals(Screen):
         for index, _ in enumerate(range(length_data)):
             if index == 20:
                 break
-            self.ids.rv.data.append(self.data.pop(0))
+            self.ids.rv.data.insert(0, self.data.pop(0))
         self.update = False
 
     def network_error(self, instance, data):
@@ -70,5 +71,5 @@ class Deals(Screen):
                 for i, _ in enumerate(range(length_data)):
                     if i == 20:
                         break
-                    self.ids.rv.data.append(self.data.pop(0))
+                    self.ids.rv.data.insert(0, self.data.pop(0))
         Clock.schedule_once(continue_update, 2)

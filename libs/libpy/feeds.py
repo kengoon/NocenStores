@@ -1,3 +1,4 @@
+import webbrowser
 from json import loads
 
 from kivy.clock import Clock
@@ -36,7 +37,7 @@ class Feeds(Screen):
         for index, _ in enumerate(range(length_data)):
             if index == 20:
                 break
-            self.ids.rv.data.append(self.data.pop(0))
+            self.ids.rv.data.insert(0, self.data.pop(0))
         self.update = False
 
     def network_error(self, instance, data):
@@ -63,6 +64,22 @@ class Feeds(Screen):
                 for i, _ in enumerate(range(length_data)):
                     if i == 20:
                         break
-                    self.ids.rv.data.append(self.data.pop(0))
+                    self.ids.rv.data.insert(0, self.data.pop(0))
 
         Clock.schedule_once(continue_update, 2)
+
+    def go_cart(self, instance):
+        self.root.manager.prev_screen.append(self.root.name)
+        self.root.manager.current = "cart"
+
+    def proceed_to_lookout(self, instance):
+        if instance.url:
+            webbrowser.open(instance.url)
+            return
+        if not instance.price:
+            return
+        self.root.manager.prev_screen.append(self.root.name)
+        self.root.manager.current = "lookout"
+        self.root.manager.ids.lookout.ids.product_name.text = instance.name
+        self.root.manager.ids.lookout.ids.store.text = instance.store
+        self.root.manager.ids.lookout.update_interface(instance.data)
