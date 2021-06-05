@@ -5,7 +5,7 @@
     <option name="CUSTOM_SCOPE_NAME" value="All Places" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4cb93fcd-1f5d-4fef-8c90-3198d866ca2d" name="Default Changelist" comment="updated ignore">
+    <list default="true" id="4cb93fcd-1f5d-4fef-8c90-3198d866ca2d" name="Default Changelist" comment="cleaned buildozer">
       <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/0/001f8bae18d67a7d695c34539218e1f47c2ca7b1" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/0/002e3487befde4167528ab9e4efe775f6a209f42" afterDir="false" />
@@ -7030,19 +7030,7 @@
       <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/whitesource/PyCharmUsageMetrics.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/assets/logons1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/.gradle/6.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/.gradle/6.4.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/.gradle/6.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/.gradle/6.4.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/.gradle/6.4.1/fileContent/fileContent.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/.gradle/6.4.1/fileContent/fileContent.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/.gradle/6.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/.gradle/6.4.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/.gradle/6.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/.gradle/6.4.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/.gradle/6.4.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/.gradle/6.4.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/.gradle/6.4.1/javaCompile/classAnalysis.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/.gradle/6.4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/.gradle/6.4.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/.gradle/6.4.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/.gradle/6.4.1/javaCompile/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/.gradle/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/.gradle/checksums/md5-checksums.bin" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/.gradle/checksums/sha1-checksums.bin" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/.idea/.gitignore" beforeDir="false" />
@@ -7053,9 +7041,6 @@
       <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/.idea/nocenstore__armeabi-v7a.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/_python_bundle/_python_bundle/site-packages/PIL/_imaging.so" beforeDir="false" afterPath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/_python_bundle/_python_bundle/site-packages/PIL/_imaging.so" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivymd-0.104.2.dev0.dist-info/RECORD" beforeDir="false" afterPath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/_python_bundle/_python_bundle/site-packages/kivymd-0.104.2.dev0.dist-info/RECORD" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/_python_bundle/_python_bundle/site-packages/plyer-2.0.0.dist-info/INSTALLER" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/_python_bundle/_python_bundle/site-packages/plyer-2.0.0.dist-info/LICENSE" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/_python_bundle/_python_bundle/site-packages/plyer-2.0.0.dist-info/METADATA" beforeDir="false" />
@@ -7063,9 +7048,6 @@
       <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/_python_bundle/_python_bundle/site-packages/plyer-2.0.0.dist-info/REQUESTED" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/_python_bundle/_python_bundle/site-packages/plyer-2.0.0.dist-info/WHEEL" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/_python_bundle/_python_bundle/site-packages/plyer-2.0.0.dist-info/top_level.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/_python_bundle/_python_bundle/stdlib.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/_python_bundle/_python_bundle/stdlib.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/build.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/build.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/build/generated/not_namespaced_r_class_sources/debug/r/android/arch/core/R.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/build/generated/not_namespaced_r_class_sources/debug/r/android/arch/lifecycle/R.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/build/generated/not_namespaced_r_class_sources/debug/r/android/arch/lifecycle/livedata/R.java" beforeDir="false" />
@@ -8375,13 +8357,7 @@
       <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/build/intermediates/transforms/dexBuilder/debug/__content__.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/build/outputs/apk/debug/output.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/build/outputs/logs/manifest-merger-debug-report.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/dist_info.json" beforeDir="false" afterPath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/dist_info.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/libs/armeabi-v7a/libcrypto1.1.so" beforeDir="false" afterPath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/libs/armeabi-v7a/libcrypto1.1.so" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/libs/armeabi-v7a/libpython3.8.so" beforeDir="false" afterPath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/libs/armeabi-v7a/libpython3.8.so" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/assets/private.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/assets/private.mp3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/ic_launcher-playstore.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/java/org/kivy/android/PythonActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/java/org/kivy/android/PythonActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" />
@@ -8400,8 +8376,6 @@
       <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/templates/AndroidManifest.tmpl.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore__armeabi-v7a/templates/AndroidManifest.tmpl.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/csv-plugin.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -8638,20 +8612,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1608124808110</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Made the Green background to scroll together with the whole scrollview, in home.kv">
-      <created>1610260166880</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1610260166880</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Made the Green background to scroll together with the whole scrollview, in home.kv">
-      <created>1610260184345</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1610260184345</updated>
     </task>
     <task id="LOCAL-00005" summary="changed the menu magnify icon button to tune icon button and added menu button to the right side of search textbox">
       <created>1610260821799</created>
@@ -8982,7 +8942,21 @@
       <option name="project" value="LOCAL" />
       <updated>1622907698669</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="cleaned buildozer">
+      <created>1622908181491</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1622908181491</updated>
+    </task>
+    <task id="LOCAL-00053" summary="cleaned buildozer">
+      <created>1622908287125</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1622908287126</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -9034,6 +9008,7 @@
     <MESSAGE value="cleaned all print statements" />
     <MESSAGE value="final package on v0.2" />
     <MESSAGE value="updated ignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated ignore" />
+    <MESSAGE value="cleaned buildozer" />
+    <option name="LAST_COMMIT_MESSAGE" value="cleaned buildozer" />
   </component>
 </project>
