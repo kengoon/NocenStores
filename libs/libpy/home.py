@@ -38,7 +38,7 @@ class Home(Screen, EventDispatcher):
         self.register_event_type("on_menu")
         self.alert = SweetAlert(size_hint_x=None, width=Window.width - dp(20))
         self.data = []
-        self.widgets = [{"viewclass": "Swiper", "root": self}, {"viewclass": "Platform", "root": self},
+        self.widgets = [{"viewclass": "Swiper", "root": self, "_size": [0, Window.height/5]}, {"viewclass": "Platform", "root": self},
                         {"viewclass": "Gridad", "root": self}]
 
     def go_cart(self, instance):
@@ -163,21 +163,6 @@ class Home(Screen, EventDispatcher):
             self.app.theme_no_active = True
             self.app.theme_cls.theme_style = "Dark" if self.app.theme_cls.theme_style == "Light" else "Light"
 
-        # def dismiss_dialog(*args):
-        #     dialog.dismiss()
-        #
-        # button1 = MDFlatButton(text="Cancel", on_release=dismiss_dialog)
-        # button2 = MDRaisedButton(text="Continue", on_release=restart_app)
-        # dialog = MDDialog(
-        #     title="Change Theme",
-        #     text="app restart is required for Dark Mode" if self.app.theme_cls.theme_style == "Light"
-        #     else "app restart is required for Light Mode",
-        #     buttons=[button1, button2], auto_dismiss=False,
-        #     size_hint_x=None,
-        #     width=Window.width - dp(20)
-        # )
-        # dialog.open()
-
     @staticmethod
     def outline(icon: list, instance):
         if instance and "outline" in instance.icon:
@@ -212,15 +197,6 @@ class Home(Screen, EventDispatcher):
             return
         self.data_trending = loads(data)
         length_data = len(self.data_trending)
-        # try:
-        #     Clock.schedule_interval(
-        #         lambda x: exec(
-        #             'try:\n\tdatum = self.data_trending.pop(0)\n\tdatum.update({"viewclass": '
-        #             '"CategoryProductCard"})\n\tself.ids.rv.data.append(datum)\nexcept IndexError:\n\tpass',
-        #             {"self": self}
-        #         ), timeout=1)
-        # except IndexError:
-        #     pass
 
         for index, _ in enumerate(range(length_data)):
             if index == 20:

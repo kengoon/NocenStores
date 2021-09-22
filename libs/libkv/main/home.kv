@@ -54,25 +54,18 @@
                     scroll_type: ["content", "bars"]
                     bar_width: "10dp"
                     on_scroll_start: root.schedule_load()
-#                    on_scroll_start:
-#                        [exec("child.disabled = True if not issubclass(child.__class__, Swiper) else False", {"child": child, "Swiper": Factory.Swiper}) for child in holder.children]
-#                        root.schedule_load()
-#                    on_scroll_stop:
-#                        [exec("child.disabled = False", {"child": child}) for child in holder.children]
-#                    on_touch_up:
-#                        [exec("child.disabled = False", {"child": child}) for child in holder.children]
                     RecycleGridLayout:
                         id: holder
                         root: root.manager
                         roots: root
                         default_size_hint: 1, None
-                        default_size: None, None
+                        default_size: 0, dp(100)
                         size_hint_y: None
                         height: self.minimum_height
                         spacing:dp(10)
                         padding: dp(0)
                         cols: 1
-                        key_size: "height"
+                        key_size: "_size"
 
 
 

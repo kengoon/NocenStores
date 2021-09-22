@@ -788,10 +788,7 @@ class MDCardSwipe(RelativeLayout):
         """Called when a swipe of card is completed."""
 
     def on_anchor(self, instance, value):
-        if value == "right":
-            self.open_progress = 1.0
-        else:
-            self.open_progress = 0.0
+        self.open_progress = 1.0 if value == "right" else 0.0
 
     def on_open_progress(self, instance, value):
         if self.anchor == "left":
@@ -816,17 +813,15 @@ class MDCardSwipe(RelativeLayout):
         return super().on_touch_move(touch)
 
     def on_touch_up(self, touch):
-        if self.collide_point(touch.x, touch.y):
-            if not self._to_closed:
-                self._opens_process = False
-                self.complete_swipe()
+        if self.collide_point(touch.x, touch.y) and not self._to_closed:
+            self._opens_process = False
+            self.complete_swipe()
         return super().on_touch_up(touch)
 
     def on_touch_down(self, touch):
-        if self.collide_point(touch.x, touch.y):
-            if self.state == "opened":
-                self._to_closed = True
-                self.close_card()
+        if self.collide_point(touch.x, touch.y) and self.state == "opened":
+            self._to_closed = True
+            self.close_card()
         return super().on_touch_down(touch)
 
     def complete_swipe(self):

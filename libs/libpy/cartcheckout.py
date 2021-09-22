@@ -1,8 +1,8 @@
 import re
-
 from kivy.uix.screenmanager import Screen
 from kivymd.app import MDApp
-from kivymd.uix.menu import MDDropdownMenu, m_res
+from kivymd.uix.menu import MDDropdownMenu
+from kivymd.uix.menu.menu import m_res
 from kivy.metrics import dp
 from json import loads
 from kivy.core.window import Window

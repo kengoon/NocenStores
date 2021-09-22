@@ -12,13 +12,7 @@ from kivymd.theming import ThemableBehavior
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.button import MDIconButton
 
-if platform != "android":
-    if sys.version_info.major == 3 and sys.version_info.minor == 7:
-        from kivymd.uix.behaviors import RectangularElevationBehavior
-    else:
-        from kivymd.uix.behaviors import RoundedRectangularElevationBehavior as RectangularElevationBehavior
-else:
-    from kivymd.uix.behaviors import RectangularElevationBehavior
+from kivymd.uix.behaviors import FakeRectangularElevationBehavior
 
 from kivy.properties import (
     StringProperty,
@@ -160,7 +154,7 @@ Builder.load_string(
 )
 
 
-class M_CardTextField(MDBoxLayout, RectangularElevationBehavior, ThemableBehavior):
+class M_CardTextField(MDBoxLayout, FakeRectangularElevationBehavior, ThemableBehavior):
     """
     This is a card text field that looks more like
     google website search textfield, you can use right_icon

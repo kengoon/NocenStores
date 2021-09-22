@@ -277,6 +277,7 @@
 <CategoryProductCard@BaseProductCard>
     size_hint_y: None
     height: Window.height/4.5
+    #eleva
 
 <BaseProductCard@MDCard>:
     elevation: 0
@@ -961,9 +962,11 @@
 
 <Swiper@MDBoxLayout>:
     swiper: swiper
-    adaptive_height: True
     padding: [0, 0, 0, dp(10)]
     root: None
+    size_hint_y: None
+    _size: 0, 0
+    size: self._size
     on_root:
         self.root.swiper = swiper
     canvas.before:
@@ -974,8 +977,6 @@
             pos: self.pos[0], self.pos[1] + dp(100)
     MDSwiper:
         id: swiper
-        size_hint_y: None
-        height: Window.height/4.5
         items_spacing: "10dp"
         m: int()
         #effect_cls: ScrollEffect
@@ -1103,6 +1104,10 @@
         on_release:
             root.root.change_screen(self, "category")
 
+<GridProduct@MDGridLayout>:
+    cols: 2
+    adaptive_height: True
+
 <Title@MDBoxLayout>:
     adaptive_height: True
     MDCard:
@@ -1162,6 +1167,8 @@
             font_style: "Money"
 
 <MDTextField>:
+    on_focus: app.on_focus(args[1])
+<TextInput>:
     on_focus: app.on_focus(args[1])
 
 <Fields@MDCard>:

@@ -99,7 +99,8 @@ class NocenStore(MDApp):
             with open("theme.txt") as theme:
                 self.theme_cls.theme_style = theme.read()
 
-    def fix_back_button(self, *args):
+    @staticmethod
+    def fix_back_button(*args):
         if platform == "android":
             from kvdroid import activity
             from android.runnable import run_on_ui_thread

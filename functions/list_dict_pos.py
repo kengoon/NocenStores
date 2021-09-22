@@ -3,4 +3,4 @@ def get_dict_pos(lst, key, value):
 
 
 def build_dict(seq, key):
-    return dict((d[key], dict(d, index=index)) for (index, d) in enumerate(seq))
+    return {d[key]: dict(d, index=index) for (index, d) in enumerate(seq)}
