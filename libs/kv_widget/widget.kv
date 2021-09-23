@@ -538,21 +538,28 @@
     text: ""
     item: ""
     bg_color: [0,0,0,0]
-    MDIconButton:
-        icon: root.icon
-        theme_text_color: "Custom"
-        text_color: 1,1,1,1
-        md_bg_color: root.bg_color
+    MDCard:
+        size_hint: None, None
+        size: self.minimum_size
+        radius: [dp(10)]
+        elevation: 0.1
         pos_hint: {"center_x": .5}
-        on_release:
-            root.root.manager.on_next_screen(root.root.name)
-            root.root.manager.current = root.item.lower()
+        MDIconButton:
+            icon: root.icon
+            theme_text_color: "Custom"
+            text_color: root.bg_color
+            #md_bg_color: root.bg_color
+            on_release:
+                root.root.manager.on_next_screen(root.root.name)
+                root.root.manager.current = root.item.lower()
 
     MDLabel:
         halign: "center"
         size_hint_y: None
         text: root.text
         font_style: "Caption"
+        shorten: True
+        shorten_from: "right"
         height: self.texture_size[1]
 
 <AccoLocation@MDBoxLayout>
@@ -969,17 +976,10 @@
     size: self._size
     on_root:
         self.root.swiper = swiper
-    canvas.before:
-        Color:
-            rgba: app.theme_cls.primary_color
-        Rectangle:
-            size:self.size
-            pos: self.pos[0], self.pos[1] + dp(100)
     MDSwiper:
         id: swiper
-        items_spacing: "10dp"
+        items_spacing: "20dp"
         m: int()
-        #effect_cls: ScrollEffect
         on_scroll_start:
             self.m = args[1].pos[0]
             root.root.pause_clock()
@@ -1020,42 +1020,38 @@
     root: None
     adaptive_height: True
     padding: dp(5)
-    MDCard:
-        size_hint_y: None
-        height: self.minimum_height
-        radius: [dp(10)]
-        MDGridLayout:
-            adaptive_height: True
-            cols: 4
-            padding: dp(10)
-            spacing: dp(10)
-            PlatformCan:
-                root: root.root
-                icon: "shopping"
-                text: "Today's\nDeals"
-                item: "Deals"
-                bg_color: .8, 0, 0, 1
+    MDGridLayout:
+        adaptive_height: True
+        cols: 4
+        #padding: dp(10)
+        # spacing: dp(10)
+        PlatformCan:
+            root: root.root
+            icon: "shopping"
+            text: "Today's Deals"
+            item: "Deals"
+            bg_color: app.theme_cls.primary_color
 
-            PlatformCan:
-                root: root.root
-                icon: "headset"
-                bg_color: app.theme_cls.primary_color
-                text: "Customer\nCare"
-                item: "Customer Care"
+        PlatformCan:
+            root: root.root
+            icon: "headset"
+            bg_color: app.theme_cls.primary_color
+            text: "Customer Care"
+            item: "Customer Care"
 
-            PlatformCan:
-                root: root.root
-                icon: "heart"
-                text: "Saved\nItems"
-                item: "Saved Items"
-                bg_color: 1, .7, 0, 1
+        PlatformCan:
+            root: root.root
+            icon: "heart"
+            text: "Saved Items"
+            item: "Saved Items"
+            bg_color: app.theme_cls.primary_color
 
-            PlatformCan:
-                root: root.root
-                icon: "school"
-                text: "Student\nZone"
-                item: "Student Zone"
-                bg_color: 1, 0, .8, 1
+        PlatformCan:
+            root: root.root
+            icon: "school"
+            text: "Student Zone"
+            item: "Student Zone"
+            bg_color: app.theme_cls.primary_color
 
 <Gridad@MDGridLayout>:
     root: None

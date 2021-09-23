@@ -62,6 +62,7 @@ class NocenStore(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.theme_cls.primary_palette = "Green"
+        self.theme_cls.primary_hue = "A700"
         if exists("assets/compressed"):
             rmtree("assets/compressed")
         change_statusbar_color(self.theme_cls.primary_color)

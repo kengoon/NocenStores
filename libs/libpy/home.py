@@ -91,13 +91,6 @@ class Home(Screen, EventDispatcher):
     def screen_update(self, *args):
         for data in self.widgets:
             self.ids.rv.data.append(data)
-        self.ids.home.header.ids._label.font_style = "Caption"
-        self.ids.profile.header.ids._label.font_style = "Caption"
-        self.ids.sell.header.children[0].remove_widget(self.ids.sell.header.ids._label)
-        self.ids.sell.header.ids._label_icon.pos_hint = {"center_x": .5, "center_y": .5}
-        self.ids.sell.header.ids._label_icon.font_size = dp(35)
-        self.ids.used.header.ids._label.font_style = "Caption"
-        self.ids.feeds.header.ids._label.font_style = "Caption"
         self.get_ads()
         self.get_data()
         self.start_clock()

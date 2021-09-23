@@ -21,18 +21,17 @@
                 root.outline(a, self)
             MDBoxLayout:
                 orientation:"vertical"
-                md_bg_color: get_color_from_hex("#EEEEEE") if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
+                #md_bg_color: get_color_from_hex("#FFFFFF") if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
                 MDBoxLayout:
                     adaptive_height: True
                     padding: dp(10)
-                    md_bg_color: app.theme_cls.primary_color
                     M_CardTextField:
                         elevation: 10
                         hint_text: "search"
-                        icon_left: "refresh"
+                        icon_left: "magnify"
                         icon_right: "cart-variant"
                         icon_right_callback: root.go_cart
-                        icon_left_callback: lambda x: rv.refresh_from_data()
+                        # icon_left_callback: lambda x: rv.refresh_from_data()
                         text_field_disabled: True
                         icon_right_color: app.theme_cls.primary_color
                         icon_left_color: app.theme_cls.primary_color

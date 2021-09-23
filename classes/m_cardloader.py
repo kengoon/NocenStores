@@ -10,20 +10,15 @@ Builder.load_string(
     """
 # kv_start
 <M_CardLoader>:
-    md_bg_color: 0, 0, 0, 0
     radius: [dp(10), ]
     ripple_behavior: True
+    elevation: .1
     RelativeLayout:
         AsyncImage:
             id: image
-            color: 0,0,0,0
             source: root.source
             anim_delay: .1
             allow_stretch: True
-            keep_ratio: False
-            nocache: True
-            on_load:
-                root.dispatch("on_load")
             canvas.before:
                 StencilPush
                 RoundedRectangle:
@@ -39,11 +34,7 @@ Builder.load_string(
                     pos: self.pos
                     radius: root.radius
                 StencilPop
-            
-        M_AKImageLoader:
-            id: loader
-            radius: root.radius
-            circle: False
+                
         MDBoxLayout:
             id:box
             opacity: 0

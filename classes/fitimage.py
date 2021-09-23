@@ -113,7 +113,7 @@ class M_FitImage(BoxLayout):
     radius = ListProperty([0, 0, 0, 0])
     mipmap = BooleanProperty(False)
     load_callback = ObjectProperty(lambda x: None)
-    nocache = BooleanProperty(True)
+    nocache = BooleanProperty(False)
     anim_delay = .1
 
     def __init__(self, **kwargs):
