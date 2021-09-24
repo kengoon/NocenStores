@@ -1,9 +1,18 @@
 from json import loads
 
 from kivy import platform
+from kivy.animation import Animation
+from kivy.app import App
+from kivy.properties import NumericProperty, ListProperty
+from kivy.uix.widget import Widget
+from kivy.utils import get_color_from_hex
+from kivymd.theming import ThemableBehavior
+from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.textfield import MDTextField
 
 from libs.libpy.cartcheckout import DropDown
+
+app = App.get_running_app()
 
 
 class Locator(MDTextField):
@@ -41,3 +50,23 @@ class Locator(MDTextField):
 
     def insert_text(self, substring, from_undo=False):
         MDTextField.insert_text(self, None, from_undo=from_undo)
+
+
+class ItemPagination(ThemableBehavior, Widget):
+    current_index = NumericProperty(0)
+    color_round_not_active = ListProperty()
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        if not self.color_round_not_active:
+            self.color_round_not_active = get_color_from_hex("#757575")
+
+
+class Swiper(MDBoxLayout):
+    @staticmethod
+    def swipe_pagnitors(instance, index):
+        for pagnitor in instance.pagnitors:
+            if instance.pagnitors[index] == pagnitor:
+                Animation(rgba=app.theme_cls.primary_color, d=0.3).start(pagnitor.canvas.children[0])
+                continue
+            Animation(rgba=pagnitor.color_round_not_active, d=0.3).start(pagnitor.canvas.children[0])

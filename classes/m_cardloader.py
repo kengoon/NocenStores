@@ -10,30 +10,27 @@ Builder.load_string(
     """
 # kv_start
 <M_CardLoader>:
-    radius: [dp(10), ]
-    ripple_behavior: True
-    elevation: .1
-    RelativeLayout:
-        AsyncImage:
-            id: image
-            source: root.source
-            anim_delay: .1
-            allow_stretch: True
-            canvas.before:
-                StencilPush
-                RoundedRectangle:
-                    pos: self.pos
-                    size: self.size
-                    radius: root.radius
-                StencilUse
+    #radius: [dp(10), ]
+    elevation: 0
+    AsyncImage:
+        id: image
+        source: root.source
+        anim_delay: .1
+        canvas.before:
+            StencilPush
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: root.radius
+            StencilUse
 
-            canvas.after:
-                StencilUnUse
-                RoundedRectangle:
-                    size: self.size
-                    pos: self.pos
-                    radius: root.radius
-                StencilPop
+        canvas.after:
+            StencilUnUse
+            RoundedRectangle:
+                size: self.size
+                pos: self.pos
+                radius: root.radius
+            StencilPop
                 
         MDBoxLayout:
             id:box
@@ -65,20 +62,17 @@ class M_CardLoader(MDCard):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.register_event_type("on_load")
-
-    def on_load(self):
-        self.ids.loader.opacity = 0
-        self.ids.image.color = [1, 1, 1, 1]
 
     def on_touch_down(self, touch):
-        self.root.pause_clock()
+        if self.collide_point(*touch.pos):
+            self.root.pause_clock()
 
     def on_touch_up(self, touch):
-        timer = touch.time_end - touch.time_start
-        if timer < 0.2:
-            self.root.ids.raw.switch_tab("feeds")
-        self.root.resume_clock()
+        if self.collide_point(*touch.pos):
+            timer = touch.time_end - touch.time_start
+            if timer < 0.2:
+                self.root.ids.raw.switch_tab("feeds")
+            self.root.resume_clock()
 
     def on_release(self):
         self.root.ids.feeds.dispatch("on_tab_release")

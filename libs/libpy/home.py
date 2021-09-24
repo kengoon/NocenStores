@@ -39,7 +39,7 @@ class Home(Screen, EventDispatcher):
         self.alert = SweetAlert(size_hint_x=None, width=Window.width - dp(20))
         self.data = []
         self.widgets = [{"viewclass": "Swiper", "root": self, "_size": [0, Window.height/5]}, {"viewclass": "Platform", "root": self},
-                        {"viewclass": "Gridad", "root": self}]
+                        {"viewclass": "Gridad", "root": self}, {"viewclass": "EasySearch"}]
 
     def go_cart(self, instance):
         self.manager.prev_screen.append(self.name)
@@ -158,12 +158,7 @@ class Home(Screen, EventDispatcher):
 
     @staticmethod
     def outline(icon: list, instance):
-        if instance and "outline" in instance.icon:
-            instance.icon = instance.icon.rstrip("outline").rstrip("-")
-        for i in icon:
-            if "outline" in i.icon:
-                continue
-            i.icon += "-outline"
+        pass
 
     def on_menu(self):
         self.menu.open()

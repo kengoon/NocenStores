@@ -205,57 +205,43 @@
         height: self.texture_size[1]
 
 <CategoryCard@MDCard>:
-    elevation: 0
     source: ""
     text: ""
-    radius: [dp(10)]
+    radius: [dp(30)]
     size_hint_y: None
-    height: self.minimum_height
+    height: self.width
     product_name: ""
     product_price: 0
     text_radius: [dp(5)]
     product_owner: ""
     #text_color: [1, 1, 1, 1]
     orientation: "vertical"
-    RelativeLayout:
-        size_hint_y: None
-        height: root.width
-        #height: Window.height/4
-        AsyncImage:
-            id: image
-            color: 0, 0, 0, 0
-            source: root.source
-            anim_delay: .1
-            allow_stretch: True
-            keep_ratio: False
-            nocache: True
-            on_load:
-                loader.opacity = 0
-                self.color = [1, 1, 1, 1]
-            canvas.before:
-                StencilPush
-                RoundedRectangle:
-                    pos: self.pos
-                    size: self.size
-                    radius: [root.radius[0], root.radius[0], 0, 0]
-                StencilUse
+    padding: dp(10)
+    AsyncImage:
+        id: image
+        source: root.source
+        anim_delay: .1
+        canvas.before:
+            StencilPush
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [root.radius[0], root.radius[0], 0, 0]
+            StencilUse
 
-            canvas.after:
-                StencilUnUse
-                RoundedRectangle:
-                    size: self.size
-                    pos: self.pos
-                    radius: [root.radius[0], root.radius[0], 0, 0]
-                StencilPop
-        M_AKImageLoader:
-            id: loader
-            radius: [root.radius[0], root.radius[0], 0, 0]
-            circle: False
-    MDBoxLayout
+        canvas.after:
+            StencilUnUse
+            RoundedRectangle:
+                size: self.size
+                pos: self.pos
+                radius: [root.radius[0], root.radius[0], 0, 0]
+            StencilPop
+    MDBoxLayout:
         adaptive_height: True
         padding: dp(10)
         orientation:"vertical"
         MDLabel:
+            id: lbl
             text: root.text
             size_hint_y: None
             height: self.texture_size[1]
@@ -967,25 +953,46 @@
     background_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
     disabled_foreground_color: [0.5, 0.5, 0.5, 1.0]
 
-<Swiper@MDBoxLayout>:
+<ItemPagination>
+    size_hint: None, None
+    size: dp(20), dp(4)
+    pos_hint: {'center_y': .5}
+    canvas:
+        Color:
+            rgba:
+                self.theme_cls.primary_color\
+                if root.current_index == 0 else root.color_round_not_active
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [dp(2)]
+
+<Swiper>:
+    orientation: "vertical"
     swiper: swiper
     padding: [0, 0, 0, dp(10)]
     root: None
     size_hint_y: None
     _size: 0, 0
     size: self._size
+    md_bg_color: 1, 1, 1, 1
     on_root:
         self.root.swiper = swiper
     MDSwiper:
         id: swiper
-        items_spacing: "20dp"
+        items_spacing: "0dp"
         m: int()
+        pagnitors:[_0, _1, _2, _3, _4]
         on_scroll_start:
-            self.m = args[1].pos[0]
+            if self.collide_point(*args[1].pos):\
+            self.m = args[1].pos[0];\
             root.root.pause_clock()
         on_scroll_stop:
-            self.swipe_left() if self.m < args[1].pos[0] else self.swipe_right()
+            if self.collide_point(*args[1].pos):\
+            self.swipe_left() if self.m < args[1].pos[0] else self.swipe_right();\
             root.root.resume_clock()
+        on_swipe:
+            root.swipe_pagnitors(self, self.get_current_index())
         MDSwiperItem:
             M_CardLoader:
                 source:""
@@ -1015,6 +1022,24 @@
                 source: ""
                 text: ""
                 root: root.root
+    MDBoxLayout:
+        adaptive_size: True
+        spacing: dp(10)
+        pos_hint: {"center_x": .5}
+        ItemPagination
+            id: _0
+        ItemPagination:
+            id: _1
+            current_index: 1
+        ItemPagination:
+            id: _2
+            current_index: 2
+        ItemPagination:
+            id: _3
+            current_index: 3
+        ItemPagination:
+            id: _4
+            current_index: 4
 
 <Platform@MDBoxLayout>:
     root: None
@@ -1057,8 +1082,8 @@
     root: None
     adaptive_height: True
     cols: 3
-    padding: [dp(5), dp(10), dp(5), dp(5)]
-    spacing: dp(5)
+    padding: dp(20), dp(10)
+    spacing: dp(20)
     CategoryCard:
         text: "Electronics"
         #text_color: 1, 1, 1, 1
@@ -1242,3 +1267,52 @@
         pos_hint: {"center_x": .5}
         on_release:
             root.root.upload_product_data(name, des, price, phone, email, location, root.root.ids.holder.children[1].ids._pic1, root.root.ids.holder.children[1].ids._pic2, root.root.ids.holder.children[1].ids._pic3)
+
+
+<EasySearch@MDBoxLayout>:
+    padding: dp(15)
+    size_hint_y: None
+    height: dp(200)
+    MDBoxLayout:
+        orientation: "vertical"
+        md_bg_color: 1, 1, 1, 1
+        radius: dp(10)
+        padding: dp(10)
+        spacing: dp(10)
+        MDLabel
+            text: "Easy Search"
+            adaptive_height: True
+            md_bg_color: app.theme_cls.primary_color
+            padding: dp(10), dp(10)
+        MDGridLayout:
+            cols: 2
+            adaptive_height: True
+            spacing: dp(15)
+            CategoryCard:
+                text: "Portable Devices"
+                source: "assets/portables.png"
+                radius: dp(10)
+                on_release:
+                    root.root.change_screen(self, "category")
+            CategoryCard:
+                text: "Portable Devices"
+                source: "assets/portables.png"
+                radius: dp(10)
+                on_release:
+                    root.root.change_screen(self, "category")
+            CategoryCard:
+                text: "Portable Devices"
+                source: "assets/portables.png"
+                radius: dp(10)
+                on_release:
+                    root.root.change_screen(self, "category")
+            CategoryCard:
+                text: "Portable Devices"
+                source: "assets/portables.png"
+                radius: dp(10)
+                on_release:
+                    root.root.change_screen(self, "category")
+
+
+
+
