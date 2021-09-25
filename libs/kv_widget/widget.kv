@@ -262,8 +262,7 @@
 
 <CategoryProductCard@BaseProductCard>
     size_hint_y: None
-    height: Window.height/4.5
-    #eleva
+    height: Window.height/3
 
 <BaseProductCard@MDCard>:
     elevation: 0
@@ -279,40 +278,16 @@
     orientation: "vertical"
     size_hint_y: None
     height: Window.height/2.2
-    RelativeLayout:
-        AsyncImage:
-            id: image
-            color: 0, 0, 0, 0
-            source: root.imagePath
-            anim_delay: .1
-            keep_ratio: True
-            nocache: True
-            on_load:
-                loader.opacity = 0
-                self.color = [1, 1, 1, 1]
-            canvas.before:
-                StencilPush
-                RoundedRectangle:
-                    pos: self.pos
-                    size: self.size
-                    radius: [root.radius[0], 0, 0, root.radius[0]]
-                StencilUse
-
-            canvas.after:
-                StencilUnUse
-                RoundedRectangle:
-                    size: self.size
-                    pos: self.pos
-                    radius: [root.radius[0], 0, 0, root.radius[0]]
-                StencilPop
-        M_AKImageLoader:
-            id: loader
-            radius: [root.radius[0], root.radius[0], 0, 0]
-            circle: False
+    M_FitImage:
+        id: image
+        source: root.imagePath
+        anim_delay: .1
+        radius: root.radius
     MDBoxLayout:
         orientation: "vertical"
         padding: dp(10)
         spacing: dp(5)
+        size_hint_y: .5
         M_AKLabelLoader:
             text:
                 "" if not (root.price and root.product) else \
@@ -972,6 +947,7 @@
     swiper: swiper
     padding: [0, 0, 0, dp(10)]
     root: None
+    spacing: dp(5)
     size_hint_y: None
     _size: 0, 0
     size: self._size
@@ -1271,10 +1247,11 @@
 
 <EasySearch@MDBoxLayout>:
     padding: dp(15)
-    size_hint_y: None
-    height: dp(200)
+    adaptive_height: True
+    radius: dp(10)
     MDBoxLayout:
         orientation: "vertical"
+        adaptive_height: True
         md_bg_color: 1, 1, 1, 1
         radius: dp(10)
         padding: dp(10)
@@ -1282,8 +1259,15 @@
         MDLabel
             text: "Easy Search"
             adaptive_height: True
-            md_bg_color: app.theme_cls.primary_color
             padding: dp(10), dp(10)
+            color: 1, 1, 1, 1
+            canvas.before:
+                Color:
+                    rgba: app.theme_cls.primary_color
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: root.radius
         MDGridLayout:
             cols: 2
             adaptive_height: True
