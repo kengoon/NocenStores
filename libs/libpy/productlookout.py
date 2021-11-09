@@ -1,9 +1,11 @@
 from json import dumps, loads
 
-from kivy.core.window import Window
+from kivy.core.window import Window, Animation
+from kivy.factory import Factory
 from kivy.metrics import dp
 from kivy.utils import get_color_from_hex
 from kivymd.uix.button import MDRaisedButton
+from kivymd.uix.dialog import MDDialog
 from kivymd_extensions.sweetalert import SweetAlert
 
 from classes.notification import notify
@@ -25,6 +27,13 @@ class ProductLookOut(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.alert = None
+        self.dialog = MDDialog(
+            title="Size",
+            type="custom",
+            content_cls=Factory.SizeSelector(),
+            radius=[dp(20)]
+        )
+        self.dialog.content_cls.root = self
 
     def go_back(self):
         self.manager.current = "home"
@@ -68,6 +77,9 @@ class ProductLookOut(Screen):
     def enter_cart(self):
         self.app.current = self.name
         self.manager.prev_screen.append(self.name)
+        from tools import check_add_widget
+        from kivy.factory import Factory
+        check_add_widget(self.app, "cart_widget", self, Factory.Cart(), "cart")
         self.manager.current = "cart"
 
     def on_leave(self, *args):
@@ -94,16 +106,18 @@ class ProductLookOut(Screen):
     def post_data(self, instance, data):
         new_data = loads(data)
         self._tmp_data = new_data.copy()
-        self.ids.product_price.text = f"₦{float(new_data['price']) + 5 / 100 * float(new_data['price']):,}"
+        self.ids.product_price.text = \
+            f"[font=Roboto]₦[/font]{float(new_data['price']) + 5 / 100 * float(new_data['price']):,}"
         self.ids.description.text = new_data["description"].split("size(")[0]
         for i in range(1, 4):
             self.ids[f"image{i}"].source = new_data[str(i)]
 
         if "size" in new_data["description"]:
+            print(new_data["description"])
             size_list = new_data["description"].split("(")[1].split(")")[0]
 
             for i in loads(size_list):
-                self.ids.rvs.data.append({"text_item": str(i)})
+                self.dialog.content_cls.data.append({"text_item": str(i)})
         self.ids.buttons.disabled = False
         self.ids.buttons.opacity = 1
         if "saved" in new_data and new_data["saved"]:
@@ -115,25 +129,27 @@ class ProductLookOut(Screen):
             self.ids.save.disabled = False
             self.p_type = ""
 
-    def change_circle(self):
-        for i in range(1, 4):
-            if self.ids.mg.current == str(i):
-                self.ids[f"ico{i}"].icon = "circle"
+    def swipe_pagnitors(self, instance, index):
+        for pagnitor in instance.pagnitors:
+            if instance.pagnitors[index] == pagnitor:
+                Animation(rgba=self.app.theme_cls.primary_color, d=0.3).start(pagnitor.canvas.children[0])
                 continue
-            self.ids[f"ico{i}"].icon = "circle-outline"
+            Animation(rgba=pagnitor.color_round_not_active, d=0.3).start(pagnitor.canvas.children[0])
 
     def clear_cache(self):
         for i in range(1, 4):
             self.ids[f"image{i}"].source = ""
         self.ids.product_price.text = ""
         self.ids.description.text = ""
-        self.ids.rvs.data = []
-        self.ids.holder.clear_widgets()
+        self.dialog.content_cls.data = []
 
     def save_unsave(self, instance):
         if not self.app.login:
             notify("please login to continue")
             self.app.current = self.name
+            from tools import check_add_widget
+            from kivy.factory import Factory
+            check_add_widget(self.app, "login_widget", self, Factory.Login(), "login")
             self.manager.current = "login"
             return
         instance.icon = "heart" if "outline" in instance.icon else "heart-outline"
@@ -142,6 +158,9 @@ class ProductLookOut(Screen):
         def process(instance_object, data):
             notify(data)
             instance.disabled = False
+            from tools import check_add_widget
+            from kivy.factory import Factory
+            check_add_widget(self.app, "saved_product_widget", self, Factory.SavedProduct(), "saved")
             if self.manager.ids.saved.enter:
                 self.manager.ids.saved.ids.rv.data.append(
                     {
@@ -182,6 +201,9 @@ class ProductLookOut(Screen):
         )
 
     def add_to_cart(self):
+        from tools import check_add_widget
+        from kivy.factory import Factory
+        check_add_widget(self.app, "cart_widget", self, Factory.Cart(), "cart")
         if self.ids.rvs.data and not self.selected_size:
             self.ids.sv.scroll_to(self.ids.sizes)
             return notify("select a  size to continue", background=[1, 0, 0, 1])
@@ -189,6 +211,9 @@ class ProductLookOut(Screen):
             notify("please login to continue")
             self.app.current = self.name
             self.manager.prev_screen.append(self.name)
+            from tools import check_add_widget
+            from kivy.factory import Factory
+            check_add_widget(self.app, "login_widget", self, Factory.Login(), "login")
             self.manager.current = "login"
             return
         cart = {
@@ -207,6 +232,9 @@ class ProductLookOut(Screen):
                         self.manager.ids.cart.ids.rv.data))
         if a:
             if self.p_type == "FairlyUsed":
+                from tools import check_add_widget
+                from kivy.factory import Factory
+                check_add_widget(self.app, "cart_widget", self, Factory.Cart(), "cart")
                 self.manager.current = "cart"
                 return
             cart.update({"p_type": False})
@@ -226,6 +254,9 @@ class ProductLookOut(Screen):
             self.manager.ids.cart.ids.rv.data.append(cart)
             notify(f"{self.ids.product_name.text} = 1 product")
             if self.p_type == "FairlyUsed":
+                from tools import check_add_widget
+                from kivy.factory import Factory
+                check_add_widget(self.app, "cart_widget", self, Factory.Cart(), "cart")
                 self.manager.current = "cart"
                 cart_data = self.manager.ids.cart.ids.rv.data
                 cart_total = sum(

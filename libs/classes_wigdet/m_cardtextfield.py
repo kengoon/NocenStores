@@ -48,6 +48,7 @@ Builder.load_string(
         height: self.minimum_height
         elevation: 0
         md_bg_color: root.md_bg_color
+        pos_hint: {"center_y": .5}
         on_release:
             root.dispatch("on_release")
         TextInput:
@@ -189,6 +190,8 @@ class M_CardTextField(MDBoxLayout, FakeRectangularElevationBehavior, ThemableBeh
     simulates kivymd MDIconButton on_release method
     """
 
+    icon_user_font_size = NumericProperty(0)
+
     icon_right_color = ListProperty([0, 0, 0, 1])
 
     icon_left_color = ListProperty([0, 0, 0, 1])
@@ -211,7 +214,7 @@ class M_CardTextField(MDBoxLayout, FakeRectangularElevationBehavior, ThemableBeh
 
     text = StringProperty("")
 
-    card_padding = NumericProperty(dp(10))
+    card_padding = VariableListProperty([dp(10)])
 
     card_spacing = NumericProperty(0)
 
@@ -402,6 +405,12 @@ class M_CardTextField(MDBoxLayout, FakeRectangularElevationBehavior, ThemableBeh
 
     def on_icon_right_background_color(self, instance, value):
         self.icon_right_widget.md_bg_color = value
+
+    def on_icon_user_font_size(self, instance, value):
+        if self.icon_left:
+            self.icon_left_widget.user_font_size = value
+        if self.icon_right:
+            self.icon_right_widget.user_font_size = value
 
     def on_text(self, *args):
         """[summary]

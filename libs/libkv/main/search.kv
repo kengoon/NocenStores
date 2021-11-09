@@ -23,9 +23,9 @@
         MDBoxLayout:
             adaptive_height: True
             padding: dp(10)
-            md_bg_color: app.theme_cls.primary_color
             M_CardTextField:
                 id: txt
+                radius: dp(20)
                 grow_card: False
                 multiline: False
                 elevation: 10
@@ -48,15 +48,15 @@
 
         RecycleView:
             id: rv
-            effect_cls: ScrollEffect
+            do_scroll_x: False
             viewclass: "CategoryProductCard"
-            on_scroll_start: root.schedule_load()
+#            on_scroll_start: root.schedule_load()
             RecycleGridLayout:
                 id: holder
                 root: root.manager
                 roots: root
                 default_size_hint: 1, None
-                default_size: None, Window.height/4.5
+                default_size: None, Window.height/2.2
                 size_hint_y: None
                 height: self.minimum_height
                 spacing:dp(10)

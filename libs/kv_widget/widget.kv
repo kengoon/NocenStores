@@ -9,15 +9,18 @@
 
 <SalesCard@BaseSalesCard>
     imagePath: ""
-    source: self.imagePath
-    on_release:
-        self.parent.root.root.manager.prev_screen.append(self.parent.root.root.name)
-        self.parent.root.root.manager.current = "lookout"
-        self.parent.root.root.manager.ids.lookout.ids.product_name.text = self.product
-        #self.parent.root.root.manager.ids.lookout.ids.store.text = self.store
-        self.parent.root.root.manager.ids.lookout.update_interface(self.data)
+    source: ""
+    _size: 0, 0
+    size: self.size
+    callback:
+        lambda: exec('self.parent.root.root.manager.prev_screen.append(self.parent.root.root.name);'
+        'check_add_widget(app, "lookout_widget", self.parent.root.root, Factory.ProductLookOut(), "lookout");'
+        'self.parent.root.root.manager.current = "lookout";'
+        'self.parent.root.root.manager.ids.lookout.ids.product_name.text = self.product;'
+        'self.parent.root.root.manager.ids.lookout.update_interface(self.data)')
 
 <BaseSalesCard@MDCard>:
+    elevation: 1
     source: ""
     text: ""
     radius: [dp(6)]
@@ -28,43 +31,24 @@
     #text_color: [1, 1, 1, 1]
     orientation: "vertical"
     data: {"product": self.product, "store": self.store}
-    RelativeLayout:
-        AsyncImage:
-            id: image
-            color: 0, 0, 0, 0
-            source: root.source
-            anim_delay: .1
-            allow_stretch: True
-            keep_ratio: False
-            on_source:
-                loader.opacity = 0
-                self.color = [1, 1, 1, 1]
-            canvas.before:
-                StencilPush
-                RoundedRectangle:
-                    pos: self.pos
-                    size: self.size
-                    radius: [root.radius[0], root.radius[0], 0, 0]
-                StencilUse
-
-            canvas.after:
-                StencilUnUse
-                RoundedRectangle:
-                    size: self.size
-                    pos: self.pos
-                    radius: [root.radius[0], root.radius[0], 0, 0]
-                StencilPop
-        M_AKImageLoader:
-            id: loader
-            radius: [root.radius[0], root.radius[0], 0, 0]
-            circle: False
-    MDBoxLayout
-        adaptive_height: True
+    callback: lambda: None
+    MDBoxLayout:
         padding: dp(10)
+        M_FitImage:
+            source: root.source
+            radius: [root.radius[0]]
+#            on_source:
+#                if self.source != "assets/loader.gif": root.store_image_state()
+
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: dp(10)
+        adaptive_height: True
+        spacing: dp(10)
         M_AKLabelLoader:
             text:
                 "" if not ((root.price and root.product) or root.text) else\
-                f"{root.product}\n[b][color={get_hex_from_color(app.theme_cls.primary_color)}]₦{float(root.price) + 5/100 * float(root.price):,}[/color][/b]" \
+                f"{root.product}\n[b][color={get_hex_from_color(app.theme_cls.primary_color)}][font=Roboto]₦[/font]{float(root.price) + 5/100 * float(root.price):,}[/color][/b]" \
                 if root.price and root.product else\
                 root.text
             radius: root.text_radius
@@ -77,6 +61,21 @@
             #font_style: "Money"
             halign:"left"
             pos_hint:{"center_y": .5}
+        MDCard:
+            size_hint_y: None
+            height: self.minimum_height
+            padding: dp(10)
+            radius: [dp(5)]
+            md_bg_color: app.theme_cls.primary_color
+            on_release: root.callback
+            MDLabel:
+                text: "View Product"
+                font_style: "Button"
+                size_hint_y: None
+                height: self.texture_size[1]
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 1
 
 <FeedsCard@MDCard>:
     #elevation: 0 if app.theme_cls.theme_style == "Light" else 1
@@ -157,7 +156,7 @@
         M_AKLabelLoader:
             text:
                 "" if not root.price and not root.name else \
-                f"{root.name}\n[b][color={get_hex_from_color(app.theme_cls.primary_color)}]₦{float(root.price if root.price else 0) + 5/100 * float(root.price if root.price else 0):,}[/color][/b]"
+                f"{root.name}\n[b][color={get_hex_from_color(app.theme_cls.primary_color)}][font=Roboto]₦[/font]{float(root.price if root.price else 0) + 5/100 * float(root.price if root.price else 0):,}[/color][/b]"
             radius: root.text_radius
             size_hint_y: None
             markup: True
@@ -204,19 +203,32 @@
         font_size: "15dp"
         height: self.texture_size[1]
 
-<CategoryCard@MDCard>:
+<CategoryCard>:
     source: ""
     text: ""
-    radius: [dp(30)]
-    size_hint_y: None
-    height: self.width
+    radius: dp(10)
     product_name: ""
     product_price: 0
     text_radius: [dp(5)]
     product_owner: ""
     #text_color: [1, 1, 1, 1]
     orientation: "vertical"
-    padding: dp(10)
+    padding: dp(5)
+    texture_color: get_color_from_hex('66BB6A')
+    texture:
+        Gradient.horizontal(
+        get_color_from_hex("66BB6A"),
+        get_color_from_hex("00C853")
+        )
+    canvas:
+        Color:
+            rgba: root.texture_color
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: root.radius
+            texture: self.texture
+
     AsyncImage:
         id: image
         source: root.source
@@ -245,6 +257,7 @@
             text: root.text
             size_hint_y: None
             height: self.texture_size[1]
+            color: 1, 1, 1, 1
             font_style: "Money"
             font_size: "11dp"
             valign: "top"
@@ -262,11 +275,12 @@
 
 <CategoryProductCard@BaseProductCard>
     size_hint_y: None
-    height: Window.height/3
+    _size: 0, 0
+    size: self._size
 
-<BaseProductCard@MDCard>:
-    elevation: 0
-    imagePath: ""
+<BaseProductCard>:
+    elevation: 1
+    #imagePath: ""
     store: ""
     product: ""
     price: "0"
@@ -278,21 +292,22 @@
     orientation: "vertical"
     size_hint_y: None
     height: Window.height/2.2
+    source: ""
     M_FitImage:
         id: image
-        source: root.imagePath
+        source: root.source
         anim_delay: .1
-        radius: root.radius
+        radius: root.radius[0], root.radius[0], 0, 0
     MDBoxLayout:
         orientation: "vertical"
         padding: dp(10)
         spacing: dp(5)
-        size_hint_y: .5
+        size_hint_y: .7
         M_AKLabelLoader:
             text:
                 "" if not (root.price and root.product) else \
-                f"[font=assets/Eczar-Regular.ttf]{root.product}[/font]\n[b][color={get_hex_from_color(app.theme_cls.primary_color)}]₦{float(root.price.replace(',', '')) + 5/100 * float(root.price.replace(',', '')):,}[/color][/b]" if \
-                not root.check else f"[font=assets/Eczar-Regular.ttf]{root.product}[/font]\n[b][color={get_hex_from_color(app.theme_cls.primary_color)}]{root.price}[/color][/b]"
+                f"{shorten(root.product, width=20, placeholder='...')}\n[b][color={get_hex_from_color(app.theme_cls.primary_color)}][font=Roboto]₦[/font]{float(root.price.replace(',', '')) + 5/100 * float(root.price.replace(',', '')):,}[/color][/b]" if \
+                not root.check else f"{root.product}\n[b][color={get_hex_from_color(app.theme_cls.primary_color)}]{root.price}[/color][/b]"
             radius: root.text_radius
             size_hint_y: None
             markup: True
@@ -322,11 +337,12 @@
             MDCard:
                 size_hint_y: None
                 height: self.minimum_height
-                md_bg_color: app.theme_cls.primary_color
                 padding: dp(10)
                 radius: [dp(5)]
+                md_bg_color: app.theme_cls.primary_color
                 on_release:
                     root.parent.root.prev_screen.append(root.parent.roots.name)
+                    check_add_widget(app, "lookout_widget", root.parent, Factory.ProductLookOut(), "lookout")
                     root.parent.root.current = "lookout"
                     root.parent.root.ids.lookout.ids.product_name.text = root.product
                     #self.parent.root.ids.lookout.ids.store.text = self.store
@@ -339,7 +355,8 @@
                     height: self.texture_size[1]
                     halign: "center"
                     theme_text_color: "Custom"
-                    text_color: 1,1,1,1
+                    text_color: 1, 1, 1, 1
+
 <BaseReviewProductCard@MDCard>:
     ripple_behavior: True
     imagePath: ""
@@ -391,8 +408,8 @@
         M_AKLabelLoader:
             text:
                 "" if not (root.price and root.product) else \
-                f"[font=assets/Eczar-Regular.ttf]{root.product}[/font]\n[b][color={get_hex_from_color(app.theme_cls.primary_color)}]₦{float(root.price.replace(',', '')) + 5/100 * float(root.price.replace(',', '')):,}[/color][/b]" if \
-                not root.check else f"[font=assets/Eczar-Regular.ttf]{root.product}[/font]\n[b][color={get_hex_from_color(app.theme_cls.primary_color)}]{root.price}[/color][/b]"
+                f"{root.product}\n[b][color={get_hex_from_color(app.theme_cls.primary_color)}][font=Roboto]₦[/font]{float(root.price.replace(',', '')) + 5/100 * float(root.price.replace(',', '')):,}[/color][/b]" if \
+                not root.check else f"{root.product}\n[b][color={get_hex_from_color(app.theme_cls.primary_color)}]{root.price}[/color][/b]"
             radius: root.text_radius
             size_hint_y: None
             markup: True
@@ -499,11 +516,13 @@
     text: ""
     item: ""
     bg_color: [0,0,0,0]
+    card_color: 1, 1, 1, 1
     MDCard:
         size_hint: None, None
         size: self.minimum_size
         radius: [dp(10)]
         elevation: 0.1
+        md_bg_color: root.card_color
         pos_hint: {"center_x": .5}
         MDIconButton:
             icon: root.icon
@@ -619,6 +638,7 @@
     data: {"product": self.name, "store": self.store}
     on_release:
         self.parent.root.prev_screen.append(self.parent.roots.name)
+        check_add_widget(app, "lookout_widget", self.parent.root, Factory.ProductLookOut(), "lookout")
         self.parent.root.current = "lookout"
         self.parent.root.ids.lookout.ids.product_name.text = self.name
         #self.parent.root.ids.lookout.ids.store.text = self.store
@@ -659,7 +679,7 @@
             md_bg_color: 0, 0, 0, .4
             radius: [0, 0, root.radius[0], root.radius[0]]
             M_AKLabelLoader:
-                text: "" if not root.price or not root.store or not root.name else f"Deal: {root.name}\n[color={get_hex_from_color(app.theme_cls.primary_color)}]₦{float(root.price) + 5/100 * float(root.price):,}[/color]\nstore: NocenStore"
+                text: "" if not root.price or not root.store or not root.name else f"Deal: {root.name}\n[color={get_hex_from_color(app.theme_cls.primary_color)}][font=Roboto]₦[/font]{float(root.price) + 5/100 * float(root.price):,}[/color]\nstore: NocenStore"
                 radius: root.text_radius
                 size_hint_y: None
                 theme_text_color: "Custom"
@@ -951,12 +971,12 @@
     size_hint_y: None
     _size: 0, 0
     size: self._size
-    md_bg_color: 1, 1, 1, 1
+    #md_bg_color: 1, 1, 1, 1
     on_root:
         self.root.swiper = swiper
     MDSwiper:
         id: swiper
-        items_spacing: "0dp"
+        items_spacing: dp(10)
         m: int()
         pagnitors:[_0, _1, _2, _3, _4]
         on_scroll_start:
@@ -971,31 +991,31 @@
             root.swipe_pagnitors(self, self.get_current_index())
         MDSwiperItem:
             M_CardLoader:
-                source:""
+                source:"assets/ads/NO21-1.png"
                 text: ""
                 root: root.root
 
         MDSwiperItem:
             M_CardLoader
-                source: ""
+                source: "assets/ads/NO22-1.png"
                 text: ""
                 root: root.root
 
         MDSwiperItem:
             M_CardLoader
-                source: ""
+                source: "assets/ads/NO26-1.png"
                 text: ""
                 root: root.root
 
         MDSwiperItem:
             M_CardLoader
-                source: ""
+                source: "assets/ads/NO23-1.png"
                 text: ""
                 root: root.root
 
         MDSwiperItem:
             M_CardLoader
-                source: ""
+                source: "assets/ads/NO25-1.png"
                 text: ""
                 root: root.root
     MDBoxLayout:
@@ -1017,76 +1037,100 @@
             id: _4
             current_index: 4
 
-<Platform@MDBoxLayout>:
+<Platform@MDGridLayout>:
     root: None
-    adaptive_height: True
-    padding: dp(5)
-    MDGridLayout:
-        adaptive_height: True
-        cols: 4
-        #padding: dp(10)
-        # spacing: dp(10)
-        PlatformCan:
-            root: root.root
-            icon: "shopping"
-            text: "Today's Deals"
-            item: "Deals"
-            bg_color: app.theme_cls.primary_color
+    size_hint_y: None
+    _size: 0, 0
+    size: self._size
+    padding: dp(10), 0, dp(10), 0
+    cols: 4
+    rows: 1
+    PlatformCan:
+        root: root.root
+        icon: "shopping"
+        text: "Today's Deals"
+        item: "Deals"
+        bg_color: 1, 1, 1, 1
+        card_color: .8, 0, 0, 1
 
-        PlatformCan:
-            root: root.root
-            icon: "headset"
-            bg_color: app.theme_cls.primary_color
-            text: "Customer Care"
-            item: "Customer Care"
+    PlatformCan:
+        root: root.root
+        icon: "headset"
+        text: "Customer Care"
+        item: "Customer Care"
+        bg_color: 1, 1, 1, 1
+        card_color: app.theme_cls.primary_color
 
-        PlatformCan:
-            root: root.root
-            icon: "heart"
-            text: "Saved Items"
-            item: "Saved Items"
-            bg_color: app.theme_cls.primary_color
+    PlatformCan:
+        root: root.root
+        icon: "heart"
+        text: "Saved Items"
+        item: "Saved Items"
+        bg_color: 1, 1, 1, 1
+        card_color: 1, .7, 0, 1
 
-        PlatformCan:
-            root: root.root
-            icon: "school"
-            text: "Student Zone"
-            item: "Student Zone"
-            bg_color: app.theme_cls.primary_color
+    PlatformCan:
+        root: root.root
+        icon: "school"
+        text: "Student Zone"
+        item: "Student Zone"
+        bg_color: 1, 1, 1, 1
+        card_color: 1, 0, .8, 1
 
-<Gridad@MDGridLayout>:
+<Gridad@GridLayout>:
     root: None
-    adaptive_height: True
-    cols: 3
-    padding: dp(20), dp(10)
-    spacing: dp(20)
+    size_hint_y: None
+    _size: 0, 0
+    size: self.size
+    cols: 2
+    padding: dp(5), 0, dp(5), 0
+    spacing: dp(10)
     CategoryCard:
         text: "Electronics"
         #text_color: 1, 1, 1, 1
         source: "assets/electronics.png"
-        on_release:
-            root.root.change_screen(self, "category")
+        on_release: root.root.change_screen(self, "category")
+        texture_color: get_color_from_hex('3F2F4F')
+        texture:
+            Gradient.horizontal(
+            get_color_from_hex('3F2F4F'),
+            get_color_from_hex("8F5F8F"),
+            )
 
     CategoryCard:
         text: "Portable Devices"
         source: "assets/portables.png"
-        on_release:
-            root.root.change_screen(self, "category")
-        #text_color: 1, 1, 1, 1
+        on_release: root.root.change_screen(self, "category")
+        texture_color: get_color_from_hex('3F3F3F')
+        texture:
+            Gradient.horizontal(
+            get_color_from_hex('3F2F3F'),
+            get_color_from_hex("787878"),
+            )
 
     CategoryCard:
         text: "Clothing"
         source: "assets/clothing.png"
         #text_color: 1, 1, 1, 1
-        on_release:
-            root.root.change_screen(self, "category")
+        on_release: root.root.change_screen(self, "category")
+        texture_color: get_color_from_hex('20E873')
+        texture:
+            Gradient.horizontal(
+            get_color_from_hex('20E873'),
+            get_color_from_hex("4fdf6f"),
+            )
 
     CategoryCard:
         text: "Furniture"
         source: "assets/furniture.png"
         #text_color: 1, 1, 1, 1
-        on_release:
-            root.root.change_screen(self, "category")
+        on_release: root.root.change_screen(self, "category")
+        texture_color: get_color_from_hex('E0E0E0')
+        texture:
+            Gradient.horizontal(
+            get_color_from_hex('#d35d06'),
+            get_color_from_hex("#eeae7e"),
+            )
 
     CategoryCard:
         text: "Kitchen"
@@ -1094,12 +1138,23 @@
         #text_color: 1, 1, 1, 1
         on_release:
             root.root.change_screen(self, "category")
+        texture_color: get_color_from_hex('#6f728b')
+        texture:
+            Gradient.horizontal(
+            get_color_from_hex('#6f728b'),
+            get_color_from_hex("#FFFFF"),
+            )
 
     CategoryCard:
         text: "Beauty"
         source: "assets/beauty.png"
-        on_release:
-            root.root.change_screen(self, "category")
+        on_release: root.root.change_screen(self, "category")
+        texture_color: get_color_from_hex('C51162')
+        texture:
+            Gradient.horizontal(
+            get_color_from_hex('#E53182'),
+            get_color_from_hex("#FCE4EC"),
+            )
 
 <GridProduct@MDGridLayout>:
     cols: 2
@@ -1180,8 +1235,6 @@
         id: name
         hint_text: "product name:"
         icon_right: "square-edit-outline"
-        icon_right_color: app.theme_cls.text_color
-        font_name: "assets/Eczar-Regular.ttf"
         helper_text_mode: "on_error"
         required: True
 
@@ -1189,8 +1242,6 @@
         id: des
         hint_text: "product Description:"
         icon_right: "text-subject"
-        icon_right_color: app.theme_cls.text_color
-        font_name: "assets/Eczar-Regular.ttf"
         helper_text_mode: "on_error"
         required: True
 
@@ -1198,8 +1249,6 @@
         id: price
         hint_text: "product price:"
         icon_right: "currency-ngn"
-        icon_right_color: app.theme_cls.text_color
-        font_name: "assets/Eczar-Regular.ttf"
         helper_text_mode: "on_error"
         input_filter: "float"
         required: True
@@ -1208,8 +1257,6 @@
         id: phone
         hint_text: "current phone number:"
         icon_right: "card-account-phone-outline"
-        icon_right_color: app.theme_cls.text_color
-        font_name: "assets/Eczar-Regular.ttf"
         input_filter: "int"
         max_text_length: 11
         helper_text_mode: "on_error"
@@ -1220,8 +1267,6 @@
         id: email
         hint_text: "current email:"
         icon_right: "email"
-        icon_right_color: app.theme_cls.text_color
-        font_name: "assets/Eczar-Regular.ttf"
         helper_text_mode: "on_error"
         required: True
 
@@ -1229,15 +1274,12 @@
         id: location
         hint_text: "current location:"
         icon_right: "map-marker"
-        icon_right_color: app.theme_cls.text_color
-        font_name: "assets/Eczar-Regular.ttf"
         helper_text_mode: "on_error"
         required: True
 
 
 
     MDRoundFlatIconButton:
-        font_name: "assets/Eczar-Regular"
         icon: "cloud-upload"
         text: "Upload All Information"
         pos_hint: {"center_x": .5}
@@ -1246,57 +1288,439 @@
 
 
 <EasySearch@MDBoxLayout>:
-    padding: dp(15)
-    adaptive_height: True
-    radius: dp(10)
+    padding: dp(5), 0, dp(5), 0
+    size_hint_y: None
+    _size: 0, 0
+    size: self._size
+    radius: dp(5)
     MDBoxLayout:
         orientation: "vertical"
-        adaptive_height: True
         md_bg_color: 1, 1, 1, 1
-        radius: dp(10)
-        padding: dp(10)
-        spacing: dp(10)
-        MDLabel
-            text: "Easy Search"
+        radius: dp(5)
+        spacing: dp(5)
+        MDBoxLayout
             adaptive_height: True
-            padding: dp(10), dp(10)
-            color: 1, 1, 1, 1
-            canvas.before:
+            canvas:
                 Color:
-                    rgba: app.theme_cls.primary_color
+                    rgba: get_color_from_hex('#D0D0D0')
                 RoundedRectangle:
                     pos: self.pos
                     size: self.size
                     radius: root.radius
+                    texture:
+                        Gradient.horizontal(
+                        get_color_from_hex('3F2F3F'),
+                        get_color_from_hex("787878"),
+                        )
+            MDLabel
+                text: "Easy Search"
+                adaptive_height: True
+                padding: dp(5), dp(5)
+                color: 1, 1, 1, 1
         MDGridLayout:
-            cols: 2
-            adaptive_height: True
-            spacing: dp(15)
+            cols: 4
+            spacing: dp(5)
             CategoryCard:
-                text: "Portable Devices"
+                text: "Phones"
                 source: "assets/portables.png"
-                radius: dp(10)
-                on_release:
-                    root.root.change_screen(self, "category")
+                radius: dp(20)
+                texture_color: get_color_from_hex('3F3F3F')
+                texture:
+                    Gradient.horizontal(
+                    get_color_from_hex('3F2F3F'),
+                    get_color_from_hex("787878"),
+                    )
             CategoryCard:
-                text: "Portable Devices"
+                text: "Laptop(HP)"
                 source: "assets/portables.png"
-                radius: dp(10)
-                on_release:
-                    root.root.change_screen(self, "category")
+                radius: dp(20)
             CategoryCard:
-                text: "Portable Devices"
+                text: "Foam(Bed)"
                 source: "assets/portables.png"
-                radius: dp(10)
-                on_release:
-                    root.root.change_screen(self, "category")
+                radius: dp(20)
+                texture_color: get_color_from_hex('3F3F3F')
+                texture:
+                    Gradient.horizontal(
+                    get_color_from_hex('3F2F3F'),
+                    get_color_from_hex("787878"),
+                    )
             CategoryCard:
-                text: "Portable Devices"
+                text: "Shoes"
                 source: "assets/portables.png"
-                radius: dp(10)
-                on_release:
-                    root.root.change_screen(self, "category")
+                radius: dp(20)
 
 
+<HomeProductCard>:
+    # imagePath: ""
+    store: ""
+    product: ""
+    price: "0"
+    check: ""
+    text_radius: [dp(5)]
+    rate: 4
+    radius: [dp(10)]
+    data: {"product": self.product, "store": self.store}
+    size_hint_y: None
+    _size: 0, 0
+    size: self._size
+    padding: [dp(10), 0, dp(10), 0]
+    image: image
+    MDCard:
+        radius: dp(30)
+        padding: dp(15)
+        spacing: dp(20)
+        M_FitImage:
+            id: image
+            source: root.source
+            radius: root.radius
+            size_hint_x: .7
+        MDBoxLayout:
+            orientation: "vertical"
+            spacing: dp(2)
+            M_AKLabelLoader:
+                text:
+                    "" if not (root.price and root.product) else \
+                    f"{shorten(root.product, width=20, placeholder='...')}\n[b][color={get_hex_from_color(app.theme_cls.primary_color)}][font=Roboto]₦[/font]{float(root.price.replace(',', '')) + 5/100 * float(root.price.replace(',', '')):,}[/color][/b]" if \
+                    not root.check else f"{root.product}\n[b][color={get_hex_from_color(app.theme_cls.primary_color)}]{root.price}[/color][/b]"
+                radius: root.text_radius
+                size_hint_y: None
+                markup: True
+                height: dp(20) if not self.text else self.texture_size[1]
+
+            AKRating:
+                id: rates
+                normal_icon: 'star-box-outline'
+                active_icon: 'star-box'
+                animation_type: 'grow'
+                normal_color: app.theme_cls.disabled_hint_text_color
+                active_color: app.theme_cls.primary_color
+                icon_size: dp(20)
+                disabled: True
+                _selected: root.rate
+            MDLabel:
+                text: f"[color=388E3C]store:[/color] NocenStore"
+                #color: get_color_from_hex("388E3C")
+                font_style: "Money"
+                markup: True
+
+            MDBoxLayout:
+                orientation: "vertical"
+                adaptive_height: True
+                radius: [dp(5)]
+                padding:[dp(5), 0, dp(5), 0]
+                MDCard:
+                    size_hint_y: None
+                    height: self.minimum_height
+                    md_bg_color: app.theme_cls.primary_color
+                    padding: dp(10)
+                    radius: [dp(5)]
+                    on_release:
+                        root.parent.root.prev_screen.append(root.parent.roots.name)
+                        check_add_widget(app, "lookout_widget", root.parent, Factory.ProductLookOut(), "lookout")
+                        root.parent.root.current = "lookout"
+                        root.parent.root.ids.lookout.ids.product_name.text = root.product
+                        #self.parent.root.ids.lookout.ids.store.text = self.store
+                        root.parent.root.ids.lookout.update_interface(root.data)
+
+                    MDLabel:
+                        text: "View Product"
+                        font_style: "Button"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        halign: "center"
+                        theme_text_color: "Custom"
+                        text_color: 1,1,1,1
+
+<NavButton@Button_Item>:
+    icon_color: app.theme_cls.primary_color
+    text_color: app.theme_cls.primary_color
+    button_bg_color: 1, 1, 1, 1
+    badge_disabled: True
+
+<DropListItem>
+    text: root.text
+    divider: None
+
+    IconLeftWidget:
+        icon: root.icon
+
+<TickerTab@MDCard>:
+    size_hint: None, None
+    radius: dp(15)
+    text: ""
+    size: self.minimum_size
+    md_bg_color: app.theme_cls.primary_color
+    ripple_behavior: True
+    MDLabel:
+        text: root.text
+        bold: True
+        padding: dp(15), dp(7)
+        adaptive_size: True
+        color: 1, 1, 1, 1
+        markup: True
+
+<TopLayerHome>:
+    adaptive_height: True
+    padding: dp(5)
+    spacing: dp(10)
+    callback: lambda: None
+    TickerTab:
+        text: f"Categories [font=Icons]{md_icons['chevron-down-circle']}[/font]"
+        on_release: root.call_category_dialog()
+    TickerTab:
+        text: f"Sections [font=Icons]{md_icons['chevron-down-circle']}[/font]"
+        on_release: root.call_platform_dialog()
+    MDBoxLayout:
+        adaptive_height: True
+        orientation: "vertical"
+        MDCard:
+            size_hint: None, None
+            size: self.minimum_size
+            radius: dp(20)
+            elevation: .1
+            pos_hint: {"right": 1}
+            ripple_behavior: True
+            on_release: root.callback()
+            MDIcon:
+                icon: "cart-variant"
+                color: app.theme_cls.primary_color
+                padding: dp(10), dp(10)
+                adaptive_size: True
+                font_size: dp(15)
+
+<LogoPanel@MDBoxLayout>:
+    spacing: dp(10)
+    size_hint_y: None
+    _size: 0, 0
+    size: self._size
+    AsyncImage:
+        source: "assets/N1d.PNG"
+        pos_hint: {"center_y": .5}
+    AsyncImage:
+        source: "assets/unilink.png"
+        pos_hint: {"center_y": .5}
+
+<RaisedButton@MDBoxLayout>
+    adaptive_height: True
+    orientation: "vertical"
+    icon_bg_color: 1, 1, 1, 1
+    icon: ""
+    text: ""
+    callback: lambda: None
+    MDCard:
+        pos_hint: {"center_x": .5}
+        orientation: "vertical"
+        size_hint: None, None
+        size: dp(125), dp(100)
+        padding: dp(10)
+        elevation: 0.1
+        md_bg_color: get_color_from_hex("#F5F5F5")
+        radius: dp(30)
+        ripple_behavior: True
+        ripple_color: root.icon_bg_color
+        on_release: root.callback()
+        MDIcon:
+            theme_text_color: "Custom"
+            text_color: 1, 1, 1, 1
+            halign: "center"
+            icon: root.icon
+            pos_hint: {"center_x": .5}
+            size_hint: None, None
+            size: "48dp", "48dp"
+            canvas.before:
+                Color:
+                    rgba: root.icon_bg_color
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [self.width]
+        MDLabel:
+            text: root.text
+            halign: "center"
+            bold: True
+            font_size: "12sp"
 
 
+<CategoryContent@RelativeLayout>:
+    size_hint_y: None
+    height: grid.height + dp(10)
+    MDGridLayout
+        id: grid
+        adaptive_height: True
+        cols: 2
+        padding: dp(2)
+        spacing: dp(45), dp(15)
+        RaisedButton:
+            icon: "television-classic"
+            icon_bg_color: get_color_from_hex("#4CAF50")
+            text: "ELECTRONICS"
+            callback: lambda: Clock.schedule_once(lambda x: root.root.change_screen(self, "electronics", root.dialog), 1)
+        RaisedButton:
+            icon: "cellphone"
+            icon_bg_color: get_color_from_hex("#FF1744")
+            text: "PORTABLES"
+            callback: lambda: Clock.schedule_once(lambda x: root.root.change_screen(self, "portables", root.dialog), 1)
+        RaisedButton:
+            icon: "chair-rolling"
+            icon_bg_color: get_color_from_hex("#AA00FF")
+            text: "FURNITURE"
+            callback: lambda: Clock.schedule_once(lambda x: root.root.change_screen(self, "furniture", root.dialog), 1)
+        RaisedButton:
+            icon: "tshirt-crew"
+            icon_bg_color: get_color_from_hex("#2962FF")
+            text: "CLOTHING"
+            callback: lambda: Clock.schedule_once(lambda x: root.root.change_screen(self, "clothing", root.dialog), 1)
+        RaisedButton:
+            icon: "lipstick"
+            icon_bg_color: get_color_from_hex("#C51162")
+            text: "BEAUTY"
+            callback: lambda: Clock.schedule_once(lambda x: root.root.change_screen(self, "beauty", root.dialog), 1)
+        RaisedButton:
+            icon: "pot-steam"
+            icon_bg_color: get_color_from_hex("#FF6D0")
+            text: "KITCHEN"
+            callback: lambda: Clock.schedule_once(lambda x: root.root.change_screen(self, "kitchen", root.dialog), 1)
+
+<PlatformContent@RelativeLayout>:
+    size_hint_y: None
+    height: grid.height + dp(10)
+    MDGridLayout
+        id: grid
+        adaptive_height: True
+        cols: 2
+        padding: dp(2)
+        spacing: dp(45), dp(15)
+        RaisedButton:
+            icon: "shopping"
+            icon_bg_color: .8, 0, 0, 1
+            text: "TODAY'S DEALS"
+            item: "Deals"
+            callback:
+                lambda: Clock.schedule_once(lambda x: exec("root.root.manager.on_next_screen(root.root.name);"
+                "check_add_widget(app, 'deals_widget', root.root, Factory.Deals(), 'deals');"
+                "root.root.manager.current = self.item.lower(); root.dialog.dismiss()"), 1)
+        RaisedButton:
+            icon: "headset"
+            icon_bg_color: app.theme_cls.primary_color
+            text: "CUSTOMER CARE"
+            item: "Customer Care"
+            callback:
+                lambda: Clock.schedule_once(lambda x: exec("root.root.manager.on_next_screen(root.root.name);"
+                "check_add_widget(app, 'customer_care_widget', root.root, Factory.CustomerCare(), 'customer');"
+                "root.root.manager.current = self.item.lower(); root.dialog.dismiss()"), 1)
+        RaisedButton:
+            icon: "heart"
+            icon_bg_color: 1, .7, 0, 1
+            text: "SAVED ITEMS"
+            item: "Saved Items"
+            callback:
+                lambda: Clock.schedule_once(lambda x: exec("root.root.manager.on_next_screen(root.root.name);"
+                "check_add_widget(app, 'saved_product_widget', root.root, Factory.SavedProduct(), 'saved');"
+                "root.root.manager.current = self.item.lower(); root.dialog.dismiss()"), 1)
+        RaisedButton:
+            icon: "school"
+            icon_bg_color: 1, 0, .8, 1
+            text: "STUDENT ZONE"
+            item: "Student Zone"
+            callback:
+                lambda: Clock.schedule_once(lambda x: exec("root.root.manager.on_next_screen(root.root.name);"
+                "check_add_widget(app, 'student_info_widget', root.root, Factory.StudentInfo(), 's_zone');"
+                "root.root.manager.current = self.item.lower(); root.dialog.dismiss()"), 1)
+
+<CardButton@MDCard>:
+    text: ""
+    radius: dp(5)
+    size_hint: None, None
+    size: self.minimum_size
+    text_color: 1, 1, 1, 1
+    font_style: "H6"
+    md_bg_color: app.theme_cls.primary_color
+    ripple_behavior: True
+    halign: "left"
+    text_adaptive_size: True
+    MDLabel:
+        text: root.text
+        padding: dp(30), dp(10)
+        adaptive_size: root.text_adaptive_size
+        markup: True
+        halign: root.halign
+        font_style: root.font_style
+        color: root.text_color
+
+<SizeSelector@RecycleView>:
+    effect_cls: _ScrollViewHardStop
+    do_scroll_y: False
+    viewclass: "PlanItem"
+    size_hint_y: None
+    height: dp(60)
+    RecycleBoxLayout:
+        id: holder
+        root: root
+        default_size_hint: None, None
+        default_size: dp(40), dp(40)
+        size_hint: None, None
+        size: self.minimum_width ,self.minimum_height
+        spacing:dp(5)
+        orientation: "horizontal"
+
+<IconLabel@MDBoxLayout>:
+    orientation: "vertical"
+    adaptive_height: True
+    icon: ""
+    text: ""
+    callback: lambda: None
+    ic_bg_color: app.theme_cls.disabled_hint_text_color
+    MDBoxLayout:
+        adaptive_size: True
+        md_bg_color: get_color_from_hex("#F0F0F0")
+        radius: [dp(10), dp(10), dp(10), dp(3)]
+        pos_hint: {"center_x": .5}
+        MDIconButton:
+            icon: root.icon
+            theme_text_color: "Custom"
+            text_color: root.ic_bg_color
+            on_release: root.callback()
+    MDLabel:
+        text: root.text
+        adaptive_height: True
+        halign: "center"
+        font_style: "Caption"
+
+<NoLinerToolBar@MDBoxLayout>:
+    icon_right: ""
+    icon_left: ""
+    title: ""
+    icon_right_color: app.theme_cls.text_color
+    icon_right_callback: None
+    icon_left_callback: None
+    adaptive_height: True
+    padding: dp(10)
+    md_bg_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
+
+    MDBoxLayout:
+        adaptive_size: True
+        md_bg_color: get_color_from_hex("#F0F0F0")
+        radius: [dp(10), dp(10), dp(10), dp(3)]
+        MDIconButton:
+            icon: root.icon_left
+            pos_hint: {"center_y": .5}
+            on_release: root.icon_left_callback()
+
+    MDLabel:
+        text: root.title + f"[color={get_hex_from_color(app.theme_cls.primary_color)}]•[/color]"
+        color: [1,1,1,1] if app.theme_cls.theme_style == "Dark" else [0,0,0,.7]
+        markup: True
+        font_style:"BigMoney"
+        bold: True
+        halign: "center"
+        pos_hint:{"center_y": .5}
+    MDBoxLayout:
+        adaptive_size: True
+        md_bg_color: get_color_from_hex("#F0F0F0")
+        radius: dp(10)
+        MDIconButton:
+            icon: root.icon_right
+            pos_hint: {"center_y": .5}
+            theme_text_color: "Custom"
+            text_color: root.icon_right_color
+            on_release: root.icon_right_callback()

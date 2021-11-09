@@ -3,11 +3,13 @@ import urllib.request
 from functools import partial
 from json import loads
 from os import listdir
+from os.path import exists
 from threading import Thread
 from kivy.animation import Animation
 from kivy.clock import Clock, mainthread
 from kivy.core.window import Window
 from kivy.event import EventDispatcher
+from kivy.graphics.texture import Texture
 from kivy.lang import Builder
 from kivy.metrics import dp
 from kivy.network.urlrequest import UrlRequest
@@ -38,11 +40,18 @@ class Home(Screen, EventDispatcher):
         self.register_event_type("on_menu")
         self.alert = SweetAlert(size_hint_x=None, width=Window.width - dp(20))
         self.data = []
-        self.widgets = [{"viewclass": "Swiper", "root": self, "_size": [0, Window.height/5]}, {"viewclass": "Platform", "root": self},
-                        {"viewclass": "Gridad", "root": self}, {"viewclass": "EasySearch"}]
+        self.widgets = [
+            {"viewclass": "LogoPanel", "root": self, "_size": [0, Window.height / 7]},
+            {"viewclass": "Swiper", "root": self, "_size": [0, Window.height / 4]},
+            # {"viewclass": "EasySearch", "root": self, "_size": [0, dp(150)]},
+            # {"viewclass": "Gridad", "root": self, "_size": [0, Window.height]}
+        ]
 
-    def go_cart(self, instance):
+    def go_cart(self):
         self.manager.prev_screen.append(self.name)
+        from tools import check_add_widget
+        from kivy.factory import Factory
+        check_add_widget(self.app, "cart_widget", self, Factory.Cart(), "cart")
         self.manager.current = "cart"
 
     def fire(self):
@@ -59,14 +68,19 @@ class Home(Screen, EventDispatcher):
         self.alert.dismiss()
         self.app.firebase = {}
         os.remove("token.json")
+        from tools import check_add_widget
+        from kivy.factory import Factory
+        check_add_widget(self.app, "login_widget", self, Factory.Login(), "login")
         self.manager.current = "login"
 
     def on_enter(self, *args):
+        if not exists("tmp"):
+            os.mkdir("tmp")
         if self.app.firebase and not self.app.firebase["profile"]["users"][0]["emailVerified"]:
             self.fire()
         if self.update:
             return
-        Clock.schedule_once(self.screen_update, 1.5)
+        Clock.schedule_once(self.screen_update, 7)
 
     def check_email(self, instance):
         self.alert.content_cls.children[1].text = "Checking if you have verified your email"
@@ -100,11 +114,12 @@ class Home(Screen, EventDispatcher):
         self.clock = Clock.schedule_interval(self._start_animation, 5)
 
     def get_ads(self):
-        UrlRequest(
-            url=f"{self.url}get_ads",
-            on_success=self.update_ads_data,
-            on_error=self.check_cache
-        )
+        # UrlRequest(
+        #     url=f"{self.url}get_ads",
+        #     on_success=self.update_ads_data,
+        #     on_error=self.check_cache
+        # )
+        pass
 
     def update_ads_data(self, instance, data):
         data = loads(data)
@@ -166,11 +181,18 @@ class Home(Screen, EventDispatcher):
     def open_menu(self, instance):
         self.manager.current = "menu"
 
-    def change_screen(self, instance, screen):
+    def change_screen(self, instance, screen, dialog):
         self.manager.on_next_screen(self.name)
+        from tools import check_add_widget
+        from kivy.factory import Factory
+        check_add_widget(self.app, f"{screen}_widget", self, Factory.Category(name=screen), screen)
+        self.manager.ids[screen].data_type = \
+            instance.text.lower() if instance.text.lower() != "portables" else "portable devices"
+        # self.manager.ids.category.exec_type = "_".join(
+        #     instance.text.lower().split(" ") if instance.text.lower() != "portables" else "portable devices".split(" ")
+        # )
         self.manager.current = screen
-        self.manager.ids.category.data_type = instance.text.lower()
-        self.manager.ids.category.exec_type = "_".join(instance.text.lower().split(" "))
+        dialog.dismiss()
 
     def get_data(self):
         UrlRequest(
@@ -185,13 +207,44 @@ class Home(Screen, EventDispatcher):
             return
         self.data_trending = loads(data)
         length_data = len(self.data_trending)
-
+        new_data = []
         for index, _ in enumerate(range(length_data)):
             if index == 20:
                 break
             datum = self.data_trending.pop(0)
-            datum.update({"viewclass": "CategoryProductCard"})
-            self.ids.rv.data.append(datum)
+
+            datum.update(
+                {
+                    "viewclass": "HomeProductCard",
+                    "_size": [0, Window.height/4.5],
+                    "texture": Texture.create(size=(1, 1), colorfmt='rgba'),
+                    "canvas_texture": None,
+                    "rv": self.ids.rv,
+                    "source": "assets/loader.gif"
+                }
+            )
+            new_data.append(datum)
+        self.ids.rv.data.extend(new_data)
+        for index, data_dic in enumerate(new_data):
+            Thread(target=self.get_raw_image, args=(data_dic, index)).start()
+
+    def get_raw_image(self, data_dic, index):
+        while True:
+            import requests
+            from PIL import Image
+            try:
+                response = requests.get(data_dic["imagePath"], stream=True)
+                response.raw.decode_content = True
+                Image.open(response.raw).convert("RGB").save(f"tmp/{index}.jpg")
+                self.update_data_texture(index, f"tmp/{index}.jpg")
+                break
+            except requests.exceptions.RequestException:
+                pass
+
+    @mainthread
+    def update_data_texture(self, index, texture):
+        self.ids.rv.data[index + 2]["source"] = texture
+        self.ids.rv.refresh_from_data()
 
     def network_error(self, instance, data):
         self.get_data()
@@ -211,7 +264,7 @@ class Home(Screen, EventDispatcher):
                     if i == 20:
                         break
                     datum = self.data_trending.pop(0)
-                    datum.update({"viewclass": "CategoryProductCard"})
+                    datum.update({"viewclass": "HomeProductCard"})
                     self.ids.rv.data.append(datum)
 
         Clock.schedule_once(continue_update, 2)

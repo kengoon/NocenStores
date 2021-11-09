@@ -1,4 +1,5 @@
 <Feeds>:
+    name: "feeds"
     RelativeLayout:
         id: non
         opacity: 0
@@ -38,6 +39,7 @@
                 disabled_foreground_color: [0.5, 0.5, 0.5, 1.0]
                 on_release:
                     root.root.manager.prev_screen.append(root.root.name)
+                    check_add_widget(app, "search_widget", root.root, Factory.Search(), "search")
                     root.root.manager.ids.search.p_type = False
                     root.root.manager.current = "search"
         RecycleView:

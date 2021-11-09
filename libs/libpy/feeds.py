@@ -3,8 +3,10 @@ from json import loads
 
 from kivy.clock import Clock
 from kivy.network.urlrequest import UrlRequest
+from kivy.properties import ObjectProperty
 from kivy.uix.screenmanager import Screen
 from classes.notification import notify
+from kivy.app import App
 
 
 class Feeds(Screen):
@@ -12,6 +14,8 @@ class Feeds(Screen):
     url = "https://nocenstore.pythonanywhere.com/"
     toast = True
     data = []
+    root = ObjectProperty()
+    app = App.get_running_app()
 
     def on_enter(self):
         if self.update:
@@ -70,6 +74,9 @@ class Feeds(Screen):
 
     def go_cart(self, instance):
         self.root.manager.prev_screen.append(self.root.name)
+        from tools import check_add_widget
+        from kivy.factory import Factory
+        check_add_widget(self.app, "cart_widget", self.root, Factory.Cart(), "cart")
         self.root.manager.current = "cart"
 
     def proceed_to_lookout(self, instance):
@@ -79,6 +86,9 @@ class Feeds(Screen):
         if not instance.price:
             return
         self.root.manager.prev_screen.append(self.root.name)
+        from tools import check_add_widget
+        from kivy.factory import Factory
+        check_add_widget(self.app, "lookout_widget", self.root, Factory.ProductLookOut(), "lookout")
         self.root.manager.current = "lookout"
         self.root.manager.ids.lookout.ids.product_name.text = instance.name
         self.root.manager.ids.lookout.ids.store.text = instance.store

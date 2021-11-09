@@ -11,9 +11,9 @@ from kivymd.app import MDApp
 from kivymd.uix.dialog import MDDialog
 from plyer import filechooser
 from kivy import platform
-from kivy.properties import ListProperty
+from kivy.properties import ListProperty, ObjectProperty
 from kivy.uix.screenmanager import Screen
-from requests_toolbelt import MultipartEncoder
+from tools.multipartencoder import MultipartEncoder
 
 from classes.notification import notify
 from PIL import Image
@@ -35,12 +35,10 @@ class Sell(Screen):
         '^[a-z0-9]+[\\._]?[a-z0-9]+[@]\\w+[.]\\w{2,3}$'
     ]
     ided = False
-    update = False
+    root = ObjectProperty()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.widgets = [{"viewclass": "Title"}, {"viewclass": "PicArt", "root": self},
-                        {"viewclass": "Fields", "root": self}]
         self.dialog = MDDialog(
             title="Uploading Your Product To Server",
             text="please wait while we upload your product. You can continue to check out our product,"
@@ -49,12 +47,6 @@ class Sell(Screen):
             width=Window.width - dp(20)
         )
         self.dialog.auto_dismiss = True
-
-    def on_enter(self, *args):
-        if not self.update:
-            for data in self.widgets:
-                self.ids.rv.data.append(data)
-            self.update = True
 
     @staticmethod
     def open_filechooser(instance):

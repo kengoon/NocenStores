@@ -1,17 +1,10 @@
 <Sell>:
-    RecycleView:
-        id: rv
+    name: "sell"
+    ScrollView:
         effect_cls: ScrollEffect
-        key_viewclass: "viewclass"
-        key_size: "height"
-        RecycleGridLayout:
-            id: holder
-            root: root.manager
-            roots: root
-            default_size_hint: 1, None
-            default_size: None, None
-            size_hint_y: None
-            height: self.minimum_height
-            spacing:dp(20)
-            padding: dp(10)
-            cols: 1
+        MDList:
+            spacing: dp(20)
+            padding: sp(15)
+            Title:
+            PicArt:
+            Fields

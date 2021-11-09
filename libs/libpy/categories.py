@@ -1,5 +1,11 @@
 from json import dumps, loads
-from kivy.clock import Clock
+from os import mkdir
+from os.path import exists
+from threading import Thread
+
+from kivy.clock import Clock, mainthread
+from kivy.core.window import Window
+
 from classes.notification import notify
 from kivy.network.urlrequest import UrlRequest
 from kivy.uix.screenmanager import Screen
@@ -7,53 +13,26 @@ from kivy.uix.screenmanager import Screen
 
 class Category(Screen):
     data_type = ""
-    exec_type = ""
     update = False
     menu = None
     url = "https://nocenstore.pythonanywhere.com/"
-    toast = True
     clock = None
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.clothing_data = []
-        self.clothing_tmp_data = []
-        self.furniture_data = []
-        self.furniture_tmp_data = []
-        self.kitchen_data = []
-        self.kitchen_tmp_data = []
-        self.electronics_data = []
-        self.electronics_tmp_data = []
-        self.beauty_data = []
-        self.beauty_tmp_data = []
-        self.portable_devices_data = []
-        self.portable_devices_tmp_data = []
-
-    def on_pre_enter(self, *args):
-        self.ids.non.opacity = 0
-        self.ids.progress_box.opacity = 1
+        self.data = []
+        self.tmp_data = []
+        self.request = None
 
     def on_enter(self, *args):
-        self.toast = True
-        if eval(f"self.{self.exec_type}_tmp_data"):
-            exec(f"self.{self.exec_type}_data = self.{self.exec_type}_tmp_data.copy()")
-            self.post_data()
-            self.update = True
-        else:
-            self.get_data()
-        self.clock = Clock.schedule_interval(self.get_data, 30)
-
-    def on_leave(self, *args):
-        self.ids.holder.clear_widgets()
-        self.ids.rv.data = []
-        self.update = False
-        self.clock.cancel()
+        if not self.update:
+            self.request = self.get_data()
 
     def go_home(self, *args):
         self.manager.current = "home"
 
     def get_data(self, *args):
-        UrlRequest(
+        return UrlRequest(
             url=self.url + "getCategoryType",
             req_body=dumps({"type": self.data_type}),
             on_success=self.update_data,
@@ -62,47 +41,71 @@ class Category(Screen):
         )
 
     def update_data(self, instance, data):
+        if not self.clock:
+            self.clock = Clock.schedule_interval(self.get_data, 30)
         if data == "None":
             self.post_data(data=data)
             return
-        if not eval(f"self.{self.exec_type}_tmp_data"):
-            exec(f"self.{self.exec_type}_tmp_data = loads(data)")
-            exec(f"self.{self.exec_type}_data = self.{self.exec_type}_tmp_data.copy()")
-        # checks if data from net is greater than tmp data and then gets the newest data and adds it to self.data
-        elif len(loads(data)) > eval(f"len(self.{self.exec_type}_tmp_data)"):
-            counter = len(loads(data)) - eval(f"len(self.{self.exec_type}_tmp_data)")
-            exec(f"self.{self.exec_type}_tmp_data = loads(data)")
+        if not self.data:
+            self.tmp_data = loads(data)
+            self.data = self.tmp_data.copy()
+        elif len(loads(data)) > len(self.tmp_data):
+            counter = len(loads(data)) - len(self.tmp_data)
+            self.tmp_data = loads(data)
             for _ in range(counter):
-                exec(f"self.{self.exec_type}_data.append(self.{self.exec_type}_tmp_data[_ - counter])")
+                self.data.append(self.tmp_data[(_ + 1) - counter])
         else:
             return
 
         self.post_data()
         self.update = True
 
-    def post_data(self, data="not_empty"):
-        self.toast = True
+    def post_data(self, data=""):
         self.ids.progress_box.opacity = 0
         if data == "None":
             self.ids.non.opacity = 1
             self.ids.ico.icon = "package-variant-closed"
             self.ids.lbl.text = "No product for this category yet"
             return
-        length_data = eval(f"len(self.{self.exec_type}_data)")
+        length_data = len(self.data)
+        new_data = []
         for index, _ in enumerate(range(length_data)):
             if index == 20:
                 break
-            self.ids.rv.data.append(eval(f"self.{self.exec_type}_data.pop(0)"))
+            _data = self.data.pop(0)
+            _data.update({"_size": [0, Window.height/2.5], "source": "assets/loader.gif"})
+            new_data.append(_data)
+        self.ids.rv.data.extend(new_data)
+        if not exists(f"tmp/{self.data_type.replace(' ', '_')}"):
+            mkdir(f"tmp/{self.data_type.replace(' ', '_')}")
+            for index, data_dic in enumerate(new_data):
+                Thread(target=self.get_raw_image, args=(data_dic, index)).start()
+
+    def get_raw_image(self, data_dic, index):
+        while True:
+            import requests
+            from PIL import Image
+            try:
+                var = self.data_type.replace(" ", "_")
+                response = requests.get(data_dic["imagePath"], stream=True)
+                response.raw.decode_content = True
+                Image.open(response.raw).convert("RGB").save(f"tmp/{var}/{index}.jpg")
+                self.update_data_texture(index, f"tmp/{var}/{index}.jpg")
+                break
+            except requests.exceptions.RequestException:
+                pass
+
+    @mainthread
+    def update_data_texture(self, index, texture):
+        self.ids.rv.data[index]["source"] = texture
+        self.ids.rv.refresh_from_data()
 
     def check_network(self, instance, data):
-        self.get_data()
-        if self.toast:
-            self.ids.progress_box.opacity = 0
-            self.ids.non.opacity = 1
-            self.ids.ico.icon = "network-strength-off-outline"
-            self.ids.lbl.text = "please turn on your data\nor subscribe"
-            notify("please turn on your data or subscribe")
-            self.toast = False
+        self.ids.progress_box.opacity = 0
+        self.ids.non.opacity = 1
+        self.ids.ico.icon = "network-strength-off-outline"
+        self.ids.lbl.text = "please turn on your data\nor subscribe"
+        notify("please turn on your data or subscribe")
 
     def server_error(self, instance, data):
         self.ids.progress_box.opacity = 0

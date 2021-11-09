@@ -4,6 +4,12 @@ from json import dumps, loads, decoder
 from os.path import exists
 from shutil import rmtree
 from threading import Thread
+from time import sleep
+
+from kivy.config import Config
+
+Config.set("kivy", "log_level", "debug")
+
 from certifi import where
 from kivy import platform
 from kivy.clock import Clock
@@ -13,21 +19,7 @@ from kivy.loader import Loader
 from kivy.metrics import dp
 from kivy.lang import Builder
 from kivy.factory import Factory
-from kivy.properties import StringProperty, ListProperty
 from kivymd.app import MDApp
-from kivymd.theming import ThemableBehavior
-from kivymd.uix.behaviors import MagicBehavior
-from kivymd.uix.boxlayout import MDBoxLayout
-from kivymd.uix.textfield import MDTextField
-from classes.card import MsCard
-from libs.classes_wigdet.asyncimage import AsyncMe
-from libs.classes_wigdet.m_cardtextfield import M_CardTextField
-from classes.m_loader import M_AKImageLoader, M_AKLabelLoader
-from classes.m_cardloader import M_CardLoader
-from kivymd_extensions.akivymd.uix.statusbarcolor import change_statusbar_color
-from classes.fitimage import M_FitImage
-import requests
-from jnius import autoclass
 from oscpy.client import OSCClient
 from oscpy.server import OSCThreadServer
 
@@ -37,15 +29,8 @@ SERVICE_NAME = u'{packagename}.Service{servicename}'.format(
     servicename=u'Notification'
 )
 
-r = Factory.register
-r("M_CardLoader", cls=M_CardLoader)
-r("M_AKImageLoader", cls=M_AKImageLoader)
-r("M_AKLabelLoader", cls=M_AKLabelLoader)
-r("M_CardTextField", cls=M_CardTextField)
-r("MsCard", cls=MsCard)
-r("AsyncMe", cls=AsyncMe)
-r("M_FitImage", cls=M_FitImage)
 Loader.loading_image = "assets/loader.gif"
+font_folder = "assets/font/"
 
 if platform == "android":
     from android.permissions import Permission, request_permissions
@@ -65,10 +50,28 @@ class NocenStore(MDApp):
         self.theme_cls.primary_hue = "A700"
         if exists("assets/compressed"):
             rmtree("assets/compressed")
-        change_statusbar_color(self.theme_cls.primary_color)
         Window.bind(on_key_up=self.on_back_button)
         Window.bind(on_keyboard=self.on_ignore)
         # Window.bind(on_flip=self.fix_back_button)
+        self.login_widget = False
+        self.signup_widget = False
+        self.lookout_widget = False
+        self.electronics_widget = False
+        self.portables_widget = False
+        self.furniture_widget = False
+        self.clothing_widget = False
+        self.beauty_widget = False
+        self.kitchen_widget = False
+        self.setting_widget = False
+        self.customer_care_widget = False
+        self.deals_widget = False
+        self.order_widget = False
+        self.student_info_widget = False
+        self.search_widget = False
+        self.saved_product_widget = False
+        self.cart_widget = False
+        self.checkout_widget = False
+        self.payment_widget = False
         self.data_product = []
         self.current_email = ""
         self.current_phone = ""
@@ -93,9 +96,23 @@ class NocenStore(MDApp):
         self.label = None
         self.no_screen = ["initializer", "home"]
         Window.softinput_mode = 'below_target'
-        self.theme_cls.font_styles.update({"Money": ["assets/Eczar-Regular", 16, False, 0.5],
-                                           "BigMoney": ["assets/Eczar-SemiBold", 20, False, 0.5],
-                                           "Small": ["assets/Eczar-SemiBold", 16, False, 0.5]})
+        self.theme_cls.font_styles.update(
+            {
+                "H1": [f"{font_folder}DINAlternate-bold", 96, False, -1.5],
+                "H2": [f"{font_folder}avenir_heavy", 60, False, -0.5],
+                "H3": [f"{font_folder}DINAlternate-bold", 48, False, 0],
+                "H4": [f"{font_folder}avenir_heavy", 34, False, 0.25],
+                "H5": [f"{font_folder}DINAlternate-bold", 24, False, 0],
+                "H6": [f"{font_folder}avenir_heavy", 20, False, 0.15],
+                "Button": [f"{font_folder}DINAlternate-bold", 14, True, 1.25],
+                "Body1": [f"{font_folder}avenir_heavy", 16, False, 0.5],
+                "Body2": [f"{font_folder}avenir_heavy", 14, False, 0.25],
+                "Money": ["assets/font/DINAlternate-bold", 16, False, 0.5],
+                "BigMoney": ["assets/font/avenir_heavy", 20, False, 0.5],
+                "Small": ["assets/font/DINAlternate-bold", 16, False, 0.5],
+                "Naira": ["assets/font/iconfont", 16, False, 0.5]
+            }
+        )
         if os.path.exists("theme.txt"):
             with open("theme.txt") as theme:
                 self.theme_cls.theme_style = theme.read()
@@ -124,17 +141,16 @@ class NocenStore(MDApp):
         server.bind(b'/date', self.date)
 
         self.client = OSCClient('localhost', 3000)
-        for modules in os.listdir("libs/libpy"):
-            exec(f"from libs.libpy import {modules.rstrip('.pyc')}")
         return Builder.load_file("manager.kv")
 
     def start_service(self):
         if platform == 'android':
-            service = autoclass(SERVICE_NAME)
-            mActivity = autoclass(u'org.kivy.android.PythonActivity').mActivity
-            argument = ''
-            service.start(mActivity, argument)
-            self.service = service
+            pass
+            # service = autoclass(SERVICE_NAME)
+            # mActivity = autoclass(u'org.kivy.android.PythonActivity').mActivity
+            # argument = ''
+            # service.start(mActivity, argument)
+            # self.service = service
 
         # elif platform in ('linux', 'linux2', 'macos', 'win'):
         #     from runpy import run_path
@@ -167,7 +183,7 @@ class NocenStore(MDApp):
         elif args[1] == 27 and self.root.ids.manager.children[0].current not in self.no_screen:
             self.root.ids.manager.children[0].on_back_button()
             if self.current == "profile":
-                self.root.ids.manager.children[0].ids.home.ids.raw.switch_tab("home")
+                self.root.ids.manager.children[0].ids.home.ids.home.dispatch("on_release")
             if self.current == "lookout":
                 self.root.ids.manager.children[0].ids.lookout.update_interface(
                     self.root.ids.manager.children[0].ids.lookout.tmp_data)
@@ -177,11 +193,25 @@ class NocenStore(MDApp):
         return True
 
     def on_start(self):
+        print("stopped")
+        if exists("tmp"):
+            import shutil
+            shutil.rmtree("tmp")
         self.start_service()
         Thread(target=self.initialize_connection).start()
 
     def initialize_connection(self):
-        self.root.screens[0].ids.spinner.active = True
+        from libs.classes_wigdet.m_cardtextfield import M_CardTextField
+        from classes.m_loader import M_AKImageLoader, M_AKLabelLoader
+        from classes.m_cardloader import M_CardLoader
+        from classes.fitimage import FitImage as M_FitImage
+        r = Factory.register
+        r("M_CardLoader", cls=M_CardLoader)
+        r("M_AKImageLoader", cls=M_AKImageLoader)
+        r("M_AKLabelLoader", cls=M_AKLabelLoader)
+        r("M_CardTextField", cls=M_CardTextField)
+        r("M_FitImage", cls=M_FitImage)
+        import requests
         if self.firebase:
             try:
                 data = requests.post(url=self.url,
@@ -196,12 +226,15 @@ class NocenStore(MDApp):
             except decoder.JSONDecodeError:
                 os.remove("token.json")
                 self.login = False
+        Builder.load_file("imports.kv")
         Builder.load_file("libs/kv_widget/widget.kv")
+        for modules in os.listdir("libs/libpy"):
+            if "initializer" in modules:
+                continue
+            exec(f"from libs.libpy import {modules.rstrip('.pyc')}")
         Builder.load_file("libs/libkv/init/credentials.kv")
         Builder.load_file("libs/manager.kv")
         for file in os.listdir("libs/libkv/main"):
-            if file == os.listdir("libs/libkv/main")[-2]:
-                self.root.screens[0].ids.spinner.active = False
             Builder.load_file(f"libs/libkv/main/{file}")
         self.check_add_screen("Factory.Manager()", "manager")
 
@@ -211,7 +244,7 @@ class NocenStore(MDApp):
     def _add_screen(self, screen_object, screen_name, _):
         self.root.ids.manager.add_widget(eval(screen_object))
         Clock.schedule_once(lambda x: exec(
-            "self.root.current = screen_name", {"self": self, "screen_name": screen_name}), timeout=.5)
+            "self.root.current = screen_name", {"self": self, "screen_name": screen_name}), 4)
 
     @staticmethod
     def open(menu, label):
@@ -268,57 +301,10 @@ class NocenStore(MDApp):
             if not value:
                 fix_back_button()
 
-
-class PhoneTextField(MDTextField):
-    def insert_text(self, substring, from_undo=False):
-        new_text = self.text + substring
-        if new_text != '' and len(new_text) < 12:
-            MDTextField.insert_text(self, substring, from_undo=from_undo)
-
-    def on_text(self, instance, text):
-        instance.error = len(text) != 11
-
-    @staticmethod
-    def do_focus(value):
-        if platform == "android":
-            from kvdroid import activity
-            from android.runnable import run_on_ui_thread
-
-            @run_on_ui_thread
-            def fix_back_button():
-                activity.onWindowFocusChanged(False)
-                activity.onWindowFocusChanged(True)
-
-            if not value:
-                fix_back_button()
-
-
-class PhoneCardTextField(M_CardTextField):
-    def on_text(self, *args):
-        if not args:
-            return
-        if len(args[1]) > 11:
-            self.text = self.text[:-1]
-
-
-class PlanItem(ThemableBehavior, MagicBehavior, MDBoxLayout):
-    text_item = StringProperty()
-    border = StringProperty()
-    color_select = ListProperty()
-
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.color_select = self.theme_cls.disabled_hint_text_color
-        self.primary = self.theme_cls.primary_color
-
-    def press_on_plan(self, instance_plan):
-        self.parent.root.selected_size = self.text_item
-        for widget in self.parent.children:
-            if widget.color_select == self.primary:
-                widget.color_select = self.color_select
-                self.grow()
-                break
-        instance_plan.color_select = self.primary
+    def on_stop(self):
+        if exists("tmp"):
+            import shutil
+            shutil.rmtree("tmp")
 
 
 NocenStore().run()

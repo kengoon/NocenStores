@@ -3,7 +3,7 @@ from json import loads
 from kivy.clock import Clock
 from kivy.network.urlrequest import UrlRequest
 from kivy.uix.screenmanager import Screen
-
+from kivy.app import App
 from classes.notification import notify
 
 
@@ -12,12 +12,16 @@ class Deals(Screen):
     url = "https://nocenstore.pythonanywhere.com/"
     toast = True
     data = []
+    app = App.get_running_app()
 
     def on_enter(self):
         if self.update:
             self.get_data()
 
     def enter_search(self):
+        from tools import check_add_widget
+        from kivy.factory import Factory
+        check_add_widget(self.app, "search_widget", self, Factory.Search(), "search")
         self.manager.ids.search.p_type = True
         self.manager.current = "search"
 

@@ -18,6 +18,9 @@ class Payment(Screen):
     url = "https://nocenstore.pythonanywhere.com/"
 
     def go_back(self):
+        from tools import check_add_widget
+        from kivy.factory import Factory
+        check_add_widget(self.app, "checkout_widget", self, Factory.CartCheckout(), "checkout")
         self.manager.current = "checkout"
 
     def __init__(self, **kwargs):

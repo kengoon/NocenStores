@@ -48,6 +48,9 @@ class Login(Screen):
                [0.2, 0.2, 0.2, 1], duration=10)
 
     def collect_save_data(self, instance, data):
+        from tools import check_add_widget
+        from kivy.factory import Factory
+        check_add_widget(app, "lookout_widget", self, Factory.ProductLookOut(), "lookout")
         self.disabled = False
         self.ids.spinner.active = False
         user_data = loads(data)
@@ -139,6 +142,9 @@ class SignUp(Screen):
                [0.2, 0.2, 0.2, 1], duration=10)
 
     def collect_save_data(self, instance, data):
+        from tools import check_add_widget
+        from kivy.factory import Factory
+        check_add_widget(app, "lookout_widget", self, Factory.ProductLookOut(), "lookout")
         self.disabled = False
         self.ids.spinner.active = False
         user_data = loads(data)

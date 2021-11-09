@@ -13,7 +13,7 @@ Example:
 
 .. code-block:: kv
 
-    BoxLayout:
+    MDBoxLayout:
         size_hint_y: None
         height: "200dp"
         orientation: 'vertical'
@@ -52,7 +52,7 @@ Example with round corners:
             source: "images/bg.png"
             size_hint_y: .35
             pos_hint: {"top": 1}
-            radius: [36, 36, 0, 0, ]
+            radius: 36, 36, 0, 0
     ''')
 
 
@@ -74,20 +74,20 @@ Example with round corners:
     Example().run()
 """
 
-__all__ = ("M_FitImage",)
+__all__ = ("FitImage",)
 
 from kivy.clock import Clock
 from kivy.graphics.context_instructions import Color
 from kivy.graphics.vertex_instructions import Rectangle
 from kivy.lang import Builder
-from kivy.properties import BooleanProperty, ListProperty, ObjectProperty
+from kivy.properties import ObjectProperty, VariableListProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.image import AsyncImage
 from kivy.uix.widget import Widget
 
 Builder.load_string(
     """
-<M_FitImage>
+<FitImage>
     canvas.before:
         StencilPush
         RoundedRectangle:
@@ -107,34 +107,66 @@ Builder.load_string(
 )
 
 
-class M_FitImage(BoxLayout):
+class FitImage(BoxLayout):
     source = ObjectProperty()
-    container = ObjectProperty()
-    radius = ListProperty([0, 0, 0, 0])
-    mipmap = BooleanProperty(False)
-    load_callback = ObjectProperty(lambda x: None)
-    nocache = BooleanProperty(False)
-    anim_delay = .1
+    """
+    Filename/source of your image.
+
+    :attr:`source` is a :class:`~kivy.properties.StringProperty` and
+    defaults to None.
+    """
+
+    radius = VariableListProperty([0], length=4)
+    """
+    Canvas radius.
+
+    .. code-block:: python
+
+        # Top left corner slice.
+        MDBoxLayout:
+            md_bg_color: app.theme_cls.primary_color
+            radius: [25, 0, 0, 0]
+
+    :attr:`radius` is an :class:`~kivy.properties.VariableListProperty`
+    and defaults to `[0, 0, 0, 0]`.
+    """
+
+    callback = lambda: None
+
+    _container = ObjectProperty()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         Clock.schedule_once(self._late_init)
 
     def _late_init(self, *args):
-        self.container = Container(self.source, self.mipmap, self.load_callback, self.anim_delay, self.nocache)
-        self.bind(source=self.container.setter("source"))
-        self.add_widget(self.container)
+        self._container = Container(self.source, self)
+        self.bind(source=self._container.setter("source"))
+        self.add_widget(self._container)
+
+    def reload(self):
+        self._container.image.reload()
 
 
 class Container(Widget):
     source = ObjectProperty()
     image = ObjectProperty()
+    fitimage = ObjectProperty()
 
-    def __init__(self, source, mipmap, load_callback, anim_delay, nocache, **kwargs):
+    def __init__(self, source, fitimage, **kwargs):
         super().__init__(**kwargs)
-        self.image = AsyncImage(mipmap=mipmap, on_load=load_callback, anim_delay=anim_delay, nocache=nocache)
-        self.image.bind(on_load=self.adjust_size)
+        self.image = AsyncImage()
+        self.loader_clock = Clock.schedule_interval(
+            self.adjust_size, self.image.anim_delay
+        )
+        self.image.bind(
+            on_load=lambda inst: (
+                self.adjust_size("loaded"),
+                self.loader_clock.cancel(),
+            )
+        )
         self.source = source
+        self.fitimage = fitimage
         self.bind(size=self.adjust_size, pos=self.adjust_size)
 
     def on_source(self, instance, value):
@@ -175,3 +207,7 @@ class Container(Widget):
             self.canvas.clear()
             Color(1, 1, 1)
             Rectangle(texture=subtexture, pos=self.pos, size=(par_x, par_y))
+        # if not args:
+        #     pass
+        # elif args[0] == "loaded":
+        #     self.fitimage.callback(subtexture, self.pos, (par_x, par_y))

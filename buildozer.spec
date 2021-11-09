@@ -36,7 +36,7 @@ version = 0.2.2
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,kivy==2.0.0,https://github.com/kengoon/akivymd-1/archive/master.zip,http://127.0.0.1:8887/kivymd.zip,sdl2_ttf==2.0.15,https://github.com/kengoon/plyer/archive/refs/heads/master.zip,pillow,certifi,requests_toolbelt,requests,urllib3,chardet,idna,oscpy,kivymd-extensions.sweetalert,https://github.com/yunus-ceyhan/Kvdroid/archive/refs/heads/master.zip
+requirements = python3,kivy==2.0.0,https://github.com/kivymd-extensions/akivymd/archive/refs/heads/main.zip,https://github.com/kivymd/KivyMD/archive/refs/heads/master.zip,sdl2_ttf==2.0.15,https://github.com/kengoon/plyer/archive/refs/heads/master.zip,pillow,certifi,urllib3,chardet,idna,requests,oscpy,kivymd-extensions.sweetalert,https://github.com/yunus-ceyhan/Kvdroid/archive/refs/heads/master.zip
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
@@ -49,7 +49,7 @@ requirements = python3,kivy==2.0.0,https://github.com/kengoon/akivymd-1/archive/
 presplash.filename = %(source.dir)s/assets/N1d.PNG
 
 # (str) Icon of the application
-#icon.filename = %(source.dir)s/data/icon.png
+icon.filename = %(source.dir)s/assets/logo.png
 
 # (str) Supported orientation (one of landscape, sensorLandscape, portrait or all)
 orientation = portrait
@@ -97,7 +97,7 @@ android.api = 30
 #android.sdk = 20
 
 # (str) Android NDK version to use
-#android.ndk = 19b
+android.ndk = 20b
 
 # (int) Android NDK API to use. This is the minimum API your app will support, it should usually match android.minapi.
 #android.ndk_api = 21
@@ -129,7 +129,7 @@ android.accept_sdk_license = True
 #android.entrypoint = org.renpy.android.PythonActivity
 
 # (str) Android app theme, default is ok for Kivy-based app
-android.apptheme = "@style/AppFullScreenTheme"
+#android.apptheme = "@style/AppFullScreenTheme"
 
 # (list) Pattern to whitelist for the whole project
 #android.whitelist =
@@ -219,7 +219,7 @@ android.logcat_filters = *:S python:D
 #android.copy_libs = 1
 
 # (str) The Android arch to build for, choices: armeabi-v7a, arm64-v8a, x86, x86_64
-android.arch = armeabi-v7a
+android.archs = armeabi-v7a
 
 # (int) overrides automatic versionCode computation (used in build.gradle)
 # this is not the same as app version and should only be edited if you know what you're doing

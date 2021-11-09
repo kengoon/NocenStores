@@ -10,12 +10,14 @@ Builder.load_string(
     """
 # kv_start
 <M_CardLoader>:
-    #radius: [dp(10), ]
+    radius: dp(30)
     elevation: 0
     AsyncImage:
         id: image
         source: root.source
         anim_delay: .1
+        allow_stretch: True
+        keep_ratio: False
         canvas.before:
             StencilPush
             RoundedRectangle:

@@ -1,20 +1,5 @@
 <Used>:
-    RelativeLayout:
-        id: non
-        opacity: 0
-        MDIcon:
-            id: ico
-            icon:"package-variant-closed"
-            color: app.theme_cls.disabled_hint_text_color
-            font_size: dp(70)
-            pos_hint: {"center_x":.5, "center_y":.5}
-            halign: "center"
-        MDLabel:
-            id: lbl
-            text: "Fairly Used Products Unavailable"
-            color: app.theme_cls.disabled_hint_text_color
-            halign: "center"
-            pos_hint: {"center_x":.5, "center_y":.4}
+    name: "used"
     MDBoxLayout:
         orientation:"vertical"
         MDBoxLayout:
@@ -38,6 +23,7 @@
                 disabled_foreground_color: [0.5, 0.5, 0.5, 1.0]
                 on_release:
                     root.root.manager.prev_screen.append(root.root.name)
+                    check_add_widget(app, "search_widget", root.root, Factory.Search(), "search")
                     root.root.manager.ids.search.p_type = False
                     root.root.manager.current = "search"
         RecycleView:
@@ -48,12 +34,13 @@
             RecycleGridLayout:
                 root: root
                 default_size_hint: None, None
-                default_size: root.width/2 - dp(20), Window.height/3
+                default_size: root.width/2 - dp(20), Window.height/2.5
                 size_hint_y: None
                 height: self.minimum_height
                 spacing:dp(15), dp(15)
                 cols: 2
-                padding: dp(10)
+                padding: [dp(10), dp(10), dp(10), dp(100)]
+                key_size: "_size"
     MDRelativeLayout:
         id: progress_box
         adaptive_height: True
@@ -63,3 +50,28 @@
             spinner_size: dp(50)
             active: True
             pos_hint: {"center_x": .5}
+
+    RelativeLayout:
+        id: non
+        opacity: 0
+        MDIcon:
+            id: ico
+            icon:"package-variant-closed"
+            color: app.theme_cls.disabled_hint_text_color
+            font_size: dp(70)
+            pos_hint: {"center_x":.5, "center_y":.5}
+            halign: "center"
+        MDLabel:
+            id: lbl
+            text: "Fairly Used Products Unavailable"
+            color: app.theme_cls.disabled_hint_text_color
+            halign: "center"
+            pos_hint: {"center_x":.5, "center_y":.4}
+        CardButton:
+            text: "TRY AGAIN"
+            pos_hint: {"center_y": .2, "center_x": .5}
+            ripple_behavior: True
+            on_release:
+                progress_box.opacity = 1
+                non.opacity = 0
+                root.get_data()
