@@ -49,8 +49,7 @@ class Login(Screen):
 
     def collect_save_data(self, instance, data):
         from tools import check_add_widget
-        from kivy.factory import Factory
-        check_add_widget(app, "lookout_widget", self, Factory.ProductLookOut(), "lookout")
+        check_add_widget(app, "lookout_widget", self, "Factory.ProductLookOut()", "lookout")
         self.disabled = False
         self.ids.spinner.active = False
         user_data = loads(data)
@@ -67,8 +66,8 @@ class Login(Screen):
             self.manager.ids.lookout.clear_cache()
             self.manager.ids.lookout.update_interface(self.manager.ids.lookout.tmp_data)
         app.current = ""
-        self.manager.ids.home.ids.profiles.ids.user.text = f"Welcome {app.firebase['name']}!"
-        self.manager.ids.home.ids.profiles.ids.email.text = app.firebase["email"]
+        # self.manager.ids.home.ids.profiles.ids.user.text = f"Welcome {app.firebase['name']}!"
+        # self.manager.ids.home.ids.profiles.ids.email.text = app.firebase["email"]
 
 
 class SignUp(Screen):
@@ -143,8 +142,7 @@ class SignUp(Screen):
 
     def collect_save_data(self, instance, data):
         from tools import check_add_widget
-        from kivy.factory import Factory
-        check_add_widget(app, "lookout_widget", self, Factory.ProductLookOut(), "lookout")
+        check_add_widget(app, "lookout_widget", self, "Factory.ProductLookOut()", "lookout")
         self.disabled = False
         self.ids.spinner.active = False
         user_data = loads(data)
@@ -162,5 +160,5 @@ class SignUp(Screen):
             self.manager.ids.lookout.clear_cache()
             self.manager.ids.lookout.update_interface(self.manager.ids.lookout.tmp_data)
         app.current = ""
-        self.manager.ids.home.ids.profiles.ids.user.text = f"Welcome {app.firebase['name']}!"
-        self.manager.ids.home.ids.profiles.ids.email.text = app.firebase["email"]
+        # self.manager.ids.home.ids.profiles.ids.user.text = f"Welcome {app.firebase['name']}!"
+        # self.manager.ids.home.ids.profiles.ids.email.text = app.firebase["email"]

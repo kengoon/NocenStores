@@ -1,4 +1,8 @@
 from json import dumps
+
+from kivy.metrics import dp
+from kivymd.uix.list import IconLeftWidget
+
 from classes.notification import notify
 from kivy.factory import Factory
 from kivy.network.urlrequest import UrlRequest
@@ -24,16 +28,15 @@ class Setting(Screen):
         self.manager.current = "home"
 
     def add_all_rules(self, rule1, rule2):
-        def loop_add_rule(rules, id):
+        def loop_add_rule(rules, ids):
             for index, rule in enumerate(rules.items):
-                rules.add_widget(
-                    MDExpansionPanel(
-                        icon=rules.items[rule],
-                        content=rules.content[index],
-                        panel_cls=MDExpansionPanelOneLine(text=rule)
-                    )
+                expansion_panel = MDExpansionPanel(
+                    content=rules.content[index],
+                    panel_cls=MDExpansionPanelOneLine(text=rule)
                 )
-                rules.ids[f"_{id}{index}"] = rules.content[index]
+                expansion_panel.panel_cls._txt_left_pad = dp(20)
+                rules.add_widget(expansion_panel)
+                rules.ids[f"_{ids}{index}"] = rules.content[index]
 
         loop_add_rule(rule1, "r1")
         loop_add_rule(rule2, "r2")

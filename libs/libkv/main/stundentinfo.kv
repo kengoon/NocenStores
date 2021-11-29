@@ -19,7 +19,7 @@
     MDBoxLayout:
         orientation: "vertical"
         md_bg_color: get_color_from_hex("#EEEEEE") if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
-        MDCard:
+        MD3Card:
             size_hint_y: None
             height: self.minimum_height
             orientation: "vertical"
@@ -48,6 +48,7 @@
             id: rv
             effect_cls: ScrollEffect
             viewclass: "NewsCard"
+            scroll_distance: dp(7)
             RecycleGridLayout:
                 id: holder
                 root: root.manager

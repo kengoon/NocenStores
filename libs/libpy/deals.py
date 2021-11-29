@@ -20,8 +20,7 @@ class Deals(Screen):
 
     def enter_search(self):
         from tools import check_add_widget
-        from kivy.factory import Factory
-        check_add_widget(self.app, "search_widget", self, Factory.Search(), "search")
+        check_add_widget(self.app, "search_widget", self, "Factory.Search()", "search")
         self.manager.ids.search.p_type = True
         self.manager.current = "search"
 

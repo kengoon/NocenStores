@@ -1,10 +1,27 @@
 <Sell>:
     name: "sell"
-    ScrollView:
-        effect_cls: ScrollEffect
-        MDList:
-            spacing: dp(20)
-            padding: sp(15)
-            Title:
-            PicArt:
-            Fields
+    MDBoxLayout:
+        orientation: "vertical"
+        md_bg_color: 1, 1, 1, 1
+        NoLinerToolBar:
+            id: toolbar
+            title: "Sell Fairly Used"
+            icon_left: "magnify"
+            icon_right: "cart-variant"
+            icon_right_callback: root.go_cart
+            icon_left_callback:
+                lambda: exec(
+                """
+                root.root.manager.prev_screen.append(root.root.name);
+                check_add_widget(app, "search_widget", root.root, "Factory.Search()", "search");
+                root.root.manager.ids.search.p_type = False;
+                root.root.manager.current = "search"
+                """
+                )
+        ScrollView:
+            effect_cls: ScrollEffect
+            MDList:
+                spacing: dp(20)
+                padding: [dp(10), dp(10), dp(10), dp(100)]
+                PicArt:
+                Fields

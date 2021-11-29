@@ -62,12 +62,12 @@
         MDBoxLayout:
             adaptive_height: True
             padding: dp(7)
-            MDCard:
+            MD3Card:
                 orientation: "vertical"
                 size_hint_y: None
                 height: self.minimum_height
                 spacing: dp(30)
-                radius: [dp(5)]
+                radius: [dp(5)] * 4
                 ProtoLabel:
                     id: fee
                     left_text: "shipping fee:"
@@ -86,11 +86,11 @@
                     padding: dp(7)
                     disabled: True
                     opacity: .5
-                    MDCard:
+                    MD3Card:
                         size_hint_y: None
                         height: self.minimum_height
                         md_bg_color: app.theme_cls.primary_color
-                        radius: [dp(5)]
+                        radius: [dp(5)] * 4
                         on_release:
                             root.proceed()
                         MDIconButton:

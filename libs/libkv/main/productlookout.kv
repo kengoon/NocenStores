@@ -4,8 +4,10 @@
         buttons.opacity = .5 if app.login and not app.current else 1
         buttons.disabled = True if app.login and not app.current else False
         save.icon = "heart-outline"
-    BoxLayout:
+    MDBoxLayout:
         orientation: "vertical"
+        md_bg_color: 1, 1, 1, 1
+        spacing: dp(10)
         NoLinerToolBar:
             id: toolbar
             title: "Details"
@@ -14,32 +16,37 @@
             icon_left_callback: root.go_back
             icon_right_callback: root.enter_cart
         MDBoxLayout:
-            padding: dp(20)
+            padding: [dp(20), dp(10), dp(20), 0]
             spacing: dp(20)
             orientation: "vertical"
-            MDCard:
+            MD3Card:
                 radius: [dp(25), dp(25), dp(10), dp(10)]
                 spacing: dp(10)
-                #padding: [0, 0, 0, dp(20)]
                 orientation: "vertical"
                 RelativeLayout:
+                    root: root
                     MDCarousel:
+                        id: carousel
+                        root: root
                         md_bg_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
                         radius: [dp(25), dp(25), dp(10), dp(10)]
                         pagnitors:[_0, _1, _2]
                         on_index: root.swipe_pagnitors(self, args[1])
-                        FitImage:
+                        ImageFit:
                             id: image1
                             source: ""
                             radius: [dp(25), dp(25), dp(10), dp(10)]
-                        FitImage:
+                            root: root
+                        ImageFit:
                             id: image2
                             source: ""
                             radius: [dp(25), dp(25), dp(10), dp(10)]
-                        FitImage:
+                            root: root
+                        ImageFit:
                             id: image3
                             source: ""
                             radius: [dp(25), dp(25), dp(10), dp(10)]
+                            root: root
                     FitImage:
                         source: "assets/image/shadow.png"
                         radius: [0, 0, dp(10), dp(10)]
@@ -48,23 +55,23 @@
                         orientation: "vertical"
                         padding: dp(20)
                         spacing: dp(5)
-                        M_AKLabelLoader:
+                        MDLabel:
                             id: product_name
-                            text: ""
+                            text: "____"
                             font_style: "Money"
-                            radius: [dp(5)]
+                            radius: [dp(5)] * 4
                             color: 1, 1, 1, 1
                             font_size: sp(20)
                             padding_x: dp(10)
                             adaptive_height: True
-                        M_AKLabelLoader:
+                        MDLabel:
                             id: product_price
                             text: "----"
                             size_hint_y: None
                             height: dp(30) if not self.text else self.texture_size[1]
                             bold: True
                             color: 1, 1, 1, 1
-                            radius: [dp(5)]
+                            radius: [dp(5)] * 4
                             markup: True
                             padding_x: dp(10)
 
@@ -87,24 +94,26 @@
                 spacing: dp(10)
                 size_hint_y: .5
                 MDBoxLayout:
-                    md_bg_color: get_color_from_hex("#F1F1F1")
+                    md_bg_color: get_color_from_hex("#F0F0F0")
                     orientation: "vertical"
                     padding: dp(10)
                     spacing: dp(10)
-                    radius: [dp(20)]
+                    radius: [dp(20)] * 4
                     MDLabel:
                         text: "Description"
                         bold: True
                         italic: True
                         font_style: "Money"
-
-                    M_AKLabelLoader:
-                        id: description
-                        text: ""
-                        radius: [dp(5)]
-                        pos_hint: {"center_x": .5}
-                        font_style: "Money"
-                        shorten: True
+                        adaptive_height: True
+                    ScrollView:
+                        effect_cls: ScrollEffect
+                        M_AKLabelLoader:
+                            id: description
+                            text: ""
+                            radius: [dp(5)] * 4
+                            pos_hint: {"center_x": .5}
+                            font_style: "Money"
+                            adaptive_height: True
 
                 MDBoxLayout:
                     adaptive_height: True
@@ -116,41 +125,22 @@
                         icon: "aspect-ratio"
                         ic_bg_color: get_color_from_hex("#FF1744")
                         callback: lambda: root.dialog.open()
+#                    IconLabel:
+#                        text: "bargain"
+#                        icon: "message-processing"
+#                        ic_bg_color: get_color_from_hex("#4CAF50")
+#                        callback: lambda: toast("BARGAIN COMING SOON")
                     IconLabel:
-                        text: "bargain"
-                        icon: "message-processing"
-                        ic_bg_color: get_color_from_hex("#4CAF50")
-                    IconLabel:
+                        id: info
                         text: "info"
                         icon: "information-variant"
                         ic_bg_color: .8, 0, 0, 1
+                        callback: lambda: root.menu.open()
                     IconLabel:
                         text: "policy"
                         icon: "police-badge-outline"
                         ic_bg_color: get_color_from_hex("#2962FF")
-
-
-#                    MDCard:
-#                        radius: [dp(10)]
-#                        orientation: "vertical"
-#                        size_hint_y: None
-#                        height: self.minimum_height
-#                        MDList:
-#                            ThreeLineIconListItem:
-#                                text: "Product Delivery"
-#                                secondary_text: "Ready for delivery between 2 to 3 days "
-#                                tertiary_text: "from the day you ordered"
-#                                IconLeftWidget:
-#                                    id: li_icon_3
-#                                    icon: "truck-delivery-outline"
-#                            ThreeLineIconListItem:
-#                                text: "Return Policy"
-#                                secondary_text: "Free return within a day and"
-#                                tertiary_text: "Full Refund if you do not get your package delivered"
-#                                divider: None
-#                                IconLeftWidget:
-#                                    id: li_icon_3
-#                                    icon: "police-badge-outline"
+                        callback: lambda: webbrowser.open("https://nocenstore.pythonanywhere.com/pj_policy")
 
 
 
@@ -159,17 +149,17 @@
             disabled: True if app.login else False
             opacity: .5 if app.login else 1
             adaptive_height: True
-            padding: dp(10), dp(5), dp(10), dp(10)
+            padding: dp(10), dp(0), dp(10), dp(10)
             spacing: dp(10)
-            MDCard:
+            MD3Card:
                 size_hint: None, None
                 size: self.minimum_width, self.minimum_height
-                radius: [dp(10)]
+                radius: [dp(10)] * 4
                 MDIconButton:
                     id: save
                     icon: "phone"
                     theme_text_color: "Custom"
-                    text_color: app.theme_cls.primary_color
+                    text_color: get_color_from_hex("#2962FF")
                     on_release: root.call_customer_care()
             CardIconButton:
                 md_bg_color: app.theme_cls.primary_color
@@ -180,17 +170,17 @@
                 icon_color: 1,1,1,1
                 text_color: 1,1,1,1
                 icon_width: root.width/2.5
-                radius: dp(15)
+                radius: [dp(15)] * 4
                 on_release:
-                    toolbar.icon_right_color = [1,0,0,1]
+                    #toolbar.icon_right_color = [1,0,0,1]
                     root.add_to_cart()
-            MDCard:
+            MD3Card:
                 size_hint: None, None
                 size: self.minimum_width, self.minimum_height
-                radius: [dp(10)]
+                radius: [dp(10)] * 4
                 MDIconButton:
                     id: save
                     icon: "heart-outline"
                     theme_text_color: "Custom"
-                    text_color: app.theme_cls.primary_color
+                    text_color: get_color_from_hex("#FF1744")
                     on_release: root.save_unsave(self)

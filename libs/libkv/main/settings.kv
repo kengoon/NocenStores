@@ -17,10 +17,10 @@
             MDList:
                 spacing: dp(25)
                 padding: dp(10)
-                MDCard:
+                MD3Card:
                     id: rule1
                     orientation:"vertical"
-                    radius: [dp(10)]
+                    radius: [dp(10)] * 4
                     root: root
                     items:
                         {\
@@ -32,10 +32,10 @@
                     size_hint_y: None
                     height: self.minimum_height
 
-                MDCard:
+                MD3Card:
                     id: rule2
                     orientation:"vertical"
-                    radius: [dp(10)]
+                    radius: [dp(10)] * 4
                     root: root
                     items:
                         {\
@@ -71,6 +71,7 @@
     MDSwitch:
         pos_hint: {"center_x": .7, "center_y": .4}
         active: True if app.theme_cls.theme_style == "Dark" else False
+        disabled: True
         on_active:
             root.parent.parent.root.check_theme_active()
 
@@ -125,10 +126,10 @@
         on_focus: self.do_focus(args[1])
         on_text_validate:
             root.parent.parent.root.change_number(self.text)
-    MDCard:
+    MD3Card:
         size_hint: None, None
         size: self.minimum_width, self.minimum_height
-        radius: [dp(5)]
+        radius: [dp(5)] * 4
         on_release:
             root.parent.parent.root.change_number(number.text)
         MDIconButton:

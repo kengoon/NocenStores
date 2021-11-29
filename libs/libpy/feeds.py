@@ -72,7 +72,7 @@ class Feeds(Screen):
 
         Clock.schedule_once(continue_update, 2)
 
-    def go_cart(self, instance):
+    def go_cart(self):
         self.root.manager.prev_screen.append(self.root.name)
         from tools import check_add_widget
         from kivy.factory import Factory
@@ -87,8 +87,7 @@ class Feeds(Screen):
             return
         self.root.manager.prev_screen.append(self.root.name)
         from tools import check_add_widget
-        from kivy.factory import Factory
-        check_add_widget(self.app, "lookout_widget", self.root, Factory.ProductLookOut(), "lookout")
+        check_add_widget(self.app, "lookout_widget", self.root, "Factory.ProductLookOut()", "lookout")
         self.root.manager.current = "lookout"
         self.root.manager.ids.lookout.ids.product_name.text = instance.name
         self.root.manager.ids.lookout.ids.store.text = instance.store

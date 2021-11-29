@@ -1,20 +1,18 @@
+from tools import start_service
+
+start_service()
+
 import os
 from functools import partial
 from json import dumps, loads, decoder
 from os.path import exists
 from shutil import rmtree
 from threading import Thread
-from time import sleep
-
-from kivy.config import Config
-
-Config.set("kivy", "log_level", "debug")
-
+import requests
 from certifi import where
 from kivy import platform
 from kivy.clock import Clock
 from kivy.core.window import Window
-from kivy.effects.scroll import ScrollEffect
 from kivy.loader import Loader
 from kivy.metrics import dp
 from kivy.lang import Builder
@@ -24,23 +22,25 @@ from oscpy.client import OSCClient
 from oscpy.server import OSCThreadServer
 
 os.environ['SSL_CERT_FILE'] = where()
-SERVICE_NAME = u'{packagename}.Service{servicename}'.format(
-    packagename=u'org.mindset.nocenstore.nocenstore',
-    servicename=u'Notification'
-)
-
 Loader.loading_image = "assets/loader.gif"
 font_folder = "assets/font/"
 
 if platform == "android":
     from android.permissions import Permission, request_permissions
-
+    print("requesting")
     request_permissions(
         [Permission.READ_EXTERNAL_STORAGE,
          Permission.WRITE_EXTERNAL_STORAGE,
          Permission.CALL_PHONE,
          Permission.CALL_PRIVILEGED]
     )
+print("requesting done...")
+server = OSCThreadServer()
+server.listen(
+    address='localhost',
+    port=3001,
+    default=True,
+)
 
 
 class NocenStore(MDApp):
@@ -52,7 +52,6 @@ class NocenStore(MDApp):
             rmtree("assets/compressed")
         Window.bind(on_key_up=self.on_back_button)
         Window.bind(on_keyboard=self.on_ignore)
-        # Window.bind(on_flip=self.fix_back_button)
         self.login_widget = False
         self.signup_widget = False
         self.lookout_widget = False
@@ -80,7 +79,7 @@ class NocenStore(MDApp):
         self.dialog = None
         self.service = None
         self.on_service = None
-        self.server = None
+        self.server = server
         self.theme_no_active = False
         self.firebase = {}
         self.current = ""
@@ -89,6 +88,8 @@ class NocenStore(MDApp):
         self.url = "https://nocenstore.pythonanywhere.com/"
         self.close_dialog = False
         self.menu = None
+        self.mgr_container = None
+        self.home_screen = None
         if exists("token.json"):
             with open("token.json", "r") as file:
                 self.firebase = loads(file.read())
@@ -117,87 +118,53 @@ class NocenStore(MDApp):
             with open("theme.txt") as theme:
                 self.theme_cls.theme_style = theme.read()
 
-    @staticmethod
-    def fix_back_button(*args):
-        if platform == "android":
-            from kvdroid import activity
-            from android.runnable import run_on_ui_thread
-
-            @run_on_ui_thread
-            def fix():
-                activity.onWindowFocusChanged(False)
-                activity.onWindowFocusChanged(True)
-
-            fix()
-
     def build(self):
-        self.server = server = OSCThreadServer()
-        server.listen(
-            address='localhost',
-            port=3001,
-            default=True,
-        )
-        server.bind(b'/message', self.display_message)
-        server.bind(b'/date', self.date)
-
-        self.client = OSCClient('localhost', 3000)
+        self.client = OSCClient('localhost', 3009)
+        self.server.bind(b"/update_trending_product", self.update_trending_product)
+        self.server.bind(b"/update_category_product", self.update_category_product)
+        self.server.bind(b"/update_used_product", self.update_used_product)
         return Builder.load_file("manager.kv")
 
-    def start_service(self):
-        if platform == 'android':
-            pass
-            # service = autoclass(SERVICE_NAME)
-            # mActivity = autoclass(u'org.kivy.android.PythonActivity').mActivity
-            # argument = ''
-            # service.start(mActivity, argument)
-            # self.service = service
+    def update_trending_product(self, message: bytes):
+        data_dict = loads(message.decode("utf8"))
+        self.root.ids.manager.children[0].ids.home.update_data_texture(data_dict[0])
 
-        # elif platform in ('linux', 'linux2', 'macos', 'win'):
-        #     from runpy import run_path
-        #     from threading import Thread
-        #     self.service = Thread(
-        #         target=run_path,
-        #         args=['service.py'],
-        #         kwargs={'run_name': '__main__'},
-        #         daemon=True
-        #     )
-        #     self.service.start()
-        # else:
-        #     raise NotImplementedError(
-        #         "service start not implemented on this platform"
-        #     )
+    def update_used_product(self, message: bytes):
+        data_dict = loads(message.decode("utf8"))
+        self.root.ids.manager.children[0].ids.home.ids.used.update_data_texture(data_dict[0])
 
-    def display_message(self, message):
-        print(message)
+    def update_category_product(self, message):
+        data_dict = loads(message.decode("utf8"))
+        self.root.ids.manager.children[0].get_screen(data_dict[1]).update_data_texture(data_dict[0])
 
-    def date(self, message):
-        print(message)
-
-    def on_ignore(self, *args):
+    @staticmethod
+    def on_ignore(*args):
         if args[1] == 27:
             return True
 
     def on_back_button(self, *args):
-        if args[1] == 27 and self.root.current == "initializer":
-            self.exit_app()
-        elif args[1] == 27 and self.root.ids.manager.children[0].current not in self.no_screen:
-            self.root.ids.manager.children[0].on_back_button()
-            if self.current == "profile":
-                self.root.ids.manager.children[0].ids.home.ids.home.dispatch("on_release")
-            if self.current == "lookout":
-                self.root.ids.manager.children[0].ids.lookout.update_interface(
-                    self.root.ids.manager.children[0].ids.lookout.tmp_data)
-        else:
-            if args[1] == 27:
+        if args[1] == 27:
+            if self.root.current == "initializer":
+                self.exit_app()
+            elif self.root.ids.manager.children[0].current not in self.no_screen:
+                self.root.ids.manager.children[0].on_back_button()
+                if self.current == "profile":
+                    self.root.ids.manager.children[0].ids.home.ids.home.dispatch("on_release")
+                if self.current == "lookout":
+                    self.root.ids.manager.children[0].ids.lookout.update_interface(
+                        self.root.ids.manager.children[0].ids.lookout.tmp_data)
+            elif self.current == "webview":
+                self.current = ""
+                pass
+            else:
                 self.exit_app()
         return True
 
     def on_start(self):
-        print("stopped")
         if exists("tmp"):
             import shutil
             shutil.rmtree("tmp")
-        self.start_service()
+            os.mkdir("tmp")
         Thread(target=self.initialize_connection).start()
 
     def initialize_connection(self):
@@ -211,7 +178,6 @@ class NocenStore(MDApp):
         r("M_AKLabelLoader", cls=M_AKLabelLoader)
         r("M_CardTextField", cls=M_CardTextField)
         r("M_FitImage", cls=M_FitImage)
-        import requests
         if self.firebase:
             try:
                 data = requests.post(url=self.url,
@@ -226,16 +192,17 @@ class NocenStore(MDApp):
             except decoder.JSONDecodeError:
                 os.remove("token.json")
                 self.login = False
+        print("Building kv files")
         Builder.load_file("imports.kv")
         Builder.load_file("libs/kv_widget/widget.kv")
-        for modules in os.listdir("libs/libpy"):
-            if "initializer" in modules:
-                continue
-            exec(f"from libs.libpy import {modules.rstrip('.pyc')}")
         Builder.load_file("libs/libkv/init/credentials.kv")
         Builder.load_file("libs/manager.kv")
         for file in os.listdir("libs/libkv/main"):
             Builder.load_file(f"libs/libkv/main/{file}")
+        for modules in os.listdir("libs/libpy"):
+            if "initializer" in modules:
+                continue
+            exec(f"from libs.libpy import {modules.rstrip('.pyc')}")
         self.check_add_screen("Factory.Manager()", "manager")
 
     def check_add_screen(self, screen_object, screen_name):
@@ -243,18 +210,10 @@ class NocenStore(MDApp):
 
     def _add_screen(self, screen_object, screen_name, _):
         self.root.ids.manager.add_widget(eval(screen_object))
+        self.mgr_container = self.root.ids.manager.children[0]
+        self.home_screen = self.root.ids.manager.children[0].ids.home
         Clock.schedule_once(lambda x: exec(
-            "self.root.current = screen_name", {"self": self, "screen_name": screen_name}), 4)
-
-    @staticmethod
-    def open(menu, label):
-        if not menu.ids.md_menu.children[0].children:
-            label.size_hint_y = None
-            label.height = dp(100)
-            menu.ids.md_menu.effect_cls = ScrollEffect
-            menu.ids.md_menu.children[0].padding = [dp(10), dp(5), dp(5), dp(10)]
-            menu.ids.md_menu.children[0].add_widget(label)
-        menu.open()
+            "self.root.current = screen_name", {"self": self, "screen_name": screen_name}), 1)
 
     def exit_app(self):
         from kivymd.uix.button import MDRaisedButton, MDFlatButton
@@ -267,10 +226,10 @@ class NocenStore(MDApp):
             self.close_dialog = False
             return
 
-        def exit_app(*args):
+        def exit_app(*_):
             self.stop()
 
-        def dismiss_dialog(*args):
+        def dismiss_dialog(*_):
             self.dialog.dismiss()
             self.close_dialog = False
 
@@ -286,20 +245,6 @@ class NocenStore(MDApp):
         )
         self.dialog.open()
         self.close_dialog = True
-
-    @staticmethod
-    def on_focus(value):
-        if platform == "android":
-            from kvdroid import activity
-            from android.runnable import run_on_ui_thread
-
-            @run_on_ui_thread
-            def fix_back_button():
-                activity.onWindowFocusChanged(False)
-                activity.onWindowFocusChanged(True)
-
-            if not value:
-                fix_back_button()
 
     def on_stop(self):
         if exists("tmp"):

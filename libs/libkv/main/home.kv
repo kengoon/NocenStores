@@ -1,6 +1,7 @@
 <Home>:
     name: "home"
     outliner: [home, profile, sell, used, feeds]
+    on_enter: top_layer.root = root
     BoxLayout:
         orientation: "vertical"
         ScreenManager:
@@ -17,10 +18,11 @@
                         padding: dp(10)
                         orientation: "vertical"
                         TopLayerHome:
+                            id: top_layer
                             callback: root.go_cart
                             root: root
                         M_CardTextField:
-                            radius: dp(10)
+                            radius: [dp(10)] * 4
                             hint_text: "search"
                             icon_left: "magnify"
                             # icon_left_callback: lambda x: rv.refresh_from_data()
@@ -35,7 +37,7 @@
                             disabled_foreground_color: [0.5, 0.5, 0.5, 1.0]
                             on_release:
                                 root.manager.prev_screen.append(root.name)
-                                check_add_widget(app, "search_widget", root, Factory.Search(), "search")
+                                check_add_widget(app, "search_widget", root, "Factory.Search()", "search")
                                 root.manager.ids.search.p_type = True
                                 root.manager.current = "search"
                             AsyncImage:
@@ -48,7 +50,10 @@
                         key_viewclass: "viewclass"
                         do_scroll_x: False
                         effect_cls: ScrollEffect
-    #                    on_scroll_start: root.schedule_load()
+                        scroll_distance: dp(3)
+                        on_scroll_y:
+                            if self.scroll_y == -0.0 and (root.image_loaded == root.len_rv_data) and root.data_trending:\
+                            root.snack.open()
                         RecycleBoxLayout:
                             id: holder
                             root: root.manager
@@ -80,8 +85,7 @@
             root: root
             widget: False
             on_release:
-                widget = Factory.Feeds(root=root)
-                if not self.widget: manager.add_widget(widget); root.ids["feeds"] = widget; self.widget = True
+                if not self.widget: root.switch_tab(Factory.Feeds(root=root), self, "feed")
                 manager.current = "feeds"
         NavButton:
             id: sell
@@ -90,8 +94,7 @@
             root: root
             widget: False
             on_release:
-                widget = Factory.Sell(root=root)
-                if not self.widget: manager.add_widget(widget); root.ids["sell"]; self.widget = True
+                if not self.widget: root.switch_tab(Factory.Sell(root=root), self, "sell")
                 manager.current = "sell"
 
         NavButton:
@@ -101,8 +104,7 @@
             root: root
             widget: False
             on_release:
-                widget = Factory.Used(root=root)
-                if not self.widget: manager.add_widget(widget); root.ids["used"] = widget; self.widget = True
+                if not self.widget: root.switch_tab(Factory.Used(root=root), self, "used")
                 manager.current = "used"
 
         NavButton:
@@ -112,6 +114,14 @@
             root: root
             widget: False
             on_release:
-                widget = Factory.Profile(root=root)
-                if not self.widget: manager.add_widget(widget); root.ids["profiles"] = widget; self.widget = True
-                manager.current = "profile"
+                root.confirm_login_profile(self)
+
+    FloatingButton:
+        root: root
+        magic_speed: 0.1
+        icon: "gift-open"
+        pos_hint: {"right": .95, "center_y": .15}
+        theme_text_color: "Custom"
+        text_color: 1, 1, 1, .99
+        md_bg_color: get_color_from_hex("#C51162")
+        on_release: self.spinner_view.open()

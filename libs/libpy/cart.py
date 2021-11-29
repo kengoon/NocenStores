@@ -18,27 +18,27 @@ class Cart(Screen):
     def transit_to_cartcheckout(self):
         self.manager.prev_screen.append(self.name)
         from tools import check_add_widget
-        from kivy.factory import Factory
-        check_add_widget(self.app, "checkout_widget", self, Factory.CartCheckout(), "checkout")
+        check_add_widget(self.app, "checkout_widget", self, "Factory.CartCheckOut()", "checkout")
         self.manager.current = "checkout"
         self.manager.ids.checkout.ids.total.right_text = self.ids.total.text
         self.app.data_product = self.ids.rv.data
 
     def minus_one(self, instance):
-        if float(instance.price.translate({ord(i): None for i in "₦,"})) == float(instance.base_price):
+        if float(instance.price.translate({ord(i): None for i in "[font=Roboto][/font]₦,"}))\
+                == float(instance.base_price):
             return
-        instance.price = \
-            f'₦{float(instance.price.translate({ord(i): None for i in "₦,"})) - float(instance.base_price):,}'
+        total = float(instance.price.translate({ord(i): None for i in "[font=Roboto][/font]₦,"})) - \
+                float(instance.base_price)
+        instance.price = f'[font=Roboto]₦{total:,}[/font]'
         instance.count -= 1
-        self.ids.total.text = \
-            f"₦{float(self.ids.total.text.translate({ord(i): None for i in '₦,'})) - float(instance.base_price):,}"
+        self.ids.total.text = instance.price
 
     def add_more(self, instance):
-        instance.price = \
-            f'₦{float(instance.price.translate({ord(i): None for i in "₦,"})) + float(instance.base_price):,}'
+        total = float(instance.price.translate({ord(i): None for i in "[font=Roboto][/font]₦,"})) + \
+                float(instance.base_price)
+        instance.price = f'[font=Roboto]₦{total:,}[/font]'
         instance.count += 1
-        self.ids.total.text = \
-            f"₦{float(self.ids.total.text.translate({ord(i): None for i in '₦,'})) + float(instance.base_price):,}"
+        self.ids.total.text = instance.price
 
     def remove_product(self, instance):
         properties = {
@@ -52,5 +52,6 @@ class Cart(Screen):
         pos = get_dict_pos(self.ids.rv.data, "product", instance.product)
         self.ids.rv.data[pos] = properties
         self.ids.rv.data.remove(properties)
-        self.ids.total.text = \
-            f"₦{float(self.ids.total.text.translate({ord(i): None for i in '₦,'})) - float(instance.price.translate({ord(i): None for i in '₦,'})):,}"
+        total = float(self.ids.total.text.translate({ord(i): None for i in '[font=Roboto][/font]₦,'})) - \
+                float(instance.price.translate({ord(i): None for i in '[font=Roboto][/font]₦,'}))
+        self.ids.total.text = f"[font=Roboto]₦{total:,}[/font]"

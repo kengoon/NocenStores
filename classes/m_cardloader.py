@@ -10,7 +10,7 @@ Builder.load_string(
     """
 # kv_start
 <M_CardLoader>:
-    radius: dp(30)
+    radius: [dp(30)] * 4
     elevation: 0
     AsyncImage:
         id: image
@@ -73,8 +73,8 @@ class M_CardLoader(MDCard):
         if self.collide_point(*touch.pos):
             timer = touch.time_end - touch.time_start
             if timer < 0.2:
-                self.root.ids.raw.switch_tab("feeds")
+                self.root.ids.feeds.dispatch("on_release")
             self.root.resume_clock()
 
     def on_release(self):
-        self.root.ids.feeds.dispatch("on_tab_release")
+        self.root.ids.feeds.dispatch("on_release")

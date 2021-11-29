@@ -187,6 +187,12 @@ class Sell(Screen):
             rmtree("assets/compressed")
         notify("We could not upload your product\nplease turn on your network or subscribe", duration=10)
 
+    def go_cart(self):
+        self.root.manager.prev_screen.append(self.root.name)
+        from tools import check_add_widget
+        check_add_widget(self.app, "cart_widget", self.root, "Factory.Cart()", "cart")
+        self.root.manager.current = "cart"
+
     # def open_gallery(self):
     #     if self.root.manager.ids.picture.ids.rv.data:
     #         print("leaving")

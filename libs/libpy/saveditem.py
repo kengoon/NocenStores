@@ -1,6 +1,8 @@
 from json import loads, dumps
 
 from kivy.clock import Clock
+from kivy.core.window import Window
+from kivy.metrics import dp
 
 from classes.notification import notify
 from kivy.network.urlrequest import UrlRequest
@@ -19,8 +21,7 @@ class SavedProduct(Screen):
     def enter_search(self):
         self.manager.prev_screen.append(self.name)
         from tools import check_add_widget
-        from kivy.factory import Factory
-        check_add_widget(self.app, "search_widget", self, Factory.Search(), "search")
+        check_add_widget(self.app, "search_widget", self, "Factory.Search()", "search")
         self.manager.ids.search.p_type = True
         self.manager.current = "search"
 
@@ -56,7 +57,9 @@ class SavedProduct(Screen):
         for index, _ in enumerate(range(length_data)):
             if index == 20:
                 break
-            self.ids.rv.data.append(self.data.pop(0))
+            product: dict = self.data.pop(0)
+            product.update({"source": product["imagePath"], "_size": [self.width / 2 - dp(20), Window.height / 2.5]})
+            self.ids.rv.data.append(product)
         self.update = False
         self.enter = True
 

@@ -33,13 +33,13 @@
             RecycleGridLayout:
                 root: root.manager
                 roots: root
-                default_size_hint: 1, None
-                default_size: None, Window.height/4.5
+                default_size_hint: None, None
+                default_size: root.width/2 - dp(10), Window.height/4.5
                 size_hint_y: None
                 height: self.minimum_height
                 spacing:dp(10)
                 padding: dp(10)
-                cols: 1
+                cols: 2
 
     MDRelativeLayout:
         id: progress_box

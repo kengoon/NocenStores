@@ -40,12 +40,12 @@
         MDBoxLayout:
             adaptive_height: True
             padding: dp(7)
-            MDCard:
+            MD3Card:
                 orientation: "vertical"
                 size_hint_y: None
                 height: self.minimum_height
                 spacing: dp(30)
-                radius: [dp(5)]
+                radius: [dp(5)] * 4
                 MDBoxLayout:
                     adaptive_height: True
                     padding: dp(20)
@@ -56,6 +56,7 @@
                         halign: "right"
                         text: "₦0"
                         bold: True
+                        markup: True
                         color: app.theme_cls.primary_color
                 MDBoxLayout
                     padding: [dp(30), dp(20), dp(30), dp(20)]
@@ -67,12 +68,12 @@
                     padding: dp(7)
                     disabled: True if total.text == "₦0" or total.text == "₦0.0" else False
                     opacity: .5 if total.text == "₦0" or total.text == "₦0.0" else 1
-                    MDCard:
+                    MD3Card:
                         id: t_card
                         size_hint_y: None
                         height: self.minimum_height
                         md_bg_color: app.theme_cls.primary_color
-                        radius: [dp(5)]
+                        radius: [dp(5)] * 4
                         on_release:
                             root.transit_to_cartcheckout()
                         MDIconButton:

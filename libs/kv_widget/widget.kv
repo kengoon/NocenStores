@@ -12,18 +12,19 @@
     source: ""
     _size: 0, 0
     size: self.size
-    callback:
-        lambda: exec('self.parent.root.root.manager.prev_screen.append(self.parent.root.root.name);'
-        'check_add_widget(app, "lookout_widget", self.parent.root.root, Factory.ProductLookOut(), "lookout");'
+    button_callback:
+        lambda: exec(
+        'self.parent.root.root.manager.prev_screen.append(self.parent.root.root.name);'
+        'check_add_widget(app, "lookout_widget", self.parent.root.root, "Factory.ProductLookOut()", "lookout");'
         'self.parent.root.root.manager.current = "lookout";'
         'self.parent.root.root.manager.ids.lookout.ids.product_name.text = self.product;'
         'self.parent.root.root.manager.ids.lookout.update_interface(self.data)')
 
-<BaseSalesCard@MDCard>:
+<BaseSalesCard@MD3Card>:
     elevation: 1
     source: ""
     text: ""
-    radius: [dp(6)]
+    radius: [dp(6)] * 4
     product: ""
     price: 0
     text_radius: [dp(5)]
@@ -31,7 +32,6 @@
     #text_color: [1, 1, 1, 1]
     orientation: "vertical"
     data: {"product": self.product, "store": self.store}
-    callback: lambda: None
     MDBoxLayout:
         padding: dp(10)
         M_FitImage:
@@ -61,13 +61,14 @@
             #font_style: "Money"
             halign:"left"
             pos_hint:{"center_y": .5}
-        MDCard:
+        MD3Card:
             size_hint_y: None
             height: self.minimum_height
             padding: dp(10)
-            radius: [dp(5)]
+            radius: [dp(5)] * 4
             md_bg_color: app.theme_cls.primary_color
-            on_release: root.callback
+            ripple_behavior: True
+            on_release: root.button_callback()
             MDLabel:
                 text: "View Product"
                 font_style: "Button"
@@ -77,10 +78,10 @@
                 theme_text_color: "Custom"
                 text_color: 1, 1, 1, 1
 
-<FeedsCard@MDCard>:
+<FeedsCard@MD3Card>:
     #elevation: 0 if app.theme_cls.theme_style == "Light" else 1
     image_url: ""
-    radius: [dp(6)]
+    radius: [dp(6)] * 4
     store: ""
     name: ""
     price: ""
@@ -206,7 +207,7 @@
 <CategoryCard>:
     source: ""
     text: ""
-    radius: dp(10)
+    radius: [dp(10)] * 4
     product_name: ""
     product_price: 0
     text_radius: [dp(5)]
@@ -287,7 +288,7 @@
     check: ""
     text_radius: [dp(5)]
     rate: 4
-    radius: [dp(10)]
+    radius: [dp(10)] * 4
     data: {"product": self.product, "store": self.store}
     orientation: "vertical"
     size_hint_y: None
@@ -306,7 +307,8 @@
         M_AKLabelLoader:
             text:
                 "" if not (root.price and root.product) else \
-                f"{shorten(root.product, width=20, placeholder='...')}\n[b][color={get_hex_from_color(app.theme_cls.primary_color)}][font=Roboto]₦[/font]{float(root.price.replace(',', '')) + 5/100 * float(root.price.replace(',', '')):,}[/color][/b]" if \
+                f"{shorten(root.product, width=20, placeholder='...')}\n[b][color={get_hex_from_color(app.theme_cls.primary_color)}]" \
+                f"[font=Roboto]₦[/font]{float(root.price.translate({ord(i): None for i in '[font=Roboto][/font]₦,'})) + 5/100 * float(root.price.translate({ord(i): None for i in '[font=Roboto][/font]₦,'})):,}[/color][/b]" if \
                 not root.check else f"{root.product}\n[b][color={get_hex_from_color(app.theme_cls.primary_color)}]{root.price}[/color][/b]"
             radius: root.text_radius
             size_hint_y: None
@@ -332,17 +334,17 @@
         MDBoxLayout:
             orientation: "vertical"
             adaptive_height: True
-            radius: [dp(5)]
+            radius: [dp(5)] * 4
             padding:[dp(5), 0, dp(5), 0]
-            MDCard:
+            MD3Card:
                 size_hint_y: None
                 height: self.minimum_height
                 padding: dp(10)
-                radius: [dp(5)]
+                radius: [dp(5)] * 4
                 md_bg_color: app.theme_cls.primary_color
                 on_release:
                     root.parent.root.prev_screen.append(root.parent.roots.name)
-                    check_add_widget(app, "lookout_widget", root.parent, Factory.ProductLookOut(), "lookout")
+                    check_add_widget(app, "lookout_widget", root.parent, "Factory.ProductLookOut()", "lookout")
                     root.parent.root.current = "lookout"
                     root.parent.root.ids.lookout.ids.product_name.text = root.product
                     #self.parent.root.ids.lookout.ids.store.text = self.store
@@ -357,7 +359,7 @@
                     theme_text_color: "Custom"
                     text_color: 1, 1, 1, 1
 
-<BaseReviewProductCard@MDCard>:
+<BaseReviewProductCard@MD3Card>:
     ripple_behavior: True
     imagePath: ""
     store: ""
@@ -366,7 +368,7 @@
     check: ""
     text_radius: [dp(5)]
     rate: 4
-    radius: [dp(10)]
+    radius: [dp(10)] * 4
     data: {"product": self.product, "store": self.store}
     RelativeLayout:
         size_hint_x: .7
@@ -436,7 +438,7 @@
             size_hint_x: None
             width: self.parent.width/2
             md_bg_color: 0,1,0,.1
-            radius: [dp(5)]
+            radius: [dp(5)] * 4
             MDLabel:
                 id: la
                 text: "NOCENSTORE" if not root.check else root.check
@@ -452,7 +454,7 @@
 
 
 
-<CardIconButton@MDCard>:
+<CardIconButton@MD3Card>:
     #icon_width: None
     size_hint_y: None
     height: self.minimum_height
@@ -463,7 +465,7 @@
     font_style: "Caption"
     label_halign: "center"
     ripple_behavior: True
-    radius: [dp(5)]
+    radius: [dp(5)] * 4
     MDIconButton:
         id: icon
         icon: root.icon
@@ -481,9 +483,9 @@
         height: self.texture_size[1]
         pos_hint:{"center_y": .5}
 
-<ProductCard@MDCard>
+<ProductCard@MD3Card>
     background: ""
-    radius: [dp(10)]
+    radius: [dp(10)] * 4
     source: ""
     text: self.source
     RelativeLayout:
@@ -493,11 +495,12 @@
             halign: "center"
             font_size: dp(50)
             color: app.theme_cls.disabled_hint_text_color
+            pos_hint: {"center": [.5, .5]}
         FitImage:
             source: root.source
             radius: root.radius
 
-<PictureCard@MDCard>:
+<PictureCard@MD3Card>:
     spacing: dp(10)
     source:""
     text: ""
@@ -517,10 +520,10 @@
     item: ""
     bg_color: [0,0,0,0]
     card_color: 1, 1, 1, 1
-    MDCard:
+    MD3Card:
         size_hint: None, None
         size: self.minimum_size
-        radius: [dp(10)]
+        radius: [dp(10)] * 4
         elevation: 0.1
         md_bg_color: root.card_color
         pos_hint: {"center_x": .5}
@@ -579,13 +582,13 @@
                     size: self.size
                     pos: self.pos
 
-<NotifyCard@MDCard>:
+<NotifyCard@MD3Card>:
     size_hint_y: None
     height: Window.height/6
     ripple_behavior: True
     ripple_color: app.theme_cls.primary_color
     text: ""
-    radius: [dp(20)]
+    radius: [dp(20)] * 4
     MDBoxLayout:
         size_hint: .5, None
         height: Window.height/6
@@ -624,12 +627,12 @@
         md_bg_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
         background_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
 
-<DealsCard@MDCard>:
+<DealsCard@MD3Card>:
     orientation: "vertical"
     elevation: 0
     image_url:""
     source: self.image_url
-    radius: [dp(10)]
+    radius: [dp(10)] * 4
     text_radius: [dp(5)]
     name: ""
     store: ""
@@ -638,7 +641,7 @@
     data: {"product": self.name, "store": self.store}
     on_release:
         self.parent.root.prev_screen.append(self.parent.roots.name)
-        check_add_widget(app, "lookout_widget", self.parent.root, Factory.ProductLookOut(), "lookout")
+        check_add_widget(app, "lookout_widget", self.parent.root, "Factory.ProductLookOut()", "lookout")
         self.parent.root.current = "lookout"
         self.parent.root.ids.lookout.ids.product_name.text = self.name
         #self.parent.root.ids.lookout.ids.store.text = self.store
@@ -689,14 +692,14 @@
                 halign:"left"
                 markup: True
 
-<NewsCard@MDCard>:
+<NewsCard@MD3Card>:
     orientation: "vertical"
     size_hint_y: None
     height: Window.height/1.5
     padding: dp(10)
     spacing: dp(10)
     elevation: 0 if app.theme_cls.theme_style == "Light" else 1
-    radius: [dp(10)]
+    radius: [dp(10)] * 4
     news: ""
     image_url:""
     news_app_url: ""
@@ -722,7 +725,7 @@
             width: Window.width/3
             md_bg_color: 0,1,0,.1
             pos_hint:{"center_y": .5}
-            radius: [dp(5)]
+            radius: [dp(5)] * 4
             MDLabel:
                 id: la
                 text: "NOCENSTORE"
@@ -736,17 +739,10 @@
         text: root.news
         size_hint_y: None
         height: self.texture_size[1]
-
-    MDRelativeLayout:
-        M_FitImage:
-            id: image
-            source: root.image_url
-            radius: root.radius
-            load_callback: lambda x: exec("loader.opacity = 0")
-        M_AKImageLoader:
-            id: loader
-            radius: root.radius
-            circle: False
+    M_FitImage:
+        id: image
+        source: root.image_url
+        radius: root.radius
 
 <PlanItem>
     adaptive_size: True
@@ -772,11 +768,11 @@
             markup: True
             color: 0, 0, 0, 1
 
-<CartCard@MDCard>:
+<CartCard@MD3Card>:
     orientation: "vertical"
     size_hint_y: None
     height: Window.height/4.3
-    radius: [dp(5)]
+    radius: [dp(5)] * 4
     product: ""
     source: ""
     price: ""
@@ -789,13 +785,14 @@
     MDBoxLayout:
         adaptive_height: True
         spacing: dp(5)
-        padding: [0, 0, 0, dp(5)]
-        AsyncImage:
+        padding: dp(5)
+        FitImage:
             source: root.source
             nocache: True
             size_hint: None, None
             height: root.height - down.height - dp(5)
             width: root.width/3
+            radius: [dp(5)]
         MDList:
             spacing: dp(10)
             padding: [0, 0, 0, dp(15)]
@@ -803,11 +800,13 @@
                 text: root.product
                 size_hint_y: None
                 font_style: "H6"
-                height: self.texture_size[1]
+                adaptive_height: True
+                shorten: True
             MDLabel:
                 text: root.price
                 size_hint_y: None
-                height: self.texture_size[1]
+                adaptive_height: True
+                markup: True
                 color: app.theme_cls.primary_color
 
             MDBoxLayout:
@@ -815,7 +814,7 @@
                 size_hint_x: None
                 width: self.parent.width/2
                 md_bg_color: 0,1,0,.1
-                radius: [dp(5)]
+                radius: [dp(5)] * 4
                 MDLabel:
                     id: la
                     text: "NocenStore"
@@ -858,7 +857,7 @@
                 disabled: True if root.p_type else False
                 on_release: root.parent.roots.add_more(root)
 
-<LeftIconToolBar@MDCard>:
+<LeftIconToolBar@MD3Card>:
     size_hint_y: None
     icon: ""
     title: ""
@@ -886,7 +885,7 @@
             bold: True
             pos_hint:{"center_y": .5}
 
-<DoubleIconToolBar@MDCard>:
+<DoubleIconToolBar@MD3Card>:
     icon_right: ""
     icon_left: ""
     title: ""
@@ -935,6 +934,7 @@
         text: root.right_text
         bold: True
         color: app.theme_cls.primary_color
+        markup: True
 
 <TextField@M_CardTextField>:
     grow: False
@@ -960,7 +960,7 @@
         RoundedRectangle:
             pos: self.pos
             size: self.size
-            radius: [dp(2)]
+            radius: [dp(2)] * 4
 
 <Swiper>:
     orientation: "vertical"
@@ -1160,25 +1160,12 @@
     cols: 2
     adaptive_height: True
 
-<Title@MDBoxLayout>:
-    adaptive_height: True
-    MDCard:
-        size_hint_y: None
-        height: self.minimum_height
-        padding: dp(10)
-        MDLabel:
-            text: "Upload Your Product Information"
-            size_hint_y: None
-            height: self.texture_size[1]
-            font_style:"Money"
-            font_size: dp(18)
-
-<PicArt@MDCard>:
+<PicArt@MD3Card>:
     root: None
     orientation: "vertical"
     size_hint_y: None
     height: Window.height/2.5
-    radius: [dp(10)]
+    radius: [dp(10)] * 4
     ScrollView:
         effect_cls: ScrollEffect
         do_scroll_y: False
@@ -1218,16 +1205,11 @@
             height: self.texture_size[1]
             font_style: "Money"
 
-<MDTextField>:
-    on_focus: app.on_focus(args[1])
-<TextInput>:
-    on_focus: app.on_focus(args[1])
-
-<Fields@MDCard>:
+<Fields@MD3Card>:
     size_hint_y: None
     height: self.minimum_height
     orientation: "vertical"
-    radius: [dp(5)]
+    radius: [dp(5)] * 4
     padding: dp(20)
     spacing: dp(10)
     root: None
@@ -1272,10 +1254,8 @@
 
     Locator:
         id: location
-        hint_text: "current location:"
-        icon_right: "map-marker"
-        helper_text_mode: "on_error"
-        required: True
+        text: " select your current location"
+        on_release: self.menu.open()
 
 
 
@@ -1323,7 +1303,7 @@
             CategoryCard:
                 text: "Phones"
                 source: "assets/portables.png"
-                radius: dp(20)
+                radius: [dp(20)] * 4
                 texture_color: get_color_from_hex('3F3F3F')
                 texture:
                     Gradient.horizontal(
@@ -1333,11 +1313,11 @@
             CategoryCard:
                 text: "Laptop(HP)"
                 source: "assets/portables.png"
-                radius: dp(20)
+                radius: [dp(20)] * 4
             CategoryCard:
                 text: "Foam(Bed)"
                 source: "assets/portables.png"
-                radius: dp(20)
+                radius: [dp(20)] * 4
                 texture_color: get_color_from_hex('3F3F3F')
                 texture:
                     Gradient.horizontal(
@@ -1347,7 +1327,7 @@
             CategoryCard:
                 text: "Shoes"
                 source: "assets/portables.png"
-                radius: dp(20)
+                radius: [dp(20)] * 4
 
 
 <HomeProductCard>:
@@ -1358,15 +1338,15 @@
     check: ""
     text_radius: [dp(5)]
     rate: 4
-    radius: [dp(10)]
+    radius: [dp(10)] * 4
     data: {"product": self.product, "store": self.store}
     size_hint_y: None
     _size: 0, 0
     size: self._size
     padding: [dp(10), 0, dp(10), 0]
     image: image
-    MDCard:
-        radius: dp(30)
+    MD3Card:
+        radius: [dp(30)] * 4
         padding: dp(15)
         spacing: dp(20)
         M_FitImage:
@@ -1406,17 +1386,17 @@
             MDBoxLayout:
                 orientation: "vertical"
                 adaptive_height: True
-                radius: [dp(5)]
+                radius: [dp(5)] * 4
                 padding:[dp(5), 0, dp(5), 0]
-                MDCard:
+                MD3Card:
                     size_hint_y: None
                     height: self.minimum_height
                     md_bg_color: app.theme_cls.primary_color
                     padding: dp(10)
-                    radius: [dp(5)]
+                    radius: [dp(5)] * 4
                     on_release:
                         root.parent.root.prev_screen.append(root.parent.roots.name)
-                        check_add_widget(app, "lookout_widget", root.parent, Factory.ProductLookOut(), "lookout")
+                        check_add_widget(app, "lookout_widget", root.parent, "Factory.ProductLookOut()", "lookout")
                         root.parent.root.current = "lookout"
                         root.parent.root.ids.lookout.ids.product_name.text = root.product
                         #self.parent.root.ids.lookout.ids.store.text = self.store
@@ -1436,6 +1416,8 @@
     text_color: app.theme_cls.primary_color
     button_bg_color: 1, 1, 1, 1
     badge_disabled: True
+    on_kv_post:
+        self.ids._icon.pos_hint = {"center_y": 1, "center_x": .5}
 
 <DropListItem>
     text: root.text
@@ -1443,10 +1425,14 @@
 
     IconLeftWidget:
         icon: root.icon
+<ThreeLineIconList@ThreeLineIconListItem>:
+    icon: ""
+    IconLeftWidget:
+        icon: root.icon
 
-<TickerTab@MDCard>:
+<TickerTab@MD3Card>:
     size_hint: None, None
-    radius: dp(15)
+    radius: [dp(13)] * 4
     text: ""
     size: self.minimum_size
     md_bg_color: app.theme_cls.primary_color
@@ -1454,7 +1440,7 @@
     MDLabel:
         text: root.text
         bold: True
-        padding: dp(15), dp(7)
+        padding: dp(17), dp(8)
         adaptive_size: True
         color: 1, 1, 1, 1
         markup: True
@@ -1466,17 +1452,17 @@
     callback: lambda: None
     TickerTab:
         text: f"Categories [font=Icons]{md_icons['chevron-down-circle']}[/font]"
-        on_release: root.call_category_dialog()
+        on_release: root.category_dialog.open()
     TickerTab:
         text: f"Sections [font=Icons]{md_icons['chevron-down-circle']}[/font]"
-        on_release: root.call_platform_dialog()
+        on_release: root.platform_dialog.open()
     MDBoxLayout:
         adaptive_height: True
         orientation: "vertical"
-        MDCard:
+        MD3Card:
             size_hint: None, None
             size: self.minimum_size
-            radius: dp(20)
+            radius: [dp(20)] * 4
             elevation: .1
             pos_hint: {"right": 1}
             ripple_behavior: True
@@ -1507,7 +1493,7 @@
     icon: ""
     text: ""
     callback: lambda: None
-    MDCard:
+    MD3Card:
         pos_hint: {"center_x": .5}
         orientation: "vertical"
         size_hint: None, None
@@ -1515,7 +1501,7 @@
         padding: dp(10)
         elevation: 0.1
         md_bg_color: get_color_from_hex("#F5F5F5")
-        radius: dp(30)
+        radius: [dp(30),] * 4
         ripple_behavior: True
         ripple_color: root.icon_bg_color
         on_release: root.callback()
@@ -1527,13 +1513,13 @@
             pos_hint: {"center_x": .5}
             size_hint: None, None
             size: "48dp", "48dp"
+            padding_y: dp(12)
             canvas.before:
                 Color:
                     rgba: root.icon_bg_color
-                RoundedRectangle:
+                Ellipse:
                     size: self.size
                     pos: self.pos
-                    radius: [self.width]
         MDLabel:
             text: root.text
             halign: "center"
@@ -1554,34 +1540,46 @@
             icon: "television-classic"
             icon_bg_color: get_color_from_hex("#4CAF50")
             text: "ELECTRONICS"
-            callback: lambda: Clock.schedule_once(lambda x: root.root.change_screen(self, "electronics", root.dialog), 1)
+            callback:
+                lambda: Clock.schedule_once(
+                lambda x: app.home_screen.change_screen(self, "electronics", root.dialog), 1)
         RaisedButton:
             icon: "cellphone"
             icon_bg_color: get_color_from_hex("#FF1744")
             text: "PORTABLES"
-            callback: lambda: Clock.schedule_once(lambda x: root.root.change_screen(self, "portables", root.dialog), 1)
+            callback:
+                lambda: Clock.schedule_once(
+                lambda x: app.home_screen.change_screen(self, "portables", root.dialog), 1)
         RaisedButton:
             icon: "chair-rolling"
             icon_bg_color: get_color_from_hex("#AA00FF")
             text: "FURNITURE"
-            callback: lambda: Clock.schedule_once(lambda x: root.root.change_screen(self, "furniture", root.dialog), 1)
+            callback:
+                lambda: Clock.schedule_once(
+                lambda x: app.home_screen.change_screen(self, "furniture", root.dialog), 1)
         RaisedButton:
             icon: "tshirt-crew"
             icon_bg_color: get_color_from_hex("#2962FF")
             text: "CLOTHING"
-            callback: lambda: Clock.schedule_once(lambda x: root.root.change_screen(self, "clothing", root.dialog), 1)
+            callback:
+                lambda: Clock.schedule_once(
+                lambda x: app.home_screen.change_screen(self, "clothing", root.dialog), 1)
         RaisedButton:
             icon: "lipstick"
             icon_bg_color: get_color_from_hex("#C51162")
             text: "BEAUTY"
-            callback: lambda: Clock.schedule_once(lambda x: root.root.change_screen(self, "beauty", root.dialog), 1)
+            callback:
+                lambda: Clock.schedule_once(
+                lambda x: app.home_screen.change_screen(self, "beauty", root.dialog), 1)
         RaisedButton:
             icon: "pot-steam"
             icon_bg_color: get_color_from_hex("#FF6D0")
             text: "KITCHEN"
-            callback: lambda: Clock.schedule_once(lambda x: root.root.change_screen(self, "kitchen", root.dialog), 1)
+            callback:
+                lambda: Clock.schedule_once(
+                lambda x: app.home_screen.change_screen(self, "kitchen", root.dialog), 1)
 
-<PlatformContent@RelativeLayout>:
+<PlatformContent>:
     size_hint_y: None
     height: grid.height + dp(10)
     MDGridLayout
@@ -1596,40 +1594,39 @@
             text: "TODAY'S DEALS"
             item: "Deals"
             callback:
-                lambda: Clock.schedule_once(lambda x: exec("root.root.manager.on_next_screen(root.root.name);"
-                "check_add_widget(app, 'deals_widget', root.root, Factory.Deals(), 'deals');"
-                "root.root.manager.current = self.item.lower(); root.dialog.dismiss()"), 1)
+                lambda: Clock.schedule_once(
+                lambda x: root.change_screen('deals_widget', 'Factory.Deals()', 'deals', self.item.lower()), 1)
         RaisedButton:
             icon: "headset"
             icon_bg_color: app.theme_cls.primary_color
             text: "CUSTOMER CARE"
             item: "Customer Care"
             callback:
-                lambda: Clock.schedule_once(lambda x: exec("root.root.manager.on_next_screen(root.root.name);"
-                "check_add_widget(app, 'customer_care_widget', root.root, Factory.CustomerCare(), 'customer');"
-                "root.root.manager.current = self.item.lower(); root.dialog.dismiss()"), 1)
+                lambda: Clock.schedule_once(
+                lambda x: root.change_screen(
+                'customer_care_widget', 'Factory.CustomerCare()', 'customer', self.item.lower()), 1)
         RaisedButton:
             icon: "heart"
             icon_bg_color: 1, .7, 0, 1
             text: "SAVED ITEMS"
             item: "Saved Items"
             callback:
-                lambda: Clock.schedule_once(lambda x: exec("root.root.manager.on_next_screen(root.root.name);"
-                "check_add_widget(app, 'saved_product_widget', root.root, Factory.SavedProduct(), 'saved');"
-                "root.root.manager.current = self.item.lower(); root.dialog.dismiss()"), 1)
+                lambda: Clock.schedule_once(
+                lambda x: root.change_screen(
+                'saved_product_widget', 'Factory.SavedProduct()', 'saved', self.item.lower()), 1)
         RaisedButton:
             icon: "school"
             icon_bg_color: 1, 0, .8, 1
             text: "STUDENT ZONE"
             item: "Student Zone"
             callback:
-                lambda: Clock.schedule_once(lambda x: exec("root.root.manager.on_next_screen(root.root.name);"
-                "check_add_widget(app, 'student_info_widget', root.root, Factory.StudentInfo(), 's_zone');"
-                "root.root.manager.current = self.item.lower(); root.dialog.dismiss()"), 1)
+                lambda: Clock.schedule_once(
+                lambda x: root.change_screen(
+                'student_info_widget', 'Factory.StudentInfo()', 's_zone', self.item.lower()), 1)
 
-<CardButton@MDCard>:
+<CardButton@MD3Card>:
     text: ""
-    radius: dp(5)
+    radius: [dp(5)] * 4
     size_hint: None, None
     size: self.minimum_size
     text_color: 1, 1, 1, 1
@@ -1724,3 +1721,107 @@
             theme_text_color: "Custom"
             text_color: root.icon_right_color
             on_release: root.icon_right_callback()
+
+<ImageFit@ButtonBehavior+FitImage>:
+    on_release: self.root.show_image(self.source)
+
+<MD3Card>
+    soft_shadow_cl: 0, 0, 0, .15
+    elevation: 6
+
+
+<RequestDialog>:
+    spacing: dp(30)
+    orientation: "vertical"
+    adaptive_height: True
+    CustomSpinner:
+        magic_speed: 0.1
+        icon: root.icon
+        pos_hint: {"right": .95, "center_y": .15}
+        theme_text_color: "Custom"
+        text_color: 1, 1, 1, .99
+        md_bg_color: get_color_from_hex("#C51162")
+        on_kv_post: Clock.schedule_interval(lambda y: self.grow(), 1)
+        pos_hint: {"center_x": .5}
+    MDLabel:
+        adaptive_height: True
+        halign: "center"
+        text: root.text
+        font_style: "Body2"
+        color: 1, 1, 1, 1
+    CardButton:
+        text: "CANCEL REQUEST"
+        pos_hint: {"center_x": .5}
+        ripple_behavior: True
+        opacity: 0 if root.btn_disabled else 1
+        disabled: True if root.btn_disabled else False
+        on_release: None if root.btn_disabled else root.dialog.dismiss()
+
+<CheckLoader@MDBoxLayout>:
+    spacing: dp(20)
+    adaptive_height: True
+    orientation: "vertical"
+    MDSpinner:
+        size_hint: None, None
+        size: dp(46), dp(46)
+        pos_hint: {'center_x': .5}
+        active: True
+    MDLabel:
+        adaptive_height: True
+        halign: "center"
+        text: "Please Wait....."
+        font_style: "Body2"
+        color: 1, 1, 1, 1
+
+<SuccessDialog>:
+    orientation: "vertical"
+    padding: dp(10)
+    spacing: dp(20)
+    MDLabel:
+        text: "SUCCESSFULLY GIFTED!"
+        size_hint_y: None
+        height: self.texture_size[1]
+        halign: "center"
+        valign: "center"
+        bold: True
+        theme_text_color: "Custom"
+        text_color: 0, .7, 0, 1
+
+    MDLabel:
+        id: label
+        text: ""
+        halign: "center"
+        valign: "top"
+        theme_text_color: "Custom"
+        text_color: 0, .7, 0, 1
+        font_style: "Body2"
+
+    MDLabel:
+        text: "click the buttons below to copy or dial"
+        halign: "center"
+        valign: "top"
+        theme_text_color: "Custom"
+        text_color: 0, .7, 0, 1
+        font_style: "Body2"
+
+    CardButton:
+        text: "COPY TO CLIPBOARD"
+        md_bg_color: 0, .7, 0, 1
+        pos_hint: {"center_x": .5}
+        on_release: root.copy_to_clipboard(label.text)
+
+<AlertNotification@BoxLayout>
+    padding: dp(10)
+    MDLabel:
+        text: "Oops!! It seems someone got ahead of you, check again tommorrow"
+        theme_text_color: "Secondary"
+        halign: "left"
+
+    MDIconButton:
+        id: button
+        icon: "close"
+        halign: "right"
+        valign: "center"
+
+<TextInput>:
+    keyboard_suggestions: False

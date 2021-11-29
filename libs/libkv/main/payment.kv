@@ -27,12 +27,12 @@
                         bank.disabled = True
                     IconLeftWidget:
                         icon: "credit-card"
-                MDCard
+                MD3Card
                     id: card
                     spacing: dp(15)
                     padding: dp(10)
                     orientation: "vertical"
-                    radius: [dp(10)]
+                    radius: [dp(10)] * 4
                     size_hint_y: None
                     height: self.minimum_height
                     MDBoxLayout:
@@ -83,12 +83,12 @@
                             on_text:
                                 if len(self.text) > 4: self.text = self.text[:-1]
 
-                MDCard
+                MD3Card
                     id: bank
                     spacing: dp(15)
                     padding: dp(10)
                     orientation: "vertical"
-                    radius: [dp(10)]
+                    radius: [dp(10)] * 4
                     size_hint_y: None
                     height: self.minimum_height
                     disabled: True
@@ -114,12 +114,12 @@
         MDBoxLayout
             adaptive_height: True
             padding: dp(7)
-            MDCard:
+            MD3Card:
                 size_hint_y: None
                 height: self.minimum_height
                 md_bg_color: app.theme_cls.primary_color
                 ripple_behavior: True
-                radius: [dp(5)]
+                radius: [dp(5)] * 4
                 on_release:
                     root.make_payment_card() if not card.disabled else root.make_payment_bank()
                 MDIconButton:

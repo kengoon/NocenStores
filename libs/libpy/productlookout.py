@@ -3,6 +3,8 @@ from json import dumps, loads
 from kivy.core.window import Window, Animation
 from kivy.factory import Factory
 from kivy.metrics import dp
+from kivy.uix.image import AsyncImage
+from kivy.uix.modalview import ModalView
 from kivy.utils import get_color_from_hex
 from kivymd.uix.button import MDRaisedButton
 from kivymd.uix.dialog import MDDialog
@@ -13,6 +15,8 @@ from kivy.network.urlrequest import UrlRequest
 from kivy.uix.screenmanager import Screen
 from kivymd.app import MDApp
 from plyer import call
+
+from libs.libpy.widgets import DropDown
 
 
 class ProductLookOut(Screen):
@@ -34,6 +38,39 @@ class ProductLookOut(Screen):
             radius=[dp(20)]
         )
         self.dialog.content_cls.root = self
+        self.image_view_content = AsyncImage()
+        self.image_view = ModalView(size_hint=(.5, .5), background="", background_color=[0, 0, 0, 0])
+        self.image_view.add_widget(self.image_view_content)
+        menu_items = [
+            {
+                "viewclass": "ThreeLineIconList",
+                "icon": f"{i[0]}",
+                "text": f"{i[1]}",
+                "secondary_text": f"{i[2]}",
+                "tertiary_text": f"{i[3]}",
+                "height": dp(80),
+            }
+            for i in [
+                [
+                    "truck-delivery-outline",
+                    "Product Delivery",
+                    "Ready for delivery between 2 to 3 days ",
+                    "from the day you ordered",
+                ],
+                [
+                    "police-badge-outline",
+                    "Return Policy",
+                    "Free return within a day and",
+                    "Full Refund if you do not get your package delivered"
+                ]
+            ]
+        ]
+        self.menu = DropDown(
+            items=menu_items,
+            width_mult=2.1,
+            # caller=self.ids.info,
+            hor_growth="right",
+        )
 
     def go_back(self):
         self.manager.current = "home"
@@ -69,6 +106,7 @@ class ProductLookOut(Screen):
                 req_body=args[1] if args else "order",
                 on_error=lambda x, y: network_error(),
             )
+
         self.fire(request_number, args[0] if args else "")
 
     def on_enter(self, *args):
@@ -78,8 +116,7 @@ class ProductLookOut(Screen):
         self.app.current = self.name
         self.manager.prev_screen.append(self.name)
         from tools import check_add_widget
-        from kivy.factory import Factory
-        check_add_widget(self.app, "cart_widget", self, Factory.Cart(), "cart")
+        check_add_widget(self.app, "cart_widget", self, "Factory.Cart()", "cart")
         self.manager.current = "cart"
 
     def on_leave(self, *args):
@@ -113,16 +150,15 @@ class ProductLookOut(Screen):
             self.ids[f"image{i}"].source = new_data[str(i)]
 
         if "size" in new_data["description"]:
-            print(new_data["description"])
             size_list = new_data["description"].split("(")[1].split(")")[0]
-
+            size_list = size_list.replace("{", "[").replace("}", "]")
             for i in loads(size_list):
                 self.dialog.content_cls.data.append({"text_item": str(i)})
         self.ids.buttons.disabled = False
         self.ids.buttons.opacity = 1
         if "saved" in new_data and new_data["saved"]:
             self.ids.save.icon = "heart"
-        if "FairlyUsed" == new_data["type"]:
+        if new_data["type"] == "FairlyUsed":
             self.ids.save.disabled = True
             self.p_type = new_data["type"]
         else:
@@ -138,8 +174,8 @@ class ProductLookOut(Screen):
 
     def clear_cache(self):
         for i in range(1, 4):
-            self.ids[f"image{i}"].source = ""
-        self.ids.product_price.text = ""
+            self.ids[f"image{i}"].source = "assets/image/loader.gif"
+        self.ids.product_price.text = "____"
         self.ids.description.text = ""
         self.dialog.content_cls.data = []
 
@@ -148,8 +184,7 @@ class ProductLookOut(Screen):
             notify("please login to continue")
             self.app.current = self.name
             from tools import check_add_widget
-            from kivy.factory import Factory
-            check_add_widget(self.app, "login_widget", self, Factory.Login(), "login")
+            check_add_widget(self.app, "login_widget", self, "Factory.Login()", "login")
             self.manager.current = "login"
             return
         instance.icon = "heart" if "outline" in instance.icon else "heart-outline"
@@ -159,15 +194,15 @@ class ProductLookOut(Screen):
             notify(data)
             instance.disabled = False
             from tools import check_add_widget
-            from kivy.factory import Factory
-            check_add_widget(self.app, "saved_product_widget", self, Factory.SavedProduct(), "saved")
+            check_add_widget(self.app, "saved_product_widget", self, "Factory.SavedProduct()", "saved")
             if self.manager.ids.saved.enter:
                 self.manager.ids.saved.ids.rv.data.append(
                     {
                         "imagePath": self.ids.image1.source,
-                        "price": self.ids.product_price.text.replace("₦", ""),
+                        "price":
+                            self.ids.product_price.text.translate({ord(i): None for i in "[font=Roboto][/font]₦,"}),
                         "product": self.ids.product_name.text,
-                        "store": self.ids.store.text
+                        "store": "NocenStore"
                     }
                 )
 
@@ -186,7 +221,7 @@ class ProductLookOut(Screen):
                 "imagePath": self.ids.image1.source,
                 "price": self.ids.product_price.text.replace("₦", ""),
                 "product": self.ids.product_name.text,
-                "store": self.ids.store.text,
+                "store": "NocenStore",
             },
             "type": instance.icon,
             "userId": self.app.firebase["userId"],
@@ -202,73 +237,73 @@ class ProductLookOut(Screen):
 
     def add_to_cart(self):
         from tools import check_add_widget
-        from kivy.factory import Factory
-        check_add_widget(self.app, "cart_widget", self, Factory.Cart(), "cart")
-        if self.ids.rvs.data and not self.selected_size:
-            self.ids.sv.scroll_to(self.ids.sizes)
-            return notify("select a  size to continue", background=[1, 0, 0, 1])
+        check_add_widget(self.app, "cart_widget", self, "Factory.Cart()", "cart")
+        if self.dialog.content_cls.data and not self.selected_size:
+            notify("select a  size to continue", background=[1, 0, 0, 1])
+            return self.dialog.open()
         if not self.app.login:
             notify("please login to continue")
             self.app.current = self.name
             self.manager.prev_screen.append(self.name)
-            from tools import check_add_widget
-            from kivy.factory import Factory
-            check_add_widget(self.app, "login_widget", self, Factory.Login(), "login")
+            check_add_widget(self.app, "login_widget", self, "Factory.Login()", "login")
             self.manager.current = "login"
             return
         cart = {
             "product": self.ids.product_name.text,
             "source": self.ids.image1.source,
             "price": self.ids.product_price.text,
-            "store": self.ids.store.text,
+            "store": "NocenStore",
             "selected_size": self.selected_size or "",
             "count": 1,
             "base_price": self.ids.product_price.text.translate(
-                {ord(i): None for i in "₦,"}
+                {ord(i): None for i in "[font=Roboto][/font]₦,"}
             ),
         }
 
-        a = list(filter(lambda product: self.ids.product_name.text == product["product"],
-                        self.manager.ids.cart.ids.rv.data))
-        if a:
+        product_exist = list(filter(lambda product: self.ids.product_name.text == product["product"],
+                                    self.manager.ids.cart.ids.rv.data))
+        if product_exist:
             if self.p_type == "FairlyUsed":
                 from tools import check_add_widget
-                from kivy.factory import Factory
-                check_add_widget(self.app, "cart_widget", self, Factory.Cart(), "cart")
+                check_add_widget(self.app, "cart_widget", self, "Factory.Cart()", "cart")
                 self.manager.current = "cart"
                 return
-            cart.update({"p_type": False})
-            cart["count"] = a[0]["count"]
-            top_up = f'₦{float(a[0]["price"].translate({ord(i): None for i in "₦,"})) + float(cart["price"].translate({ord(i): None for i in "₦,"})):,}'
-            cart["price"] = a[0]["price"]
+            cart["p_type"] = False
+            cart["count"] = product_exist[0]["count"]
+            total = float(product_exist[0]["price"].translate({ord(i): None for i in "[font=Roboto][/font]₦,"})) + \
+                    float(cart["price"].translate({ord(i): None for i in "[font=Roboto][/font]₦,"}))
+            top_up = f'[font=Roboto]₦{total:,}[/font]'
+            cart["price"] = product_exist[0]["price"]
             index = self.manager.ids.cart.ids.rv.data.index(cart)
             cart["count"] += 1
             cart["price"] = top_up
             self.manager.ids.cart.ids.rv.data[index] = cart
             notify(f"{self.ids.product_name.text} = {self.manager.ids.cart.ids.rv.data[index]['count']} product")
         else:
-            if self.p_type == "FairlyUsed":
-                cart.update({"p_type": True})
-            else:
-                cart.update({"p_type": False})
+            cart["p_type"] = self.p_type == "FairlyUsed"
             self.manager.ids.cart.ids.rv.data.append(cart)
             notify(f"{self.ids.product_name.text} = 1 product")
             if self.p_type == "FairlyUsed":
                 from tools import check_add_widget
-                from kivy.factory import Factory
-                check_add_widget(self.app, "cart_widget", self, Factory.Cart(), "cart")
+                check_add_widget(self.app, "cart_widget", self, "Factory.Cart()", "cart")
                 self.manager.current = "cart"
                 cart_data = self.manager.ids.cart.ids.rv.data
                 cart_total = sum(
-                    float(cart_data[i]["price"].translate({ord(i): None for i in "₦,"})) for
+                    float(cart_data[i]["price"].translate({ord(i): None for i in "[font=Roboto][/font]₦,"})) for
                     i, _ in enumerate(cart_data)
                 )
-                self.manager.ids.cart.ids.total.text = f"₦{cart_total:,}"
+                self.manager.ids.cart.ids.total.text = f"[font=Roboto]₦{cart_total:,}[/font]"
                 return
+        check_add_widget(self.app, "cart_widget", self, "Factory.Cart()", "cart")
+        self.manager.current = "cart"
         self.ids.save.dispatch("on_release") if self.ids.save.icon == "heart-outline" else None
         cart_data = self.manager.ids.cart.ids.rv.data
         cart_total = sum(
-            float(cart_data[i]["price"].translate({ord(i): None for i in "₦,"})) for
+            float(cart_data[i]["price"].translate({ord(i): None for i in "[font=Roboto][/font]₦,"})) for
             i, _ in enumerate(cart_data)
         )
-        self.manager.ids.cart.ids.total.text = f"₦{cart_total:,}"
+        self.manager.ids.cart.ids.total.text = f"[font=Roboto]₦{cart_total:,}[/font]"
+
+    def show_image(self, source):
+        self.image_view_content.source = source
+        self.image_view.open()

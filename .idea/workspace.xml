@@ -8,43 +8,39 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4cb93fcd-1f5d-4fef-8c90-3198d866ca2d" name="Default Changelist" comment="pushed">
-      <change afterPath="$PROJECT_DIR$/assets/font/DINAlternate-bold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/font/MaterialIcons-Regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/font/MaterialIconsRound-Regular.otf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/font/avenir_heavy.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/font/googleIconRegular.fontd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/font/googleIconRound.fontd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/font/iconfont.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/image/ecommerce.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/image/search.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/image/shadow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/unilink.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/imports.kv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tools/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tools/multipartencoder.py" afterDir="false" />
+    <list default="true" id="4cb93fcd-1f5d-4fef-8c90-3198d866ca2d" name="Default Changelist" comment="update">
+      <change afterPath="$PROJECT_DIR$/assets/image/loader.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kvdroid/jimplement/call.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resource/activities.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/NocenStore.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/NocenStore.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/beauty.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/clothing.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/electronics.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/furniture.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/kitchen.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android_webview/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/android_webview/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/portables.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/buildozer.spec" beforeDir="false" afterPath="$PROJECT_DIR$/buildozer.spec" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/fitimage.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes/fitimage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/card.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/m_cardloader.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes/m_cardloader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/filechooser/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/filechooser/android_filechooser.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/filechooser/facade_filechooser.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/filechooser/utils.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/imports.kv" beforeDir="false" afterPath="$PROJECT_DIR$/imports.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/classes_wigdet/m_cardiconbutton.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/classes_wigdet/m_cardiconbutton.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/classes_wigdet/m_cardtextfield.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/classes_wigdet/m_cardtextfield.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/kv_widget/widget.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/kv_widget/widget.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libkv/init/credentials.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/init/credentials.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/main/cart.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/cart.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/main/cartcheckout.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/cartcheckout.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libkv/main/categories.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/categories.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libkv/main/customercare.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/customercare.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libkv/main/feeds.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/feeds.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libkv/main/home.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/home.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/main/payment.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/payment.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libkv/main/productlookout.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/productlookout.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libkv/main/profile.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/profile.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/main/saveditem.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/saveditem.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libkv/main/search.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/search.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libkv/main/sell.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/sell.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/main/settings.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/settings.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libkv/main/stundentinfo.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/stundentinfo.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libkv/main/used.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/used.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libpy/cart.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/cart.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libpy/cartcheckout.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/cartcheckout.py" afterDir="false" />
@@ -53,18 +49,19 @@
       <change beforePath="$PROJECT_DIR$/libs/libpy/deals.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/deals.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libpy/feeds.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/feeds.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libpy/home.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/home.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libpy/initializer.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libpy/orders.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/orders.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libpy/payment.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/payment.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libpy/productlookout.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/productlookout.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libpy/profile.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/profile.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libpy/saveditem.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/saveditem.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libpy/search.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/search.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libpy/sell.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/sell.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/libpy/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libpy/used.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/used.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/libpy/widgets.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/widgets.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/manager.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/manager.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manager.kv" beforeDir="false" afterPath="$PROJECT_DIR$/manager.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service.py" beforeDir="false" afterPath="$PROJECT_DIR$/service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/tools/__init__.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,9 +72,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Kivy UIX" />
         <option value="XML Properties File" />
         <option value="Python Script" />
-        <option value="Kivy UIX" />
       </list>
     </option>
   </component>
@@ -125,9 +122,6 @@
     <setting file="file:///usr/local/lib/python3.8/dist-packages/kivymd/utils/fitimage.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file:///usr/local/lib/python3.7/dist-packages/kivymd/uix/button.py" root0="FORCE_HIGHLIGHTING" />
   </component>
-  <component name="ProblemsViewState">
-    <option name="selectedIndex" value="1" />
-  </component>
   <component name="ProjectId" id="1ljyU9VpfmcGHt3yOxK1YgBxIXA" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -139,11 +133,13 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
+    <property name="add_unversioned_files" value="$PROJECT_DIR$/.buildozer/android/platform/build-armeabi-v7a/dists/nocenstore/gradle.properties&#10;/home/kengo/PycharmProjects/NocenStore/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/dists/nocenstore/src/main/java/org/mindset/nocenstore/nocenstore/NocenstoreBroadcastReceiver.java" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
     <property name="com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File" value="Python" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="eu.ydp.idea.ts.spec.generator.settings.spec.template" value="import {$ClassName$} from '$TestsRelativePath$../src/$classRelativePath$/$ClassName$';&#10;&#10;describe('$ClassName$', () =&gt; {&#10;  let $ObjName$:$ClassName$;&#10;&#10;  beforeEach(() =&gt; {&#10;    $ObjName$ = new $ClassName$();&#10;  });&#10;&#10;  describe('', () =&gt; {&#10;    it('', () =&gt; {&#10;      // given&#10;&#10;      // when&#10;&#10;      // then&#10;    });&#10;  });&#10;});&#10;" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/image" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/packages/Pillow" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
   </component>
   <component name="ReaderModeSettings">
@@ -151,19 +147,41 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/assets/image" />
-      <recent name="$PROJECT_DIR$/assets/font" />
+      <recent name="$PROJECT_DIR$/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/packages/Pillow" />
+      <recent name="$PROJECT_DIR$/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/packages/ffpyplayer" />
+      <recent name="$PROJECT_DIR$/.buildozer/android/platform/python-for-android/pythonforandroid/bootstraps/sdl2/build/src/main" />
+      <recent name="$PROJECT_DIR$/bin" />
       <recent name="$PROJECT_DIR$/assets" />
-      <recent name="$PROJECT_DIR$/assets/ads" />
-      <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/java/org/mindset/nocenstore/nocenstore" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/libs/libpy" />
       <recent name="$PROJECT_DIR$/libs/libkv/init" />
     </key>
   </component>
   <component name="RunManager" selected="Python.main">
+    <configuration name="modalview" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="NocenStore" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/.local/lib/python3.8/site-packages/kivy/uix" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$USER_HOME$/.local/lib/python3.8/site-packages/kivy/uix/modalview.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="scratch_11" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="NocenStore" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -206,7 +224,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="scratch_18" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="scratch_16" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="NocenStore" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -218,7 +236,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$APPLICATION_CONFIG_DIR$/scratches/scratch_18.py" />
+      <option name="SCRIPT_NAME" value="$APPLICATION_CONFIG_DIR$/scratches/scratch_16.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -227,7 +245,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="scratch_21" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="scratch_17" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="NocenStore" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -239,28 +257,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$APPLICATION_CONFIG_DIR$/scratches/scratch_21.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="scratch_24" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="NocenStore" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$APPLICATION_CONFIG_DIR$/scratches" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$APPLICATION_CONFIG_DIR$/scratches/scratch_24.py" />
+      <option name="SCRIPT_NAME" value="$APPLICATION_CONFIG_DIR$/scratches/scratch_17.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -271,19 +268,19 @@
     </configuration>
     <list>
       <item itemvalue="Python.main" />
-      <item itemvalue="Python.scratch_21" />
-      <item itemvalue="Python.scratch_18" />
-      <item itemvalue="Python.scratch_24" />
       <item itemvalue="Python.scratch_11" />
       <item itemvalue="Python.scratch_15" />
+      <item itemvalue="Python.scratch_16" />
+      <item itemvalue="Python.modalview" />
+      <item itemvalue="Python.scratch_17" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.scratch_17" />
+        <item itemvalue="Python.modalview" />
+        <item itemvalue="Python.scratch_16" />
         <item itemvalue="Python.scratch_15" />
         <item itemvalue="Python.scratch_11" />
-        <item itemvalue="Python.scratch_24" />
-        <item itemvalue="Python.scratch_18" />
-        <item itemvalue="Python.scratch_21" />
       </list>
     </recent_temporary>
   </component>
@@ -604,7 +601,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632332647805</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="update">
+      <created>1636421918259</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1636421918259</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -650,7 +654,8 @@
     <MESSAGE value="changed a lot" />
     <MESSAGE value="cleaned buildozer" />
     <MESSAGE value="pushed" />
-    <option name="LAST_COMMIT_MESSAGE" value="pushed" />
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
 </project>

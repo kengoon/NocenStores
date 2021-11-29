@@ -2,39 +2,33 @@
     name: "used"
     MDBoxLayout:
         orientation:"vertical"
-        MDBoxLayout:
-            adaptive_height: True
-            padding: dp(10)
-            md_bg_color: app.theme_cls.primary_color
-            M_CardTextField:
-                elevation: 10
-                hint_text: "search"
-                icon_left: "refresh"
-                icon_right: "cart-variant"
-                icon_right_callback: root.go_cart
-                icon_left_callback: lambda x: rv.refresh_from_data()
-                text_field_disabled: True
-                icon_right_color: app.theme_cls.primary_color
-                icon_left_color: app.theme_cls.primary_color
-                foreground_color: [0, 0, 0, 0.8] if app.theme_cls.theme_style == "Light" else [1,1,1,1]
-                cursor_color: [0, 0, 0, .7] if app.theme_cls.theme_style == "Light" else [1,1,1,1]
-                md_bg_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
-                background_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
-                disabled_foreground_color: [0.5, 0.5, 0.5, 1.0]
-                on_release:
-                    root.root.manager.prev_screen.append(root.root.name)
-                    check_add_widget(app, "search_widget", root.root, Factory.Search(), "search")
-                    root.root.manager.ids.search.p_type = False
-                    root.root.manager.current = "search"
+        md_bg_color: 1, 1, 1, 1
+        NoLinerToolBar:
+            id: toolbar
+            title: "Fairly Used"
+            icon_left: "magnify"
+            icon_right: "cart-variant"
+            icon_right_callback: root.go_cart
+            icon_left_callback:
+                lambda: exec(
+                """
+                root.root.manager.prev_screen.append(root.root.name);
+                check_add_widget(app, "search_widget", root.root, "Factory.Search()", "search");
+                root.root.manager.ids.search.p_type = False;
+                root.root.manager.current = "search";
+                """
+                )
         RecycleView:
             id: rv
             effect_cls: ScrollEffect
             viewclass: "SalesCard"
-            on_scroll_start: root.schedule_load()
+            scroll_distance: dp(3)
+            on_scroll_y:
+                if self.scroll_y == -0.0 and (root.image_loaded == root.len_rv_data) and root.data: root.snack.open()
             RecycleGridLayout:
                 root: root
                 default_size_hint: None, None
-                default_size: root.width/2 - dp(20), Window.height/2.5
+                default_size: root.width/2 - dp(10), Window.height/2.5
                 size_hint_y: None
                 height: self.minimum_height
                 spacing:dp(15), dp(15)

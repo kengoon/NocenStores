@@ -1,6 +1,8 @@
 from json import loads
 
 from kivy.clock import Clock
+from kivy.core.window import Window
+from kivy.metrics import dp
 
 from classes.notification import notify
 from kivy.network.urlrequest import UrlRequest
@@ -103,7 +105,9 @@ class Search(Screen):
         for num, _ in enumerate(range(product_length)):
             if num == 20:
                 break
-            self.ids.rv.data.append(self.product.pop(0))
+            product: dict = self.product.pop(0)
+            product.update({"source": product["imagePath"], "_size": [self.width/2 - dp(20), Window.height / 2.5]})
+            self.ids.rv.data.append(product)
         self.ids.progress_box.opacity = 0
         self.ids.non.opacity = 0
         self.blink = True

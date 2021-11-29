@@ -25,7 +25,7 @@
             padding: dp(10)
             M_CardTextField:
                 id: txt
-                radius: dp(20)
+                radius: [dp(20)] * 4
                 grow_card: False
                 multiline: False
                 elevation: 10
@@ -50,13 +50,14 @@
             id: rv
             do_scroll_x: False
             viewclass: "CategoryProductCard"
+            scroll_distance: dp(7)
 #            on_scroll_start: root.schedule_load()
             RecycleGridLayout:
                 id: holder
                 root: root.manager
                 roots: root
-                default_size_hint: 1, None
-                default_size: None, Window.height/2.2
+                default_size_hint: None, None
+                default_size: root.width/2 - dp(10), Window.height/2.4
                 size_hint_y: None
                 height: self.minimum_height
                 spacing:dp(10)

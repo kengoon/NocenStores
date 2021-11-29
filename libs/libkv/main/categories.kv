@@ -1,42 +1,36 @@
 <Category>
-    BoxLayout:
+    MDBoxLayout:
+        md_bg_color: 1, 1, 1, 1
         orientation:"vertical"
-        MDBoxLayout:
-            adaptive_height: True
-            padding: dp(10)
-            M_CardTextField:
-                elevation: 10
-                radius: dp(20)
-                hint_text: "search"
-                icon_left: "arrow-left"
-                icon_right: "refresh"
-                icon_right_callback: lambda x: rv.refresh_from_data()
-                icon_left_callback: root.go_home
-                text_field_disabled: True
-                icon_right_color: app.theme_cls.primary_color
-                icon_left_color: app.theme_cls.primary_color
-                foreground_color: [0, 0, 0, 0.8] if app.theme_cls.theme_style == "Light" else [1,1,1,1]
-                cursor_color: [0, 0, 0, .7] if app.theme_cls.theme_style == "Light" else [1,1,1,1]
-                md_bg_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
-                background_color: [1,1,1,1] if app.theme_cls.theme_style == "Light" else get_color_from_hex("1f1f1f")
-                disabled_foreground_color: [0.5, 0.5, 0.5, 1.0]
-                on_release:
-                    check_add_widget(app, "search_widget", root, Factory.Search(), "search")
-                    root.manager.ids.search.p_type = True
-                    root.manager.current = "search"
+        NoLinerToolBar:
+            id: toolbar
+            title: "Categories"
+            icon_left: "chevron-left"
+            icon_right: "magnify"
+            icon_left_callback: root.go_home
+            icon_right_callback:
+                lambda: exec(
+                """
+                check_add_widget(app, "search_widget", root, "Factory.Search()", "search");
+                root.manager.ids.search.p_type = True;
+                root.manager.current = "search"
+                """
+                )
 
         RecycleView:
             id: rv
             do_scroll_x: False
             viewclass: "CategoryProductCard"
             effect_cls: ScrollEffect
-#            on_scroll_start: root.schedule_load()
+            scroll_distance: dp(3)
+            on_scroll_y:
+                if self.scroll_y == -0.0 and (root.image_loaded == root.len_rv_data) and root.data: root.snack.open()
             RecycleGridLayout:
                 id: holder
                 root: root.manager
                 roots: root
-                default_size_hint: 1, None
-                default_size: None, Window.height/2.4
+                default_size_hint: None, None
+                default_size: root.width/2 - dp(10), Window.height/2.5
                 size_hint_y: None
                 height: self.minimum_height
                 spacing:dp(10)

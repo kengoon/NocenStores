@@ -3,94 +3,72 @@
     BoxLayout:
         orientation:"vertical"
         MDBoxLayout:
-            size_hint_y: None
-            height: dp(200)
+            adaptive_height: True
             orientation: "vertical"
             md_bg_color: app.theme_cls.primary_color
             padding: dp(10)
-            radius: [0, 0, dp(50), dp(50)]
-            MDAnchorLayout:
-                anchor_y: "top"
-                MDBoxLayout:
-                    size_hint: 1, None
-                    height: app.theme_cls.standard_increment
-                    MDLabel:
-                        text: "Account"
-                        theme_text_color: "Custom"
-                        text_color: [1,1,1,1]
-                        font_style:"H5"
-                        bold: True
-                        adaptive_height: True
-                    MDIconButton:
-                        icon: "magnify"
-                        theme_text_color: "Custom"
-                        text_color: 1,1,1,1
-                        on_release:
-                            root.root.manager.prev_screen.append(root.root.name)
-                            check_add_widget(app, "search_widget", root.root, Factory.Search(), "search")
-                            root.root.manager.ids.search.p_type = True
-                            root.root.manager.current = "search"
+
+            MDBoxLayout:
+                size_hint: 1, None
+                height: app.theme_cls.standard_increment
+
+                MDLabel:
+                    text: "Account"
+                    theme_text_color: "Custom"
+                    text_color: [1,1,1,1]
+                    font_style:"H5"
+                    bold: True
+                MDIconButton:
+                    icon: "magnify"
+                    theme_text_color: "Custom"
+                    text_color: 1,1,1,1
+                    on_release:
+                        root.root.manager.prev_screen.append(root.root.name)
+                        check_add_widget(app, "search_widget", root.root, Factory.Search(), "search")
+                        root.root.manager.ids.search.p_type = True
+                        root.root.manager.current = "search"
 #                AKBadgeLayout:
 #                    text: "0"
 #                    offset: 0
 #                    position: "right"
 #                    badgeitem_color: 1,0,0,1
 #                    bold: False
-                    MDIconButton:
-                        icon: "cart-variant"
-                        theme_text_color: "Custom"
-                        text_color: 1,1,1,1
-                        on_release:
-                            root.root.manager.prev_screen.append(root.root.name)
-                            check_add_widget(app, "cart_widget", root.root, Factory.Cart(), "cart")
-                            root.root.manager.current = "cart"
-            AnchorLayout:
-                anchor_y: "top"
-                MDBoxLayout:
-                    adaptive_height: True
-                    orientation: "vertical"
-                    MDLabel:
-                        id: user
-                        text: f"Welcome {app.firebase['name'] if app.firebase else ''}!"
-                        font_style: "BigMoney"
-                        size_hint_y: None
-                        height: self.texture_size[1]
-                        theme_text_color: "Custom"
-                        text_color: 1, 1, 1, 1
+                MDIconButton:
+                    icon: "cart-variant"
+                    theme_text_color: "Custom"
+                    text_color: 1,1,1,1
+                    on_release:
+                        root.root.manager.prev_screen.append(root.root.name)
+                        check_add_widget(app, "cart_widget", root.root, "Factory.Cart()", "cart")
+                        root.root.manager.current = "cart"
 
-                    MDLabel:
-                        id: email
-                        text: app.firebase["email"] if app.firebase else ""
-                        size_hint_y: None
-                        height: self.texture_size[1]
-                        theme_text_color: "Custom"
-                        text_color: 1,1,1,1
+            MDBoxLayout:
+                adaptive_height: True
+                orientation: "vertical"
+                MDLabel:
+                    id: user
+                    text: f"Welcome !" if not app.firebase else f"Welcome {app.firebase['name']} !"
+                    font_style: "BigMoney"
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1
+
+                MDLabel:
+                    id: email
+                    text: app.firebase["email"] if app.firebase else ""
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    theme_text_color: "Custom"
+                    text_color: 1,1,1,1
 
         ScrollView:
             effect_cls: ScrollEffect
             MDList
                 spacing: dp(25)
                 padding: dp(10)
-#                MDCard:
-#                    spacing: dp(26)
-#                    size_hint_y: None
-#                    height: self.minimum_height
-#                    orientation: "vertical"
-#                    radius: [dp(10)]
-#
-#                    OneLineIconListItem:
-#                        divider: None
-#                        text:"Notification"
-#                        text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
-#                        theme_text_color: "Custom"
-#                        on_release: root.to_next("notify")
-#                        IconLeftWidget:
-#                            icon: "bell"
-#                            text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
-#                            theme_text_color: "Custom"
-#                            on_release: root.to_next("notify")
 
-                MDCard:
+                MD3Card:
                     spacing: dp(26)
                     size_hint_y: None
                     height: self.minimum_height
@@ -121,7 +99,7 @@
                             theme_text_color: "Custom"
                             on_release: root.to_next("setting")
 
-                MDCard:
+                MD3Card:
                     spacing: dp(10)
                     size_hint_y: None
                     height: self.minimum_height
@@ -163,6 +141,18 @@
                             text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
                             theme_text_color: "Custom"
                             on_release: root.to_next("saved items")
+
+                    OneLineIconListItem:
+                        divider: None
+                        text:"Buy Tickets"
+                        text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
+                        theme_text_color: "Custom"
+                        on_release: Thread(target=root.get_ticket).start()
+                        IconLeftWidget:
+                            icon: "ticket"
+                            text_color: [0,0,0,.6] if app.theme_cls.theme_style == "Light" else app.theme_cls.text_color
+                            theme_text_color: "Custom"
+                            on_release: Thread(target=root.get_ticket).start()
 
                     OneLineIconListItem:
                         divider: None

@@ -12,7 +12,7 @@ from kivymd.theming import ThemableBehavior
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.button import MDIconButton
 
-from kivymd.uix.behaviors import FakeRectangularElevationBehavior
+from kivymd.uix.behaviors import BackgroundColorBehavior, FakeRectangularElevationBehavior
 
 from kivy.properties import (
     StringProperty,
@@ -27,6 +27,7 @@ from kivy.properties import (
 from kivy.core.text import DEFAULT_FONT
 from kivy.config import Config
 from kivy.event import EventDispatcher
+from kivymd.uix.card import MDCard
 
 _is_desktop = False
 if Config:
@@ -38,8 +39,8 @@ Builder.load_string(
 <M_CardTextField>:
     adaptive_height: True
     md_bg_color: 1, 1, 1, 1
-    radius: [dp(10)]
-    MDCard:
+    radius: [dp(10)] * 4
+    MD3Card:
         id: card
         ripple_behavior: root.card_ripples
         radius: root.radius
@@ -155,7 +156,11 @@ Builder.load_string(
 )
 
 
-class M_CardTextField(MDBoxLayout, FakeRectangularElevationBehavior, ThemableBehavior):
+class MD3Card(MDCard, FakeRectangularElevationBehavior):
+    pass
+
+
+class M_CardTextField(MDBoxLayout, BackgroundColorBehavior, ThemableBehavior, FakeRectangularElevationBehavior):
     """
     This is a card text field that looks more like
     google website search textfield, you can use right_icon

@@ -13,7 +13,7 @@ Builder.load_string(
 # kv_start
 <M_CardIconButton>:
     ripple_behavior: True
-    radius: [dp(10)]
+    radius: [dp(10)] * 4
     size_hint: None, None
     height: self.minimum_height
     MDGridLayout:
