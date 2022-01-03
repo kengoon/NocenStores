@@ -8,11 +8,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4cb93fcd-1f5d-4fef-8c90-3198d866ca2d" name="Default Changelist" comment="update 0.3.2">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildozer.spec" beforeDir="false" afterPath="$PROJECT_DIR$/buildozer.spec" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libkv/main/productlookout.kv" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libkv/main/productlookout.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/libpy/productlookout.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/libpy/productlookout.py" afterDir="false" />
+    <list default="true" id="4cb93fcd-1f5d-4fef-8c90-3198d866ca2d" name="Default Changelist" comment="work continues">
+      <change afterPath="$PROJECT_DIR$/assets/ads/NO21-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/ads/NO22-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/ads/NO23-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/ads/NO25-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/ads/NO26-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/spinner.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/java/org/mindset/nocenstore/nocenstore/NocenstoreBroadcastReceiver.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -566,7 +569,28 @@
       <option name="project" value="LOCAL" />
       <updated>1638184406515</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="work continues">
+      <created>1641175400780</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1641175400783</updated>
+    </task>
+    <task id="LOCAL-00048" summary="work continues">
+      <created>1641175446593</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1641175446593</updated>
+    </task>
+    <task id="LOCAL-00049" summary="work continues">
+      <created>1641175689811</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1641175689811</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -614,7 +638,8 @@
     <MESSAGE value="pushed" />
     <MESSAGE value="update" />
     <MESSAGE value="update 0.3.2" />
-    <option name="LAST_COMMIT_MESSAGE" value="update 0.3.2" />
+    <MESSAGE value="work continues" />
+    <option name="LAST_COMMIT_MESSAGE" value="work continues" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
 </project>
