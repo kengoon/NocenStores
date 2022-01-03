@@ -68,7 +68,7 @@ class ProductLookOut(Screen):
         self.menu = DropDown(
             items=menu_items,
             width_mult=2.1,
-            # caller=self.ids.info,
+            caller=self.ids.info,
             hor_growth="right",
         )
 
